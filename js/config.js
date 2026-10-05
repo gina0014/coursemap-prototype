@@ -63,15 +63,25 @@ export const FIT_SCORE = {
 /* ----------------------------------------------------------------------------
    AI 学习顾问
    ----------------------------------------------------------------------------
-   当前实现 = Rule-based Prototype Decision Assistant（非 LLM）。
-   llmAdapter 是**接口位**：未来接入 LLM 时由后端代理持有密钥，
-   前端永远不出现 secret。详见 docs/product/11_AI_Architecture.md。
+   v0.2：AI Learning Advisor Beta（Real LLM, DeepSeek via CourseMap AI Backend）。
+   架构硬约束：
+     - LLM = Interaction + Reasoning Layer；CourseMap Data = Evidence Layer。
+     - API key 只存在于服务端（CourseMap AI Backend / Serverless Secret），
+       前端永远不出现 secret，浏览器绝不直连 DeepSeek。
+     - aiBackendBase：AI 后端 base URL（同源部署留空用相对路径）。
+       部署 AI 后端后在发布流程注入，未配置时前端自动降级为规则原型。
+     - 所有推荐 resource_id 必须存在于 CourseMap 数据（前后端双重 CODE 校验）。
    -------------------------------------------------------------------------- */
 export const AI = {
-  mode: 'rule_based_prototype',
-  label: 'AI 学习顾问 Preview',
-  disclaimer: 'Prototype Decision Assistant · Not LLM-powered。推荐结果来自 CourseMap 结构化数据的规则检索，可解释、可回溯。',
-  maxRecommendations: 4,
+  mode: 'ai_beta_backend',
+  label: 'AI 学习顾问 Beta',
+  disclaimer: 'AI Learning Advisor Beta · Powered by DeepSeek (server-side)。AI 推荐以 CourseMap 结构化数据为证据层；具体课程价格、时长、证书等信息以 CourseMap 已核验数据及原始来源为准。',
+  maxRecommendations: 6,
+  // 同源默认（本地 dev server / 同域 Serverless）。跨域部署时在此填后端 base URL。
+  aiBackendBase: '',
+  advisorEndpoint: '/api/ai/advisor',
+  healthEndpoint: '/api/ai/health',
+  requestTimeoutMs: 65_000,
 };
 
 /* ----------------------------------------------------------------------------
