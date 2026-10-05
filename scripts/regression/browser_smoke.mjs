@@ -85,8 +85,8 @@ const TARGETS = [
     mustContain: ['Local Prototype', '本地收藏'], shot: true,
   },
   {
-    id: '12_Advisor_Prototype', page: 'P-10', url: 'pages/advisor.html',
-    mustContain: ['Not LLM-powered'], shot: true,
+    id: '12_Advisor_Fallback', page: 'P-10', url: 'pages/advisor.html',
+    mustContain: ['Rule-based Prototype'], shot: true,
   },
   {
     id: '13_Data_Methodology', page: 'P-11', url: 'pages/data-methodology.html',
