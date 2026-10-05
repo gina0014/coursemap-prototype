@@ -1,0 +1,39 @@
+# ---- CourseMap · .gitignore ----
+# 本项目与 Global Library Platform、DishMap 均完全独立。
+
+# 本地服务器 / 运行产物
+*.log
+_site/
+dist/
+.cache/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*~
+*.swp
+
+# Python（校验与回归脚本）
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 无头浏览器 profile（历史上原项目曾误入此类文件；此处从源头排除）
+.cdp-profile/
+**/.cdp-profile/
+.tmp-chrome-profile/
+**/.tmp-chrome-profile/
+
+# 环境与凭据 —— 永不入库
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# 临时文件
+*.tmp
+*.bak

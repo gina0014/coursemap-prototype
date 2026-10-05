@@ -1,0 +1,28 @@
+[
+  {
+    "source_id": 1,
+    "title": "CourseMap 编辑演示数据集",
+    "source_type": "editorial_demo",
+    "provider": "CourseMap 编辑组（虚构演示）",
+    "url": null,
+    "usage_permission": "editor_created_demo",
+    "verification_status": "unverified",
+    "retrieved_at": "2026-10-04",
+    "license_note": "全部为编辑自建演示数据，不指向、不引用任何真实第三方课程或机构。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "source_id": 2,
+    "title": "CourseMap 产品文档（内部）",
+    "source_type": "product_doc",
+    "provider": "docs/product/06_Domain_Model.md",
+    "url": null,
+    "usage_permission": "editor_created_demo",
+    "verification_status": "human_verified",
+    "retrieved_at": "2026-10-04",
+    "license_note": "实体关系与字段语义以产品文档为准。",
+    "status": "published",
+    "data_class": "demo"
+  }
+]

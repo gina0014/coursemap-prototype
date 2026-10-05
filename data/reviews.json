@@ -1,0 +1,4406 @@
+[
+  {
+    "review_id": 1,
+    "resource_id": 1,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 2,
+    "resource_id": 1,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 3,
+    "resource_id": 1,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "heavy_workload"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 4,
+    "resource_id": 1,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 5,
+    "resource_id": 1,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 6,
+    "resource_id": 1,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 7,
+    "resource_id": 2,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 8,
+    "resource_id": 2,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 9,
+    "resource_id": 2,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "后半段难度陡增，对新手不够友好。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 10,
+    "resource_id": 2,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 11,
+    "resource_id": 3,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 12,
+    "resource_id": 3,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 13,
+    "resource_id": 3,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "配套资料比视频本身更有价值。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-30",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 14,
+    "resource_id": 3,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 15,
+    "resource_id": 3,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 16,
+    "resource_id": 3,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 17,
+    "resource_id": 3,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "theory_heavy"
+    ],
+    "comment": "内容中规中矩，适合当入门索引。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 18,
+    "resource_id": 4,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 19,
+    "resource_id": 4,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "practical"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-05",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 20,
+    "resource_id": 4,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 21,
+    "resource_id": 5,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly",
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 22,
+    "resource_id": 5,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 23,
+    "resource_id": 5,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-09",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 24,
+    "resource_id": 5,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 25,
+    "resource_id": 6,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 26,
+    "resource_id": 6,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 27,
+    "resource_id": 6,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "theory_heavy"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 28,
+    "resource_id": 7,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "内容还行，但性价比一般。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 29,
+    "resource_id": 7,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "后半段难度陡增，对新手不够友好。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 30,
+    "resource_id": 7,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 31,
+    "resource_id": 7,
+    "overall_rating": 2,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "outdated_examples",
+      "theory_heavy"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 32,
+    "resource_id": 7,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 33,
+    "resource_id": 7,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 34,
+    "resource_id": 8,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-30",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 35,
+    "resource_id": 8,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 36,
+    "resource_id": 8,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 37,
+    "resource_id": 9,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-04",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 38,
+    "resource_id": 9,
+    "overall_rating": 2,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload",
+      "outdated_examples"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 39,
+    "resource_id": 9,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 40,
+    "resource_id": 9,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 41,
+    "resource_id": 9,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "theory_heavy"
+    ],
+    "comment": "适合有基础的人快速过一遍。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-24",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 42,
+    "resource_id": 9,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 43,
+    "resource_id": 9,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 44,
+    "resource_id": 10,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 45,
+    "resource_id": 10,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 46,
+    "resource_id": 10,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 47,
+    "resource_id": 11,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 48,
+    "resource_id": 11,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 49,
+    "resource_id": 11,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 50,
+    "resource_id": 11,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 51,
+    "resource_id": 11,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 52,
+    "resource_id": 11,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload",
+      "outdated_examples"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 53,
+    "resource_id": 12,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 54,
+    "resource_id": 12,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "practical"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 55,
+    "resource_id": 12,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 56,
+    "resource_id": 12,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 57,
+    "resource_id": 12,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 58,
+    "resource_id": 12,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 59,
+    "resource_id": 12,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 60,
+    "resource_id": 12,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 61,
+    "resource_id": 13,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 62,
+    "resource_id": 13,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 63,
+    "resource_id": 13,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 64,
+    "resource_id": 13,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 65,
+    "resource_id": 14,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 66,
+    "resource_id": 14,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 67,
+    "resource_id": 14,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "pace_comfortable"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-30",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 68,
+    "resource_id": 14,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly",
+      "practical"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 69,
+    "resource_id": 14,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 70,
+    "resource_id": 14,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises",
+      "practical"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 71,
+    "resource_id": 15,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 72,
+    "resource_id": 15,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-09",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 73,
+    "resource_id": 15,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "配套资料比视频本身更有价值。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 74,
+    "resource_id": 15,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "配套资料比视频本身更有价值。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 75,
+    "resource_id": 15,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 76,
+    "resource_id": 16,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "适合有基础的人快速过一遍。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 77,
+    "resource_id": 16,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 78,
+    "resource_id": 16,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "practical"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 79,
+    "resource_id": 16,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 80,
+    "resource_id": 17,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 81,
+    "resource_id": 17,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 82,
+    "resource_id": 17,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 83,
+    "resource_id": 17,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "well_structured"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 84,
+    "resource_id": 17,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 85,
+    "resource_id": 17,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "配套资料比视频本身更有价值。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 86,
+    "resource_id": 17,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 87,
+    "resource_id": 18,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-07",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 88,
+    "resource_id": 18,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 89,
+    "resource_id": 18,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 90,
+    "resource_id": 19,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 91,
+    "resource_id": 19,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 92,
+    "resource_id": 19,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 93,
+    "resource_id": 20,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly",
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-04",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 94,
+    "resource_id": 20,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 95,
+    "resource_id": 20,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "good_exercises"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 96,
+    "resource_id": 21,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-07",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 97,
+    "resource_id": 21,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises",
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 98,
+    "resource_id": 21,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 99,
+    "resource_id": 21,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 100,
+    "resource_id": 21,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises",
+      "practical"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 101,
+    "resource_id": 21,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "heavy_workload",
+      "pace_comfortable"
+    ],
+    "comment": "内容中规中矩，适合当入门索引。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 102,
+    "resource_id": 21,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 103,
+    "resource_id": 21,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "outdated_examples",
+      "beginner_friendly"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-31",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 104,
+    "resource_id": 22,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 105,
+    "resource_id": 22,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 106,
+    "resource_id": 22,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 107,
+    "resource_id": 22,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 108,
+    "resource_id": 22,
+    "overall_rating": 2,
+    "content_quality": 2,
+    "difficulty_match": 4,
+    "practical_value": 1,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "outdated_examples",
+      "heavy_workload"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-09",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 109,
+    "resource_id": 22,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "heavy_workload"
+    ],
+    "comment": "内容还行，但性价比一般。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 110,
+    "resource_id": 23,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-24",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 111,
+    "resource_id": 23,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 112,
+    "resource_id": 23,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 113,
+    "resource_id": 23,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 114,
+    "resource_id": 23,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 115,
+    "resource_id": 23,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 116,
+    "resource_id": 23,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 117,
+    "resource_id": 24,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 118,
+    "resource_id": 24,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 119,
+    "resource_id": 24,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 120,
+    "resource_id": 24,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 121,
+    "resource_id": 24,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 122,
+    "resource_id": 24,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 123,
+    "resource_id": 24,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 124,
+    "resource_id": 25,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 125,
+    "resource_id": 25,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 126,
+    "resource_id": 25,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 127,
+    "resource_id": 26,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 128,
+    "resource_id": 26,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 129,
+    "resource_id": 26,
+    "overall_rating": 2,
+    "content_quality": 1,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "theory_heavy",
+      "outdated_examples"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-04",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 130,
+    "resource_id": 26,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 131,
+    "resource_id": 26,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 132,
+    "resource_id": 26,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 133,
+    "resource_id": 27,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 134,
+    "resource_id": 27,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "heavy_workload"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 135,
+    "resource_id": 27,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "看完一遍，准备二刷巩固。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 136,
+    "resource_id": 27,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 137,
+    "resource_id": 28,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-23",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 138,
+    "resource_id": 28,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 139,
+    "resource_id": 28,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 140,
+    "resource_id": 28,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 141,
+    "resource_id": 29,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 142,
+    "resource_id": 30,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "theory_heavy",
+      "well_structured"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 143,
+    "resource_id": 30,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "outdated_examples"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 144,
+    "resource_id": 30,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 145,
+    "resource_id": 30,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 146,
+    "resource_id": 30,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "内容还行，但性价比一般。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 147,
+    "resource_id": 30,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "heavy_workload",
+      "good_exercises"
+    ],
+    "comment": "配套资料比视频本身更有价值。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 148,
+    "resource_id": 30,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 149,
+    "resource_id": 31,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises",
+      "well_structured"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 150,
+    "resource_id": 31,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "内容中规中矩，适合当入门索引。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 151,
+    "resource_id": 31,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "节奏偏快，建议先补前置知识。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 152,
+    "resource_id": 31,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "看完一遍，准备二刷巩固。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 153,
+    "resource_id": 31,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-07",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 154,
+    "resource_id": 32,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 155,
+    "resource_id": 32,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 2,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "heavy_workload"
+    ],
+    "comment": "内容中规中矩，适合当入门索引。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 156,
+    "resource_id": 32,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 157,
+    "resource_id": 33,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 158,
+    "resource_id": 33,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly",
+      "good_exercises"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 159,
+    "resource_id": 33,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "pace_comfortable"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 160,
+    "resource_id": 33,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 161,
+    "resource_id": 33,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "outdated_examples"
+    ],
+    "comment": "内容还行，但性价比一般。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 162,
+    "resource_id": 33,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "practical"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 163,
+    "resource_id": 33,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 164,
+    "resource_id": 34,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "good_exercises",
+      "pace_comfortable"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-30",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 165,
+    "resource_id": 34,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 166,
+    "resource_id": 34,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-13",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 167,
+    "resource_id": 34,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 168,
+    "resource_id": 34,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 169,
+    "resource_id": 34,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-16",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 170,
+    "resource_id": 34,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 171,
+    "resource_id": 35,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-04",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 172,
+    "resource_id": 35,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 173,
+    "resource_id": 35,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-26",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 174,
+    "resource_id": 35,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 175,
+    "resource_id": 35,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 176,
+    "resource_id": 35,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises",
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 177,
+    "resource_id": 35,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured",
+      "practical"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 178,
+    "resource_id": 36,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 179,
+    "resource_id": 36,
+    "overall_rating": 3,
+    "content_quality": 2,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "理论偏多，实操环节不够。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 180,
+    "resource_id": 36,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "practical"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-31",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 181,
+    "resource_id": 37,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 182,
+    "resource_id": 37,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-25",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 183,
+    "resource_id": 38,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 184,
+    "resource_id": 38,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 185,
+    "resource_id": 38,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-12",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 186,
+    "resource_id": 38,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 187,
+    "resource_id": 38,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "pace_comfortable"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 188,
+    "resource_id": 38,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-15",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 189,
+    "resource_id": 39,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "practical"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 190,
+    "resource_id": 39,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 191,
+    "resource_id": 39,
+    "overall_rating": 2,
+    "content_quality": 2,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "theory_heavy",
+      "outdated_examples"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 192,
+    "resource_id": 39,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 2,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "outdated_examples"
+    ],
+    "comment": "后半段难度陡增，对新手不够友好。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 193,
+    "resource_id": 39,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 194,
+    "resource_id": 39,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 195,
+    "resource_id": 39,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "practical"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 196,
+    "resource_id": 39,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 197,
+    "resource_id": 40,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "practical",
+      "good_exercises"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 198,
+    "resource_id": 40,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 199,
+    "resource_id": 40,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-31",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 200,
+    "resource_id": 40,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 201,
+    "resource_id": 41,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "讲解节奏清晰，跟下来不费劲。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 202,
+    "resource_id": 41,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 2,
+    "workload_accuracy": 5,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "heavy_workload"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 203,
+    "resource_id": 41,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "beginner_friendly"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-02",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 204,
+    "resource_id": 42,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "well_structured",
+      "beginner_friendly"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-27",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 205,
+    "resource_id": 42,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-24",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 206,
+    "resource_id": 42,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 207,
+    "resource_id": 42,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "作业量比页面标注的大，时间预估偏乐观。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-21",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 208,
+    "resource_id": 42,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "practical"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 209,
+    "resource_id": 42,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "practical",
+      "beginner_friendly"
+    ],
+    "comment": "案例贴近真实场景，不是干讲概念。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-19",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 210,
+    "resource_id": 43,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 3,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-05",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 211,
+    "resource_id": 43,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-14",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 212,
+    "resource_id": 43,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 2,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable"
+    ],
+    "comment": "适合有基础的人快速过一遍。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-18",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 213,
+    "resource_id": 45,
+    "overall_rating": 3,
+    "content_quality": 3,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "theory_heavy"
+    ],
+    "comment": "部分内容有些过时，例子偏老。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-05-29",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 214,
+    "resource_id": 45,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-11",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 215,
+    "resource_id": 45,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-03",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 216,
+    "resource_id": 45,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured",
+      "good_exercises"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-22",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 217,
+    "resource_id": 45,
+    "overall_rating": 5,
+    "content_quality": 4,
+    "difficulty_match": 5,
+    "practical_value": 5,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "good_exercises",
+      "well_structured"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 218,
+    "resource_id": 45,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-08",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 219,
+    "resource_id": 46,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-10",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 220,
+    "resource_id": 46,
+    "overall_rating": 4,
+    "content_quality": 3,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "结构清楚，能感觉到教研下了功夫。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-17",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 221,
+    "resource_id": 46,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 4,
+    "practical_value": 5,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "in_progress",
+    "learning_tags": [
+      "well_structured"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-07-01",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 222,
+    "resource_id": 47,
+    "overall_rating": 3,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 4,
+    "workload_accuracy": 4,
+    "would_recommend": false,
+    "completion_status": "completed",
+    "learning_tags": [
+      "good_exercises",
+      "pace_comfortable"
+    ],
+    "comment": "内容中规中矩，适合当入门索引。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-08-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 223,
+    "resource_id": 47,
+    "overall_rating": 4,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly",
+      "pace_comfortable"
+    ],
+    "comment": "练习设计得很扎实，做完确实会了。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-28",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 224,
+    "resource_id": 47,
+    "overall_rating": 5,
+    "content_quality": 5,
+    "difficulty_match": 5,
+    "practical_value": 4,
+    "workload_accuracy": 2,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-06",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 225,
+    "resource_id": 47,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 4,
+    "practical_value": 3,
+    "workload_accuracy": 5,
+    "would_recommend": true,
+    "completion_status": "completed",
+    "learning_tags": [
+      "pace_comfortable",
+      "practical"
+    ],
+    "comment": "答疑很及时，卡住的地方都能解决。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-06-20",
+    "data_class": "demo",
+    "status": "published"
+  },
+  {
+    "review_id": 226,
+    "resource_id": 47,
+    "overall_rating": 4,
+    "content_quality": 4,
+    "difficulty_match": 3,
+    "practical_value": 4,
+    "workload_accuracy": 3,
+    "would_recommend": true,
+    "completion_status": "dropped",
+    "learning_tags": [
+      "beginner_friendly"
+    ],
+    "comment": "学完就用在课业里了，实用。",
+    "review_origin": "demo_dataset",
+    "submitted_at": "2026-09-20",
+    "data_class": "demo",
+    "status": "published"
+  }
+]

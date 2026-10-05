@@ -1,0 +1,100 @@
+﻿/* ============================================================================
+   CourseMap — Responsive
+   ----------------------------------------------------------------------------
+   断点（docs/09 §9.14）：
+     Mobile   < 768px      单列 / 地图列表切换 / 筛选弹层
+     Tablet   768–1199px   2 列结果 / 地图与列表可并排
+     Desktop  >= 1200px    3 列结果 / 地图 + 侧栏列表
+
+   硬要求：三档下均不得出现横向溢出。宽表只在容器内部滚动。
+   ========================================================================== */
+
+/* ---------- Tablet 及以下 ---------------- */
+@media (max-width: 1199px) {
+  .grid--cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid--stats {  .detail-layout { grid-template-columns: minmax(0, 1fr); }
+  .detail-side { position: static; }
+
+  .grid--split { grid-template-columns: minmax(0, 1fr); }
+
+  .search-form__row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .search-form__row > :last-child { grid-column: 1 / -1; }
+}
+
+/* ---------- Mobile ---------------- */
+@media (max-width: 767px) {
+  :root {
+    --cm-map-h: 62vh;
+    --cm-header-h: 56px;
+  }
+
+  .container { padding-inline: var(--cm-sp-3); }
+
+  .hero { padding-block: var(--cm-sp-5) var(--cm-sp-4); }
+  .hero__title { font-size: var(--cm-fs-2xl); }
+  .hero__sub { font-size: var(--cm-fs-base); }
+
+  .search-form { padding: var(--cm-sp-3); border-radius: var(--cm-r-lg); }
+  .search-form__row { grid-template-columns: minmax(0, 1fr); }
+  .search-form__row > :last-child { grid-column: auto; }
+
+  .grid--cards,
+  .grid--stats,
+  .home-explainer__grid,
+  .category-grid { grid-template-columns: minmax(0, 1fr); }
+
+  /* 导航折叠 */
+  .nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--cm-sp-2) var(--cm-sp-3) var(--cm-sp-3);
+    background: var(--cm-surface);
+    border-bottom: 1px solid var(--cm-border);
+    box-shadow: var(--cm-shadow-md);
+  }
+
+  .nav.is-open { display: flex; }
+
+  .nav__link {
+    padding: var(--cm-sp-3);
+    border-radius: var(--cm-r-md);
+    font-size: var(--cm-fs-base);
+  }
+
+  .nav-toggle { display: block; }
+
+  .app-header__inner { position: relative; }
+
+  .brand__tag { display: none; }
+
+  .footer__cols { grid-template-columns: minmax(0, 1fr); gap: var(--cm-sp-4); }
+
+  /* 对比表在移动端用纵向卡片，不做横向滚动 */
+  .cmp-desktop { display: none; }
+  .cmp-mobile { display: grid; }
+
+  .filter-bar {  .metrics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .bar-row {}
+
+/* ---------- Desktop：确保对比表用表格 ---------------- */
+@media (min-width: 768px) {
+  .cmp-desktop { display: block; }
+  .cmp-mobile { display: none; }
+}
+
+/* ---------- 超小屏 ---------- */
+@media (max-width: 379px) {
+  .metrics-grid { grid-template-columns: minmax(0, 1fr); }
+  .brand__name { font-size: var(--cm-fs-md); }
+}
+
+/* ---------- 打印 ---------- */
+@media print {  .btn { display: none; }
+}

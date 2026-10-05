@@ -1,0 +1,182 @@
+{
+  "schema_version": "0.1",
+  "product": "CourseMap",
+  "note": "教育领域实体定义。字段语义真源：docs/product/06_Domain_Model.md 与 07_Data_Dictionary.md。禁止冗余名称字段：所有跨实体引用一律使用 ID，显示名称在运行时由 ID 解析。",
+  "entities": {
+    "Subject": {
+      "file": "subjects.json",
+      "primary_key": "subject_id",
+      "fields": {
+        "subject_id": "int, required",
+        "code": "string slug, required",
+        "name": "string, required",
+        "name_en": "string|null",
+        "description": "string",
+        "status": "draft|pending|published",
+        "data_class": "demo|real"
+      }
+    },
+    "Skill": {
+      "file": "skills.json",
+      "primary_key": "skill_id",
+      "note": "轻量技能图：prerequisite_skill_ids 构成 JSON adjacency，可平迁到图数据库。",
+      "fields": {
+        "skill_id": "int, required",
+        "name": "string, required",
+        "subject_id": "int -> Subject.subject_id",
+        "prerequisite_skill_ids": "int[]（不得成环）"
+      }
+    },
+    "Learning_Goal": {
+      "file": "learning-goals.json",
+      "primary_key": "goal_id",
+      "fields": {
+        "goal_id": "int, required",
+        "name": "string, required",
+        "subject_id": "int -> Subject.subject_id",
+        "description": "string",
+        "recommended_level": "beginner|intermediate|advanced",
+        "related_skill_ids": "int[] -> Skill.skill_id",
+        "prerequisite_goal_ids": "int[] -> Learning_Goal.goal_id（不得成环）",
+        "next_goal_ids": "int[] -> Learning_Goal.goal_id",
+        "aliases": "string[]（显式维护的检索别名，不做语义推断）"
+      }
+    },
+    "Provider": {
+      "file": "providers.json",
+      "primary_key": "provider_id",
+      "note": "Provider 级信息 ≠ Resource 级质量：Provider 不参与资源评分。",
+      "fields": {
+        "provider_id": "int, required",
+        "name": "string, required",
+        "provider_type": "university_open|mooc_platform|training_studio|community|language_center|research_workshop",
+        "description": "string"
+      }
+    },
+    "Learning_Resource": {
+      "file": "resources.json",
+      "primary_key": "resource_id",
+      "fields": {
+        "resource_id": "int, required",
+        "title": "string, required（published 记录禁止为空）",
+        "provider_id": "int, required -> Provider.provider_id",
+        "subject_id": "int, required -> Subject.subject_id",
+        "learning_goal_ids": "int[] -> Learning_Goal.goal_id（published 记录禁止为空数组）",
+        "skill_ids": "int[] -> Skill.skill_id",
+        "resource_type": "course|tutorial|book|open_course|learning_module",
+        "difficulty": "beginner|intermediate|advanced",
+        "language": "zh|en|zh-en",
+        "fee": "number|null（null = 未知，禁止猜测，禁止用 0 充当未知）",
+        "currency": "CNY|null（fee 为 null 时必须为 null）",
+        "duration_hours": "number|null",
+        "weekly_workload_hours": "number|null",
+        "learning_mode": "self_paced|instructor_led|hybrid",
+        "prerequisite_skill_ids": "int[] -> Skill.skill_id",
+        "certificate_available": "true|false|null",
+        "rating": "number|null（必须等于该资源 published 评价的 overall_rating 均值）",
+        "rating_count": "int（必须等于该资源 published 评价条数）",
+        "learning_outcomes": "string[]",
+        "description": "string",
+        "url": "string|null（demo 记录必须为 null）",
+        "updated_at": "date",
+        "observed_at": "date",
+        "verification_status": "unverified|editorial_verified",
+        "data_class": "demo|real",
+        "source_ids": "int[] -> Source.source_id"
+      }
+    },
+    "Review": {
+      "file": "reviews.json",
+      "primary_key": "review_id",
+      "note": "评价对象是 Learning Resource，不是 Provider。",
+      "fields": {
+        "review_id": "int, required",
+        "resource_id": "int, required -> Learning_Resource.resource_id",
+        "overall_rating": "1-5",
+        "content_quality": "1-5",
+        "difficulty_match": "1-5",
+        "practical_value": "1-5",
+        "workload_accuracy": "1-5",
+        "would_recommend": "bool",
+        "completion_status": "completed|in_progress|dropped",
+        "learning_tags": "string[]（受控枚举，见 js/labels.js LEARNING_TAGS）",
+        "comment": "string|null",
+        "review_origin": "demo_dataset|local_prototype"
+      }
+    },
+    "Learning_Path": {
+      "file": "learning-paths.json",
+      "primary_key": "path_id",
+      "fields": {
+        "path_id": "int, required",
+        "name": "string, required",
+        "description": "string",
+        "goal_ids": "int[] -> Learning_Goal.goal_id",
+        "target_audience": "string"
+      }
+    },
+    "Learning_Path_Step": {
+      "file": "learning-path-steps.json",
+      "primary_key": "step_id",
+      "fields": {
+        "step_id": "int, required",
+        "path_id": "int, required -> Learning_Path.path_id",
+        "step_order": "int（同一 path 内不得重复）",
+        "skill_id": "int|null -> Skill.skill_id",
+        "goal_id": "int|null -> Learning_Goal.goal_id",
+        "title": "string, required",
+        "description": "string",
+        "core_resource_ids": "int[] -> Learning_Resource.resource_id（不得为空）",
+        "optional_resource_ids": "int[]"
+      }
+    },
+    "Fee_History": {
+      "file": "fee-history.json",
+      "primary_key": "fee_observation_id",
+      "note": "append-only 费用观测。当前费用 = observed_at 最新的一条（与 resources.fee 一致）。",
+      "fields": {
+        "fee_observation_id": "int, required",
+        "resource_id": "int, required -> Learning_Resource.resource_id",
+        "fee": "number >= 0",
+        "currency": "CNY",
+        "fee_type": "full|promo|subscription_month",
+        "observed_at": "date",
+        "verification_status": "unverified|editorial_verified",
+        "source_id": "int -> Source.source_id"
+      }
+    },
+    "Source": {
+      "file": "sources.json",
+      "primary_key": "source_id",
+      "fields": {
+        "source_id": "int, required",
+        "title": "string, required",
+        "source_type": "official_provider|university_site|government_open_education|authorized_api|editorial_demo|product_doc",
+        "provider": "string",
+        "url": "string|null",
+        "usage_permission": "authorized|open_license|public_domain|editor_created_demo|pending_review|restricted|unknown",
+        "verification_status": "unverified|human_verified",
+        "retrieved_at": "date|null",
+        "license_note": "string|null"
+      }
+    },
+    "Resource_Source": {
+      "file": "resource-source.json",
+      "primary_key": "resource_source_id",
+      "note": "资源与来源的多对多关系，field_scope 声明该来源支撑哪些字段。",
+      "fields": {
+        "resource_source_id": "int, required",
+        "resource_id": "int -> Learning_Resource.resource_id",
+        "source_id": "int -> Source.source_id",
+        "field_scope": "general|fee|description|outcomes|schedule",
+        "note": "string|null"
+      }
+    }
+  },
+  "ai": {
+    "LearningDecisionRequest": "见 docs/product/11_AI_Architecture.md §3",
+    "LearningDecisionResponse": "见 docs/product/11_AI_Architecture.md §4",
+    "current_implementation": "rule_based_prototype",
+    "llm_powered": false
+  }
+}

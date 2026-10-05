@@ -1,0 +1,365 @@
+[
+  {
+    "step_id": 1,
+    "path_id": 1,
+    "step_order": 1,
+    "skill_id": 1,
+    "goal_id": 1,
+    "title": "打好 Python 基础",
+    "description": "选择一门入门课，完成环境搭建与第一个项目。",
+    "core_resource_ids": [
+      1,
+      42
+    ],
+    "optional_resource_ids": [
+      4,
+      5
+    ]
+  },
+  {
+    "step_id": 2,
+    "path_id": 1,
+    "step_order": 2,
+    "skill_id": 18,
+    "goal_id": 1,
+    "title": "建立工程习惯",
+    "description": "学会用 Git 与命令行管理练习代码。",
+    "core_resource_ids": [
+      2
+    ],
+    "optional_resource_ids": [
+      3
+    ]
+  },
+  {
+    "step_id": 3,
+    "path_id": 1,
+    "step_order": 3,
+    "skill_id": 2,
+    "goal_id": 2,
+    "title": "进入数组与向量化思维",
+    "description": "用 NumPy 理解数据计算的基本抽象。",
+    "core_resource_ids": [
+      7
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 4,
+    "path_id": 1,
+    "step_order": 4,
+    "skill_id": 3,
+    "goal_id": 2,
+    "title": "掌握 Pandas 数据处理",
+    "description": "完成真实数据集的读取、清洗与整合。",
+    "core_resource_ids": [
+      8,
+      43
+    ],
+    "optional_resource_ids": [
+      11
+    ]
+  },
+  {
+    "step_id": 5,
+    "path_id": 1,
+    "step_order": 5,
+    "skill_id": 4,
+    "goal_id": 11,
+    "title": "让结果可被看见",
+    "description": "选择合适的图表并完成一份可视化叙事。",
+    "core_resource_ids": [
+      9
+    ],
+    "optional_resource_ids": [
+      33
+    ]
+  },
+  {
+    "step_id": 6,
+    "path_id": 2,
+    "step_order": 1,
+    "skill_id": 6,
+    "goal_id": 5,
+    "title": "建立统计直觉",
+    "description": "先修统计概念，不急于上手软件。",
+    "core_resource_ids": [
+      14
+    ],
+    "optional_resource_ids": [
+      24
+    ]
+  },
+  {
+    "step_id": 7,
+    "path_id": 2,
+    "step_order": 2,
+    "skill_id": 7,
+    "goal_id": 3,
+    "title": "R 语言起步",
+    "description": "安装环境，掌握数据结构与基础绘图。",
+    "core_resource_ids": [
+      13
+    ],
+    "optional_resource_ids": [
+      32
+    ]
+  },
+  {
+    "step_id": 8,
+    "path_id": 2,
+    "step_order": 3,
+    "skill_id": 8,
+    "goal_id": 3,
+    "title": "用 R 处理真实数据",
+    "description": "把统计检验落到可复现的脚本上。",
+    "core_resource_ids": [
+      27
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 9,
+    "path_id": 3,
+    "step_order": 1,
+    "skill_id": 6,
+    "goal_id": 5,
+    "title": "统计基础",
+    "description": "理解分布、检验与多重比较问题。",
+    "core_resource_ids": [
+      14
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 10,
+    "path_id": 3,
+    "step_order": 2,
+    "skill_id": 7,
+    "goal_id": 3,
+    "title": "R 语言基础",
+    "description": "完成 R 入门与 tidyverse 工作流。",
+    "core_resource_ids": [
+      13
+    ],
+    "optional_resource_ids": [
+      32
+    ]
+  },
+  {
+    "step_id": 11,
+    "path_id": 3,
+    "step_order": 3,
+    "skill_id": 16,
+    "goal_id": 6,
+    "title": "生物信息学基础",
+    "description": "理解组学数据与上游分析流程。",
+    "core_resource_ids": [
+      28
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 12,
+    "path_id": 3,
+    "step_order": 4,
+    "skill_id": 17,
+    "goal_id": 6,
+    "title": "单细胞分析实战",
+    "description": "跑通质控、降维、聚类与注释。",
+    "core_resource_ids": [
+      29
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 13,
+    "path_id": 4,
+    "step_order": 1,
+    "skill_id": 12,
+    "goal_id": 7,
+    "title": "学会找文献",
+    "description": "组合数据库与关键词策略建立检索能力。",
+    "core_resource_ids": [
+      25
+    ],
+    "optional_resource_ids": [
+      38
+    ]
+  },
+  {
+    "step_id": 14,
+    "path_id": 4,
+    "step_order": 2,
+    "skill_id": 12,
+    "goal_id": 7,
+    "title": "高效读文献",
+    "description": "用三遍阅读法拆解领域内代表论文。",
+    "core_resource_ids": [
+      38
+    ],
+    "optional_resource_ids": [
+      31
+    ]
+  },
+  {
+    "step_id": 15,
+    "path_id": 4,
+    "step_order": 3,
+    "skill_id": 13,
+    "goal_id": 8,
+    "title": "学术写作入门",
+    "description": "从段落结构写起，完成第一篇短文。",
+    "core_resource_ids": [
+      34
+    ],
+    "optional_resource_ids": [
+      40,
+      26
+    ]
+  },
+  {
+    "step_id": 16,
+    "path_id": 5,
+    "step_order": 1,
+    "skill_id": 1,
+    "goal_id": 1,
+    "title": "Python 基础",
+    "description": "先完成编程入门，能读写基本脚本。",
+    "core_resource_ids": [
+      1
+    ],
+    "optional_resource_ids": [
+      42
+    ]
+  },
+  {
+    "step_id": 17,
+    "path_id": 5,
+    "step_order": 2,
+    "skill_id": 3,
+    "goal_id": 2,
+    "title": "数据处理能力",
+    "description": "掌握 Pandas 与数据清洗。",
+    "core_resource_ids": [
+      8
+    ],
+    "optional_resource_ids": [
+      43
+    ]
+  },
+  {
+    "step_id": 18,
+    "path_id": 5,
+    "step_order": 3,
+    "skill_id": 6,
+    "goal_id": 5,
+    "title": "数学与统计补齐",
+    "description": "为机器学习补齐线性代数与概率。",
+    "core_resource_ids": [
+      22
+    ],
+    "optional_resource_ids": [
+      14
+    ]
+  },
+  {
+    "step_id": 19,
+    "path_id": 5,
+    "step_order": 4,
+    "skill_id": 9,
+    "goal_id": 4,
+    "title": "机器学习入门",
+    "description": "跑通分类与回归的完整实验。",
+    "core_resource_ids": [
+      18
+    ],
+    "optional_resource_ids": [
+      44
+    ]
+  },
+  {
+    "step_id": 20,
+    "path_id": 6,
+    "step_order": 1,
+    "skill_id": 15,
+    "goal_id": 9,
+    "title": "词汇先行",
+    "description": "按词频开始每日词汇打卡。",
+    "core_resource_ids": [
+      36
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 21,
+    "path_id": 6,
+    "step_order": 2,
+    "skill_id": 14,
+    "goal_id": 9,
+    "title": "听力与阅读策略",
+    "description": "进入系统备考，掌握做题方法。",
+    "core_resource_ids": [
+      35
+    ],
+    "optional_resource_ids": [
+      37
+    ]
+  },
+  {
+    "step_id": 22,
+    "path_id": 6,
+    "step_order": 3,
+    "skill_id": 15,
+    "goal_id": 9,
+    "title": "模考与复盘",
+    "description": "完成全真模考并针对性补弱。",
+    "core_resource_ids": [
+      35
+    ],
+    "optional_resource_ids": []
+  },
+  {
+    "step_id": 23,
+    "path_id": 7,
+    "step_order": 1,
+    "skill_id": 11,
+    "goal_id": 10,
+    "title": "AI 工具初识",
+    "description": "建立提示词与信息核验的基本习惯。",
+    "core_resource_ids": [
+      20
+    ],
+    "optional_resource_ids": [
+      21
+    ]
+  },
+  {
+    "step_id": 24,
+    "path_id": 7,
+    "step_order": 2,
+    "skill_id": 11,
+    "goal_id": 10,
+    "title": "融入学习流程",
+    "description": "为笔记、复习与写作搭建个人模板。",
+    "core_resource_ids": [
+      21
+    ],
+    "optional_resource_ids": [
+      23
+    ]
+  },
+  {
+    "step_id": 25,
+    "path_id": 7,
+    "step_order": 3,
+    "skill_id": 12,
+    "goal_id": 10,
+    "title": "科研场景进阶",
+    "description": "把 AI 用在文献调研并守住可靠性底线。",
+    "core_resource_ids": [
+      46
+    ],
+    "optional_resource_ids": []
+  }
+]

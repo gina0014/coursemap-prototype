@@ -1,0 +1,47 @@
+[
+  {
+    "subject_id": 1,
+    "code": "programming",
+    "name": "编程",
+    "name_en": "Programming",
+    "description": "从零基础到能独立写出小工具：Python、命令行与工程习惯。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "subject_id": 2,
+    "code": "data-analysis",
+    "name": "数据分析",
+    "name_en": "Data Analysis",
+    "description": "用 Python / SQL / 电子表格处理数据、做图、回答业务与科研问题。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "subject_id": 3,
+    "code": "ai",
+    "name": "人工智能",
+    "name_en": "Artificial Intelligence",
+    "description": "机器学习与深度学习基础，以及把 AI 工具用在学习与科研里。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "subject_id": 4,
+    "code": "research-methods",
+    "name": "科研方法",
+    "name_en": "Research Methods",
+    "description": "文献检索、统计基础、学术诚信与科研数据分析工作流。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "subject_id": 5,
+    "code": "academic-english",
+    "name": "学术英语",
+    "name_en": "Academic English",
+    "description": "学术写作、听说训练与标准化考试（四六级 / 雅思）备考。",
+    "status": "published",
+    "data_class": "demo"
+  }
+]

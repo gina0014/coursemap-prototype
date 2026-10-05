@@ -1,0 +1,85 @@
+[
+  {
+    "path_id": 1,
+    "name": "零基础到 Python 数据分析",
+    "description": "从编程入门到能独立完成一份数据分析报告的最短路线。",
+    "goal_ids": [
+      1,
+      2
+    ],
+    "target_audience": "零基础本科生",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 2,
+    "name": "科研统计与 R 语言路线",
+    "description": "先建立统计直觉，再用 R 落地到科研数据分析。",
+    "goal_ids": [
+      5,
+      3
+    ],
+    "target_audience": "需要做数据类毕业论文的学生",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 3,
+    "name": "单细胞 RNA-seq 分析入门路线",
+    "description": "从统计与 R 基础走到单细胞转录组分析的最小工作流。",
+    "goal_ids": [
+      5,
+      3,
+      6
+    ],
+    "target_audience": "生命科学方向研究生",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 4,
+    "name": "从文献检索到学术写作",
+    "description": "先会找文献、读文献，再进入学术写作与投稿流程。",
+    "goal_ids": [
+      7,
+      8
+    ],
+    "target_audience": "准备发表论文的学生",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 5,
+    "name": "机器学习基础路线",
+    "description": "补数学、练代码、跑通第一个端到端机器学习项目。",
+    "goal_ids": [
+      2,
+      4
+    ],
+    "target_audience": "有一定编程基础的学习者",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 6,
+    "name": "英语六级备考路线",
+    "description": "词汇、听力、阅读到模考的系统备考安排。",
+    "goal_ids": [
+      9
+    ],
+    "target_audience": "备考六级的大学生",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "path_id": 7,
+    "name": "AI 工具高效学习路线",
+    "description": "把 AI 工具安全地融入学习、写作与科研流程。",
+    "goal_ids": [
+      10
+    ],
+    "target_audience": "所有想提效的学习者",
+    "status": "published",
+    "data_class": "demo"
+  }
+]

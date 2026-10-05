@@ -1,0 +1,58 @@
+{
+  "rules_version": "0.1",
+  "product": "CourseMap",
+  "severity_levels": ["BLOCKER", "ERROR", "WARN"],
+  "data_files": [
+    "subjects.json",
+    "learning-goals.json",
+    "skills.json",
+    "providers.json",
+    "resources.json",
+    "learning-paths.json",
+    "learning-path-steps.json",
+    "reviews.json",
+    "fee-history.json",
+    "sources.json",
+    "resource-source.json"
+  ],
+  "rules": {
+    "BLOCKER": [
+      { "id": "VR-C01", "rule": "Learning_Resource 缺少 resource_id 或 ID 重复" },
+      { "id": "VR-C02", "rule": "Learning_Resource 引用了不存在的 provider_id / subject_id（无效关系）" },
+      { "id": "VR-C03", "rule": "Learning_Resource.learning_goal_ids 引用了不存在的 goal_id" },
+      { "id": "VR-C04", "rule": "published 资源缺少 title" },
+      { "id": "VR-C05", "rule": "published 资源没有关联任何 Source（真实数据无来源禁止发布）" },
+      { "id": "VR-C06", "rule": "Skill / Goal 前置关系成环" },
+      { "id": "VR-C07", "rule": "Learning_Path_Step 引用了不存在的 path_id / skill_id / goal_id / resource_id" },
+      { "id": "VR-C08", "rule": "Review 引用了不存在的 resource_id" },
+      { "id": "VR-C09", "rule": "Fee_History 引用了不存在的 resource_id / source_id" },
+      { "id": "VR-C10", "rule": "demo 记录的 url 指向真实第三方页面（演示来源不得伪造外链）" }
+    ],
+    "ERROR": [
+      { "id": "VR-E01", "rule": "fee < 0" },
+      { "id": "VR-E02", "rule": "duration_hours <= 0 或 weekly_workload_hours <= 0" },
+      { "id": "VR-E03", "rule": "overall_rating / content_quality 等评分不在 [1,5] 区间" },
+      { "id": "VR-E04", "rule": "difficulty / resource_type / learning_mode / language 取值不在受控枚举内" },
+      { "id": "VR-E05", "rule": "learning path 的 step_order 在同一 path 内重复" },
+      { "id": "VR-E06", "rule": "resource.rating 与已发布评价聚合不一致（>0.01 偏差）" },
+      { "id": "VR-E07", "rule": "resource.rating_count 与已发布评价条数不一致" },
+      { "id": "VR-E08", "rule": "fee 为 null 但 currency 不为 null（未知费用不得带币种）" },
+      { "id": "VR-E09", "rule": "learning_goal_ids 为空数组的 published 资源（资源必须服务于至少一个学习目标）" }
+    ],
+    "WARN": [
+      { "id": "VR-W01", "rule": "费用观测超过 fee_recheck_days（内部复检触发器，不代表费用有效期）" },
+      { "id": "VR-W02", "rule": "评价样本量 < rating_min_sample（前端必须显示 Limited data）" },
+      { "id": "VR-W03", "rule": "published 资源缺少可选前置（prerequisite_skill_ids 为空）" },
+      { "id": "VR-W04", "rule": "资源缺少 duration_hours 或 weekly_workload_hours（影响学习计划估算）" },
+      { "id": "VR-W05", "rule": "certificate_available 为 null（影响决策比较）" }
+    ]
+  },
+  "thresholds": {
+    "rating_min_sample": 3,
+    "fee_recheck_days": 180
+  },
+  "visibility": {
+    "frontend_visible_status": "published",
+    "cascade": "Resource 依赖 Provider/Subject/Goal 全部 published 才可见；Review/Fee 依赖 Resource 可见"
+  }
+}

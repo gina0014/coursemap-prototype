@@ -1,0 +1,581 @@
+﻿/* ============================================================================
+   CourseMap — Page-specific
+   ========================================================================== */
+
+/* ==========================================================================
+   P-01 Home
+   ── 核心问题：「今天想学什么？」
+   ── 必须突出 Goal-first Discovery（按学习目标找资源）。
+   ========================================================================== */
+
+.hero {
+  padding-block: var(--cm-sp-6) var(--cm-sp-5);
+  text-align: center;
+}
+
+.hero__title {
+  font-size: var(--cm-fs-3xl);
+  font-weight: var(--cm-fw-bold);
+  line-height: var(--cm-lh-tight);
+  letter-spacing: -0.03em;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: var(--cm-primary);
+}
+
+.hero__sub {
+  margin-top: var(--cm-sp-3);
+  color: var(--cm-text-soft);
+  font-size: var(--cm-fs-lg);
+}
+
+.hero__note {
+  margin-top: var(--cm-sp-2);
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-sm);
+}
+
+/* 主输入区：四字段并列（Goal / Difficulty / Budget / Weekly Time） */
+.search-form {
+  max-width: 940px;
+  margin: var(--cm-sp-5) auto 0;
+  padding: var(--cm-sp-4);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border-strong);
+  border-radius: var(--cm-r-xl);
+  box-shadow: var(--cm-shadow-lg);
+}
+
+.search-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--cm-sp-3);
+  align-items: end;
+}
+
+.search-form__actions {
+  margin-top: var(--cm-sp-3);
+  display: grid;
+  gap: var(--cm-sp-3);
+}
+
+.search-form__submit {
+  min-height: 52px;
+  font-size: var(--cm-fs-lg);
+}
+
+.search-form__quick {
+  display: grid;
+  gap: var(--cm-sp-2);
+}
+
+.search-form__quick-label {
+  font-size: var(--cm-fs-xs);
+  color: var(--cm-text-muted);
+}
+
+.home-explainer {
+  margin-top: var(--cm-sp-7);
+}
+
+.home-explainer__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--cm-sp-4);
+}
+
+.home-explainer__item {
+  padding: var(--cm-sp-4);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+}
+
+.home-explainer__step {
+  display: inline-block;
+  margin-bottom: var(--cm-sp-2);
+  padding: 1px var(--cm-sp-2);
+  background: var(--cm-primary-soft);
+  color: var(--cm-primary-strong);
+  border-radius: var(--cm-r-sm);
+  font-size: var(--cm-fs-xs);
+  font-weight: var(--cm-fw-bold);
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--cm-sp-3);
+}
+
+.category-tile {
+  display: grid;
+  gap: 2px;
+  padding: var(--cm-sp-3);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-md);
+}
+
+.category-tile:hover {
+  border-color: var(--cm-primary-border);
+  text-decoration: none;
+}
+
+.category-tile__name {
+  color: var(--cm-text);
+  font-weight: var(--cm-fw-semi);
+}
+
+.category-tile__meta {/* ==========================================================================
+   P-03 Search Results
+   ========================================================================== */
+
+.results-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--cm-sp-2) var(--cm-sp-4);
+  margin-bottom: var(--cm-sp-4);
+}
+
+.results-head__summary {
+  font-size: var(--cm-fs-lg);
+  font-weight: var(--cm-fw-semi);
+}
+
+.results-head__summary .num {
+  color: var(--cm-primary-strong);
+}
+
+.results-head__meta {
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-sm);
+}
+
+.filter-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--cm-sp-3);
+  padding: var(--cm-sp-4);
+  margin-bottom: var(--cm-sp-4);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+}
+
+/* ==========================================================================
+   P-04 Resource Detail
+   ========================================================================== */
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  gap: var(--cm-sp-5);
+  align-items: start;
+}
+
+.detail-side {.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--cm-sp-3);
+}
+
+.metric-box {
+  padding: var(--cm-sp-3);
+  background: var(--cm-surface-2);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-md);
+}
+
+.metric-box__label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-xs);
+}
+
+.metric-box__value {
+  margin-top: 2px;
+  font-size: var(--cm-fs-xl);
+  font-weight: var(--cm-fw-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.metric-box__sub {
+  margin-top: 2px;
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-xs);
+}
+
+.metric-box__value--unknown {
+  font-size: var(--cm-fs-md);
+  font-weight: var(--cm-fw-medium);
+  color: var(--cm-text-muted);
+}
+
+.cmp-entry {
+  padding: var(--cm-sp-3);
+  background: var(--cm-primary-soft);
+  border: 1px solid var(--cm-primary-border);
+  border-radius: var(--cm-r-md);
+  text-align: center;
+}
+
+.cmp-entry__title {
+  font-weight: var(--cm-fw-semi);
+  color: var(--cm-primary-strong);
+}
+
+.cmp-entry__desc {/* ==========================================================================
+   P-05 Compare
+   ========================================================================== */
+
+.cmp-head {
+  display: grid;
+  gap: var(--cm-sp-3);
+  padding: var(--cm-sp-5);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+}
+
+.cmp-head__name {
+  font-size: var(--cm-fs-2xl);
+  font-weight: var(--cm-fw-bold);
+}
+
+.cmp-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2) var(--cm-sp-5);
+  font-size: var(--cm-fs-sm);
+  color: var(--cm-text-soft);
+}
+
+.cmp-summary__item .num { font-weight: var(--cm-fw-semi); }
+
+/* ==========================================================================
+   P-08 Review / P-07 Favorites
+   ========================================================================== */
+
+.review-layout {
+  display: grid;
+  gap: var(--cm-sp-4);
+  max-width: 720px;
+}
+
+.review-block {
+  display: grid;
+  gap: var(--cm-sp-3);
+  padding: var(--cm-sp-4);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+}
+
+.review-local-item {
+  padding: var(--cm-sp-3);
+  background: var(--cm-surface-2);
+  border: 1px dashed var(--cm-border-strong);
+  border-radius: var(--cm-r-md);
+  font-size: var(--cm-fs-sm);
+}
+
+/* ==========================================================================
+   P-10 Data Methodology
+   ========================================================================== */
+
+.method-layout {
+  display: grid;
+  gap: var(--cm-sp-5);
+}
+
+.bar-chart {
+  display: grid;
+  gap: var(--cm-sp-2);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) 56px;
+  align-items: center;
+  gap: var(--cm-sp-3);
+  font-size: var(--cm-fs-sm);
+}
+
+.bar-row__label { color: var(--cm-text-soft); }
+
+.bar-row__track {
+  height: 12px;
+  background: var(--cm-surface-3);
+  border-radius: var(--cm-r-pill);
+  overflow: hidden;
+}
+
+.bar-row__fill {
+  height: 100%;
+  background: var(--cm-primary);
+  border-radius: var(--cm-r-pill);
+}
+
+.bar-row__value {
+  text-align: right;
+  color: var(--cm-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   P-11 404
+   ========================================================================== */
+
+.notfound {
+  max-width: 560px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.notfound__code {
+  font-size: 64px;
+  font-weight: var(--cm-fw-bold);
+  color: var(--cm-primary-border);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================================
+   CourseMap 教育领域专属层（pages 增补）
+   detail / search / compare-summary / path / goal-card / review / stats
+   ========================================================================== */
+
+/* ---------- 面包屑 ---------- */
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2);
+  align-items: center;
+  margin-bottom: var(--cm-sp-4);
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-sm);
+}
+.breadcrumb a { color: var(--cm-text-muted); }
+.breadcrumb a:hover { color: var(--cm-primary-strong); }
+
+/* ---------- 详情页头 ---------- */
+.detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--cm-sp-4);
+}
+.detail-head__title {
+  font-size: var(--cm-fs-2xl);
+  font-weight: var(--cm-fw-bold);
+  line-height: var(--cm-lh-tight);
+  letter-spacing: -0.02em;
+}
+.detail-head__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2);
+  margin-top: var(--cm-sp-2);
+}
+.detail-lead {
+  margin-top: var(--cm-sp-4);
+  color: var(--cm-text-soft);
+  font-size: var(--cm-fs-md);
+  max-width: 68ch;
+}
+.detail-section { margin-top: var(--cm-sp-6); }
+.section-title {
+  font-size: var(--cm-fs-lg);
+  font-weight: var(--cm-fw-semi);
+  margin-bottom: var(--cm-sp-3);
+}
+.sub-title {
+  font-size: var(--cm-fs-md);
+  font-weight: var(--cm-fw-semi);
+  margin-bottom: var(--cm-sp-2);
+}
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-3);
+  margin-top: var(--cm-sp-6);
+  padding-top: var(--cm-sp-4);
+  border-top: 1px solid var(--cm-border);
+}
+
+/* ---------- 搜索布局 ---------- */
+.search-form--compact { margin-bottom: var(--cm-sp-4); }
+.field--grow { flex: 1 1 260px; }
+.search-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--cm-sp-5);
+  align-items: start;
+}
+.search-side {
+  position: sticky;
+  top: calc(var(--cm-header-h) + var(--cm-sp-3));
+  display: grid;
+  gap: var(--cm-sp-3);
+  max-height: calc(100vh - var(--cm-header-h) - 24px);
+  overflow: auto;
+  padding: var(--cm-sp-3);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+}
+.filter-group summary {
+  cursor: pointer;
+  font-weight: var(--cm-fw-semi);
+  font-size: var(--cm-fs-sm);
+  padding-block: var(--cm-sp-1);
+}
+.filter-group .control { width: 100%; margin-top: var(--cm-sp-2); }
+.search-main { min-width: 0; }
+.pager { margin-top: var(--cm-sp-5); justify-content: center; }
+.btn.is-active {
+  background: var(--cm-primary-soft);
+  color: var(--cm-primary-strong);
+  border-color: var(--cm-primary-border);
+}
+
+/* ---------- 指标网格 / 列表 ---------- */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--cm-sp-3);
+}
+.outcome-list { padding-left: 1.2em; display: grid; gap: var(--cm-sp-2); }
+.kv-list { display: grid; gap: var(--cm-sp-2); }
+.kv-list li { display: flex; justify-content: space-between; gap: var(--cm-sp-4); border-bottom: 1px dashed var(--cm-border); padding-bottom: var(--cm-sp-1); }
+.kv-list li span { color: var(--cm-text-muted); }
+.parse-notes { padding-left: 1.2em; display: grid; gap: var(--cm-sp-1); color: var(--cm-text-soft); font-size: var(--cm-fs-sm); }
+.ai-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--cm-sp-5);
+}
+
+/* ---------- 对比统计卡 ---------- */
+.cmp-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--cm-sp-3);
+  margin-block: var(--cm-sp-5);
+}
+.cmp-stat {
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+  padding: var(--cm-sp-3) var(--cm-sp-4);
+}
+.cmp-stat__label { color: var(--cm-text-muted); font-size: var(--cm-fs-xs); }
+.cmp-stat__value { font-size: var(--cm-fs-xl); font-weight: var(--cm-fw-bold); font-variant-numeric: tabular-nums; }
+
+/* ---------- 首页统计条 ---------- */
+.stat-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2) var(--cm-sp-4);
+  padding: var(--cm-sp-3) var(--cm-sp-4);
+  margin-top: var(--cm-sp-4);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-pill);
+  font-size: var(--cm-fs-sm);
+  color: var(--cm-text-muted);
+}
+.stat strong { color: var(--cm-text); }
+
+/* ---------- 首页目标卡 ---------- */
+.goal-card {
+  display: block;
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+  padding: var(--cm-sp-4);
+  transition: border-color var(--cm-t-base), transform var(--cm-t-base);
+}
+.goal-card:hover {
+  border-color: var(--cm-primary-border);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+.goal-card__subject { color: var(--cm-accent); font-size: var(--cm-fs-xs); font-weight: var(--cm-fw-semi); letter-spacing: 0.04em; }
+.goal-card__name { font-size: var(--cm-fs-lg); font-weight: var(--cm-fw-bold); margin-top: var(--cm-sp-1); }
+.goal-card__desc { color: var(--cm-text-muted); font-size: var(--cm-fs-sm); margin-top: var(--cm-sp-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.goal-card__meta { margin-top: var(--cm-sp-3); font-size: var(--cm-fs-sm); color: var(--cm-text-soft); }
+
+/* ---------- 学习路径 ---------- */
+.path-card {
+  display: block;
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+  padding: var(--cm-sp-4);
+  transition: border-color var(--cm-t-base), transform var(--cm-t-base);
+}
+.path-card:hover { border-color: var(--cm-primary-border); transform: translateY(-2px); text-decoration: none; }
+.path-card__head { display: flex; align-items: center; justify-content: space-between; gap: var(--cm-sp-2); }
+.path-card__name { font-size: var(--cm-fs-lg); font-weight: var(--cm-fw-bold); }
+.path-card__desc { color: var(--cm-text-muted); font-size: var(--cm-fs-sm); margin-top: var(--cm-sp-2); }
+.path-card__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--cm-sp-2); margin-top: var(--cm-sp-3); font-size: var(--cm-fs-xs); color: var(--cm-text-muted); }
+.path-card__goals { margin-top: var(--cm-sp-3); display: flex; flex-wrap: wrap; gap: var(--cm-sp-1); }
+
+.path-svg { width: 100%; height: auto; display: block; }
+.path-node__order { font-size: 11px; fill: var(--cm-accent); font-weight: 600; }
+.path-node__title { font-size: 13px; fill: var(--cm-text); font-weight: 600; }
+
+.path-step {
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-lg);
+  padding: var(--cm-sp-4);
+  margin-top: var(--cm-sp-4);
+  background: var(--cm-surface);
+}
+.path-step__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cm-sp-2); }
+.path-step__order {
+  background: var(--cm-primary-soft);
+  color: var(--cm-primary-strong);
+  border-radius: var(--cm-r-pill);
+  font-size: var(--cm-fs-xs);
+  font-weight: var(--cm-fw-bold);
+  padding: 2px 10px;
+}
+.path-step__title { font-size: var(--cm-fs-md); font-weight: var(--cm-fw-semi); }
+.path-resource { background: var(--cm-surface-2); border: 1px solid var(--cm-border); border-radius: var(--cm-r-md); padding: var(--cm-sp-3); }
+.path-resource__title { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cm-sp-2); font-weight: var(--cm-fw-medium); }
+.path-resource__meta { display: grid; gap: 4px; font-size: var(--cm-fs-sm); }
+
+/* ---------- Provider ---------- */
+.provider-resource-list { display: grid; gap: var(--cm-sp-2); padding-left: 0; list-style: none; }
+.provider-resource { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cm-sp-2); padding-bottom: var(--cm-sp-2); border-bottom: 1px dashed var(--cm-border); }
+
+/* ---------- 评价表单 ---------- */
+.review-form .card__body { display: grid; gap: var(--cm-sp-4); }
+.review-dim { display: grid; gap: var(--cm-sp-2); }
+.review-dim__label { font-weight: var(--cm-fw-semi); font-size: var(--cm-fs-sm); }
+.star-row { display: flex; flex-wrap: wrap; gap: var(--cm-sp-2); }
+.star input { position: absolute; opacity: 0; }
+.star span {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--cm-border-strong);
+  border-radius: var(--cm-r-pill);
+  font-size: var(--cm-fs-sm);
+  cursor: pointer;
+}
+.star input:checked + span { background: var(--cm-primary-soft); border-color: var(--cm-primary-border); color: var(--cm-primary-strong); font-weight: var(--cm-fw-semi); }
+.star input:focus-visible + span { outline: 2px solid var(--cm-focus); outline-offset: 2px; }
+.review-inline { display: inline-flex; align-items: center; gap: 4px; font-size: var(--cm-fs-sm); margin-right: var(--cm-sp-3); }
+
+/* ---------- 品牌中文名 ---------- */
+.brand__zh { margin-left: 6px; color: var(--cm-accent); font-size: var(--cm-fs-sm); font-weight: var(--cm-fw-semi); }

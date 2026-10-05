@@ -1,0 +1,13 @@
+{
+  "name": "coursemap-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CourseMap（学途）— 学习目标驱动的课程与学习资源智能决策平台（教育领域原型）",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/runtime.test.mjs",
+    "validate": "python scripts/validate/validate_data.py",
+    "smoke": "node scripts/regression/browser_smoke.mjs"
+  },
+  "license": "MIT"
+}

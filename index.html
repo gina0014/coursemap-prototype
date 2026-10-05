@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CourseMap 学途 · 今天想学什么？— 按学习目标找资源，而不是先找平台再翻课程</title>
+<meta name="description" content="CourseMap（学途）是一个学习目标驱动的课程与学习资源智能决策平台原型：按目标找资源、跨提供方对比、学习路径、可解释的 AI 学习建议。当前为原型阶段，数据集为演示数据（DEMO）。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主内容</a>
+
+<!-- 全局 Demo 提示条（存在 demo 数据时由运行时填充，不可关闭） -->
+<div data-chrome="banner"></div>
+
+<header class="app-header" data-chrome="header"></header>
+
+<main class="app-main" id="main">
+  <div class="container">
+
+    <!-- Hero 与主输入区：静态可用（渐进增强），不依赖数据即可理解产品主张 -->
+    <div class="hero">
+      <h1 class="hero__title">今天<em>想学什么</em>？</h1>
+      <p class="hero__sub">按学习目标找资源，而不是先找平台再翻课程。</p>
+      <p class="hero__note">告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。</p>
+    </div>
+
+    <form class="search-form" data-home-search>
+      <div class="search-form__row">
+        <div class="field">
+          <label class="field__label" for="home-goal">🎯 学习目标</label>
+          <select class="control" id="home-goal" data-field="goal">
+            <option value="all">全部目标</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="home-level">📊 当前基础</label>
+          <select class="control" id="home-level" data-field="difficulty">
+            <option value="all">不限</option>
+            <option value="beginner">零基础 / 入门</option>
+            <option value="intermediate">有一些基础</option>
+            <option value="advanced">进阶</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="home-budget">💰 预算</label>
+          <select class="control" id="home-budget" data-field="budget">
+            <option value="all">不限</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="home-time">⏱ 每周可投入</label>
+          <select class="control" id="home-time" data-field="wl">
+            <option value="all">不限</option>
+            <option value="2">≤ 2 小时/周</option>
+            <option value="4">≤ 4 小时/周</option>
+            <option value="6">≤ 6 小时/周</option>
+            <option value="8">≤ 8 小时/周</option>
+          </select>
+        </div>
+      </div>
+      <div class="search-form__actions">
+        <button type="submit" class="btn btn--primary btn--block search-form__submit">找学习资源</button>
+        <div class="search-form__quick">
+          <span class="search-form__quick-label">Quick Goals（点击即搜索）</span>
+          <div class="chip-row" data-quick-goals>
+            <span class="cmp-dim">正在读取目标…</span>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div data-home-stats></div>
+
+    <!-- 以下区块由运行时填充（Loading / Success / Empty / Error 四态在此区域内切换） -->
+    <div data-page>
+      <div class="state" data-coursemap-state="loading">
+        <div class="state__title">正在读取数据…</div>
+        <div class="skeleton skeleton--line" style="max-width:280px;margin:16px auto 8px;"></div>
+        <div class="skeleton skeleton--card" style="max-width:420px;margin:16px auto 0;"></div>
+      </div>
+    </div>
+
+    <section class="detail-section">
+      <h2 class="section-title">按学习目标探索</h2>
+      <div class="grid grid--cards" data-goal-grid></div>
+    </section>
+
+    <section class="detail-section">
+      <h2 class="section-title">CourseMap 如何帮你决策</h2>
+      <div class="ai-grid">
+        <div>
+          <h3 class="sub-title">1 · 按目标发现</h3>
+          <p class="cmp-dim">搜索单位是学习资源：说出目标，直接看跨提供方的具体课程、教程与书籍。</p>
+        </div>
+        <div>
+          <h3 class="sub-title">2 · 同目标对比</h3>
+          <p class="cmp-dim">费用、时长、难度、证书、评分并排比较；最低价、最短时长、最高评分自动计算。</p>
+        </div>
+        <div>
+          <h3 class="sub-title">3 · 学习路径</h3>
+          <p class="cmp-dim">先学什么、后学什么：目标 → 技能 → 资源的顺序结构，每一步带可核验的资源。</p>
+        </div>
+        <div>
+          <h3 class="sub-title">4 · AI 学习顾问（Beta）</h3>
+          <p class="cmp-dim">一句话描述需求，得到可解释的推荐与证据。当前为规则原型，非 LLM。</p>
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="state">
+        <div class="state__title">本原型需要 JavaScript</div>
+        <div class="state__desc">
+          CourseMap 是 JSON 驱动的前端原型，需要 JavaScript 才能加载数据、渲染学习目标，并执行搜索。
+          上面的问题与输入字段是静态内容，任何情况下都可阅读。
+        </div>
+      </div>
+    </noscript>
+
+  </div>
+</main>
+
+<footer class="app-footer" data-chrome="footer"></footer>
+
+<script type="module" src="js/pages/home.js"></script>
+</body>
+</html>

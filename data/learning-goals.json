@@ -1,0 +1,256 @@
+[
+  {
+    "goal_id": 1,
+    "name": "Python 入门",
+    "subject_id": 1,
+    "description": "从零开始学会用 Python 写程序：语法、函数、文件与一个小项目。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      1,
+      18
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [
+      2,
+      4
+    ],
+    "aliases": [
+      "python",
+      "py",
+      "编程入门"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 2,
+    "name": "Python 数据分析",
+    "subject_id": 2,
+    "description": "用 NumPy / Pandas 完成读取、清洗、分析与可视化一条龙。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      2,
+      3,
+      4,
+      8
+    ],
+    "prerequisite_goal_ids": [
+      1
+    ],
+    "next_goal_ids": [
+      4
+    ],
+    "aliases": [
+      "数据分析",
+      "pandas",
+      "data analysis"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 3,
+    "name": "R 语言入门",
+    "subject_id": 4,
+    "description": "掌握 R 基础语法与 tidyverse 工作流，为统计分析打地基。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      7
+    ],
+    "prerequisite_goal_ids": [
+      5
+    ],
+    "next_goal_ids": [
+      6
+    ],
+    "aliases": [
+      "r",
+      "r语言"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 4,
+    "name": "机器学习基础",
+    "subject_id": 3,
+    "description": "理解常见模型原理并能跑通端到端的小型机器学习项目。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      9
+    ],
+    "prerequisite_goal_ids": [
+      2
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "ml",
+      "机器学习"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 5,
+    "name": "科研统计基础",
+    "subject_id": 4,
+    "description": "描述统计、假设检验与置信区间：看懂论文里的数字。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      6
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [
+      3,
+      6
+    ],
+    "aliases": [
+      "统计",
+      "statistics"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 6,
+    "name": "单细胞 RNA-seq 入门",
+    "subject_id": 4,
+    "description": "从原始数据到细胞分群：单细胞转录组分析的最小工作流。",
+    "recommended_level": "advanced",
+    "related_skill_ids": [
+      16,
+      17
+    ],
+    "prerequisite_goal_ids": [
+      3,
+      5
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "scrna",
+      "单细胞"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 7,
+    "name": "文献检索",
+    "subject_id": 4,
+    "description": "高效查找、筛选、管理文献，并跟踪领域最新进展。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      12
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [
+      8
+    ],
+    "aliases": [
+      "文献",
+      "检索",
+      "literature"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 8,
+    "name": "学术英语写作",
+    "subject_id": 5,
+    "description": "从段落逻辑到投稿信：写出结构清晰、表达地道的学术文本。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      13,
+      15
+    ],
+    "prerequisite_goal_ids": [
+      7
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "写作",
+      "academic writing",
+      "论文写作"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 9,
+    "name": "英语六级",
+    "subject_id": 5,
+    "description": "六级听力、阅读、写作与翻译的系统备考路线。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      14,
+      15
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "cet6",
+      "六级",
+      "cet-6"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 10,
+    "name": "AI 工具使用",
+    "subject_id": 3,
+    "description": "把 AI 助手用在学习、写作与编程里：提示词、边界与核验。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      11
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "ai工具",
+      "chatgpt",
+      "提示词"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 11,
+    "name": "数据可视化",
+    "subject_id": 2,
+    "description": "选择正确的图表，把数据讲成一个可信的故事。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      4
+    ],
+    "prerequisite_goal_ids": [
+      2
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "可视化",
+      "visualization"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "goal_id": 12,
+    "name": "SQL 与数据库入门",
+    "subject_id": 2,
+    "description": "从 SELECT 到 JOIN：查询和分析数据库里的业务数据。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      5
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "sql",
+      "数据库"
+    ],
+    "status": "published",
+    "data_class": "demo"
+  }
+]

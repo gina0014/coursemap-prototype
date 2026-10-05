@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>找课程 · CourseMap 学途</title>
+<meta name="description" content="按学习目标搜索和筛选学习资源。">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/pages.css">
+<link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">跳到主内容</a>
+<div data-chrome="banner"></div>
+<header class="app-header" data-chrome="header"></header>
+
+<main class="app-main" id="main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="面包屑">
+      <a href="../index.html">首页</a> › <span>找课程</span>
+    </nav>
+
+    <!-- 搜索框：静态可用 -->
+    <form class="search-form search-form--compact" data-search-form>
+      <div class="search-form__row">
+        <div class="field field--grow">
+          <label class="field__label" for="search-q">🔎 想学什么（目标 / 资源名 / 技能）</label>
+          <input class="control" type="search" id="search-q" data-field="q" placeholder="例如：Python 入门、数据分析、机器学习" autocomplete="off">
+        </div>
+        <div class="field">
+          <label class="field__label" for="search-sort">排序</label>
+          <select class="control" id="search-sort" data-sort></select>
+        </div>
+      </div>
+    </form>
+
+    <div class="search-layout">
+      <aside class="search-side" aria-label="筛选条件" data-filters></aside>
+      <div class="search-main">
+        <div data-goal-bar></div>
+        <div data-result-header></div>
+        <div data-results>
+          <div class="state" data-coursemap-state="loading">
+            <div class="state__title">正在读取数据…</div>
+            <div class="skeleton skeleton--card" style="max-width:420px;margin:16px auto 0;"></div>
+          </div>
+        </div>
+        <nav class="pager cluster" data-pager aria-label="分页"></nav>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="app-footer" data-chrome="footer"></footer>
+
+<script type="module" src="../js/pages/search.js"></script>
+</body>
+</html>

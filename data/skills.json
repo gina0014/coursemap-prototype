@@ -1,0 +1,133 @@
+[
+  {
+    "skill_id": 1,
+    "name": "Python 基础",
+    "subject_id": 1,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 2,
+    "name": "NumPy 数组计算",
+    "subject_id": 2,
+    "prerequisite_skill_ids": [
+      1
+    ]
+  },
+  {
+    "skill_id": 3,
+    "name": "Pandas 数据处理",
+    "subject_id": 2,
+    "prerequisite_skill_ids": [
+      2
+    ]
+  },
+  {
+    "skill_id": 4,
+    "name": "数据可视化",
+    "subject_id": 2,
+    "prerequisite_skill_ids": [
+      3
+    ]
+  },
+  {
+    "skill_id": 5,
+    "name": "SQL 基础",
+    "subject_id": 2,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 6,
+    "name": "统计基础",
+    "subject_id": 4,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 7,
+    "name": "R 语言基础",
+    "subject_id": 4,
+    "prerequisite_skill_ids": [
+      6
+    ]
+  },
+  {
+    "skill_id": 8,
+    "name": "数据清洗",
+    "subject_id": 2,
+    "prerequisite_skill_ids": [
+      3
+    ]
+  },
+  {
+    "skill_id": 9,
+    "name": "机器学习基础",
+    "subject_id": 3,
+    "prerequisite_skill_ids": [
+      3,
+      6
+    ]
+  },
+  {
+    "skill_id": 10,
+    "name": "深度学习入门",
+    "subject_id": 3,
+    "prerequisite_skill_ids": [
+      9
+    ]
+  },
+  {
+    "skill_id": 11,
+    "name": "AI 工具使用",
+    "subject_id": 3,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 12,
+    "name": "文献检索",
+    "subject_id": 4,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 13,
+    "name": "学术写作",
+    "subject_id": 5,
+    "prerequisite_skill_ids": [
+      12
+    ]
+  },
+  {
+    "skill_id": 14,
+    "name": "英语听说基础",
+    "subject_id": 5,
+    "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 15,
+    "name": "学术词汇",
+    "subject_id": 5,
+    "prerequisite_skill_ids": [
+      14
+    ]
+  },
+  {
+    "skill_id": 16,
+    "name": "生物信息学基础",
+    "subject_id": 4,
+    "prerequisite_skill_ids": [
+      7
+    ]
+  },
+  {
+    "skill_id": 17,
+    "name": "单细胞数据分析",
+    "subject_id": 4,
+    "prerequisite_skill_ids": [
+      16
+    ]
+  },
+  {
+    "skill_id": 18,
+    "name": "Git 与命令行",
+    "subject_id": 1,
+    "prerequisite_skill_ids": []
+  }
+]

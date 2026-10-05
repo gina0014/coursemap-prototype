@@ -1,0 +1,82 @@
+[
+  {
+    "provider_id": 1,
+    "name": "示范大学在线（DEMO）",
+    "provider_type": "university_open",
+    "description": "虚构的大学开放课程平台演示实体，用于原型数据。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 2,
+    "name": "云岭开放课程平台（DEMO）",
+    "provider_type": "mooc_platform",
+    "description": "虚构的 MOOC 平台演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 3,
+    "name": "极舟学堂（DEMO）",
+    "provider_type": "training_studio",
+    "description": "虚构的小型训练营演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 4,
+    "name": "星洲大学公开课（DEMO）",
+    "provider_type": "university_open",
+    "description": "虚构的大学公开课演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 5,
+    "name": "码巢开源学习社区（DEMO）",
+    "provider_type": "community",
+    "description": "虚构的开源社区学习频道演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 6,
+    "name": "青檬数据学院（DEMO）",
+    "provider_type": "training_studio",
+    "description": "虚构的数据技能培训演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 7,
+    "name": "湖畔外语学习中心（DEMO）",
+    "provider_type": "language_center",
+    "description": "虚构的语言学习机构演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 8,
+    "name": "木铎学术工坊（DEMO）",
+    "provider_type": "research_workshop",
+    "description": "虚构的科研方法工作坊演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 9,
+    "name": "南山理工公开课（DEMO）",
+    "provider_type": "university_open",
+    "description": "虚构的理工类公开课演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  },
+  {
+    "provider_id": 10,
+    "name": "白泽 AI 公开课（DEMO）",
+    "provider_type": "community",
+    "description": "虚构的 AI 社区公开课演示实体。",
+    "status": "published",
+    "data_class": "demo"
+  }
+]

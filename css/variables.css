@@ -1,0 +1,130 @@
+/* ============================================================================
+   CourseMap（学途） — Design Tokens (單一真源)
+   ----------------------------------------------------------------------------
+   CourseMap Design Baseline V0.1 · Prototype
+
+   视觉身份方向（docs/product/04_Information_Architecture.md）：
+     learning · knowledge · clarity · trust · academic / technology
+
+   与原图书馆项目的关系：**借鉴令牌结构，取值全新**。
+   教育视觉语言：靛蓝（信任 / 学术）+ 青玉（成长 / 清晰）；
+   CourseMap 为靛蓝 + 青玉（知识 / 信任 / 教育科技），三者不得混淆。
+
+   硬规则：
+   - 本文件是颜色、间距、圆角、字号的唯一定义处，其它 CSS 不得硬编码色值。
+   - 语义色（费用 / 核验 / Demo / 实验性）必须在全站保持一致。
+   - 颜色**不得**是唯一的信息载体：所有状态徽标都必须同时有文字。
+   ========================================================================== */
+
+:root {
+  /* ---------- 色板：冷中性纸感底 ---------------- */
+  --cm-bg:            #F8FAFD;
+  --cm-bg-soft:       #EEF3F9;
+  --cm-surface:       #FFFFFF;
+  --cm-surface-2:     #F1F6FC;
+  --cm-surface-3:     #E7EFF8;
+  --cm-border:        #D8E2EE;
+  --cm-border-strong: #B9C9DD;
+
+  /* ---------- 文字 ---------------- */
+  --cm-text:          #1B2A3D;
+  --cm-text-soft:     #3C516B;
+  --cm-text-muted:    #66798F;
+  --cm-text-invert:   #FFFFFF;
+
+  /* ---------- 品牌主色（靛蓝 / 知识蓝） ---------------- */
+  --cm-primary:        #2F5FD0;
+  --cm-primary-strong: #23479C;
+  --cm-primary-hover:  #2A56BD;
+  --cm-primary-soft:   #E4ECFB;
+  --cm-primary-border: #A9C1F0;
+
+  /* ---------- 辅助色（青玉 / 学习进度） ---------------- */
+  --cm-accent:        #0E8A80;
+  --cm-accent-soft:   #DCF3F0;
+
+  /* ---------- 语义色 ---------------- */
+  --cm-fee:          #8A5A00;  /* 费用：稳定的琥珀 */
+  --cm-fee-bg:       #FDF2D0;
+  --cm-rating:       #B7791F;  /* 评分：星标琥珀 */
+  --cm-verified:     #15803D;  /* 已核验 */
+  --cm-verified-bg:  #DCFCE7;
+  --cm-unverified:   #92610E;  /* 未核验 */
+  --cm-unverified-bg:#FDF2D0;
+  --cm-demo:         #6D28D9;  /* Demo：紫色，与所有语义色区分 */
+  --cm-demo-bg:      #EDE9FE;
+  --cm-demo-border:  #C4B5FD;
+  --cm-experimental: #0E7490;  /* 实验性指标：青，提示「非验证结论」 */
+  --cm-experimental-bg: #CFFAFE;
+  --cm-limited:      #92610E;  /* 样本不足 */
+  --cm-limited-bg:   #FDF2D0;
+  --cm-danger:       #B91C1C;
+  --cm-danger-bg:    #FEE2E2;
+  --cm-focus:        #1D4ED8;  /* 焦点环：高对比蓝 */
+
+  /* ---------- 排版 ---------------- */
+  --cm-font: "Inter", "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+             "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans SC",
+             "Noto Sans CJK SC", system-ui, -apple-system, sans-serif;
+  --cm-font-mono: "SFMono-Regular", "Cascadia Mono", "Consolas",
+                  "Liberation Mono", ui-monospace, monospace;
+
+  --cm-fs-xs:   0.75rem;   /* 12 */
+  --cm-fs-sm:   0.8125rem; /* 13 */
+  --cm-fs-base: 0.9375rem; /* 15 */
+  --cm-fs-md:   1rem;      /* 16 */
+  --cm-fs-lg:   1.125rem;  /* 18 */
+  --cm-fs-xl:   1.375rem;  /* 22 */
+  --cm-fs-2xl:  1.75rem;   /* 28 */
+  --cm-fs-3xl:  2.25rem;   /* 36 */
+
+  --cm-lh-tight: 1.25;
+  --cm-lh-base:  1.6;
+
+  --cm-fw-normal: 400;
+  --cm-fw-medium: 500;
+  --cm-fw-semi:   600;
+  --cm-fw-bold:   700;
+
+  /* ---------- 间距（4 的倍数） ---------------- */
+  --cm-sp-1:  0.25rem;  /* 4  */
+  --cm-sp-2:  0.5rem;   /* 8  */
+  --cm-sp-3:  0.75rem;  /* 12 */
+  --cm-sp-4:  1rem;     /* 16 */
+  --cm-sp-5:  1.5rem;   /* 24 */
+  --cm-sp-6:  2rem;     /* 32 */
+  --cm-sp-7:  3rem;     /* 48 */
+  --cm-sp-8:  4rem;     /* 64 */
+
+  /* ---------- 圆角 / 阴影 ---------------- */
+  --cm-r-sm: 6px;
+  --cm-r-md: 10px;
+  --cm-r-lg: 14px;
+  --cm-r-xl: 20px;
+  --cm-r-pill: 999px;
+
+  --cm-shadow-sm: 0 1px 2px rgba(27, 42, 61, 0.06);
+  --cm-shadow-md: 0 2px 8px rgba(27, 42, 61, 0.08);
+  --cm-shadow-lg: 0 8px 24px rgba(27, 42, 61, 0.12);
+
+  /* ---------- 尺寸 ---------------- */
+  --cm-container: 1200px;
+  --cm-container-narrow: 860px;
+  --cm-header-h: 60px;
+  --cm-control-h: 44px;
+
+  /* ---------- 层级 ---------------- */
+  --cm-z-sticky: 50;
+  --cm-z-header: 90;
+
+  /* ---------- 动效 ---------------- */
+  --cm-t-fast: 120ms ease;
+  --cm-t-base: 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --cm-t-fast: 0ms;
+    --cm-t-base: 0ms;
+  }
+}
