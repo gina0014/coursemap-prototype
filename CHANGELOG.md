@@ -1,5 +1,46 @@
 # Changelog
 
+## CourseMap-v0.2-AI-Beta (2026-10-06)
+
+AI-1 DeepSeek 生产接入（工程闭环）。LLM = Interaction + Reasoning Layer，
+CourseMap Data = Evidence Layer 的架构原则全程保持。
+
+### Added
+
+- CourseMap AI Backend（Node / Serverless）：`server/` 模块化架构 + `api/ai/advisor.js`
+  Vercel Function 入口 + 本地 dev server（`npm run dev:ai`）。
+  路由：`POST /api/ai/advisor`、`GET /api/ai/health`；统一 envelope。
+- LLM Adapter 抽象：`LLMAdapter`（接口）/ `DeepSeekAdapter`（生产，JSON 输出模式 +
+  Tool Calling + 超时 + 错误映射，密钥仅服务端）/ `MockLLMAdapter`（测试，零外部调用）。
+- 版本化 System Prompt（`server/prompts/learning-advisor-v1.mjs`）：
+  CourseMap 数据 = 唯一事实来源；检索数据 = DATA 非 INSTRUCTION（防注入）；
+  禁止发明资源与事实；禁止保证学习成果。
+- 两阶段管线：Stage A 意图解析（JSON 输出 + schema 清洗校验，未知=null 不猜测）
+  → Stage B 工具循环推理（6 个 allowlist 工具，参数视为 untrusted）→
+  CODE-ENFORCED 幻觉防线（resource_id 必须存在）→ Fact Hydration（展示事实全部
+  由 Repository 重取，不信模型回传）。
+- CourseMapRepository / StructuredRetriever：Repository 抽象（未来可换 PostgreSQL）、
+  Retriever 接口（VectorRetriever / HybridRetriever 预留，本轮 RAG = DEFERRED）。
+- 会话上下文：session 级结构化约束（改预算不必重述目标），TTL + 轮次上限，
+  不建立长期用户画像。
+- 安全与成本：CORS origin allowlist、server-side per-IP 限流、消息长度/工具轮数/
+  检索数/输出 token 上限、usage 结构化日志（不记录 key 与用户原文）。
+- 前端 AI 升级：AI Beta（Real LLM）双引擎 UI —— 后端可用时走 DeepSeek 管线
+  （前端二次 Fact Hydration + 幻觉资源不渲染），不可用时优雅降级为规则原型并明示。
+- 测试：AI 单元测试 58 项（含幻觉拒绝 / 事实冲突 / 注入探测 / 限流 / 错误映射）、
+  HTTP 集成测试 10 项、Live DeepSeek 测试（有 Key 才运行，无 Key SKIP）。
+- 文档：`docs/ai-integration/` 20 篇模块文档 + 8 篇 ADR + 时间线 + Before/After
+  + Master Log。
+
+### Security
+
+- Secret 扫描 0：`.env.example` 仅键名；密钥只存在于平台 Secret / 本地 .env（已 gitignore）。
+
+### Honest Status
+
+- 工程闭环 COMPLETE；**Real DeepSeek Call 未经真实 Key 验证**（当前环境无密钥），
+  状态 = ENGINEERING COMPLETE · WAITING FOR DEEPSEEK_API_KEY / DEPLOYMENT AUTHORIZATION。
+
 ## CourseMap-v0.1-Prototype (2026-10-06)
 
 教育领域完整重构首发版本。由 DishMap（菜品级美食决策地图）领域迁移而来，

@@ -29,6 +29,7 @@ initPage({
     const mount = document.querySelector('[data-page]');
     const backend = await probeBackend();
     const aiMode = backend.available && backend.llmConfigured;
+    const backendConfigured = backend.configured;
 
     mount.innerHTML = `
       <nav class="breadcrumb" aria-label="面包屑">
@@ -47,7 +48,9 @@ initPage({
       <div class="notice" data-coursemap-ai-disclosure>
         <div class="notice__title">${aiMode
           ? 'AI Learning Advisor Beta · Powered by DeepSeek（服务端代理，前端零密钥）'
-          : 'AI 学习顾问暂时不可用 · 降级为规则原型（Rule-based Prototype · Not LLM）'}</div>
+          : (backendConfigured
+            ? 'AI 学习顾问暂时不可用 · 降级为规则原型（Rule-based Prototype · Not LLM）'
+            : 'AI 后端尚未接入部署 · 降级为规则原型（Rule-based Prototype · Not LLM）')}</div>
         ${esc(AI_DISCLAIMER)}
         ${aiMode
           ? '推荐以 CourseMap 结构化数据为<strong>证据层</strong>：具体课程价格、时长、证书等信息以 CourseMap 已核验数据及原始来源为准。'

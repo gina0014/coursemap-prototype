@@ -60,19 +60,35 @@ python -m http.server 8765
 # 数据校验（BLOCKER/ERROR 必须为 0）
 python scripts/validate/validate_data.py
 
-# Node 运行时测试（75 项断言，覆盖搜索/筛选/对比/路径/AI 解析等）
-node tests/runtime.test.mjs
+# Node 运行时测试（75 项核心断言）+ AI 测试（58 单元 + 10 HTTP 集成）
+npm test          # 等价于 runtime + AI unit + AI integration
+npm run test:ai-live  # Live DeepSeek 测试（仅当配置了 DEEPSEEK_API_KEY 才真实运行）
+
+# 本地 AI 后端（无 Key 时 health 正常、advisor 诚实返回 NOT_CONFIGURED）
+npm run dev:ai
 
 # 浏览器冒烟（需先启动本地服务器 + Chrome）
 node scripts/regression/browser_smoke.mjs
 ```
 
+## AI 学习顾问（v0.2 AI-Beta）
+
+- **Powered by DeepSeek API（服务端代理）**：浏览器只与 CourseMap AI Backend 通信，
+  DeepSeek API Key 仅存在于服务端环境变量 / 平台 Secret，前端与 Git 仓库零密钥。
+  此为技术集成说明，不代表与 DeepSeek 官方有任何合作关系。
+- **AI recommendations are grounded in CourseMap data where applicable**：
+  推荐必须绑定真实存在的 resource_id（前后端双重代码级校验），
+  费用/时长/评分/证书/来源等事实一律由 CourseMap 数据渲染，模型只负责理解与解释。
+- **优雅降级**：AI 后端不可用或未配置密钥时，前端自动切换为规则原型（Rule-based
+  Prototype · Not LLM），课程搜索、对比、学习路径等核心功能完全不依赖 AI。
+- 架构与部署详见 `docs/ai-integration/`（Master Log + 20 篇模块文档 + 8 篇 ADR）。
+
 ## 原型边界（务必阅读）
 
-- 全部课程/提供方/评价数据均为 **DEMO（演示数据）**，页面显著标注。
+- 全部课程/提供方/评价数据均为 **DEMO（演示数据）**，页面显著标注——**即使 AI 是真的，数据也可能是 Demo**（REAL LLM + DEMO DATA 同时明示）。
 - 评价与收藏为 **Local Prototype**：仅存 localStorage，无账号、无云同步。
-- AI 学习顾问为 **规则原型（Not LLM-powered）**：解析目标/预算/时间后调用
-  本地结构化数据给出可解释推荐；LLM Adapter 已预留但未接入。
+- AI 学习顾问为 **AI Beta（双引擎）**：已配置 AI 后端 + 密钥时走 DeepSeek 服务端代理管线；
+  否则自动降级为规则原型（Rule-based Prototype · Not LLM）并明示。
 - 任何未实现的能力都明确标记 Prototype / Reserved / Future，不假装完成。
 
 ## 文档

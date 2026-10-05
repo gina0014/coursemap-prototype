@@ -372,7 +372,7 @@ check('T-27b', '推荐资源非空且带 evidence / source_refs',
 check('T-27c', '推荐资源全部满足预算或费用未知（未知不隐瞒，进入 uncertainty）',
   response.recommended_resources.every((r) => r.fee === null || r.fee === undefined || r.fee <= 200));
 check('T-27d', '推理摘要非空且提及约束', response.reasoning_summary.length > 10);
-check('T-27e', 'engine 标注为 rule_based_prototype（非 LLM）', response.engine === 'rule_based_prototype');
+check('T-27e', '规则引擎 engine 标注为 rule_based_prototype（前端降级引擎仍为非 LLM；主引擎升级为 AI Beta 后端管线）', response.engine === 'rule_based_prototype');
 check('T-27f', 'demo 数据不确定性已声明',
   response.uncertainty.some((u) => u.includes('DEMO')));
 

@@ -179,7 +179,8 @@ export function buildDecisionResponse(ctx, request) {
     verification_status: 'unverified',
     uncertainty: [],
     alternative_options: [],
-    engine: AI.mode,
+    // 本模块实现的是本地规则引擎（前端降级引擎）；AI.mode 描述平台主引擎，不混用
+    engine: 'rule_based_prototype',
   };
 
   // 目标解析：名称 → goal 实体

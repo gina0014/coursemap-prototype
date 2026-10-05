@@ -31,25 +31,31 @@ export function clearConversation() {
 
 /**
  * 探测 AI 后端可用性。
- * @returns {Promise<{available: boolean, adapter: string|null, llmConfigured: boolean}>}
+ * 未配置 aiBackendBase 时不发起请求（避免对静态托管产生 404 噪音），
+ * 直接返回未配置状态 —— 前端进入降级模式。
+ * @returns {Promise<{available: boolean, adapter: string|null, llmConfigured: boolean, configured: boolean}>}
  */
 export async function probeBackend() {
   const base = AI.aiBackendBase || '';
+  if (!base) {
+    return { available: false, adapter: null, llmConfigured: false, configured: false };
+  }
   try {
     const res = await fetch(`${base}${AI.healthEndpoint}`, {
       method: 'GET',
       headers: { Accept: 'application/json' },
       signal: AbortSignal.timeout(5000),
     });
-    if (!res.ok) return { available: false, adapter: null, llmConfigured: false };
+    if (!res.ok) return { available: false, adapter: null, llmConfigured: false, configured: true };
     const body = await res.json();
     return {
       available: body.success === true && body.data && body.data.status === 'ok',
       adapter: body.data ? body.data.adapter : null,
       llmConfigured: !!(body.data && body.data.llm_configured),
+      configured: true,
     };
   } catch {
-    return { available: false, adapter: null, llmConfigured: false };
+    return { available: false, adapter: null, llmConfigured: false, configured: true };
   }
 }
 
