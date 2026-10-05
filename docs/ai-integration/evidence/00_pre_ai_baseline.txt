@@ -1,0 +1,30 @@
+﻿CourseMap AI-1 Pre-Integration Baseline
+Captured: 2026-10-06 (Asia/Shanghai)
+
+Version: CourseMap-v0.1-Prototype
+Branch: master (local ahead 1 vs origin at capture; evidence commit 1271d04 push pending network)
+HEAD: 1271d04 docs(evidence): record public deployment smoke results (16/16 PASS)
+Previous: 082990a CourseMap-v0.1-Prototype: full educational domain migration from DishMap
+Remote: https://github.com/gina0014/coursemap-prototype.git
+Public URL: https://gina0014.github.io/coursemap-prototype/
+Working Tree: clean (excluding untracked docs/ai-integration scaffold)
+Pages: 12 page controllers + 404 (index/search/resource/provider/compare/paths/path/favorites/review/advisor/data-methodology/about)
+
+Dataset counts:
+fee-history.json: 58
+learning-goals.json: 12
+learning-path-steps.json: 25
+learning-paths.json: 7
+providers.json: 10
+resource-source.json: 48
+resources.json: 48
+reviews.json: 226
+skills.json: 18
+sources.json: 2
+subjects.json: 5
+
+Existing tests (node tests/runtime.test.mjs): PASS 75 / FAIL 0 (exit 0)
+Data validation: BLOCKER 0 / ERROR 0 / WARN 25 (scripts/validate/validate_data.py)
+Browser smoke: 16/16 PASS public (docs/evidence/browser-smoke.json, commit 1271d04)
+Current AI implementation: js/ai-advisor.js rule-based parser + LearningDecisionRequest/Response contract + LLM Adapter interface slot (NOT LLM-powered; UI labelled Prototype Decision Assistant Not LLM-powered)
+Secrets: 0 (pre-existing scan, commit 082990a)
