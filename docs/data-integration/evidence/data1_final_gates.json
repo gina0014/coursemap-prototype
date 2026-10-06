@@ -1,12 +1,12 @@
 {
   "phase": "CourseMap Phase Data-1 + AI Production Activation",
   "module": "Y — Final Gates",
-  "generatedAt": "2026-10-06T12:20:29.318Z",
+  "generatedAt": "2026-10-06T12:22:35.304Z",
   "verdict": "PARTIAL",
   "banner": "COURSEMAP DATA-1 + AI ACTIVATION PARTIAL\nOFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE\nPENDING (需 GitHub Actions live-verify 在本次推送的 commit 上执行):\n  - REAL DEEPSEEK AI ADVISOR ACTIVE  → backend-verify / live_public_verify.mjs\n  - EVIDENCE-GROUNDED RECOMMENDATION READY (public path) → public-e2e / public_e2e.mjs",
   "baselines": {
     "git": {
-      "head": "9d263d6c85d298c46401a61ab724ef1ab13321c9",
+      "head": "2c3d6e0edef30b00d8480777c25e789a270b6fff",
       "branch": "master"
     },
     "datasetFiles": {
@@ -37,7 +37,7 @@
   "caveats": [
     "公网 E2E：仓库内最新证据为历史 FAIL（2026-10-06T09:10:19.760Z，10/35 失败），产出于本轮修复之前，不能作为本轮验收依据。",
     "真实 DeepSeek 调用：从未录制到 CI 证据（30_live_public_verification.json 不存在）。",
-    "推送被本机环境影响阻断（git credential-helper 无法完成认证），因此上述两项生产门禁尚无法对本次提交执行。需要用户侧完成一次 push 以触发 live-verify。"
+    "推送被本机出网策略阻断：沙箱代理拒绝为 git-receive-pack 建立 CONNECT 隧道（CONNECT tunnel failed, response 502）；openssl 后端的 --dry-run 可成功，说明凭据与 ref 协商正常，阻塞点是出网策略而非凭据。因此上述两项生产门禁尚无法对本次提交执行，需要用户侧完成一次 push 以触发 live-verify。"
   ],
   "suiteOutcome": {
     "runtime": {

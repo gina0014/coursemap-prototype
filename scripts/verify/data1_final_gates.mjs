@@ -450,7 +450,9 @@ if (e2eEvidence.exists && !(e2eEvidence.fail === 0 && e2eEvidence.total > 0)) {
 if (!liveEvidence.exists) {
   caveats.push('真实 DeepSeek 调用：从未录制到 CI 证据（30_live_public_verification.json 不存在）。');
 }
-caveats.push('推送被本机环境影响阻断（git credential-helper 无法完成认证），因此上述两项生产门禁尚无法对本次提交执行。需要用户侧完成一次 push 以触发 live-verify。');
+caveats.push('推送被本机出网策略阻断：沙箱代理拒绝为 git-receive-pack 建立 CONNECT 隧道（CONNECT tunnel failed, response 502）；'
+  + 'openssl 后端的 --dry-run 可成功，说明凭据与 ref 协商正常，阻塞点是出网策略而非凭据。'
+  + '因此上述两项生产门禁尚无法对本次提交执行，需要用户侧完成一次 push 以触发 live-verify。');
 for (const c of caveats) console.log(`[CAVEAT] ${c}`);
 
 const evidence = {
