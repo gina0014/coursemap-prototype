@@ -1,0 +1,84 @@
+================================================================================
+CourseMap AI-1 — Public Frontend E2E (real browser, real network)
+================================================================================
+Frontend        : https://gina0014.github.io/coursemap-prototype
+Config backend  : https://coursemap-prototype.vercel.app
+Started/Finish  : 2026-10-06T09:09:41.665Z → 2026-10-06T09:10:19.760Z
+Console errors  : 3
+Exceptions      : 0
+Failed requests : 4
+--------------------------------------------------------------------------------
+[PASS] E-00   公网前端 js/config.js 可达
+           ↳ bytes=5727
+[PASS] E-01   js/config.js 已指向生产后端（前端切换已部署）
+           ↳ https://coursemap-prototype.vercel.app
+[PASS] E-01b  config.js 中不含任何 secret
+[PASS] E-02   可从公网取到 CourseMap 资源事实（用于 DOM 比对）
+           ↳ resources=48
+[PASS] E-03   P-10 AI 学习顾问页在公网正常渲染
+           ↳ {"ready":true,"badge":"Beta · Real LLM","hasForm":true}
+[PASS] M-00   页面徽标显示 Real LLM（已被识别为真实模型模式）
+           ↳ badge="Beta · Real LLM"
+[PASS] M-01   披露文案说明由 DeepSeek 服务端代理驱动
+           ↳ AI Learning Advisor Beta · Powered by DeepSeek（服务端代理，前端零密钥） AI Learning Advisor Beta · Powered by DeepSeek (server-side)。AI 推荐以 CourseMap 结构
+[PASS] M-02   页面同时声明数据集为 DEMO（REAL LLM ≠ 真实课程数据）
+           ↳ body mentions DEMO/演示数据
+[PASS] S1-00  [零基础大学生想学 Python] 提交后返回结果卡
+           ↳ status="AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）
+CourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果："
+[FAIL] S1-01  [零基础大学生想学 Python] 结果卡引擎为 deepseek-beta（真实模型）
+           ↳ title="规则引擎建议（engine: rule_based_prototype · 解析置信度: medium）"
+[FAIL] S1-04  [零基础大学生想学 Python] 未出现降级错误提示
+           ↳ AI error notice present
+[PASS] S1-02  [零基础大学生想学 Python] 渲染出推荐卡片
+           ↳ n=5
+[PASS] S1-03  [零基础大学生想学 Python] 无幻觉资源卡（ID 均存在于 CourseMap）
+           ↳ checked=5
+[FAIL] S1-05  [零基础大学生想学 Python] DOM 层事实绑定：费用/时长等于 CourseMap 数据
+           ↳ 5.总时长 dom= repo=36 小时 | 1.总时长 dom= repo=30 小时 | 42.总时长 dom= repo=40 小时
+[PASS] S1-06  [零基础大学生想学 Python] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）
+           ↳ demo badge declared
+[PASS] S2-00  [预算100元 每周5小时 想学数据分析] 提交后返回结果卡
+           ↳ status="AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）
+CourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果："
+[FAIL] S2-01  [预算100元 每周5小时 想学数据分析] 结果卡引擎为 deepseek-beta（真实模型）
+           ↳ title="规则引擎建议（engine: rule_based_prototype · 解析置信度: high）"
+[FAIL] S2-04  [预算100元 每周5小时 想学数据分析] 未出现降级错误提示
+           ↳ AI error notice present
+[PASS] S2-02  [预算100元 每周5小时 想学数据分析] 渲染出推荐卡片
+           ↳ n=5
+[PASS] S2-03  [预算100元 每周5小时 想学数据分析] 无幻觉资源卡（ID 均存在于 CourseMap）
+           ↳ checked=5
+[FAIL] S2-05  [预算100元 每周5小时 想学数据分析] DOM 层事实绑定：费用/时长等于 CourseMap 数据
+           ↳ 16.总时长 dom= repo=10 小时 | 17.总时长 dom= repo=12 小时 | 43.总时长 dom= repo=9 小时
+[PASS] S2-06  [预算100元 每周5小时 想学数据分析] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）
+           ↳ demo badge declared
+[PASS] S3-00  [会R 想入门单细胞分析] 提交后返回结果卡
+           ↳ status="AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）
+CourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果："
+[FAIL] S3-01  [会R 想入门单细胞分析] 结果卡引擎为 deepseek-beta（真实模型）
+           ↳ title="规则引擎建议（engine: rule_based_prototype · 解析置信度: low）"
+[FAIL] S3-04  [会R 想入门单细胞分析] 未出现降级错误提示
+           ↳ AI error notice present
+[PASS] S3-02  [会R 想入门单细胞分析] 渲染出推荐卡片
+           ↳ n=2
+[PASS] S3-03  [会R 想入门单细胞分析] 无幻觉资源卡（ID 均存在于 CourseMap）
+           ↳ checked=2
+[FAIL] S3-05  [会R 想入门单细胞分析] DOM 层事实绑定：费用/时长等于 CourseMap 数据
+           ↳ 28.总时长 dom= repo=55 小时 | 29.总时长 dom= repo=30 小时
+[PASS] S3-06  [会R 想入门单细胞分析] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）
+           ↳ demo badge declared
+[PASS] F-00   后端不可用时页面仍产出建议（不出现空白/崩溃）
+           ↳ {"hasCard":true,"statusText":"AI 学习顾问暂时不可用（NETWORK）\n无法连接 AI 服务，你仍可使用课程搜索和比较功能。 已切换为规则引擎结果：","html":6503}
+[PASS] F-01   切换为规则引擎（engine: rule_based_prototype）或给出明确降级提示
+           ↳ title="规则引擎建议（engine: rule_based_prototype · 解析置信度: medium）"
+[PASS] F-02   降级结果同样接地（无幻觉资源）
+           ↳ n=5
+[FAIL] E-90   正常运行期浏览器控制台错误 = 0
+           ↳ [network] Failed to load resource: the server responded with a status of 404 () | [network] Failed to load resource: the server responded with a status of 404 () | [network] Failed to load resource: the server responded with a status of 404 ()
+[PASS] E-91   未捕获异常 = 0
+[PASS] E-92   关键资源加载失败 = 0
+--------------------------------------------------------------------------------
+Total 35  PASS 25  FAIL 10  WARN 0
+VERDICT: FAIL
+================================================================================

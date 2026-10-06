@@ -1,0 +1,251 @@
+{
+  "kind": "coursemap-ai1-public-frontend-e2e",
+  "startedAt": "2026-10-06T09:09:41.665Z",
+  "finishedAt": "2026-10-06T09:10:19.760Z",
+  "frontendBase": "https://gina0014.github.io/coursemap-prototype",
+  "expectedBackendInConfig": "https://coursemap-prototype.vercel.app",
+  "hygieneBeforeBlock": {
+    "consoleErrors": [
+      "[network] Failed to load resource: the server responded with a status of 404 ()",
+      "[network] Failed to load resource: the server responded with a status of 404 ()",
+      "[network] Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "exceptions": [],
+    "failedRequests": []
+  },
+  "runtimeFull": {
+    "consoleErrors": [
+      "[network] Failed to load resource: the server responded with a status of 404 ()",
+      "[network] Failed to load resource: the server responded with a status of 404 ()",
+      "[network] Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "warnings": [],
+    "exceptions": [],
+    "failedRequests": [
+      "404 https://coursemap-prototype.vercel.app/api/ai/advisor",
+      "404 https://coursemap-prototype.vercel.app/api/ai/advisor",
+      "404 https://coursemap-prototype.vercel.app/api/ai/advisor",
+      "LOAD_FAILED  Fetch"
+    ]
+  },
+  "screenshot": "/home/runner/work/coursemap-prototype/coursemap-prototype/docs/ai-integration/evidence/31_public_e2e_advisor.png",
+  "summary": {
+    "total": 35,
+    "pass": 25,
+    "fail": 10,
+    "warn": 0,
+    "verdict": "FAIL"
+  },
+  "results": [
+    {
+      "id": "E-00",
+      "description": "公网前端 js/config.js 可达",
+      "status": "PASS",
+      "detail": "bytes=5727"
+    },
+    {
+      "id": "E-01",
+      "description": "js/config.js 已指向生产后端（前端切换已部署）",
+      "status": "PASS",
+      "detail": "https://coursemap-prototype.vercel.app"
+    },
+    {
+      "id": "E-01b",
+      "description": "config.js 中不含任何 secret",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "E-02",
+      "description": "可从公网取到 CourseMap 资源事实（用于 DOM 比对）",
+      "status": "PASS",
+      "detail": "resources=48"
+    },
+    {
+      "id": "E-03",
+      "description": "P-10 AI 学习顾问页在公网正常渲染",
+      "status": "PASS",
+      "detail": "{\"ready\":true,\"badge\":\"Beta · Real LLM\",\"hasForm\":true}"
+    },
+    {
+      "id": "M-00",
+      "description": "页面徽标显示 Real LLM（已被识别为真实模型模式）",
+      "status": "PASS",
+      "detail": "badge=\"Beta · Real LLM\""
+    },
+    {
+      "id": "M-01",
+      "description": "披露文案说明由 DeepSeek 服务端代理驱动",
+      "status": "PASS",
+      "detail": "AI Learning Advisor Beta · Powered by DeepSeek（服务端代理，前端零密钥） AI Learning Advisor Beta · Powered by DeepSeek (server-side)。AI 推荐以 CourseMap 结构"
+    },
+    {
+      "id": "M-02",
+      "description": "页面同时声明数据集为 DEMO（REAL LLM ≠ 真实课程数据）",
+      "status": "PASS",
+      "detail": "body mentions DEMO/演示数据"
+    },
+    {
+      "id": "S1-00",
+      "description": "[零基础大学生想学 Python] 提交后返回结果卡",
+      "status": "PASS",
+      "detail": "status=\"AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）\nCourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果：\""
+    },
+    {
+      "id": "S1-01",
+      "description": "[零基础大学生想学 Python] 结果卡引擎为 deepseek-beta（真实模型）",
+      "status": "FAIL",
+      "detail": "title=\"规则引擎建议（engine: rule_based_prototype · 解析置信度: medium）\""
+    },
+    {
+      "id": "S1-04",
+      "description": "[零基础大学生想学 Python] 未出现降级错误提示",
+      "status": "FAIL",
+      "detail": "AI error notice present"
+    },
+    {
+      "id": "S1-02",
+      "description": "[零基础大学生想学 Python] 渲染出推荐卡片",
+      "status": "PASS",
+      "detail": "n=5"
+    },
+    {
+      "id": "S1-03",
+      "description": "[零基础大学生想学 Python] 无幻觉资源卡（ID 均存在于 CourseMap）",
+      "status": "PASS",
+      "detail": "checked=5"
+    },
+    {
+      "id": "S1-05",
+      "description": "[零基础大学生想学 Python] DOM 层事实绑定：费用/时长等于 CourseMap 数据",
+      "status": "FAIL",
+      "detail": "5.总时长 dom= repo=36 小时 | 1.总时长 dom= repo=30 小时 | 42.总时长 dom= repo=40 小时"
+    },
+    {
+      "id": "S1-06",
+      "description": "[零基础大学生想学 Python] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）",
+      "status": "PASS",
+      "detail": "demo badge declared"
+    },
+    {
+      "id": "S2-00",
+      "description": "[预算100元 每周5小时 想学数据分析] 提交后返回结果卡",
+      "status": "PASS",
+      "detail": "status=\"AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）\nCourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果：\""
+    },
+    {
+      "id": "S2-01",
+      "description": "[预算100元 每周5小时 想学数据分析] 结果卡引擎为 deepseek-beta（真实模型）",
+      "status": "FAIL",
+      "detail": "title=\"规则引擎建议（engine: rule_based_prototype · 解析置信度: high）\""
+    },
+    {
+      "id": "S2-04",
+      "description": "[预算100元 每周5小时 想学数据分析] 未出现降级错误提示",
+      "status": "FAIL",
+      "detail": "AI error notice present"
+    },
+    {
+      "id": "S2-02",
+      "description": "[预算100元 每周5小时 想学数据分析] 渲染出推荐卡片",
+      "status": "PASS",
+      "detail": "n=5"
+    },
+    {
+      "id": "S2-03",
+      "description": "[预算100元 每周5小时 想学数据分析] 无幻觉资源卡（ID 均存在于 CourseMap）",
+      "status": "PASS",
+      "detail": "checked=5"
+    },
+    {
+      "id": "S2-05",
+      "description": "[预算100元 每周5小时 想学数据分析] DOM 层事实绑定：费用/时长等于 CourseMap 数据",
+      "status": "FAIL",
+      "detail": "16.总时长 dom= repo=10 小时 | 17.总时长 dom= repo=12 小时 | 43.总时长 dom= repo=9 小时"
+    },
+    {
+      "id": "S2-06",
+      "description": "[预算100元 每周5小时 想学数据分析] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）",
+      "status": "PASS",
+      "detail": "demo badge declared"
+    },
+    {
+      "id": "S3-00",
+      "description": "[会R 想入门单细胞分析] 提交后返回结果卡",
+      "status": "PASS",
+      "detail": "status=\"AI 学习顾问暂时不可用（NO_MATCHING_RESOURCE）\nCourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。 已切换为规则引擎结果：\""
+    },
+    {
+      "id": "S3-01",
+      "description": "[会R 想入门单细胞分析] 结果卡引擎为 deepseek-beta（真实模型）",
+      "status": "FAIL",
+      "detail": "title=\"规则引擎建议（engine: rule_based_prototype · 解析置信度: low）\""
+    },
+    {
+      "id": "S3-04",
+      "description": "[会R 想入门单细胞分析] 未出现降级错误提示",
+      "status": "FAIL",
+      "detail": "AI error notice present"
+    },
+    {
+      "id": "S3-02",
+      "description": "[会R 想入门单细胞分析] 渲染出推荐卡片",
+      "status": "PASS",
+      "detail": "n=2"
+    },
+    {
+      "id": "S3-03",
+      "description": "[会R 想入门单细胞分析] 无幻觉资源卡（ID 均存在于 CourseMap）",
+      "status": "PASS",
+      "detail": "checked=2"
+    },
+    {
+      "id": "S3-05",
+      "description": "[会R 想入门单细胞分析] DOM 层事实绑定：费用/时长等于 CourseMap 数据",
+      "status": "FAIL",
+      "detail": "28.总时长 dom= repo=55 小时 | 29.总时长 dom= repo=30 小时"
+    },
+    {
+      "id": "S3-06",
+      "description": "[会R 想入门单细胞分析] 推荐卡保留 DEMO 标识（REAL LLM + DEMO DATA 同时成立）",
+      "status": "PASS",
+      "detail": "demo badge declared"
+    },
+    {
+      "id": "F-00",
+      "description": "后端不可用时页面仍产出建议（不出现空白/崩溃）",
+      "status": "PASS",
+      "detail": "{\"hasCard\":true,\"statusText\":\"AI 学习顾问暂时不可用（NETWORK）\\n无法连接 AI 服务，你仍可使用课程搜索和比较功能。 已切换为规则引擎结果：\",\"html\":6503}"
+    },
+    {
+      "id": "F-01",
+      "description": "切换为规则引擎（engine: rule_based_prototype）或给出明确降级提示",
+      "status": "PASS",
+      "detail": "title=\"规则引擎建议（engine: rule_based_prototype · 解析置信度: medium）\""
+    },
+    {
+      "id": "F-02",
+      "description": "降级结果同样接地（无幻觉资源）",
+      "status": "PASS",
+      "detail": "n=5"
+    },
+    {
+      "id": "E-90",
+      "description": "正常运行期浏览器控制台错误 = 0",
+      "status": "FAIL",
+      "detail": "[network] Failed to load resource: the server responded with a status of 404 () | [network] Failed to load resource: the server responded with a status of 404 () | [network] Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "id": "E-91",
+      "description": "未捕获异常 = 0",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "E-92",
+      "description": "关键资源加载失败 = 0",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}
