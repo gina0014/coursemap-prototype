@@ -402,6 +402,30 @@
   font-weight: var(--cm-fw-semi);
   margin-bottom: var(--cm-sp-2);
 }
+/* 区块副标题（如首页「精选开放学习资源」的说明句） */
+.section-sub {
+  color: var(--cm-text-muted);
+  font-size: var(--cm-fs-sm);
+  max-width: 68ch;
+  margin: calc(-1 * var(--cm-sp-2)) 0 var(--cm-sp-4);
+}
+
+/* ----------------------------------------------------------------------------
+   首页精选开放学习资源（Real OER Expansion）
+   -------------------------------------------------------------------------- */
+.featured-card .card__body { gap: var(--cm-sp-1); }
+.featured-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2);
+  margin-top: var(--cm-sp-3);
+  padding-top: var(--cm-sp-3);
+  border-top: 1px solid var(--cm-border);
+}
+/* 精选区不出现 DEMO：万一出现（回归缺陷），用醒目的红框暴露它 */
+.featured-card [data-coursemap-badge="demo"] {
+  outline: 2px solid #c0392b;
+}
 .detail-actions {
   display: flex;
   flex-wrap: wrap;

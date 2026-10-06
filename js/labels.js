@@ -61,6 +61,7 @@ export const USAGE_PERMISSION = {
   open_license: { label: '开放许可', tone: 'verified' },
   public_domain: { label: '公有领域', tone: 'verified' },
   non_commercial_reuse_with_attribution: { label: '非商业复用（需署名）', tone: 'verified' },
+  open_license_attribution: { label: '开放许可（需署名）', tone: 'verified' },
   editor_created_demo: { label: '编辑自建演示', tone: 'demo' },
   pending_review: { label: '待授权审查', tone: 'unverified' },
   restricted: { label: '受限（不可发布）', tone: 'unknown' },
@@ -104,6 +105,7 @@ export const AGGREGATE_PROVENANCE = {
 
 export const PROVIDER_TYPE = {
   university_open: '大学开放平台',
+  company_open: '企业官方课程',
   mooc_platform: 'MOOC 平台',
   training_studio: '训练营',
   community: '开源社区',

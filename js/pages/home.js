@@ -7,6 +7,7 @@
 
 import { initPage } from './base.js';
 import { renderInto, L, badgeDemo, badgeDataClass } from '../components.js';
+import { renderFeaturedOer } from '../featured-oer.js';
 import { asset } from '../config.js';
 
 initPage({
@@ -91,6 +92,9 @@ initPage({
           <span class="stat"><a href="${L.methodology()}">数据方法论 →</a></span>
         </div>`;
     }
+
+    /* Real OER Expansion：精选开放学习资源（只展示 verified real resources） */
+    renderFeaturedOer(ctx);
 
     /* 首页正文是静态 HTML（渐进增强）；这里只清掉 loading 骨架 */
     renderInto(document.querySelector('[data-page]'), '');
