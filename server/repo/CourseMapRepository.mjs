@@ -215,6 +215,91 @@ export class JsonCourseMapRepository {
   }
 
   /**
+   * **检索综合排序**（Module 8）—— 单次复合比较器。
+   *
+   * ⚠️ 为什么必须是「一次排序」而不是「连续三次稳定排序」：
+   *   连续调用 orderByDifficulty → orderByDataClass → orderByLanguage 时，
+   *   由于每次都是**稳定**排序，最后一次排序会成为**最高**优先级键，
+   *   实际优先级是 language > dataClass > difficulty —— 与文档声明的
+   *   「先按难度分层、同层内真实优先、最后才看语言」**正好相反**。
+   *
+   *   实测缺陷（2026-10-06）：目标「机器学习基础」、语言偏好 zh 时，
+   *   4 条 zh 演示资源全部排在 59 条已核验真实资源**之前** ——
+   *   恰好是 Module 8 明令禁止的「明显有更合适 REAL 结果却只给 DEMO」。
+   *
+   * 复合键（由高到低优先级）：
+   *   1. 难度适配层   —— 分「适配层」，跨层不可被后续键翻转
+   *   2. 真实性/核验   —— real+已核验(0) > real 未核验(1) > demo(2)
+   *   3. 先修满足度    —— 未声明已会技能时不参与排序（无信息不排序）
+   *   4. 语言偏好      —— 最低优先级，仅在同层同真实性同先修内生效
+   *
+   * 难度键的取值（越小越靠前）：
+   *   0 = 与目标水平一致
+   *   1 = **未核验（difficulty === null）—— 中性**
+   *       把 null 当「最差」是本轮修掉的第二个缺陷：59 条已核验 OER 的
+   *       difficulty 一律为 null（CourseMap 拒绝把官方的 Undergraduate /
+   *       Graduate 猜成难度枚举），因此任何「null = 最差」的映射都会让
+   *       **全部真实资源系统性排在 demo 之后** —— 正是 Module 8 明令禁止的
+   *       「明显有更合适 REAL 结果却只返回 DEMO」。未核验不等于不合适。
+   *   2+ = 已核验但与目标水平不符（距离越大越靠后）
+   *
+   * @param {object[]} list
+   * @param {{currentLevel?:string|null, language?:string|null, knownSkills?:string[]|null}} intent
+   */
+  orderForRetrieval(list, { currentLevel = null, language = null, knownSkills = null } = {}) {
+    const dist = { beginner: 0, intermediate: 1, advanced: 2 };
+    const target = dist[currentLevel];
+    /* 先修排序只在调用方**明确**给出非空技能清单时生效。
+       空数组 = 「未提及」，不是「什么都不会」—— sanitizeIntent 在不传
+       known_skills 时返回的就是 []。拿一个默认值当作用户断言去下调排序，
+       等于在没有信息的情况下编造信号（Module O 的同一条纪律）。
+       匹配方式：用户声明的是技能**名**（LLM 抽取的自然语言），资源带的是
+       prerequisite_skill_ids（数字 ID），故经 _skillById 换成名称再比对。 */
+    const known = Array.isArray(knownSkills) && knownSkills.length
+      ? new Set(knownSkills.map((s) => String(s).trim().toLowerCase()))
+      : null;
+
+    const difficultyKey = (r) => {
+      if (target === undefined) return 0;
+      const d = dist[r.difficulty];
+      if (d === undefined) return 1;              // 未核验 / 未知枚举 → 中性
+      return d === target ? 0 : 1 + Math.abs(d - target);
+    };
+    const dataClassKey = (r) => {
+      if (r.data_class !== 'real') return 2;
+      return (r.verification_status && r.verification_status !== 'unverified') ? 0 : 1;
+    };
+    const prerequisiteKey = (r) => {
+      if (!known) return 0;
+      const need = r.prerequisite_skill_ids || [];
+      if (!need.length) return 0;
+      const satisfied = need.every((id) => {
+        const skill = this._skillById.get(String(id));
+        const names = [String(id)];
+        if (skill) {
+          names.push(skill.name);
+          for (const a of (skill.aliases || [])) names.push(a);
+        }
+        return names.some((n) => known.has(String(n).trim().toLowerCase()));
+      });
+      return satisfied ? 0 : 1;
+    };
+    const languageKey = (r) => {
+      if (!language) return 0;
+      if (r.language === language) return 0;
+      if (r.language === 'bilingual') return 1;
+      return 2;
+    };
+
+    return list.slice().sort((a, b) => (
+      difficultyKey(a) - difficultyKey(b)
+      || dataClassKey(a) - dataClassKey(b)
+      || prerequisiteKey(a) - prerequisiteKey(b)
+      || languageKey(a) - languageKey(b)
+    ));
+  }
+
+  /**
    * 难度**偏好排序**（软约束，绝不排除）。
    *
    * 为什么不硬过滤（生产缺陷记录）：
@@ -224,6 +309,10 @@ export class JsonCourseMapRepository {
    *   变成假的「没有匹配资源 / AI 输出不可信」。这和「入门」目标恰恰需要
    *   那些材料相矛盾。
    *   因此难度一律保留，只做「越接近越靠前」的排序，交给 LLM 在解释里取舍。
+   *
+   * ⚠️ 单独调用本方法是安全的；但**不要**把 orderByDifficulty /
+   *    orderByDataClass / orderByLanguage 串起来当作「多级排序」——
+   *    那样最后一个键会变成最高优先级。检索请直接用 orderForRetrieval()。
    */
   orderByDifficulty(list, difficulty) {
     if (!difficulty) return list.slice();

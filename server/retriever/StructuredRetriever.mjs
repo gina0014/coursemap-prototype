@@ -34,17 +34,21 @@ export class StructuredRetriever {
     // 可承受总学时（目标周期 × 每周可投入）
     list = this.repo.filterByDuration(list, intent.target_duration_weeks, intent.available_hours_per_week);
 
-    /* ---- 软偏好：难度 / 真实性 / 语言只排序、不排除 ----
+    /* ---- 软偏好：难度 / 真实性·核验 / 先修 / 语言——只排序、不排除 ----
        理由见 CourseMapRepository.orderByDifficulty / orderByLanguage 的注释：
        它们描述「学习者的适配度」而非「资源可用性」，硬过滤会把合法请求
        变成假的「无匹配资源」（生产缺陷：目标「单细胞 RNA-seq 入门」）。
 
-       顺序很关键（Module L）：先按难度适配度分层 → 再在**同一层内**让已核验的
-       真实资源优先 → 最后按语言偏好。这样「优先真实资源」不会变成
-       「real 永远第一」：一个更适配的 demo 资源仍可排在适配度差的 real 之前。 */
-    list = this.repo.orderByDifficulty(list, intent.current_level);
-    list = this.repo.orderByDataClass(list);
-    list = this.repo.orderByLanguage(list, intent.language);
+       ⚠️ 必须用**单次复合排序**（orderForRetrieval），不能串三次稳定排序：
+       连续稳定排序会让最后一个键成为最高优先级键，实际变成
+       language > dataClass > difficulty —— 与 Module L 声明的顺序相反，
+       实测会导致「语言偏好为 zh 时 4 条演示资源排在全部真实资源之前」。
+       复合键优先级：难度适配层 → 真实性/核验 → 先修满足度 → 语言偏好。 */
+    list = this.repo.orderForRetrieval(list, {
+      currentLevel: intent.current_level,
+      language: intent.language,
+      knownSkills: intent.known_skills,
+    });
 
     if (intent.certificate_requirement) {
       list = list.filter((r) => r.certificate_available === true).concat(
