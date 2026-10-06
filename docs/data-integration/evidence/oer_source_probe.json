@@ -1,0 +1,624 @@
+{
+  "generatedAt": "2026-10-06T14:59:31.114Z",
+  "tool": "scripts/research/oer_source_probe.mjs",
+  "method": "real Chrome via CDP (rendered DOM + innerText)",
+  "candidateCount": 23,
+  "rows": [
+    {
+      "group": "harvard",
+      "id": "cs50x",
+      "url": "https://cs50.harvard.edu/x/",
+      "elapsedMs": 3999,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50x 2026",
+      "readyState": "complete",
+      "bodyLen": 4270,
+      "htmlLen": 68256,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s eleven weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Lectures have now been dubbed into Portuguese and Spanish, thanks to lingopal.ai. Interested in a verified certificate, a professional certificate, or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org instead.",
+        "If interested in a professional certificate from edX",
+        "If interested in transfer credit and accreditation from Harvard Extension School, register at web.dce.harvard.edu/extension/csci/e/50 instead.",
+        "If interested in transfer credit and accreditation from Harvard Summer School, register at web.dce.harvard.edu/summer/csci/s/50 instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50p",
+      "url": "https://cs50.harvard.edu/python/",
+      "elapsedMs": 1429,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50's Introduction to Programming with Python",
+      "readyState": "complete",
+      "bodyLen": 3250,
+      "htmlLen": 60941,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s ten weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Interested in a verified certificate or a professional certificate?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org/python instead.",
+        "If interested in a professional certificate from edX, enroll at cs50.edx.org/programs/python (for Python) or cs50.edx.org/programs/data (for Data Science) instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50ai",
+      "url": "https://cs50.harvard.edu/ai/",
+      "elapsedMs": 2309,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50's Introduction to Artificial Intelligence with Python",
+      "readyState": "complete",
+      "bodyLen": 2991,
+      "htmlLen": 57945,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s seven weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [
+        "Prerequisites || CS50x or at least one year of experience with Python."
+      ],
+      "certHits": [
+        "Interested in a verified certificate, a professional certificate, or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org/ai instead.",
+        "If interested in a professional certificate from edX, enroll at cs50.edx.org/programs/ai instead.",
+        "If interested in transfer credit and accreditation from Harvard Extension School, register at web.dce.harvard.edu/extension/csci/e/80 instead.",
+        "If interested in transfer credit and accreditation from Harvard Summer School, register at web.dce.harvard.edu/summer/csci/s/80 instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50r",
+      "url": "https://cs50.harvard.edu/r/",
+      "elapsedMs": 1977,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50's Introduction to Programming with R",
+      "readyState": "complete",
+      "bodyLen": 3318,
+      "htmlLen": 61510,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s seven weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Interested in a verified certificate or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org/r instead.",
+        "If interested in transfer credit and accreditation from Harvard Extension School, register at web.dce.harvard.edu/extension/csci/e/5a instead.",
+        "If interested in transfer credit and accreditation from Harvard Summer School, register at web.dce.harvard.edu/summer/csci/s/5a instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50sql",
+      "url": "https://cs50.harvard.edu/sql/",
+      "elapsedMs": 2237,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50's Introduction to Databases with SQL",
+      "readyState": "complete",
+      "bodyLen": 3287,
+      "htmlLen": 59084,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s seven weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Interested in a verified certificate or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org/sql instead.",
+        "If interested in a professional certificate from edX, enroll at cs50.edx.org/programs/databases instead.",
+        "If interested in transfer credit and accreditation from Harvard Extension School, register at web.dce.harvard.edu/extension/csci/e/151 instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50web",
+      "url": "https://cs50.harvard.edu/web/",
+      "elapsedMs": 1589,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50's Web Programming with Python and JavaScript",
+      "readyState": "complete",
+      "bodyLen": 2990,
+      "htmlLen": 58575,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [
+        "Even if you are not a student at Harvard, you are welcome to “take” this course for free via this OpenCourseWare by working your way through the course’s nine weeks of material. For each week, follow this workflow:"
+      ],
+      "prereqHits": [
+        "Prerequisites || CS50x or prior experience in any programming language.",
+        "CS50x or prior experience in any programming language. || Watch an introduction"
+      ],
+      "certHits": [
+        "Interested in a verified certificate, a professional certificate, or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "If interested in a verified certificate from edX, enroll at cs50.edx.org/web instead.",
+        "If interested in a professional certificate from edX, enroll at cs50.edx.org/programs/web instead.",
+        "If interested in transfer credit and accreditation from Harvard Extension School, register at web.dce.harvard.edu/extension/csci/e/33a instead.",
+        "If interested in transfer credit and accreditation from Harvard Summer School, register at web.dce.harvard.edu/summer/csci/s/33a instead."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "harvard",
+      "id": "cs50-license",
+      "url": "https://cs50.harvard.edu/x/license/",
+      "elapsedMs": 948,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS50x 2026",
+      "readyState": "complete",
+      "bodyLen": 2361,
+      "htmlLen": 49915,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "This course is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) license. This is a human-readable summary of (and not a substitute for) the license. Official translations of this license are available in other languages."
+      ],
+      "freeHits": [
+        "You are free to:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Lectures have now been dubbed into Portuguese and Spanish, thanks to lingopal.ai. Interested in a verified certificate, a professional certificate, or transfer credit and accreditation?",
+        "CS50 Certificate",
+        "Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-6.100L",
+      "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/",
+      "elapsedMs": 2762,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to CS and Programming using Python | Electrical Engineering and Computer Science | MIT OpenCourseWare",
+      "readyState": "complete",
+      "bodyLen": 1421,
+      "htmlLen": 56917,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "© 2001–2026 Massachusetts Institute of Technology",
+        "Creative Commons License"
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-6.006",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/",
+      "elapsedMs": 394,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to Algorithms | Electrical Engineering and Computer Science | MIT OpenCourseWare",
+      "readyState": "complete",
+      "bodyLen": 1369,
+      "htmlLen": 52426,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "© 2001–2026 Massachusetts Institute of Technology",
+        "Creative Commons License"
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-18.S191",
+      "url": "https://ocw.mit.edu/courses/18-s191-introduction-to-computational-thinking-fall-2020/",
+      "elapsedMs": 448,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to Computational Thinking | Mathematics | MIT OpenCourseWare",
+      "readyState": "complete",
+      "bodyLen": 1278,
+      "htmlLen": 49067,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "© 2001–2026 Massachusetts Institute of Technology",
+        "Creative Commons License"
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-R-GIS",
+      "url": "https://ocw.mit.edu/courses/introduction-to-r-and-gis-fall-2023/",
+      "elapsedMs": 562,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to R and Geographic Information Systems (GIS) | Civil and Environmental Engineering | MIT OpenCourseWare",
+      "readyState": "complete",
+      "bodyLen": 1255,
+      "htmlLen": 41717,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "© 2001–2026 Massachusetts Institute of Technology",
+        "Creative Commons License"
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [
+        "RES.1-002 | Fall 2023 | Non-Credit"
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-about",
+      "url": "https://ocw.mit.edu/about/",
+      "elapsedMs": 5450,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "About Us | MIT OpenCourseWare | Free Online Course Materials",
+      "readyState": "complete",
+      "bodyLen": 9045,
+      "htmlLen": 93503,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "OCW adopts a Creative Commons license.",
+        "Creative Commons License",
+        "© 2001–2026 Massachusetts Institute of Technology"
+      ],
+      "freeHits": [
+        "MIT OpenCourseWare is a free and open collection of material from thousands of MIT courses, covering the entire MIT curriculum.",
+        "Education cannot be confined to traditional classrooms nor classic career stages. Free and open knowledge enables continuous learning that carries through disruptions and fosters thriving lives through shifting life circumstances.",
+        "MIT is committed to openly sharing course materials on OpenCourseWare, free of charge. While OCW is free for anyone to access and use, it is not free to maintain and publish MIT course content."
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Knowledge is your reward. Use OCW to guide your own lifelong learning, or to teach others. MIT does not offer credit or certification to users of OCW."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "mit",
+      "id": "ocw-terms",
+      "url": "https://ocw.mit.edu/pages/privacy-and-terms-of-use/",
+      "elapsedMs": 939,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Privacy and Terms of Use | MIT OpenCourseWare | Free Online Course Materials",
+      "readyState": "complete",
+      "bodyLen": 10904,
+      "htmlLen": 30023,
+      "ccUrls": [
+        "creativecommons.org/licenses/by-nc-sa"
+      ],
+      "licenseHits": [
+        "Privacy and Terms of Use",
+        "Creative Commons License",
+        "Unless otherwise specified, OCW content may be used to train, develop, and improve artificial intelligence and machine learning models, provided that such use complies fully with the restrictions set forth below and is consistent with the applicable Creative Commons License associated with the OCW content.",
+        "ShareAlike Obligations: Any derivative models, or AI systems that incorporate OCW Content through training, shall be distributed under the same CC BY-NC-SA 4.0 license terms, or a compatible CC license as defined by Creative Commons.",
+        "Attn: Copyright Infringement",
+        "If you do not include an electronic signature with your claim, you may be asked to send or fax a follow-up copy with a signature. To file the notification, you must be either the copyright owner of the work or an individual authorized to act on behalf of the copyright owner. Your notification must include:",
+        "Identification of the copyrighted work, or, in the case of multiple works at the same location, a representative list of such works at that site.",
+        "A statement that the claimant believes that the use of the material has not been authorized by the copyright owner or an authorized agent.",
+        "A statement that the information in the notification is accurate and that the claimant is, or is authorized to act on behalf of, the copyright owner.",
+        "Creative Commons License",
+        "© 2001–2026 Massachusetts Institute of Technology"
+      ],
+      "freeHits": [
+        "You are free to:"
+      ],
+      "prereqHits": [],
+      "certHits": [
+        "Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use."
+      ],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "mlcc",
+      "url": "https://developers.google.cn/machine-learning/crash-course?hl=en",
+      "elapsedMs": 1924,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Machine Learning  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 3796,
+      "htmlLen": 121793,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [],
+      "prereqHits": [
+        "View prerequisites || Help Center",
+        "Each Machine Learning Crash Course module is self-contained, so if you have prior experience in machine learning, you can skip directly to the topics you want to learn. If you're new to machine learning, we recommend completing modules in the order below. || ML Models"
+      ],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "mlcc-prereqs",
+      "url": "https://developers.google.cn/machine-learning/crash-course/prereqs-and-prework?hl=en",
+      "elapsedMs": 63367,
+      "attempts": 2,
+      "reachable": true,
+      "error": null,
+      "title": "Prerequisites and prework  |  Machine Learning  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 5053,
+      "htmlLen": 161941,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [],
+      "prereqHits": [
+        "Prerequisites || Exercises",
+        "Prerequisites || Algebra",
+        "Prerequisites and prework || Page Summary",
+        "Please read through the following Prework and Prerequisites sections before beginning Machine Learning Crash Course, to ensure you are prepared to complete all the modules. || Prework",
+        "Prerequisites || Machine Learning Crash Course does not presume or require any prior knowledge in machine learning. However, to understand the concepts presented and complete the exercises, we recommend that students meet the following prerequisites:",
+        "Machine Learning Crash Course does not presume or require any prior knowledge in machine learning. However, to understand the concepts presented and complete the exercises, we recommend that students meet the following prerequisites: || You must be comfortable with variables, linear equations, graphs of functions, histograms, and statistical means.",
+        "tanh (discussed as an activation function; no prior knowledge needed) || Statistics"
+      ],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "intro-to-ml",
+      "url": "https://developers.google.cn/machine-learning/intro-to-ml?hl=en",
+      "elapsedMs": 62982,
+      "attempts": 2,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to Machine Learning  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 1537,
+      "htmlLen": 88619,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "problem-framing",
+      "url": "https://developers.google.cn/machine-learning/problem-framing?hl=en",
+      "elapsedMs": 8673,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction to Machine Learning Problem Framing  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 1780,
+      "htmlLen": 91197,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [
+        "Join the Google Developer Program for free",
+        "Join the Google Developer Program for free dialog opened"
+      ],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "managing-ml-projects",
+      "url": "https://developers.google.cn/machine-learning/managing-ml-projects?hl=en",
+      "elapsedMs": 978,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Managing ML projects  |  Machine Learning  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 3189,
+      "htmlLen": 95719,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [],
+      "prereqHits": [
+        "Prerequisites: || You should have a basic understanding of machine learning. For a brief introduction to machine learning concepts, see Introduction to Machine Learning. For a hands-on introduction to machine learning, see Machine Learning Crash Course."
+      ],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "rules-of-ml",
+      "url": "https://developers.google.cn/machine-learning/guides/rules-of-ml?hl=en",
+      "elapsedMs": 4004,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Rules of Machine Learning:  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 59111,
+      "htmlLen": 142584,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "decision-forests",
+      "url": "https://developers.google.cn/machine-learning/decision-forests?hl=en",
+      "elapsedMs": 62698,
+      "attempts": 2,
+      "reachable": true,
+      "error": null,
+      "title": "Introduction  |  Machine Learning  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 3131,
+      "htmlLen": 100358,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [],
+      "prereqHits": [
+        "Prerequisites || This course assumes you have completed the following courses or have equivalent knowledge:"
+      ],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "google",
+      "id": "site-policies",
+      "url": "https://developers.google.cn/terms/site-policies?hl=en",
+      "elapsedMs": 62617,
+      "attempts": 2,
+      "reachable": true,
+      "error": null,
+      "title": "Site Policies  |  Google for Developers",
+      "readyState": "complete",
+      "bodyLen": 4436,
+      "htmlLen": 67109,
+      "ccUrls": [
+        "creativecommons.org/licenses/by"
+      ],
+      "licenseHits": [
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License. For details, see our Site Policies.",
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see our Site Policies.",
+        "Proper attribution is required when you reuse or create modified versions of content that appears on a page made available under the terms of the Creative Commons Attribution license. The complete requirements for attribution can be found in section 3 of the Creative Commons legal code.",
+        "Portions of this page are reproduced from work created and shared by Google and used according to terms described in the Creative Commons 4.0 Attribution License.",
+        "Portions of this page are modifications based on work created and shared by Google and used according to terms described in the Creative Commons 4.0 Attribution License.",
+        "Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates."
+      ],
+      "freeHits": [
+        "When you see this notice, you are free to use the content, and in addition you are free to use the computer source code that appears in the content (such as in examples) in the code of your own projects."
+      ],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": []
+    },
+    {
+      "group": "stanford",
+      "id": "cs229",
+      "url": "https://cs229.stanford.edu/",
+      "elapsedMs": 19902,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "CS229: Machine Learning",
+      "readyState": "complete",
+      "bodyLen": 4005,
+      "htmlLen": 17695,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [],
+      "prereqHits": [],
+      "certHits": [],
+      "restrictHits": [
+        "All links will require you to be logged into your Stanford email to access. Course documents are only shared with Stanford University affiliates."
+      ]
+    },
+    {
+      "group": "stanford",
+      "id": "cs231n",
+      "url": "https://cs231n.stanford.edu/",
+      "elapsedMs": 8584,
+      "attempts": 1,
+      "reachable": true,
+      "error": null,
+      "title": "Stanford University CS231n: Deep Learning for Computer Vision",
+      "readyState": "complete",
+      "bodyLen": 6896,
+      "htmlLen": 22691,
+      "ccUrls": [],
+      "licenseHits": [],
+      "freeHits": [],
+      "prereqHits": [
+        "Prerequisites || Proficiency in Python"
+      ],
+      "certHits": [
+        "Participation (3% extra credit)",
+        "The students receive support from Modal, AWS, and GCP through cloud credits for final course projects.",
+        "Can I take this course on credit/no cred basis?",
+        "Yes. Credit will be given to those who would have otherwise earned a C- or above."
+      ],
+      "restrictHits": []
+    }
+  ]
+}
