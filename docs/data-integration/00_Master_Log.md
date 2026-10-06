@@ -24,21 +24,32 @@
 ## 2. 终局状态（截至本目录最后更新）
 
 ```
-课程数据校验（rules v0.2）
-  resources: 48 demo + 40 real = 88
-  sources:   2 demo + 40 real = 42
+课程数据校验（rules v0.2 + VR-C18）
+  resources: 48 demo + 59 real = 107
+  sources:   2 demo + 59 real = 61
   real resources without Source: 0
-  BLOCKER: 0  ERROR: 0  WARN: 149
+  BLOCKER: 0  ERROR: 0  WARN: 212
   PASS
 
+真实资源构成
+  提供方   MIT OCW 41 · OpenStax 6 · Harvard CS50 6 · Google for Developers 6
+  许可     CC BY-NC-SA 4.0 ×53 · CC BY 4.0 ×5 · unknown ×1
+           public_domain=true: 0   commercial_use=true: 5（全部 CC BY 4.0）
+  Broken official link: 0
+
 测试
-  tests/runtime.test.mjs         PASS: 84  FAIL: 0
-  tests/ai/unit.test.mjs         PASS: 78  FAIL: 0
-  tests/ai/routing.test.mjs      PASS: 10  FAIL: 0
-  tests/ai/integration.test.mjs  PASS: 10  FAIL: 0
-  tests/ai/data1.test.mjs        PASS: 64  FAIL: 0   ← 本轮新增（Modules R/S/T/U + I）
+  tests/runtime.test.mjs         PASS: 87  FAIL: 0
+  tests/ai/unit.test.mjs         PASS: 79  FAIL: 0
+  tests/ai/routing.test.mjs      PASS: 11  FAIL: 0
+  tests/ai/integration.test.mjs  PASS: 11  FAIL: 0
+  tests/ai/data1.test.mjs        PASS: 67  FAIL: 0
+  tests/ai/oer-expansion.test.mjs PASS: 89 FAIL: 0   ← Real OER Expansion 新增
+  tests/ui/featured-oer.test.mjs  PASS: 15 FAIL: 0   ← 首页精选新增
   ────────────────────────────────────────────────
-  合计 246 项断言，FAIL = 0
+  合计 344 项断言，FAIL = 0
+
+浏览器回归（本地，真实 Chrome，18 个目标）
+  Result: PASS (18/18)，容差 3 条（12_Advisor_Fallback 的本地 CORS 噪声，已写入证据）
 
 密钥扫描
   Secret Leak = 0
@@ -51,6 +62,9 @@
 
 门禁证据：[`evidence/data1_final_gates.json`](evidence/data1_final_gates.json) /
 [`evidence/data1_final_gates.txt`](evidence/data1_final_gates.txt)
+
+> **Real OER Expansion（第二轮）**的候选/接受/拒绝统计、来源治理决定与
+> 排序缺陷修复，见 [16_OER_Expansion_Report.md](16_OER_Expansion_Report.md)。
 
 ---
 
