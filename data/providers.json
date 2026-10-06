@@ -78,5 +78,25 @@
     "description": "虚构的 AI 社区公开课演示实体。",
     "status": "published",
     "data_class": "demo"
+  },
+  {
+    "provider_id": 101,
+    "name": "MIT OpenCourseWare",
+    "name_en": "MIT OpenCourseWare",
+    "provider_type": "university_open",
+    "description": "麻省理工学院自 2001 年起公开发布的课程材料集合。官方声明「免费且开放」，不代表 MIT 学分或认证。",
+    "official_url": "https://ocw.mit.edu/",
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "provider_id": 102,
+    "name": "OpenStax（莱斯大学）",
+    "name_en": "OpenStax (Rice University)",
+    "provider_type": "university_open",
+    "description": "莱斯大学主办的非营利开放教科书出版项目，全部教材在线免费阅读。",
+    "official_url": "https://openstax.org/",
+    "status": "published",
+    "data_class": "real"
   }
 ]

@@ -129,5 +129,28 @@
     "name": "Git 与命令行",
     "subject_id": 1,
     "prerequisite_skill_ids": []
+  },
+  {
+    "skill_id": 19,
+    "name": "研究方法设计",
+    "subject_id": 4,
+    "prerequisite_skill_ids": [
+      12
+    ],
+    "data_class": "real"
+  },
+  {
+    "skill_id": 20,
+    "name": "科研诚信与伦理",
+    "subject_id": 4,
+    "prerequisite_skill_ids": [],
+    "data_class": "real"
+  },
+  {
+    "skill_id": 21,
+    "name": "学习策略与时间管理",
+    "subject_id": 6,
+    "prerequisite_skill_ids": [],
+    "data_class": "real"
   }
 ]

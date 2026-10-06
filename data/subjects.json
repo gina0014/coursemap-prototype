@@ -43,5 +43,14 @@
     "description": "学术写作、听说训练与标准化考试（四六级 / 雅思）备考。",
     "status": "published",
     "data_class": "demo"
+  },
+  {
+    "subject_id": 6,
+    "code": "academic-skills",
+    "name": "学术通用能力",
+    "name_en": "Academic & General Learning Skills",
+    "description": "大学学习方法、自我管理与通用学术沟通能力。为接入真实 OER 新增的分类节点。",
+    "status": "published",
+    "data_class": "real"
   }
 ]

@@ -59,7 +59,7 @@
     "learning_mode": "self_paced",
     "prerequisite_skill_ids": [],
     "certificate_available": false,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 4,
     "learning_outcomes": [
       "熟练使用终端常用命令",
@@ -140,7 +140,7 @@
     "learning_mode": "self_paced",
     "prerequisite_skill_ids": [],
     "certificate_available": true,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 3,
     "learning_outcomes": [
       "把问题拆解为可执行的步骤",
@@ -756,7 +756,7 @@
       9
     ],
     "certificate_available": true,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 3,
     "learning_outcomes": [
       "手写一个最小神经网络",
@@ -1124,7 +1124,7 @@
       7
     ],
     "certificate_available": true,
-    "rating": 5.0,
+    "rating": 5,
     "rating_count": 4,
     "learning_outcomes": [
       "理解组学数据的产生与处理",
@@ -1166,7 +1166,7 @@
       16
     ],
     "certificate_available": false,
-    "rating": 3.0,
+    "rating": 3,
     "rating_count": 1,
     "learning_outcomes": [
       "完成质控、归一化与降维",
@@ -1332,7 +1332,7 @@
       7
     ],
     "certificate_available": false,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 7,
     "learning_outcomes": [
       "为论文选择合适的图形形式",
@@ -1455,7 +1455,7 @@
     "learning_mode": "self_paced",
     "prerequisite_skill_ids": [],
     "certificate_available": false,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 3,
     "learning_outcomes": [
       "按词频记忆六级核心词",
@@ -1582,7 +1582,7 @@
       13
     ],
     "certificate_available": false,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 8,
     "learning_outcomes": [
       "组织清晰的学术报告结构",
@@ -1664,7 +1664,7 @@
       14
     ],
     "certificate_available": true,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 3,
     "learning_outcomes": [
       "了解雅思四个单项的评分逻辑",
@@ -1917,7 +1917,7 @@
       5
     ],
     "certificate_available": false,
-    "rating": 4.0,
+    "rating": 4,
     "rating_count": 5,
     "learning_outcomes": [
       "写出复杂的多表分析查询",
@@ -1974,6 +1974,1532 @@
     "status": "published",
     "source_ids": [
       1
+    ]
+  },
+  {
+    "resource_id": 101,
+    "title": "6.0001 Introduction to Computer Science and Programming in Python",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      101
+    ]
+  },
+  {
+    "resource_id": 102,
+    "title": "6.100L Introduction to CS and Programming using Python",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-100l-introduction-to-cs-and-programming-using-python-fall-2022/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      102
+    ]
+  },
+  {
+    "resource_id": 103,
+    "title": "6.189 A Gentle Introduction to Programming Using Python",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-189-a-gentle-introduction-to-programming-using-python-january-iap-2011/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      103
+    ]
+  },
+  {
+    "resource_id": 104,
+    "title": "6.189 A Gentle Introduction to Programming Using Python",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-189-a-gentle-introduction-to-programming-using-python-january-iap-2008/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      104
+    ]
+  },
+  {
+    "resource_id": 105,
+    "title": "6.S095 Programming for the Puzzled",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-s095-programming-for-the-puzzled-january-iap-2018/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      105
+    ]
+  },
+  {
+    "resource_id": 106,
+    "title": "12.010 Computational Methods of Scientific Programming",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1,
+      18
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/12-010-computational-methods-of-scientific-programming-fall-2024/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      106
+    ]
+  },
+  {
+    "resource_id": 107,
+    "title": "12.010 Computational Methods of Scientific Programming",
+    "provider_id": 101,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1,
+      18
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/12-010-computational-methods-of-scientific-programming-fall-2011/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      107
+    ]
+  },
+  {
+    "resource_id": 108,
+    "title": "6.0002 Introduction to Computational Thinking and Data Science",
+    "provider_id": 101,
+    "subject_id": 2,
+    "learning_goal_ids": [
+      2
+    ],
+    "skill_ids": [
+      1,
+      2,
+      3
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      108
+    ]
+  },
+  {
+    "resource_id": 109,
+    "title": "18.443 Statistics for Applications",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-443-statistics-for-applications-spring-2015/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      109
+    ]
+  },
+  {
+    "resource_id": 110,
+    "title": "18.443 Statistics for Applications",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-443-statistics-for-applications-fall-2006/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      110
+    ]
+  },
+  {
+    "resource_id": 111,
+    "title": "18.655 Mathematical Statistics",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-655-mathematical-statistics-spring-2016/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      111
+    ]
+  },
+  {
+    "resource_id": 112,
+    "title": "18.S997 High-Dimensional Statistics",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-s997-high-dimensional-statistics-spring-2015/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      112
+    ]
+  },
+  {
+    "resource_id": 113,
+    "title": "14.381 Statistical Method in Economics",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/14-381-statistical-method-in-economics-fall-2018/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      113
+    ]
+  },
+  {
+    "resource_id": 114,
+    "title": "15.097 Prediction: Machine Learning and Statistics",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      6,
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/15-097-prediction-machine-learning-and-statistics-spring-2012/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      114
+    ]
+  },
+  {
+    "resource_id": 115,
+    "title": "18.465 Topics in Statistics: Statistical Learning Theory",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-465-topics-in-statistics-statistical-learning-theory-spring-2007/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      115
+    ]
+  },
+  {
+    "resource_id": 116,
+    "title": "6.036 Introduction to Machine Learning",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-036-introduction-to-machine-learning-fall-2020/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      116
+    ]
+  },
+  {
+    "resource_id": 117,
+    "title": "6.867 Machine Learning",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-867-machine-learning-fall-2006/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      117
+    ]
+  },
+  {
+    "resource_id": 118,
+    "title": "18.657 Mathematics of Machine Learning",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-657-mathematics-of-machine-learning-fall-2015/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      118
+    ]
+  },
+  {
+    "resource_id": 119,
+    "title": "18.409 Algorithmic Aspects of Machine Learning",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/18-409-algorithmic-aspects-of-machine-learning-spring-2015/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      119
+    ]
+  },
+  {
+    "resource_id": 120,
+    "title": "6.S897 Machine Learning for Healthcare",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-s897-machine-learning-for-healthcare-spring-2019/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      120
+    ]
+  },
+  {
+    "resource_id": 121,
+    "title": "6.S980 Machine Learning for Inverse Graphics",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/6-s980-machine-learning-for-inverse-graphics-fall-2022/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      121
+    ]
+  },
+  {
+    "resource_id": 122,
+    "title": "RES.LL-005 Mathematics of Big Data and Machine Learning",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/res-ll-005-mathematics-of-big-data-and-machine-learning-january-iap-2020/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      122
+    ]
+  },
+  {
+    "resource_id": 123,
+    "title": "RES.EC-001 Exploring Fairness in Machine Learning for International Development",
+    "provider_id": 101,
+    "subject_id": 3,
+    "learning_goal_ids": [
+      4
+    ],
+    "skill_ids": [
+      9,
+      11
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Non-Credit",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/res-ec-001-exploring-fairness-in-machine-learning-for-international-development-spring-2020/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      123
+    ]
+  },
+  {
+    "resource_id": 124,
+    "title": "15.347 Doctoral Seminar in Research Methods I",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/15-347-doctoral-seminar-in-research-methods-i-fall-2004/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      124
+    ]
+  },
+  {
+    "resource_id": 125,
+    "title": "15.348 Doctoral Seminar in Research Methods II",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/15-348-doctoral-seminar-in-research-methods-ii-spring-2004/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      125
+    ]
+  },
+  {
+    "resource_id": 126,
+    "title": "21H.931 Seminar in Historical Methods",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21h-931-seminar-in-historical-methods-spring-2002/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      126
+    ]
+  },
+  {
+    "resource_id": 127,
+    "title": "21H.931 Seminar in Historical Methods",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21h-931-seminar-in-historical-methods-spring-2003/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      127
+    ]
+  },
+  {
+    "resource_id": 128,
+    "title": "17.801 Political Science Scope and Methods",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/17-801-political-science-scope-and-methods-fall-2017/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      128
+    ]
+  },
+  {
+    "resource_id": 129,
+    "title": "11.237 Practice of Participatory Action Research (PAR)",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      13
+    ],
+    "skill_ids": [
+      19
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/11-237-practice-of-participatory-action-research-par-spring-2016/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      129
+    ]
+  },
+  {
+    "resource_id": 130,
+    "title": "HST.502 Survival Skills for Researchers: The Responsible Conduct of Research",
+    "provider_id": 101,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      14
+    ],
+    "skill_ids": [
+      20
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/hst-502-survival-skills-for-researchers-the-responsible-conduct-of-research-spring-2003/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      130
+    ]
+  },
+  {
+    "resource_id": 131,
+    "title": "21W.036 Science Writing and New Media: Writing and the Environment",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21w-036-science-writing-and-new-media-writing-and-the-environment-spring-2022/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      131
+    ]
+  },
+  {
+    "resource_id": 132,
+    "title": "11.229 Advanced Writing Seminar",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Graduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/11-229-advanced-writing-seminar-spring-2004/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      132
+    ]
+  },
+  {
+    "resource_id": 133,
+    "title": "21W.015 Writing and Rhetoric: Writing about Sports",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21w-015-writing-and-rhetoric-writing-about-sports-fall-2013/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      133
+    ]
+  },
+  {
+    "resource_id": 134,
+    "title": "21W.022 Writing and Experience: Reading and Writing Autobiography",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21w-022-03-writing-and-experience-reading-and-writing-autobiography-spring-2014/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      134
+    ]
+  },
+  {
+    "resource_id": 135,
+    "title": "7.02CI Experimental Biology - Communications Intensive",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/7-02ci-experimental-biology-communications-intensive-spring-2005/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      135
+    ]
+  },
+  {
+    "resource_id": 136,
+    "title": "21L.000J Writing About Literature: Writing About Love",
+    "provider_id": 101,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "open_course",
+    "difficulty": null,
+    "level_official": "Undergraduate",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": false,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": null,
+    "publish_date": null,
+    "url": "https://ocw.mit.edu/courses/21l-000j-writing-about-literature-writing-about-love-fall-2015/",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      136
+    ]
+  },
+  {
+    "resource_id": 137,
+    "title": "Introduction to Python Programming",
+    "provider_id": 102,
+    "subject_id": 1,
+    "learning_goal_ids": [
+      1
+    ],
+    "skill_ids": [
+      1
+    ],
+    "resource_type": "book",
+    "difficulty": null,
+    "level_official": "College",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": null,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": "Udayan Das, Aubrey Lawson, Chris Mayfield, Narges Norouzi",
+    "publish_date": "2024-03-13",
+    "url": "https://openstax.org/details/books/introduction-python-programming",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      137
+    ]
+  },
+  {
+    "resource_id": 138,
+    "title": "Introductory Statistics 2e",
+    "provider_id": 102,
+    "subject_id": 4,
+    "learning_goal_ids": [
+      5
+    ],
+    "skill_ids": [
+      6
+    ],
+    "resource_type": "book",
+    "difficulty": null,
+    "level_official": "College",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": null,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": "Barbara Illowsky, Susan Dean",
+    "publish_date": "2023-12-13",
+    "url": "https://openstax.org/details/books/introductory-statistics-2e",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      138
+    ]
+  },
+  {
+    "resource_id": 139,
+    "title": "Writing Guide with Handbook",
+    "provider_id": 102,
+    "subject_id": 5,
+    "learning_goal_ids": [
+      8
+    ],
+    "skill_ids": [
+      13
+    ],
+    "resource_type": "book",
+    "difficulty": null,
+    "level_official": "College",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": null,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": "Michelle Bachelor Robinson, Maria Jerskey, featuring Toby Fulwiler",
+    "publish_date": "2021-12-21",
+    "url": "https://openstax.org/details/books/writing-guide",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      139
+    ]
+  },
+  {
+    "resource_id": 140,
+    "title": "College Success",
+    "provider_id": 102,
+    "subject_id": 6,
+    "learning_goal_ids": [
+      15
+    ],
+    "skill_ids": [
+      21
+    ],
+    "resource_type": "book",
+    "difficulty": null,
+    "level_official": "College",
+    "language": "en",
+    "fee": 0,
+    "currency": null,
+    "duration_hours": null,
+    "weekly_workload_hours": null,
+    "learning_mode": "self_paced",
+    "prerequisite_skill_ids": [],
+    "certificate_available": null,
+    "rating": null,
+    "rating_count": null,
+    "learning_outcomes": [],
+    "description": null,
+    "authors": "Amy Baldwin",
+    "publish_date": "2020-03-27",
+    "url": "https://openstax.org/details/books/college-success",
+    "updated_at": null,
+    "observed_at": "2026-10-06",
+    "verification_status": "editorial_verified",
+    "data_class": "real",
+    "status": "published",
+    "source_ids": [
+      140
     ]
   }
 ]

@@ -334,5 +334,1005 @@
     "source_id": 1,
     "field_scope": "general",
     "note": "资源全部字段均为编辑演示数据。"
+  },
+  {
+    "resource_source_id": 101,
+    "resource_id": 101,
+    "source_id": 101,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 102,
+    "resource_id": 102,
+    "source_id": 102,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 103,
+    "resource_id": 103,
+    "source_id": 103,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 104,
+    "resource_id": 104,
+    "source_id": 104,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 105,
+    "resource_id": 105,
+    "source_id": 105,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 106,
+    "resource_id": 106,
+    "source_id": 106,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 107,
+    "resource_id": 107,
+    "source_id": 107,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 108,
+    "resource_id": 108,
+    "source_id": 108,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 109,
+    "resource_id": 109,
+    "source_id": 109,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 110,
+    "resource_id": 110,
+    "source_id": 110,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 111,
+    "resource_id": 111,
+    "source_id": 111,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 112,
+    "resource_id": 112,
+    "source_id": 112,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 113,
+    "resource_id": 113,
+    "source_id": 113,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 114,
+    "resource_id": 114,
+    "source_id": 114,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 115,
+    "resource_id": 115,
+    "source_id": 115,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 116,
+    "resource_id": 116,
+    "source_id": 116,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 117,
+    "resource_id": 117,
+    "source_id": 117,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 118,
+    "resource_id": 118,
+    "source_id": 118,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 119,
+    "resource_id": 119,
+    "source_id": 119,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 120,
+    "resource_id": 120,
+    "source_id": 120,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 121,
+    "resource_id": 121,
+    "source_id": 121,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 122,
+    "resource_id": 122,
+    "source_id": 122,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 123,
+    "resource_id": 123,
+    "source_id": 123,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 124,
+    "resource_id": 124,
+    "source_id": 124,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 125,
+    "resource_id": 125,
+    "source_id": 125,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 126,
+    "resource_id": 126,
+    "source_id": 126,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 127,
+    "resource_id": 127,
+    "source_id": 127,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 128,
+    "resource_id": 128,
+    "source_id": 128,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 129,
+    "resource_id": 129,
+    "source_id": 129,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 130,
+    "resource_id": 130,
+    "source_id": 130,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 131,
+    "resource_id": 131,
+    "source_id": 131,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 132,
+    "resource_id": 132,
+    "source_id": 132,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 133,
+    "resource_id": 133,
+    "source_id": 133,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 134,
+    "resource_id": 134,
+    "source_id": 134,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 135,
+    "resource_id": 135,
+    "source_id": 135,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 136,
+    "resource_id": 136,
+    "source_id": 136,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 137,
+    "resource_id": 137,
+    "source_id": 137,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
+  },
+  {
+    "resource_source_id": 138,
+    "resource_id": 138,
+    "source_id": 138,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
+  },
+  {
+    "resource_source_id": 139,
+    "resource_id": 139,
+    "source_id": 139,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
+  },
+  {
+    "resource_source_id": 140,
+    "resource_id": 140,
+    "source_id": 140,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
   }
 ]

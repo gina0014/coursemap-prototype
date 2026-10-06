@@ -252,5 +252,64 @@
     ],
     "status": "published",
     "data_class": "demo"
+  },
+  {
+    "goal_id": 13,
+    "name": "研究方法与实验设计",
+    "subject_id": 4,
+    "description": "掌握研究设计、资料收集方法与论证流程，能判断一项研究的可信度。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      19
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "研究方法",
+      "research methods",
+      "实验设计"
+    ],
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "goal_id": 14,
+    "name": "科研诚信与负责任研究",
+    "subject_id": 4,
+    "description": "理解科研伦理、数据诚信与负责任研究行为规范。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      20
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [
+      13
+    ],
+    "aliases": [
+      "科研诚信",
+      "research integrity",
+      "研究伦理"
+    ],
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "goal_id": 15,
+    "name": "大学学习与自我管理",
+    "subject_id": 6,
+    "description": "适应大学学习方式：目标设定、时间管理、主动学习与资源利用。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      21
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "大学学习",
+      "学习方法",
+      "college success"
+    ],
+    "status": "published",
+    "data_class": "real"
   }
 ]
