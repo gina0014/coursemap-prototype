@@ -109,6 +109,38 @@ const TARGETS = [
     id: '16_Search_Empty_State', page: 'P-02', url: 'pages/search.html?q=zzznotexist',
     mustContain: ['没有符合条件的学习资源'], shot: true,
   },
+  /* ---- Real OER Expansion：首页「精选开放学习资源」专项 QA ---- */
+  {
+    id: '17_Home_Featured_OER', page: 'P-01', url: 'index.html',
+    mustContain: ['精选开放学习资源', '已核验真实资源'], shot: true,
+    assert: [
+      /* 数量：默认 6–8 条 */
+      { name: 'featured-count>=6', expr: `(() => { const n = document.querySelectorAll('[data-coursemap-featured-card]').length; return n >= 6 && n <= 8 ? 'ok' : 'bad:' + n; })()`, eq: 'ok' },
+      /* 纪律 1：精选区只允许 REAL，出现任何 DEMO 徽标即缺陷 */
+      { name: 'no-demo-badge', expr: `(() => { const bad = [...document.querySelectorAll('[data-coursemap-featured-card]')].filter((c) => c.querySelector('[data-coursemap-badge="demo"]') || /\\bDEMO\\b/.test(c.innerText)).length; return bad === 0 ? 'ok' : 'bad:' + bad; })()`, eq: 'ok' },
+      /* 每张卡都带 REAL 徽标 */
+      { name: 'all-real-badge', expr: `(() => { const cards = [...document.querySelectorAll('[data-coursemap-featured-card]')]; const ok = cards.filter((c) => c.querySelector('[data-coursemap-badge="real"]')).length; return cards.length > 0 && ok === cards.length ? 'ok' : ok + '/' + cards.length; })()`, eq: 'ok' },
+      /* 纪律 3：每张卡都有官方外链，且必须是 https 且落在官方白名单域 */
+      { name: 'official-links', expr: `(() => { const cards = [...document.querySelectorAll('[data-coursemap-featured-card]')]; const links = cards.map((c) => c.querySelector('[data-coursemap-official-link]')?.getAttribute('href') || ''); const bad = links.filter((h) => !/^https:\\/\\/(ocw\\.mit\\.edu|cs50\\.harvard\\.edu|developers\\.google\\.(com|cn)|openstax\\.org)\\//.test(h)); return links.length === cards.length && bad.length === 0 ? 'ok' : bad.join('|') || 'missing:' + (cards.length - links.filter(Boolean).length); })()`, eq: 'ok' },
+      /* 许可必须可见，且 CC BY-NC-SA 不得被标为「允许商用」 */
+      { name: 'license-honest', expr: `(() => { const badges = [...document.querySelectorAll('[data-coursemap-featured-card] [data-coursemap-license-cell] [data-coursemap-license="value"]')]; const cards = document.querySelectorAll('[data-coursemap-featured-card]').length; if (badges.length !== cards) return 'missing:' + badges.length + '/' + cards; const lying = badges.filter((b) => /NC/.test(b.textContent) && /允许商用/.test(b.getAttribute('title') || '')).length; return lying === 0 ? 'ok' : 'bad:' + lying; })()`, eq: 'ok' },
+      /* 未核验的费用不得写成「免费」 */
+      { name: 'fee-honest', expr: `(() => { const cells = [...document.querySelectorAll('[data-coursemap-featured-fee]')]; const bad = cells.filter((c) => !c.textContent.trim()).length; return cells.length > 0 && bad === 0 ? 'ok' : 'empty:' + bad; })()`, eq: 'ok' },
+      /* 选取口径说明必须写出「不按机构名气排序」（可审计） */
+      { name: 'selection-note', expr: `(() => { const t = document.querySelector('[data-featured-oer-note]')?.innerText || ''; return /不按机构名气排序/.test(t) && /DEMO/.test(t) ? 'ok' : 'missing'; })()`, eq: 'ok' },
+    ],
+  },
+  /* ---- 响应式：同一页面在移动视口下不得横向溢出，精选卡仍完整 ---- */
+  {
+    id: '18_Home_Mobile_Featured', page: 'P-01', url: 'index.html',
+    viewport: { width: 390, height: 844 },
+    mustContain: ['精选开放学习资源'], shot: true,
+    assert: [
+      { name: 'no-h-overflow', expr: `(() => { const d = document.documentElement; const over = d.scrollWidth - window.innerWidth; return over <= 2 ? 'ok' : 'overflow:' + over; })()`, eq: 'ok' },
+      { name: 'mobile-featured-cards', expr: `(() => { const n = document.querySelectorAll('[data-coursemap-featured-card]').length; return n >= 6 ? 'ok' : 'bad:' + n; })()`, eq: 'ok' },
+      { name: 'mobile-official-links', expr: `(() => { const cards = [...document.querySelectorAll('[data-coursemap-featured-card]')]; const ok = cards.filter((c) => c.querySelector('[data-coursemap-official-link]')).length; return cards.length > 0 && ok === cards.length ? 'ok' : ok + '/' + cards.length; })()`, eq: 'ok' },
+    ],
+  },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -177,6 +209,8 @@ class Cdp {
 async function runTarget(target, index) {
   const port = 9380 + (index % 40);
   const url = `${BASE}/${target.url}`;
+  /* 每个目标可覆盖视口（响应式 QA 用）；默认桌面视口。 */
+  const vp = target.viewport || VIEWPORT;
   const result = {
     id: target.id,
     page: target.page,
@@ -208,7 +242,7 @@ async function runTarget(target, index) {
     '--mute-audio',
     `--user-data-dir=${profile}`,
     `--remote-debugging-port=${port}`,
-    `--window-size=${VIEWPORT.width},${VIEWPORT.height}`,
+    `--window-size=${vp.width},${vp.height}`,
     'about:blank',
   ], { stdio: 'ignore', windowsHide: true });
 
@@ -247,7 +281,7 @@ async function runTarget(target, index) {
     await cdp.send('Network.enable');
     await cdp.send('Page.enable');
     await cdp.send('Emulation.setDeviceMetricsOverride', {
-      width: VIEWPORT.width, height: VIEWPORT.height, deviceScaleFactor: 1, mobile: false,
+      width: vp.width, height: vp.height, deviceScaleFactor: 1, mobile: !!target.viewport,
     });
 
     /* 先 about:blank 启动、附加完成后再导航——保证模块加载错误也能被完整捕获 */
@@ -338,7 +372,7 @@ async function runTarget(target, index) {
     /* 截图证据 */
     if (target.shot) {
       const attempts = [
-        { format: 'png', captureBeyondViewport: true, clip: { x: 0, y: 0, width: VIEWPORT.width, height: VIEWPORT.height * 2, scale: 1 } },
+        { format: 'png', captureBeyondViewport: true, clip: { x: 0, y: 0, width: vp.width, height: vp.height * 2, scale: 1 } },
         { format: 'png', captureBeyondViewport: true },
         { format: 'png' },
       ];

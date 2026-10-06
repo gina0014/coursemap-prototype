@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:8765",
-  "generatedAt": "2026-10-06T12:08:12.631Z",
+  "generatedAt": "2026-10-06T15:15:21.972Z",
   "rows": [
     {
       "id": "01_Home_Goal_First",
@@ -19,7 +19,7 @@
       "resolved": true,
       "navLinks": 6,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n今天想学什么？\n\n按学习目标找资源，而不是先找平台再翻课程。\n\n告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。\n\n🎯 学习目标\n全部目标\nPyth",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n今天想学什么？\n\n按学习目标找资源，而不是先找平台再翻课程。\n\n告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。\n\n🎯 学习目标\n全部目标\nPyt",
       "shot": "docs/evidence/screenshots/01_Home_Goal_First.png",
       "verdict": "PASS"
     },
@@ -33,14 +33,14 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": null,
-      "contentChars": 43040,
+      "contentChars": 43410,
       "resourceCards": 12,
       "assertions": [],
       "missingText": [],
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython 入",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython ",
       "shot": "docs/evidence/screenshots/02_Search_Keyword.png",
       "verdict": "PASS"
     },
@@ -54,14 +54,14 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": null,
-      "contentChars": 42686,
+      "contentChars": 42932,
       "resourceCards": 12,
       "assertions": [],
       "missingText": [],
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython 入",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython ",
       "shot": "docs/evidence/screenshots/03_Search_Goal_Filter.png",
       "verdict": "PASS"
     },
@@ -75,7 +75,7 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": null,
-      "contentChars": 19735,
+      "contentChars": 22032,
       "resourceCards": 0,
       "assertions": [
         {
@@ -95,7 +95,7 @@
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › Python 入门 › 跨资源对比\n「Python 入门」怎么选？\nDEMOREAL 14 个资源 · 8 个提供方\n回列表筛选\n\n从零开始学会用 Python 写程序：语法、函",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › Python 入门 › 跨资源对比\n「Python 入门」怎么选？\nDEMOREAL 16 个资源 · 9 个提供方\n回列表筛选\n\n从零开始学会用 Python 写程序：语法、",
       "shot": "docs/evidence/screenshots/04_Compare_Same_Goal.png",
       "verdict": "PASS"
     },
@@ -116,7 +116,7 @@
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程 › Python 基础入门\nPython 基础入门\nDEMO · 演示数据 入门 提供证书 课程 中文 自学节奏\n¥0 观测于 2026-09-25（11 天前观测）\n未",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程 › Python 基础入门\nPython 基础入门\nDEMO · 演示数据 入门 提供证书 课程 中文 自学节奏\n¥0 观测于 2026-09-25（11 天前观测）\n",
       "shot": "docs/evidence/screenshots/05_Resource_Detail.png",
       "verdict": "PASS"
     },
@@ -137,7 +137,7 @@
       "resolved": true,
       "navLinks": 6,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n🔍\n没有找到这个学习资源\n这个链接可能已失效，或者该记录尚未发布。\n回到首页\n浏览全部资源\n探索\n按目标找课程\n学习路径\nAI 学习顾问（Beta）\n我的收藏\n数据\n数据方法论\n允许与禁",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n🔍\n没有找到这个学习资源\n这个链接可能已失效，或者该记录尚未发布。\n回到首页\n浏览全部资源\n探索\n按目标找课程\n学习路径\nAI 学习顾问（Beta）\n我的收藏\n数据\n数据方法论\n允许与",
       "shot": "docs/evidence/screenshots/06_Resource_NotFound.png",
       "verdict": "PASS"
     },
@@ -151,14 +151,14 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": null,
-      "contentChars": 98835,
+      "contentChars": 143101,
       "resourceCards": 0,
       "assertions": [],
       "missingText": [],
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 提供方\n示范大学在线（DEMO）\nDEMO · 演示数据 大学开放平台\n\n虚构的大学开放课程平台演示实体，用于原型数据。\n\nProvider 级信息 ≠ Resource 级质量",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 提供方\n示范大学在线（DEMO）\nDEMO · 演示数据 大学开放平台\n\n虚构的大学开放课程平台演示实体，用于原型数据。\n\nProvider 级信息 ≠ Resource 级质",
       "shot": "docs/evidence/screenshots/07_Provider_Detail.png",
       "verdict": "PASS"
     },
@@ -179,7 +179,7 @@
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 学习路径\n学习路径\nDEMOREAL\n\n路径把「先学什么、后学什么」展开成目标 → 技能 → 资源的顺序结构。 每一步只推荐数据集中登记过的资源，缺失的信息以 — 呈现。\n\n零基",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 学习路径\n学习路径\nDEMOREAL\n\n路径把「先学什么、后学什么」展开成目标 → 技能 → 资源的顺序结构。 每一步只推荐数据集中登记过的资源，缺失的信息以 — 呈现。\n\n零",
       "shot": "docs/evidence/screenshots/08_Paths_Overview.png",
       "verdict": "PASS"
     },
@@ -200,7 +200,7 @@
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 学习路径 › 零基础到 Python 数据分析\n零基础到 Python 数据分析\nDEMO · 演示数据 5 步 适合：零基础本科生\n浏览路径起点资源\n\n从编程入门到能独立完成一",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 学习路径 › 零基础到 Python 数据分析\n零基础到 Python 数据分析\nDEMO · 演示数据 5 步 适合：零基础本科生\n浏览路径起点资源\n\n从编程入门到能独立完成",
       "shot": "docs/evidence/screenshots/09_Path_Detail.png",
       "verdict": "PASS"
     },
@@ -221,7 +221,7 @@
       "resolved": true,
       "navLinks": 8,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › Python 基础入门 › 写评价\n评价：Python 基础入门\nDEMO · 演示数据 评价对象 = 学习资源（不是提供方）\nReview Prototype · Local-",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › Python 基础入门 › 写评价\n评价：Python 基础入门\nDEMO · 演示数据 评价对象 = 学习资源（不是提供方）\nReview Prototype · Local",
       "shot": "docs/evidence/screenshots/10_Review_Local_Prototype.png",
       "verdict": "PASS"
     },
@@ -242,7 +242,7 @@
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 收藏\n我的学习收藏\nLocal Prototype · 本地收藏\n收藏仅保存在当前浏览器（localStorage），没有账号、没有云同步。 清除浏览器数据会丢失收藏。\n收藏的学",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 收藏\n我的学习收藏\nLocal Prototype · 本地收藏\n收藏仅保存在当前浏览器（localStorage），没有账号、没有云同步。 清除浏览器数据会丢失收藏。\n收藏的",
       "shot": "docs/evidence/screenshots/11_Favorites_Local.png",
       "verdict": "PASS"
     },
@@ -272,7 +272,7 @@
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › AI 学习顾问\nAI 学习顾问 Beta · 降级模式\n清空会话\nAI 学习顾问暂时不可用 · 降级为规则原型（Rule-based Prototype · Not LLM）\nA",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › AI 学习顾问\nAI 学习顾问 Beta · 降级模式\n清空会话\nAI 学习顾问暂时不可用 · 降级为规则原型（Rule-based Prototype · Not LLM）\n",
       "shot": "docs/evidence/screenshots/12_Advisor_Fallback.png",
       "verdict": "PASS"
     },
@@ -286,14 +286,14 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": null,
-      "contentChars": 100953,
+      "contentChars": 145391,
       "resourceCards": 0,
       "assertions": [],
       "missingText": [],
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 数据方法论\n数据方法论\nDEMOREAL\n\nCourseMap 的每一类决策信息都必须能回答三个问题：数据从哪来、什么时候观测、是否核验。 本页展示的阈值与统计全部由运行时从代码",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 数据方法论\n数据方法论\nDEMOREAL\n\nCourseMap 的每一类决策信息都必须能回答三个问题：数据从哪来、什么时候观测、是否核验。 本页展示的阈值与统计全部由运行时从代",
       "shot": "docs/evidence/screenshots/13_Data_Methodology.png",
       "verdict": "PASS"
     },
@@ -314,7 +314,7 @@
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 关于\n关于 CourseMap（学途）\nEducational domain prototype CourseMap-v0.2-AI-Beta\n\nCourseMap 是一个学习目",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 关于\n关于 CourseMap（学途）\nEducational domain prototype CourseMap-v0.2-AI-Beta\n\nCourseMap 是一个学习",
       "shot": "docs/evidence/screenshots/14_About.png",
       "verdict": "PASS"
     },
@@ -335,7 +335,7 @@
       "resolved": true,
       "navLinks": 6,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n🧭\n404 · 页面不存在\n你要找的页面不存在，或者已经移动。 可以回到首页按学习目标重新出发，或者浏览全部学习资源。\n回到首页\n浏览全部资源\n看学习路径\n探索\n按目标找课程\n学习路径\n",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n🧭\n404 · 页面不存在\n你要找的页面不存在，或者已经移动。 可以回到首页按学习目标重新出发，或者浏览全部学习资源。\n回到首页\n浏览全部资源\n看学习路径\n探索\n按目标找课程\n学习路径",
       "shot": "docs/evidence/screenshots/15_404.png",
       "verdict": "PASS"
     },
@@ -349,15 +349,119 @@
       "failedRequests": [],
       "tolerated": [],
       "pageState": "empty",
-      "contentChars": 10391,
+      "contentChars": 10637,
       "resourceCards": 0,
       "assertions": [],
       "missingText": [],
       "resolved": true,
       "navLinks": 7,
       "brokenLinks": [],
-      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 88 条，其中已核验真实 40 条（其中带核验状态 40 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython 入",
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n首页 › 找课程\n🔎 想学什么（目标 / 资源名 / 技能）\n排序\n相关度\n费用从低到高\n费用从高到低\n学习者评分\n总时长从短到长\n每周投入从少到多\n学习目标\n全部目标\nPython ",
       "shot": "docs/evidence/screenshots/16_Search_Empty_State.png",
+      "verdict": "PASS"
+    },
+    {
+      "id": "17_Home_Featured_OER",
+      "page": "P-01",
+      "url": "http://127.0.0.1:8765/index.html",
+      "consoleErrors": [],
+      "warnings": [],
+      "exceptions": [],
+      "failedRequests": [],
+      "tolerated": [],
+      "pageState": null,
+      "contentChars": 0,
+      "resourceCards": 0,
+      "assertions": [
+        {
+          "name": "featured-count>=6",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "no-demo-badge",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "all-real-badge",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "official-links",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "license-honest",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "fee-honest",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "selection-note",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        }
+      ],
+      "missingText": [],
+      "resolved": true,
+      "navLinks": 6,
+      "brokenLinks": [],
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途 按学习目标找资源，而不是先找平台再翻课程。\n找课程\n学习路径\n收藏\nAI 学习顾问Beta\n数据方法论\n关于\n今天想学什么？\n\n按学习目标找资源，而不是先找平台再翻课程。\n\n告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。\n\n🎯 学习目标\n全部目标\nPyt",
+      "shot": "docs/evidence/screenshots/17_Home_Featured_OER.png",
+      "verdict": "PASS"
+    },
+    {
+      "id": "18_Home_Mobile_Featured",
+      "page": "P-01",
+      "url": "http://127.0.0.1:8765/index.html",
+      "consoleErrors": [],
+      "warnings": [],
+      "exceptions": [],
+      "failedRequests": [],
+      "tolerated": [],
+      "pageState": null,
+      "contentChars": 0,
+      "resourceCards": 0,
+      "assertions": [
+        {
+          "name": "no-h-overflow",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "mobile-featured-cards",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        },
+        {
+          "name": "mobile-official-links",
+          "expect": "ok",
+          "got": "ok",
+          "ok": true
+        }
+      ],
+      "missingText": [],
+      "resolved": true,
+      "navLinks": 6,
+      "brokenLinks": [],
+      "bodyText": "跳到主内容\nREAL + DEMO\n当前数据集同时包含已核验真实资源与演示资源。真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，不复制课程正文；DEMO 记录仅用于产品演示，不代表真实存在的课程或真实价格。\n学习资源：共 107 条，其中已核验真实 59 条（其中带核验状态 59 条）、演示 48 条。 演示记录已在各页面单独标注。\n查看数据方法论\n◈\nCourseMap学途\n菜单\n今天想学什么？\n\n按学习目标找资源，而不是先找平台再翻课程。\n\n告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。\n\n🎯 学习目标\n全部目标\nPython 入门\nPython 数据分析\nR 语言入门\n机器学习基础\n科研统计基础\n单细胞 RNA-seq ",
+      "shot": "docs/evidence/screenshots/18_Home_Mobile_Featured.png",
       "verdict": "PASS"
     }
   ]
