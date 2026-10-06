@@ -1,17 +1,17 @@
 CourseMap Phase Data-1 + AI Production Activation — Final Gates (Module Y)
-generatedAt : 2026-10-06T12:22:35.304Z
-git HEAD    : 2c3d6e0edef30b00d8480777c25e789a270b6fff (master)
-dataset     : 88 resources (48 demo + 40 real), 42 sources (2 demo + 40 real)
-sha256      : resources=a76c00ed5c9527fc88d5907173093a71dc914c9aef6e783a012b99175b756728 sources=f4ae1a106a93755553276ad2f39b8d742495d3b1d514db974db22b7b46e00e80 relations=8084615d8fc85424ca3d32d5ab4126de878b52c8166051be23b8e3cc79bd639e
-licenses    : CC BY-NC-SA 4.0 × 40
+generatedAt : 2026-10-06T15:19:39.221Z
+git HEAD    : ed8b06e23bcb1147c21d52f26bdc011720e9404c (master)
+dataset     : 107 resources (48 demo + 59 real), 61 sources (2 demo + 59 real)
+sha256      : resources=103541123ceeb5ded9acece49cb0f2c5663b903e05efe13eb64f311be04bce87 sources=f0d371fd872c4e13312117a8edc5ea84ba350d5608720163299c638e164fc1dc relations=f074d0ca25ab38c96c5de1952a6016815a6d872d03d021700024b53434e7b3bd
+licenses    : CC BY-NC-SA 4.0 × 53, unknown × 1, CC BY 4.0 × 5
 
 id      status   name
 ------------------------------------------------------------------------------
-Y-01    PASS     Real Resources > 0 — real=40 (threshold: >0)
-Y-02    PASS     All real resources have ≥1 Source — 40/40 bound; validator reports 0 unbound
-Y-03    PASS     License Audit (no misdeclared openness) — 40 real sources audited; licenses: CC BY-NC-SA 4.0×40
+Y-01    PASS     Real Resources > 0 — real=59 (threshold: >0)
+Y-02    PASS     All real resources have ≥1 Source — 59/59 bound; validator reports 0 unbound
+Y-03    PASS     License Audit (no misdeclared openness) — 59 real sources audited; licenses: CC BY-NC-SA 4.0×53, unknown×1, CC BY 4.0×5
 Y-04    PASS     Data Validation BLOCKER = 0 — validate exit=0, BLOCKER=0
-Y-05    PASS     Data Validation ERROR = 0 — ERROR=0, WARN=149
+Y-05    PASS     Data Validation ERROR = 0 — ERROR=0, WARN=212
 Y-06    BLOCKED  Real DeepSeek Call = PASS (production) — 未录制到真实调用证据（30_live_public_verification.json 不存在）；本机 probe=unreachable (AbortError)，后端可达性=false
 Y-07    PASS     CourseMap Retrieval = PASS — 6/6 assertions green; intent → retrieval → grounded candidates carrying source/license/official_url
 Y-08    PASS     Hallucinated Resource = 0 — 5/5 assertions green; non-existent course rejected; unknown goal → NO_MATCHING_RESOURCE
@@ -20,9 +20,9 @@ Y-10    PASS     Unknown Field Test = PASS — 6/6 assertions green; duration_ho
 Y-11    PASS     Source Binding = PASS — 5/5 assertions green; every recommendation binds resource_id → source_id → official_url; verified_recommendation honest
 Y-12    PASS     Secret Leak = 0 — secret scan clean (exit 0)
 Y-13    BLOCKED  Public E2E = PASS (production) — 仓库内最新的公网 E2E 证据是**历史失败**记录（2026-10-06T09:10:19.760Z：35 checks，10 FAIL）；该证据产出于本轮修复之前，不能用于本轮验收，需对本次推送的 commit 重跑
-Y-14    PASS     Regression = PASS — runtime 84/84 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 64/64; total PASS=246 FAIL=0
+Y-14    PASS     Regression = PASS — runtime 86/86 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 66/66 · oer-expansion 88/88 · featured-oer 15/15; total PASS=353 FAIL=0
 ------------------------------------------------------------------------------
-PASS=12  FAIL=0  BLOCKED=2  (assertions=246)
+PASS=12  FAIL=0  BLOCKED=2  (assertions=353)
 
 COURSEMAP DATA-1 + AI ACTIVATION PARTIAL
 OFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE

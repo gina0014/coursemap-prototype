@@ -163,8 +163,32 @@ for (const s of realSources) {
   if (/(^|[^a-z])nc([^a-z]|$)|non-?commercial/.test(l) && s.commercial_use === true) {
     licenseAuditProblems.push(`source ${s.source_id}: NonCommercial 许可被误标为 commercial_use=true`);
   }
-  for (const f of ['commercial_use', 'public_domain', 'attribution_required', 'share_alike', 'adaptation_allowed']) {
-    if (typeof s[f] !== 'boolean') licenseAuditProblems.push(`source ${s.source_id}: ${f} 非布尔（${JSON.stringify(s[f])}）`);
+  /* 许可布尔量必须与许可状态匹配 —— 分两档，不能一刀切：
+       · 已声明许可（CC BY-NC-SA 4.0 / CC BY 4.0 …）
+           → 布尔量必须是**显式 true/false**（依据许可名称判定，可审计）。
+       · 许可状态未知（license === 'unknown'）
+           → 布尔量必须是 **null**，且**绝不允许**为 true。
+             不知道就是不知道：写 true 是断言了来源从未声明的事；
+             写 false 同样是断言（「不允许」）—— 都是猜。
+     早期版本要求「所有真实来源的布尔量必须是 boolean」，
+     那隐含了「真实资源一定是 CC BY-NC-SA」这一过时前提（旧数据集只有 NC）。
+     接入 Google CC BY 4.0 与一条无许可声明的来源后该前提不再成立。 */
+  const unknownLic = unknown || !lic;
+  if (unknownLic) {
+    for (const f of ['commercial_use', 'public_domain']) {
+      if (s[f] === true) {
+        licenseAuditProblems.push(`source ${s.source_id}: 未知许可被断言为开放（${f} = true）`);
+      }
+    }
+    if (s.usage_permission !== 'unknown') {
+      licenseAuditProblems.push(`source ${s.source_id}: 未知许可的 usage_permission 必须为 unknown（当前 ${JSON.stringify(s.usage_permission)}）`);
+    }
+  } else {
+    for (const f of ['commercial_use', 'public_domain', 'attribution_required', 'share_alike', 'adaptation_allowed']) {
+      if (typeof s[f] !== 'boolean') {
+        licenseAuditProblems.push(`source ${s.source_id}: 已知许可 ${lic} 的 ${f} 必须为显式 boolean（当前 ${JSON.stringify(s[f])}）`);
+      }
+    }
   }
 }
 
@@ -291,6 +315,9 @@ const SUITES = [
   { id: 'ai-routing', file: 'tests/ai/routing.test.mjs' },
   { id: 'ai-integration', file: 'tests/ai/integration.test.mjs' },
   { id: 'data1', file: 'tests/ai/data1.test.mjs' },
+  /* Real OER Expansion：真实资源扩容后的验收与首页精选模块 */
+  { id: 'oer-expansion', file: 'tests/ai/oer-expansion.test.mjs' },
+  { id: 'featured-oer', file: 'tests/ui/featured-oer.test.mjs' },
 ];
 
 const suiteOutcome = {};

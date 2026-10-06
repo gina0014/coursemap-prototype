@@ -1,30 +1,30 @@
 {
   "phase": "CourseMap Phase Data-1 + AI Production Activation",
   "module": "Y — Final Gates",
-  "generatedAt": "2026-10-06T12:22:35.304Z",
+  "generatedAt": "2026-10-06T15:19:39.221Z",
   "verdict": "PARTIAL",
   "banner": "COURSEMAP DATA-1 + AI ACTIVATION PARTIAL\nOFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE\nPENDING (需 GitHub Actions live-verify 在本次推送的 commit 上执行):\n  - REAL DEEPSEEK AI ADVISOR ACTIVE  → backend-verify / live_public_verify.mjs\n  - EVIDENCE-GROUNDED RECOMMENDATION READY (public path) → public-e2e / public_e2e.mjs",
   "baselines": {
     "git": {
-      "head": "2c3d6e0edef30b00d8480777c25e789a270b6fff",
+      "head": "ed8b06e23bcb1147c21d52f26bdc011720e9404c",
       "branch": "master"
     },
     "datasetFiles": {
       "resources": {
-        "total": 88,
+        "total": 107,
         "demo": 48,
-        "real": 40,
-        "sha256": "a76c00ed5c9527fc88d5907173093a71dc914c9aef6e783a012b99175b756728"
+        "real": 59,
+        "sha256": "103541123ceeb5ded9acece49cb0f2c5663b903e05efe13eb64f311be04bce87"
       },
       "sources": {
-        "total": 42,
+        "total": 61,
         "demo": 2,
-        "real": 40,
-        "sha256": "f4ae1a106a93755553276ad2f39b8d742495d3b1d514db974db22b7b46e00e80"
+        "real": 59,
+        "sha256": "f0d371fd872c4e13312117a8edc5ea84ba350d5608720163299c638e164fc1dc"
       },
       "resource_source": {
-        "total": 88,
-        "sha256": "8084615d8fc85424ca3d32d5ab4126de878b52c8166051be23b8e3cc79bd639e"
+        "total": 107,
+        "sha256": "f074d0ca25ab38c96c5de1952a6016815a6d872d03d021700024b53434e7b3bd"
       }
     }
   },
@@ -32,7 +32,7 @@
     "pass": 12,
     "fail": 0,
     "blocked": 2,
-    "assertionsTotal": 246
+    "assertionsTotal": 353
   },
   "caveats": [
     "公网 E2E：仓库内最新证据为历史 FAIL（2026-10-06T09:10:19.760Z，10/35 失败），产出于本轮修复之前，不能作为本轮验收依据。",
@@ -41,7 +41,7 @@
   ],
   "suiteOutcome": {
     "runtime": {
-      "pass": 84,
+      "pass": 86,
       "fail": 0,
       "ok": true
     },
@@ -61,36 +61,48 @@
       "ok": true
     },
     "data1": {
-      "pass": 64,
+      "pass": 66,
+      "fail": 0,
+      "ok": true
+    },
+    "oer-expansion": {
+      "pass": 88,
+      "fail": 0,
+      "ok": true
+    },
+    "featured-oer": {
+      "pass": 15,
       "fail": 0,
       "ok": true
     }
   },
   "licenseHistogram": {
-    "CC BY-NC-SA 4.0": 40
+    "CC BY-NC-SA 4.0": 53,
+    "unknown": 1,
+    "CC BY 4.0": 5
   },
   "gates": [
     {
       "id": "Y-01",
       "name": "Real Resources > 0",
       "status": "PASS",
-      "detail": "real=40 (threshold: >0)",
+      "detail": "real=59 (threshold: >0)",
       "evidence": {
         "path": "data/resources.json",
         "query": "data_class === 'real'",
-        "value": 40
+        "value": 59
       }
     },
     {
       "id": "Y-02",
       "name": "All real resources have ≥1 Source",
       "status": "PASS",
-      "detail": "40/40 bound; validator reports 0 unbound",
+      "detail": "59/59 bound; validator reports 0 unbound",
       "offending": [],
       "evidence": [
         {
           "source": "data/resource-source.json",
-          "value": 40
+          "value": 59
         },
         {
           "source": "validate_data.py::real resources without Source",
@@ -102,10 +114,12 @@
       "id": "Y-03",
       "name": "License Audit (no misdeclared openness)",
       "status": "PASS",
-      "detail": "40 real sources audited; licenses: CC BY-NC-SA 4.0×40",
+      "detail": "59 real sources audited; licenses: CC BY-NC-SA 4.0×53, unknown×1, CC BY 4.0×5",
       "offending": [],
       "histogram": {
-        "CC BY-NC-SA 4.0": 40
+        "CC BY-NC-SA 4.0": 53,
+        "unknown": 1,
+        "CC BY 4.0": 5
       }
     },
     {
@@ -122,7 +136,7 @@
       "id": "Y-05",
       "name": "Data Validation ERROR = 0",
       "status": "PASS",
-      "detail": "ERROR=0, WARN=149",
+      "detail": "ERROR=0, WARN=212",
       "evidence": {
         "source": "scripts/validate/validate_data.py"
       }
@@ -263,10 +277,10 @@
       "id": "Y-14",
       "name": "Regression = PASS",
       "status": "PASS",
-      "detail": "runtime 84/84 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 64/64; total PASS=246 FAIL=0",
+      "detail": "runtime 86/86 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 66/66 · oer-expansion 88/88 · featured-oer 15/15; total PASS=353 FAIL=0",
       "suiteOutcome": {
         "runtime": {
-          "pass": 84,
+          "pass": 86,
           "fail": 0,
           "ok": true
         },
@@ -286,7 +300,17 @@
           "ok": true
         },
         "data1": {
-          "pass": 64,
+          "pass": 66,
+          "fail": 0,
+          "ok": true
+        },
+        "oer-expansion": {
+          "pass": 88,
+          "fail": 0,
+          "ok": true
+        },
+        "featured-oer": {
+          "pass": 15,
           "fail": 0,
           "ok": true
         }
