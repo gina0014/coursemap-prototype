@@ -1,6 +1,6 @@
 CourseMap Phase Data-1 + AI Production Activation — Final Gates (Module Y)
-generatedAt : 2026-10-06T12:15:59.842Z
-git HEAD    : aefca04300dd1a6cd1450bc47e07bd85432e3bbf (master)
+generatedAt : 2026-10-06T12:20:29.318Z
+git HEAD    : 9d263d6c85d298c46401a61ab724ef1ab13321c9 (master)
 dataset     : 88 resources (48 demo + 40 real), 42 sources (2 demo + 40 real)
 sha256      : resources=a76c00ed5c9527fc88d5907173093a71dc914c9aef6e783a012b99175b756728 sources=f4ae1a106a93755553276ad2f39b8d742495d3b1d514db974db22b7b46e00e80 relations=8084615d8fc85424ca3d32d5ab4126de878b52c8166051be23b8e3cc79bd639e
 licenses    : CC BY-NC-SA 4.0 × 40

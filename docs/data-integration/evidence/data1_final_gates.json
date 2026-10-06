@@ -1,12 +1,12 @@
 {
   "phase": "CourseMap Phase Data-1 + AI Production Activation",
   "module": "Y — Final Gates",
-  "generatedAt": "2026-10-06T12:15:59.842Z",
+  "generatedAt": "2026-10-06T12:20:29.318Z",
   "verdict": "PARTIAL",
   "banner": "COURSEMAP DATA-1 + AI ACTIVATION PARTIAL\nOFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE\nPENDING (需 GitHub Actions live-verify 在本次推送的 commit 上执行):\n  - REAL DEEPSEEK AI ADVISOR ACTIVE  → backend-verify / live_public_verify.mjs\n  - EVIDENCE-GROUNDED RECOMMENDATION READY (public path) → public-e2e / public_e2e.mjs",
   "baselines": {
     "git": {
-      "head": "aefca04300dd1a6cd1450bc47e07bd85432e3bbf",
+      "head": "9d263d6c85d298c46401a61ab724ef1ab13321c9",
       "branch": "master"
     },
     "datasetFiles": {

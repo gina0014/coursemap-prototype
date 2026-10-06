@@ -113,7 +113,7 @@
 | 数据校验规则 | `validation-rules-v0.2.json`（新增 10 条真实数据规则） |
 | 测试 | 246 项断言，FAIL = 0（新增 Data-1 验收测试 64 项） |
 | 真实来源许可 | 全部 `CC BY-NC-SA 4.0`（40/40），无一被标为公有领域或可商用 |
-| git HEAD | `aefca04`（本地领先远端 `4281734`，10 个未推送提交） |
+| git HEAD | `9d263d6`（本地领先远端 `4281734` 共 **11** 个未推送提交，其中 **9** 个为本轮） |
 
 基线原文证据：`docs/ai-integration/evidence/00_pre_ai_baseline.txt`
 
@@ -133,9 +133,9 @@
 | C6 | `105bbac` `test(data-1): real-data invariants + AI acceptance tests` | 测试（R/S/T/U） |
 | C7 | `5b70bdc` `test(e2e): public E2E asserts real resources, license and source binding` | 公网 E2E 与 CI（V） |
 | C8 | `aefca04` `test(regression): local browser smoke across 16 pages + refreshed evidence` | 本地回归与证据 |
-| C9 | 本提交 | 文档与最终门禁（W/Y） |
+| C9 | `9d263d6` `docs(data-1): data-integration docs 00-13 + final gate executor` | 文档与最终门禁（W/Y） |
 
-（更早的 `5dd6052` / `e435c02` 为 AI-1 阶段遗留的未推送提交。）
+（更早的 `5dd6052` / `e435c02` 为 AI-1 阶段遗留的未推送提交。合计：远端 `4281734` 之后共 **11** 个本地提交，其中 9 个为本轮产出。）
 
 > ### ⚠️ push 状态：BLOCKED（环境级网络限制，非凭据问题）
 >
@@ -152,7 +152,7 @@
 > 这是出网策略，不是凭据缺失，也**未尝试绕过**。
 >
 > 因此：
-> - 本轮 10 个提交均为**本地提交**，尚未进入远端；
+> - 本轮 9 个提交均为**本地提交**（连同 AI-1 遗留共 11 个），尚未进入远端；
 > - 依赖推送的模块（J 生产真实调用、V 公网 E2E、Y 中两条生产门禁）在本环境
 >   **不可完成**，状态如实标记为 `BLOCKED`，**不伪造通过**；
 > - 解除方式：在可正常出网的环境执行一次 `git push origin master`
