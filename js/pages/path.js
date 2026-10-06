@@ -6,7 +6,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo, badgeDifficulty, feeBlock, badgeCertificate, stateNotFound } from '../components.js';
+import { renderInto, L, badgeDataClass, badgeDifficulty, feeBlock, badgeCertificate, stateNotFound } from '../components.js';
 import { parseQuery, esc, intOrNull } from '../utils.js';
 import { pathView } from '../derive.js';
 
@@ -99,7 +99,7 @@ initPage({
       return `<div class="path-resource" data-coursemap-path-resource="${s.resource.resource_id}">
         <div class="path-resource__title">
           <a href="${esc(L.resource(s.resource.resource_id))}">${esc(s.resource.title)}</a>
-          ${badgeDemo(s.isDemo, { compact: true })}
+          ${badgeDataClass(s.isDemo, { compact: true })}
           ${isCore ? '<span class="badge badge--primary">核心</span>' : '<span class="badge badge--ghost">可选</span>'}
         </div>
         <div class="cluster" style="margin:6px 0;">
@@ -126,7 +126,7 @@ initPage({
         <div>
           <h1 class="detail-head__title">${esc(path.name)}</h1>
           <div class="detail-head__badges">
-            ${badgeDemo(path.data_class === 'demo')}
+            ${badgeDataClass(path.data_class === 'demo')}
             <span class="badge badge--ghost">${steps.length} 步</span>
             <span class="badge badge--ghost">适合：${esc(path.target_audience)}</span>
           </div>

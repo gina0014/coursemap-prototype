@@ -6,7 +6,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo, sourceList } from '../components.js';
+import { renderInto, L, badgeDemo, pageDataBadges, sourceList } from '../components.js';
 import { esc, dateOnly } from '../utils.js';
 import { THRESHOLDS, SEARCH, FIT_SCORE, AI } from '../config.js';
 import { labelOf, SOURCE_TYPE, USAGE_PERMISSION } from '../labels.js';
@@ -38,7 +38,7 @@ initPage({
       <div class="detail-head">
         <div>
           <h1 class="detail-head__title">数据方法论</h1>
-          <div class="detail-head__badges">${badgeDemo(true)}</div>
+          <div class="detail-head__badges">${pageDataBadges(ctx)}</div>
         </div>
       </div>
 

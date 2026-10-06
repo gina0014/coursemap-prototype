@@ -322,8 +322,15 @@ export function buildDecisionResponse(ctx, request) {
       ].join(' · '),
     });
   }
-  if (response.recommended_resources.some((r) => r.data_class === 'demo')) {
-    response.uncertainty.push('当前数据集全部为演示数据（DEMO），推荐结果仅用于原型验证，不构成任何真实课程建议。');
+  /* Module P：真实/演示构成必须如实披露，不能笼统说「全部为演示数据」。 */
+  const demoCount = response.recommended_resources.filter((r) => r.data_class === 'demo').length;
+  const realCount = response.recommended_resources.length - demoCount;
+  if (demoCount > 0 && realCount > 0) {
+    response.uncertainty.push(`本次规则引擎推荐混合了 ${realCount} 条真实资源与 ${demoCount} 条演示（DEMO）数据；DEMO 条目仅用于原型验证，不代表真实存在或成立。`);
+  } else if (demoCount > 0) {
+    response.uncertainty.push('本次规则引擎推荐均来自演示数据（DEMO），结果仅用于原型验证，不构成任何真实课程建议。');
+  } else if (realCount > 0) {
+    response.uncertainty.push(`本次规则引擎推荐全部为带官方来源与许可记录的真实资源（data_class=real）；请通过官方链接核对最新信息。`);
   }
   if (response.estimated_cost && response.estimated_cost.unknown_count > 0) {
     response.uncertainty.push(`${response.estimated_cost.unknown_count} 个推荐资源费用未知，未计入费用估算。`);

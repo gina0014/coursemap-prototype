@@ -16,7 +16,7 @@ import {
   RESOURCE_TYPE, DIFFICULTY, LEARNING_MODE, LANGUAGE, FEE_VERIFICATION,
   SOURCE_TYPE, USAGE_PERMISSION, SOURCE_VERIFICATION, DATA_CLASS,
   AGGREGATE_PROVENANCE, RESOURCE_SOURCE_SCOPE, PROVIDER_TYPE, COMPLETION_STATUS,
-  LEARNING_TAGS, FEE_TYPE, SORT_LABELS,
+  LEARNING_TAGS, FEE_TYPE, SORT_LABELS, LICENSE_FLAG, LICENSE_SEMANTICS_NOTE,
   UNKNOWN, NOT_VERIFIED, LIMITED_DATA, labelOf, pickEnum,
 } from './labels.js';
 
@@ -58,6 +58,22 @@ export const L = {
 export function badgeDemo(isDemo, { compact = false } = {}) {
   if (!isDemo) return '';
   return `<span class="badge badge--demo" data-coursemap-badge="demo">${compact ? 'DEMO' : 'DEMO · 演示数据'}</span>`;
+}
+
+/** Module E/P：数据类别徽标。REAL 记录必须显式标注，不能让读者误以为是演示数据。 */
+export function badgeDataClass(isDemo, { compact = false } = {}) {
+  if (isDemo) return badgeDemo(true, { compact });
+  return `<span class="badge badge--verified" data-coursemap-badge="real">${compact ? 'REAL' : 'REAL · 真实资源'}</span>`;
+}
+
+/** 页面级数据构成徽标（运行时计算，禁止硬编码「全部为演示数据」）。 */
+export function pageDataBadges(ctx) {
+  const t = ctx && ctx.stats && ctx.stats.totals && ctx.stats.totals.resources;
+  if (!t) return '';
+  const parts = [];
+  if (t.demo > 0) parts.push(badgeDemo(true, { compact: true }));
+  if (t.real > 0) parts.push(badgeDataClass(false, { compact: true }));
+  return parts.join('');
 }
 
 export function badgeTone(label, tone, extraAttrs = '') {
@@ -185,7 +201,7 @@ export function resourceCard(summary, { showGoalLinks = true, favorite = false, 
       <div>
         <h3 class="resource-card__name"><a href="${esc(L.resource(resource.resource_id))}" data-coursemap-link="resource">${esc(resource.title)}</a></h3>
         <div class="resource-card__badges" style="margin-top:4px;">
-          ${badgeDemo(isDemo)}
+          ${badgeDataClass(isDemo)}
           ${badgeDifficulty(resource.difficulty)}
           ${badgeCertificate(resource.certificate_available)}
         </div>
@@ -286,29 +302,96 @@ export function stateNotFound({ title, desc } = {}) {
 }
 
 /* ----------------------------------------------------------------------------
-   来源区块（Provenance）
+   来源区块（Provenance）— Module F / G / N / U
+   必须呈现：来源类型 / 官方提供方 / 许可 / 许可含义 / 观测日 / 核验状态 /
+             官方链接（可点击回到出处）
    -------------------------------------------------------------------------- */
+
+/** 把 boolean 许可标志翻译为「允许/禁止」短语。未知（null）必须显示为未知，不得推测。 */
+function licenseFlagText(field, value) {
+  const map = LICENSE_FLAG[field];
+  if (!map) return null;
+  if (value === true) return { text: map.true, ok: true };
+  if (value === false) return { text: map.false, ok: false };
+  return { text: `${field} 未知`, ok: null };
+}
+
+/**
+ * 许可徽标（Module G）。
+ * 关键纪律：显示许可字符串本身（如 CC BY-NC-SA 4.0），并显式区分
+ * 「免费」/「开放许可」/「公有领域」/「允许商用」四件不同的事。
+ */
+export function licenseBadge(source) {
+  if (!source || !source.license) {
+    // 演示来源本来就没有许可；真实来源缺许可会在数据层被 VR-E12 拦下。
+    return `<span class="badge badge--unknown" data-coursemap-license="none">许可 Unknown</span>`;
+  }
+  const isPd = source.public_domain === true;
+  const commercial = source.commercial_use === true;
+  const tone = isPd ? 'verified' : (commercial ? 'verified' : 'unverified');
+  const title = [
+    `许可：${source.license}`,
+    isPd ? '公有领域' : '非公有领域',
+    commercial ? '允许商用' : '禁止商用',
+  ].join(' · ');
+  return `<span class="badge badge--${tone}" data-coursemap-license="value" title="${esc(title)}">${esc(source.license)}</span>`;
+}
+
+/** 许可要点（Module G/U）：逐条列出布尔标志，未知字段不猜。 */
+export function licensePanel(source) {
+  if (!source || (!source.license && !source.license_url)) return '';
+  const flags = ['commercial_use', 'adaptation_allowed', 'attribution_required', 'share_alike', 'public_domain', 'ai_training_allowed']
+    .map((field) => ({ field, ...licenseFlagText(field, source[field]) }))
+    .filter((f) => f.text);
+  const flagHtml = flags.length
+    ? `<div class="license-flags">${flags.map((f) => `<span class="license-flag license-flag--${f.ok === true ? 'yes' : (f.ok === false ? 'no' : 'unknown')}">${esc(f.text)}</span>`).join('')}</div>`
+    : '';
+  return `<div class="license-panel" data-coursemap-license-panel>
+      <div class="license-panel__head">
+        <span class="license-panel__label">许可</span>
+        ${licenseBadge(source)}
+        ${source.license_url ? `<a class="license-panel__link" href="${esc(source.license_url)}" rel="noopener noreferrer nofollow" target="_blank">许可全文 ↗</a>` : ''}
+      </div>
+      ${source.public_domain === true
+    ? '<p class="license-panel__note">该来源为<strong>公有领域</strong>作品，不受版权限制。</p>'
+    : `<p class="license-panel__note">${esc(LICENSE_SEMANTICS_NOTE)}</p>`}
+      ${source.license_note ? `<p class="license-panel__note">${esc(source.license_note)}</p>` : ''}
+      ${flagHtml}
+    </div>`;
+}
+
+/** Module F/N：官方资源按钮。只有存在官方链接时才渲染，绝不伪造 URL。 */
+export function officialResourceLink(source, { label = '查看官方资源' } = {}) {
+  const href = source && (source.official_url || source.url);
+  if (!href) return '';
+  return `<a class="btn btn--ghost btn--sm" data-coursemap-official-link href="${esc(href)}" rel="noopener noreferrer nofollow" target="_blank">${esc(label)} ↗</a>`;
+}
 
 export function sourceItem({ source, relation, note }) {
   const usage = pickEnum(USAGE_PERMISSION, source.usage_permission);
   const verification = pickEnum(SOURCE_VERIFICATION, source.verification_status);
   const scope = relation ? labelOf(RESOURCE_SOURCE_SCOPE, relation.field_scope, '通用') : null;
+  const official = source.official_url || source.url;
 
-  return `<div class="source-item">
+  return `<div class="source-item" data-coursemap-source="${esc(String(source.source_id))}" data-coursemap-license-value="${esc(source.license || '')}">
       <div class="source-item__title">${esc(source.title || source.provider)}</div>
       <div class="source-item__meta">
         <span>类型：${esc(labelOf(SOURCE_TYPE, source.source_type))}</span>
-        <span>提供方：${esc(source.provider)}</span>
+        <span>官方提供方：${esc(source.provider)}</span>
         ${scope ? `<span>支撑字段：${esc(scope)}</span>` : ''}
         <span>核验：${esc(verification.label)}</span>
         <span>授权：<span class="badge badge--${usage.tone}">${esc(usage.label)}</span></span>
-        <span>获取日：${source.retrieved_at ? esc(dateOnly(source.retrieved_at)) : '未记录'}</span>
+        <span>许可：${licenseBadge(source)}</span>
+        <span>观测日：${esc(dateOnly(source.observed_at || source.retrieved_at)) || '未记录'}</span>
       </div>
-      ${source.url
-    ? `<div class="source-item__meta"><span>链接：<a href="${esc(source.url)}" rel="noopener noreferrer nofollow">${esc(source.url)}</a></span></div>`
-    : '<div class="source-item__meta"><span>链接：无（演示来源不指向任何真实第三方页面）</span></div>'}
+      ${official
+    ? `<div class="source-item__meta"><span>官方链接：<a href="${esc(official)}" rel="noopener noreferrer nofollow" target="_blank">${esc(official)}</a></span></div>`
+    : '<div class="source-item__meta"><span>官方链接：无（演示来源不指向任何真实第三方页面）</span></div>'}
       ${note ? `<div class="source-item__meta"><span>${esc(note)}</span></div>` : ''}
-      ${source.license_note ? `<div class="source-item__meta"><span>${esc(source.license_note)}</span></div>` : ''}
+      ${official
+    ? `<div class="source-item__actions">${officialResourceLink(source)}</div>`
+    : ''}
+      ${licensePanel(source)}
     </div>`;
 }
 
@@ -363,7 +446,7 @@ export function compareTable(rows, { feeStats, durationStats, ratingStats } = {}
         <div style="display:grid;gap:4px;">
           <a href="${esc(L.resource(resource.resource_id))}">${esc(resource.title)}</a>
           <span class="cmp-dim" style="font-size:var(--cm-fs-xs);">${esc(provider ? provider.name : '未知提供方')}</span>
-          ${badgeDemo(summary.isDemo, { compact: true })}
+          ${badgeDataClass(summary.isDemo, { compact: true })}
         </div>
       </th>`;
   }).join('');
@@ -425,7 +508,7 @@ export function compareCards(rows) {
             <div class="card__title"><a href="${esc(L.resource(resource.resource_id))}">${esc(resource.title)}</a></div>
             <div class="cmp-dim" style="font-size:var(--cm-fs-xs);">${esc(provider ? provider.name : '未知提供方')}</div>
           </div>
-          <div style="text-align:right;">${badgeDemo(s.isDemo, { compact: true })}</div>
+          <div style="text-align:right;">${badgeDataClass(s.isDemo, { compact: true })}</div>
         </div>
         <div class="card__body">
           ${line('费用', feeCellText(fee))}
@@ -475,14 +558,34 @@ export function headerHtml({ active = '', favoriteCount = 0 } = {}) {
     </div>`;
 }
 
+/* Module P：全站数据披露横幅。
+   两件事必须同时说清楚：
+     1) 数据集里既有「已核验真实 OER 资源」也有「DEMO 演示资源」；
+     2) 因此任何页面都不得让读者把 DEMO 记录当成真实课程。
+   记录数一律运行时计算（Module P：Verified Real: X / Demo: Y）。 */
 export function demoBannerHtml(ctx) {
-  if (!ctx || !ctx.stats || !ctx.stats.hasDemo) return '';
-  const demoStats = ctx.stats.totals;
-  return `<div class="demo-banner" role="status" data-coursemap-banner="demo">
+  if (!ctx || !ctx.stats) return '';
+  const { resources, records, demo, real } = ctx.stats.totals;
+  if (!ctx.stats.hasDemo && !ctx.stats.hasReal) return '';
+  const hasReal = ctx.stats.hasReal;
+  const hasDemo = ctx.stats.hasDemo;
+
+  const tag = hasReal && hasDemo ? 'REAL + DEMO' : (hasReal ? 'REAL' : 'DEMO');
+  const bodyHtml = hasReal && hasDemo
+    ? '<strong>当前数据集同时包含已核验真实资源与演示资源。</strong>真实资源（标有 REAL 徽标与「查看官方资源」）来自 MIT OpenCourseWare、OpenStax 等开放教育资源，CourseMap 只保存元数据与官方链接，<strong>不复制课程正文</strong>；DEMO 记录仅用于产品演示，<strong>不代表真实存在的课程或真实价格</strong>。'
+    : (hasReal
+      ? '<strong>当前数据集为已核验的开放教育资源（OER）。</strong>每条记录均带官方来源、许可与观测日期；CourseMap 只保存元数据与官方链接，不复制课程正文。'
+      : '<strong>当前版本用于产品测试。</strong>学习资源、提供方、费用、评分及学习路径包含演示数据，<strong>不代表真实课程信息、真实价格或真实教育建议</strong>。');
+
+  const disclosure = resources
+    ? `学习资源：共 <strong class="num">${resources.total}</strong> 条，其中已核验真实 <strong class="num">${resources.real}</strong> 条（其中带核验状态 <strong class="num">${resources.realVerified}</strong> 条）、演示 <strong class="num">${resources.demo}</strong> 条。`
+    : `当前数据集：共 <strong class="num">${records}</strong> 条记录，其中演示 <strong class="num">${demo}</strong> 条、真实 <strong class="num">${real}</strong> 条。`;
+
+  return `<div class="demo-banner" role="status" data-coursemap-banner="demo" data-coursemap-banner-tag="${tag}">
       <div class="container demo-banner__inner">
-        <span class="demo-banner__tag">DEMO</span>
-        <span><strong>当前版本用于产品测试。</strong>学习资源、提供方、费用、评分及学习路径包含演示数据，<strong>不代表真实课程信息、真实价格或真实教育建议</strong>。演示记录已在各页面单独标注。</span>
-        <span>当前数据集：共 <strong class="num">${demoStats.records}</strong> 条记录，其中演示 <strong class="num">${demoStats.demo}</strong> 条、真实 <strong class="num">${demoStats.real}</strong> 条。</span>
+        <span class="demo-banner__tag">${tag}</span>
+        <span>${bodyHtml}</span>
+        <span>${disclosure} 演示记录已在各页面单独标注。</span>
         <a class="demo-banner__link" href="${esc(L.methodology())}">查看数据方法论</a>
       </div>
     </div>`;
@@ -585,7 +688,7 @@ export function renderInto(node, html) {
   node.innerHTML = html;
 }
 
-export { SORT_LABELS, RESOURCE_TYPE, DIFFICULTY, LEARNING_MODE, LANGUAGE, COMPLETION_STATUS, LEARNING_TAGS };
+export { SORT_LABELS, RESOURCE_TYPE, DIFFICULTY, LEARNING_MODE, LANGUAGE, COMPLETION_STATUS, LEARNING_TAGS, SOURCE_VERIFICATION, LICENSE_FLAG, LICENSE_SEMANTICS_NOTE };
 export const DATA_CLASS_LABEL = DATA_CLASS;
 
 /* ----------------------------------------------------------------------------

@@ -7,7 +7,7 @@
 
 import { initPage } from './base.js';
 import {
-  renderInto, L, resourceCardGrid, stateEmpty, badgeDemo, badgeDifficulty,
+  renderInto, L, resourceCardGrid, stateEmpty, badgeDifficulty,
 } from '../components.js';
 import { parseQuery, buildQuery, updateQuery } from '../utils.js';
 import { normalizeQuery, searchResources, suggestRelaxations } from '../search.js';

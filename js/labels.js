@@ -50,6 +50,8 @@ export const SOURCE_TYPE = {
   university_site: '大学官方页面',
   government_open_education: '政府/开放教育',
   authorized_api: '已授权 API',
+  open_courseware: '开放课件（OCW）',
+  open_textbook: '开放教材（OER）',
   editorial_demo: '编辑自建演示',
   product_doc: '产品文档（内部）',
 };
@@ -58,6 +60,7 @@ export const USAGE_PERMISSION = {
   authorized: { label: '已授权', tone: 'verified' },
   open_license: { label: '开放许可', tone: 'verified' },
   public_domain: { label: '公有领域', tone: 'verified' },
+  non_commercial_reuse_with_attribution: { label: '非商业复用（需署名）', tone: 'verified' },
   editor_created_demo: { label: '编辑自建演示', tone: 'demo' },
   pending_review: { label: '待授权审查', tone: 'unverified' },
   restricted: { label: '受限（不可发布）', tone: 'unknown' },
@@ -67,7 +70,25 @@ export const USAGE_PERMISSION = {
 export const SOURCE_VERIFICATION = {
   unverified: { label: '未核验', tone: 'unverified' },
   human_verified: { label: '人工核验', tone: 'verified' },
+  /* Module C/F：真实 OER 来源的核验状态。含义是「已比对官方页面」，比 human_verified 更弱，
+     但仍属于「已核验」，不能被显示为「未核验」。 */
+  source_verified: { label: '来源已核验', tone: 'verified' },
 };
+
+/* Module G/U：许可语义。免费 ≠ 开放许可 ≠ 公有领域 ≠ 允许商用。
+   这些标签把 JSON 布尔字段翻译成人话，避免把「免费」误读成「可以随便用」。 */
+export const LICENSE_FLAG = {
+  commercial_use: { true: '允许商用', false: '禁止商用' },
+  public_domain: { true: '公有领域', false: '非公有领域' },
+  adaptation_allowed: { true: '允许改编', false: '禁止改编' },
+  attribution_required: { true: '必须署名', false: '无需署名' },
+  share_alike: { true: '衍生需同许可', false: '无同许可要求' },
+  ai_training_allowed: { true: '允许 AI 训练', false: '禁止 AI 训练（含 LLM 摄取）' },
+};
+
+/** 许可语义的关键提示：始终与许可字符串一起展示，防止「免费=可商用」误读。 */
+export const LICENSE_SEMANTICS_NOTE
+  = '「免费访问」不等于「开放许可」，也不等于「公有领域」，更不等于「允许商用」。';
 
 export const DATA_CLASS = {
   demo: { label: 'DEMO', long: '演示数据', tone: 'demo' },

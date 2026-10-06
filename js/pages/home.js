@@ -6,7 +6,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo } from '../components.js';
+import { renderInto, L, badgeDemo, badgeDataClass } from '../components.js';
 import { asset } from '../config.js';
 
 initPage({
@@ -79,14 +79,15 @@ initPage({
     /* 数据可信度摘要（全部运行时计算） */
     const statsBox = document.querySelector('[data-home-stats]');
     if (statsBox) {
-      const demoResources = ctx.stats.perEntity.resources;
+      const res = ctx.stats.totals.resources;
       statsBox.innerHTML = `
         <div class="stat-strip">
           <span class="stat"><strong class="num">${ctx.subjects.length}</strong> 学科</span>
           <span class="stat"><strong class="num">${ctx.goals.length}</strong> 学习目标</span>
-          <span class="stat"><strong class="num">${demoResources ? demoResources.total : 0}</strong> 学习资源</span>
+          <span class="stat"><strong class="num">${res.total}</strong> 学习资源</span>
           <span class="stat"><strong class="num">${ctx.paths.length}</strong> 学习路径</span>
-          <span class="stat"><strong class="num">${demoResources ? demoResources.demo : 0}</strong> 条演示记录 ${badgeDemo(true, { compact: true })}</span>
+          <span class="stat"><strong class="num">${res.real}</strong> 条已核验真实资源 ${badgeDataClass(false, { compact: true })}</span>
+          <span class="stat"><strong class="num">${res.demo}</strong> 条演示记录 ${badgeDemo(true, { compact: true })}</span>
           <span class="stat"><a href="${L.methodology()}">数据方法论 →</a></span>
         </div>`;
     }

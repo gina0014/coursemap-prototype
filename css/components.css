@@ -753,6 +753,80 @@ select.control {
   font-size: var(--cm-fs-xs);
 }
 
+/* Module F/N：官方资源按钮区 */
+.source-item__actions {
+  margin-top: var(--cm-sp-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2);
+}
+
+/* Module G/U：许可面板（免费 ≠ 开放许可 ≠ 公有领域 ≠ 允许商用） */
+.license-panel {
+  margin-top: var(--cm-sp-2);
+  padding: var(--cm-sp-2) var(--cm-sp-3);
+  background: var(--cm-surface);
+  border: 1px solid var(--cm-border);
+  border-radius: var(--cm-r-sm, 6px);
+}
+
+.license-panel__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-2);
+}
+
+.license-panel__label {
+  font-weight: var(--cm-fw-semi);
+  font-size: var(--cm-fs-xs);
+  color: var(--cm-text-muted);
+}
+
+.license-panel__link {
+  font-size: var(--cm-fs-xs);
+}
+
+.license-panel__note {
+  margin: var(--cm-sp-1) 0 0;
+  font-size: var(--cm-fs-xs);
+  color: var(--cm-text-muted);
+}
+
+.license-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cm-sp-1) var(--cm-sp-2);
+  margin-top: var(--cm-sp-1);
+}
+
+.license-flag {
+  font-size: var(--cm-fs-xs);
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--cm-border);
+}
+
+.license-flag--yes {
+  color: var(--cm-success, #1a7f37);
+  border-color: currentColor;
+}
+
+.license-flag--no {
+  color: var(--cm-danger, #b42318);
+  border-color: currentColor;
+}
+
+.license-flag--unknown {
+  color: var(--cm-text-muted);
+}
+
+/* Module O：CourseMap 未核验字段的显式标注（禁止模型编数字） */
+.fact-unknown {
+  color: var(--cm-text-muted);
+  font-style: italic;
+}
+
 /* 折叠块 */
 details.disclosure {
   border: 1px solid var(--cm-border);

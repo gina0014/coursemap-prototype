@@ -7,7 +7,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo, stateNotFound, COMPLETION_STATUS, LEARNING_TAGS, labelOf } from '../components.js';
+import { renderInto, L, badgeDataClass, stateNotFound, COMPLETION_STATUS, LEARNING_TAGS, labelOf } from '../components.js';
 import { parseQuery, esc, intOrNull } from '../utils.js';
 import { loadLocalReviews, addLocalReview, removeLocalReview, storageAvailable } from '../storage.js';
 
@@ -93,7 +93,7 @@ initPage({
         <div>
           <h1 class="detail-head__title">评价：${esc(resource.title)}</h1>
           <div class="detail-head__badges">
-            ${badgeDemo(resource.data_class === 'demo')}
+            ${badgeDataClass(resource.data_class === 'demo')}
             <span class="badge badge--ghost">评价对象 = 学习资源（不是提供方）</span>
           </div>
         </div>

@@ -7,7 +7,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, compareTable, compareCards, badgeDemo, stateEmpty } from '../components.js';
+import { renderInto, L, compareTable, compareCards, badgeDemo, pageDataBadges, stateEmpty } from '../components.js';
 import { parseQuery, esc, intOrNull, money, rating1 } from '../utils.js';
 import { goalComparison } from '../derive.js';
 import { loadPrefs, savePrefs } from '../storage.js';
@@ -70,7 +70,7 @@ initPage({
         <div>
           <h1 class="detail-head__title">「${esc(goal.name)}」怎么选？</h1>
           <div class="detail-head__badges">
-            ${badgeDemo(true)}
+            ${pageDataBadges(ctx)}
             <span class="badge badge--ghost">${esc(resourceCount)} 个资源 · ${esc(String(providerCount))} 个提供方</span>
           </div>
         </div>

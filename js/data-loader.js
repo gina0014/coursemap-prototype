@@ -180,6 +180,15 @@ function datasetStats(visible, raw) {
       demo: allVisible.filter((row) => row.data_class === 'demo').length,
       real: allVisible.filter((row) => row.data_class === 'real').length,
       rawRecords: Object.values(raw).reduce((sum, rows) => sum + rows.length, 0),
+      /* Module P：披露口径必须落在「学习资源」上，而不是「所有实体行」。
+         全站 DM disclosure 用这个对象，避免把 sources/relations 也算成资源。 */
+      resources: {
+        total: visible.resources.length,
+        demo: visible.resources.filter((row) => row.data_class === 'demo').length,
+        real: visible.resources.filter((row) => row.data_class === 'real').length,
+        realVerified: visible.resources.filter((row) => row.data_class === 'real'
+          && row.verification_status && row.verification_status !== 'unverified').length,
+      },
     },
     perEntity,
     sourceType: tally(visible.sources, (row) => row.source_type),

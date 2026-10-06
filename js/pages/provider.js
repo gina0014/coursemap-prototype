@@ -6,7 +6,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo, badgeDifficulty, stateNotFound, metricBlock, sourceList, PROVIDER_TYPE, labelOf } from '../components.js';
+import { renderInto, L, badgeDataClass, badgeDifficulty, stateNotFound, metricBlock, sourceList, PROVIDER_TYPE, labelOf } from '../components.js';
 import { parseQuery, esc, intOrNull } from '../utils.js';
 import { providerView } from '../derive.js';
 
@@ -37,7 +37,7 @@ initPage({
         <div>
           <h1 class="detail-head__title">${esc(provider.name)}</h1>
           <div class="detail-head__badges">
-            ${badgeDemo(provider.data_class === 'demo')}
+            ${badgeDataClass(provider.data_class === 'demo')}
             <span class="badge badge--ghost">${esc(labelOf(PROVIDER_TYPE, provider.provider_type))}</span>
           </div>
         </div>
@@ -65,7 +65,7 @@ initPage({
         <ul class="provider-resource-list">
           ${resources.map((s) => `<li class="provider-resource">
             <a href="${esc(L.resource(s.resource.resource_id))}">${esc(s.resource.title)}</a>
-            ${badgeDemo(s.isDemo, { compact: true })}
+            ${badgeDataClass(s.isDemo, { compact: true })}
             ${badgeDifficulty(s.resource.difficulty)}
             <span class="cmp-dim">${s.goals.map((g) => esc(g.name)).join(' · ')}</span>
           </li>`).join('') || '<li class="cmp-dim">暂无已发布资源。</li>'}

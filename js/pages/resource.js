@@ -9,10 +9,10 @@
 
 import { initPage } from './base.js';
 import {
-  renderInto, L, badgeDemo, badgeDifficulty, badgeCertificate, badgeFeeVerification,
+  renderInto, L, badgeDataClass, badgeDifficulty, badgeCertificate, badgeFeeVerification,
   badgeSampleState, badgeRatingProvenance, feeBlock, ratingBlock, metricBlock,
   sourceList, feeTimeline, stateNotFound, RESOURCE_TYPE, LEARNING_MODE, LANGUAGE,
-  COMPLETION_STATUS, LEARNING_TAGS, labelOf,
+  COMPLETION_STATUS, LEARNING_TAGS, labelOf, licenseBadge, officialResourceLink,
 } from '../components.js';
 import { parseQuery, esc, rating1, pct, dateOnly, intOrNull } from '../utils.js';
 import {
@@ -62,6 +62,12 @@ initPage({
       }))
       .filter((entry) => entry.source);
 
+    /* Module F/N：官方来源与许可。真实资源必须能回到官方页面；无来源者不得声称已核验。 */
+    const sourcedEntries = sourceEntries.filter((e) => e.source.official_url || e.source.url);
+    const licensedEntry = sourceEntries.find((e) => e.source.license) || null;
+    const officialSource = licensedEntry || sourcedEntries[0] || null;
+    const isRealVerified = !summary.isDemo && Boolean(officialSource && (officialSource.source.official_url || officialSource.source.url));
+
     /* 本地评价（Local Prototype，与全局评分严格分离） */
     const localReviews = ctx.storageAvailable ? loadLocalReviews(resource.resource_id) : [];
 
@@ -97,12 +103,13 @@ initPage({
         <div>
           <h1 class="detail-head__title">${esc(resource.title)}</h1>
           <div class="detail-head__badges">
-            ${badgeDemo(summary.isDemo)}
+            ${badgeDataClass(summary.isDemo)}
             ${badgeDifficulty(resource.difficulty)}
             ${badgeCertificate(resource.certificate_available)}
             <span class="badge badge--ghost">${esc(labelOf(RESOURCE_TYPE, resource.resource_type))}</span>
             <span class="badge badge--ghost">${esc(labelOf(LANGUAGE, resource.language))}</span>
             <span class="badge badge--ghost">${esc(labelOf(LEARNING_MODE, resource.learning_mode))}</span>
+            ${resource.level_official ? `<span class="badge badge--ghost">官方层级：${esc(resource.level_official)}</span>` : ''}
           </div>
         </div>
         <div style="text-align:right;display:grid;gap:6px;justify-items:end;">
@@ -112,7 +119,11 @@ initPage({
         </div>
       </div>
 
-      <p class="detail-lead">${esc(resource.description || '描述暂缺。')}</p>
+      <p class="detail-lead">${resource.description
+    ? esc(resource.description)
+    : (isRealVerified
+      ? '<span class="cmp-dim">官方描述未核验。CourseMap 只保存元数据与官方链接，不复制课程正文；请通过官方链接查看完整介绍。</span>'
+      : '描述暂缺。')}</p>
 
       <section class="detail-section" data-coursemap-section="goals">
         <h2 class="section-title">对应什么学习目标？</h2>
@@ -142,9 +153,11 @@ initPage({
 
       <section class="detail-section" data-coursemap-section="outcomes">
         <h2 class="section-title">能学到什么？</h2>
-        <ul class="outcome-list">
-          ${(resource.learning_outcomes || []).map((o) => `<li>${esc(o)}</li>`).join('')}
-        </ul>
+        ${(resource.learning_outcomes || []).length
+    ? `<ul class="outcome-list">${(resource.learning_outcomes || []).map((o) => `<li>${esc(o)}</li>`).join('')}</ul>`
+    : `<p class="cmp-dim">${isRealVerified
+      ? '官方页面未提供结构化的「学习产出」字段，CourseMap 不代为撰写。请通过官方链接查看课程大纲。'
+      : '暂无学习产出数据。'}</p>`}
       </section>
 
       <section class="detail-section" data-coursemap-section="rating">
@@ -174,11 +187,14 @@ initPage({
       <section class="detail-section" data-coursemap-section="provenance">
         <h2 class="section-title">信息何时更新？是否核验？数据来自哪里？</h2>
         <div class="metric-grid">
-          ${metricBlock('信息更新日期', esc(dateOnly(resource.updated_at)))}
-          ${metricBlock('费用观测日期', esc(dateOnly(fee ? fee.observedAt : null)) + (ageText ? `（${esc(ageText)}）` : ''))}
-          ${metricBlock('核验状态', esc(labelOf({ unverified: '未核验', editorial_verified: '编辑核验', provider_confirmed: '提供方确认' }, resource.verification_status)))}
-          ${metricBlock('数据类别', badgeDemo(summary.isDemo, { compact: true }).replace('badge--demo', 'badge--demo') || 'REAL')}
+          ${metricBlock('信息更新日期', esc(dateOnly(resource.updated_at)) || '—')}
+          ${metricBlock('费用观测日期', (esc(dateOnly(fee ? fee.observedAt : null)) || '—') + (ageText ? `（${esc(ageText)}）` : ''))}
+          ${metricBlock('核验状态', esc(labelOf({ unverified: '未核验', editorial_verified: '编辑核验', provider_confirmed: '提供方确认', source_verified: '来源已核验' }, resource.verification_status)))}
+          ${metricBlock('数据类别', badgeDataClass(summary.isDemo, { compact: true }))}
+          ${metricBlock('官方许可', officialSource ? licenseBadge(officialSource.source) : '<span class="cmp-dim">无</span>')}
+          ${officialSource ? metricBlock('官方来源', `<a href="${esc(officialSource.source.official_url || officialSource.source.url)}" rel="noopener noreferrer nofollow" target="_blank">${esc(officialSource.source.provider)}</a>`) : ''}
         </div>
+        ${isRealVerified ? `<p class="cmp-dim" style="margin-top:8px;">这是 CourseMap 已核验的开放教育资源（OER）。CourseMap 只保存元数据与官方链接，<strong>不复制课程正文</strong>；请通过官方链接前往提供方页面获取正式内容。</p>` : ''}
         <div style="margin-top:12px;">
           ${sourceList(sourceEntries)}
         </div>
@@ -190,7 +206,7 @@ initPage({
 
       <div class="detail-actions">
         ${resource.url
-    ? `<a class="btn btn--primary" href="${esc(resource.url)}" rel="noopener noreferrer nofollow" target="_blank">前往资源页面</a>`
+    ? `<a class="btn btn--primary" data-coursemap-official-link href="${esc(resource.url)}" rel="noopener noreferrer nofollow" target="_blank">${isRealVerified ? '查看官方资源' : '前往资源页面'} ↗</a>`
     : '<span class="notice notice--demo" style="display:inline-block;">演示数据不提供真实外链（不得伪造指向真实课程的 URL）。</span>'}
         <button type="button" class="btn btn--ghost" data-favorite-toggle="${resource.resource_id}">收藏这个资源</button>
         ${summary.goals.length ? `<a class="btn btn--ghost" href="${esc(L.compare(summary.goals[0].goal_id))}">比较同类资源 →</a>` : ''}

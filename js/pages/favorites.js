@@ -7,7 +7,7 @@
 
 import { initPage } from './base.js';
 import {
-  renderInto, L, resourceCardGrid, badgeDemo, stateEmpty, bindFavoriteToggles,
+  renderInto, L, resourceCardGrid, stateEmpty, bindFavoriteToggles,
 } from '../components.js';
 import { esc } from '../utils.js';
 import { resourceSummary } from '../derive.js';

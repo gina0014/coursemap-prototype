@@ -6,7 +6,7 @@
    ========================================================================== */
 
 import { initPage } from './base.js';
-import { renderInto, L, badgeDemo } from '../components.js';
+import { renderInto, L, badgeDemo, pageDataBadges } from '../components.js';
 import { esc } from '../utils.js';
 
 initPage({
@@ -40,7 +40,7 @@ initPage({
       <div class="detail-head">
         <div>
           <h1 class="detail-head__title">学习路径</h1>
-          <div class="detail-head__badges">${badgeDemo(true)}</div>
+          <div class="detail-head__badges">${pageDataBadges(ctx)}</div>
         </div>
       </div>
       <p class="detail-lead">
