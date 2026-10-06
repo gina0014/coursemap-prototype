@@ -38,27 +38,33 @@
   Broken official link: 0
 
 测试
-  tests/runtime.test.mjs         PASS: 87  FAIL: 0
-  tests/ai/unit.test.mjs         PASS: 79  FAIL: 0
-  tests/ai/routing.test.mjs      PASS: 11  FAIL: 0
-  tests/ai/integration.test.mjs  PASS: 11  FAIL: 0
-  tests/ai/data1.test.mjs        PASS: 67  FAIL: 0
-  tests/ai/oer-expansion.test.mjs PASS: 89 FAIL: 0   ← Real OER Expansion 新增
-  tests/ui/featured-oer.test.mjs  PASS: 15 FAIL: 0   ← 首页精选新增
+  tests/runtime.test.mjs          PASS: 86  FAIL: 0
+  tests/ai/unit.test.mjs          PASS: 81  FAIL: 0
+  tests/ai/routing.test.mjs       PASS: 10  FAIL: 0
+  tests/ai/integration.test.mjs   PASS: 10  FAIL: 0
+  tests/ai/data1.test.mjs         PASS: 72  FAIL: 0
+  tests/ai/model-output.test.mjs   PASS: 33  FAIL: 0  ← 生产缺陷修复新增（17 号文档）
+  tests/ai/oer-expansion.test.mjs PASS: 88  FAIL: 0
+  tests/ui/featured-oer.test.mjs  PASS: 15  FAIL: 0
   ────────────────────────────────────────────────
-  合计 344 项断言，FAIL = 0
+  合计 395 项断言，FAIL = 0
 
 浏览器回归（本地，真实 Chrome，18 个目标）
   Result: PASS (18/18)，容差 3 条（12_Advisor_Fallback 的本地 CORS 噪声，已写入证据）
 
 密钥扫描
-  Secret Leak = 0
+  files scanned: 180 · git-history added-line findings: 0 · SECRET LEAK = 0
 
 最终门禁（模块 Y）  命令：node scripts/verify/data1_final_gates.mjs
   在线下可执行的 12 条：PASS
   依赖生产连通性的 2 条：BLOCKED（见 §5）
   判决：PARTIAL
 ```
+
+> **生产缺陷修复轮（2026-10-06 增量）**：CI 生产验证首次跑出
+> **48 检查 / 41 PASS / 7 FAIL**，暴露 3 个产品缺陷 + 4 处「验证器自身写错」。
+> 已全部修复并配回归断言（`model-output` 33 条 + `A-21b/c/d` + `I-06`~`I-06g`）。
+> 详见 [17_Production_Defect_Remediation.md](17_Production_Defect_Remediation.md)。
 
 门禁证据：[`evidence/data1_final_gates.json`](evidence/data1_final_gates.json) /
 [`evidence/data1_final_gates.txt`](evidence/data1_final_gates.txt)

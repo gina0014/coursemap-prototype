@@ -145,6 +145,46 @@ return lines.some((l) => /['"]deepseek-(chat|reasoner|flash)['"]/.test(l));
 - 代码库中不再有停用/错误模型名的字面量默认值。
 - 「思考模式默认关闭」有测试锁定，防止被静默改回（该改动会显著提高成本）。
 
+## Addendum（2026-10-06 · 生产验证后的补充审计）
+
+CI 生产验证证据（`docs/ai-integration/evidence/30_live_public_verification.txt`）
+暴露了**本次审计漏掉的一整类场景**：审计只覆盖了「代码里的模型名」，
+而生产上生效的是「**平台变量里的模型名**」。
+
+### 新发现：DEFECT-2b（严重）· 平台变量遗留退役名
+
+- 现象：生产 health 回报 `"model":"deepseek-chat"`（已退役名）。
+- 根因：Vercel 平台上仍留着 AI-1 阶段设置的 `DEEPSEEK_MODEL=deepseek-chat`；
+  环境变量优先级高于代码默认值 → **代码默认值的修正没有生效**。
+- 为什么本机发现不了：本机没有 Vercel 的环境变量。
+  **配置类缺陷只存在于「平台上的那份配置」里。**
+
+### 新增防线
+
+1. **代码侧**：`server/config.mjs` 引入 `RETIRED_DEEPSEEK_MODELS`
+   Deprecation Map（退役名 → `deepseek-v4-flash`），命中即映射，
+   并暴露 `configuredModel` / `modelDeprecated`。
+2. **可观测性**：health 新增 `configured_model` 与 `model_deprecated`，
+   补上了下方「Known Limitations」里提到的那一处缺口 ——
+   现在能区分「代码默认值」与「平台覆写」，也能发现「靠上游静默别名兜底」。
+3. **生产验证**：新增 `V-04c`（model 必须落在官方当前模型表内）
+   与 `V-04d`（`model_deprecated` 必须为 false）。
+
+### 对本文上方「Result / Known Limitations」的两处更正
+
+- 上方写着「代码库中不再有停用/错误模型名的字面量默认值」，且 `I-06` 采用
+  「全文件 grep 字面量」。该做法**已废弃**：它会把「识别退役名的机制」与
+  「使用退役名的缺陷」一起判红，从而逼迫后来者删掉 Deprecation Map ——
+  一旦删掉，平台变量遗留退役名就再也无人能发现。
+  现改为 7 条精确契约（`I-06` ~ `I-06g`）：禁止出现在**取值位置**，
+  允许且仅允许作为 Deprecation Map 的**键**。
+- 上方「`servedModel` 未在 health 中暴露」仍成立 —— 这是**有意**的：
+  `servedModel` 是**请求级**状态（每次调用后更新），把它放进无状态 health
+  会产生「一次调用污染全局健康状态」的假象。它保留在**响应 meta** 里
+  （`meta.model`），与具体请求一一对应。
+
+详见 [17_Production_Defect_Remediation.md](17_Production_Defect_Remediation.md)。
+
 ## Known Limitations
 
 - **模型表会变**：本次核验的时点是 2026-10-06。官方可能再次新增/停用模型。
