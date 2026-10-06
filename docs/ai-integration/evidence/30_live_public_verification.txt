@@ -1,0 +1,106 @@
+================================================================================
+CourseMap AI-1 — Production Backend Verification (live)
+================================================================================
+AI backend     : https://coursemap-prototype.vercel.app
+Frontend base  : https://gina0014.github.io/coursemap-prototype
+Frontend origin: https://gina0014.github.io
+Started/Finish : 2026-10-06T14:08:40.078Z → 2026-10-06T14:10:24.121Z
+Mode           : all
+
+Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"adapter":"deepseek","model":"deepseek-chat","thinking":"disabled","data_class_counts":{"demo":48,"real":40,"total":88}},"meta":{"service":"coursemap-ai","version":"v0.3-Data1","build":"9c5e37ddf0c2"}}
+
+--------------------------------------------------------------------------------
+[PASS] V-00   GET /api/ai/health 可达且 200（部署已生效）
+           ↳ status=200
+[PASS] V-01   统一信封 success:true + data
+[PASS] V-02   health status = ok（Repository 在服务端可用）
+           ↳ status=ok
+[PASS] V-03   llm_configured = true（服务端读到 DEEPSEEK_API_KEY）
+           ↳ llm_configured=true
+[PASS] V-04   adapter = deepseek（真实 LLM 适配器，不是 mock）
+           ↳ adapter=deepseek
+[FAIL] V-04b  部署指纹 = 本次提交（验证的是新代码而非旧部署）
+           ↳ build=(none) expect=9c5e37ddf0c2
+[PASS] V-05   CORS 允许公网前端 origin
+           ↳ ACAO=https://gina0014.github.io
+[PASS] V-05b  health 响应无 secret 字段
+[PASS] V-06   OPTIONS 预检 204 + Allow-Origin
+           ↳ status=204 ACAO=https://gina0014.github.io
+[PASS] V-07a  未授权 origin 不返回 Allow-Origin
+           ↳ ACAO=null
+[PASS] V-07b  未授权 origin 的 POST 被拒绝（403 ORIGIN_NOT_ALLOWED）
+           ↳ status=403 body={"success":false,"error":{"code":"ORIGIN_NOT_ALLOWED","message":"Origin 不被允许。"}}
+[PASS] S1-00  [零基础大学生想学 Python] POST /api/ai/advisor 返回 200
+           ↳ status=200 body={"success":true,"data":{"interpreted_goal":{"goal_id":1,"name":"Python 入门","data_class":"demo"},"constraints":{"goal":"Python 入门","current_level":"beginner","kn
+[PASS] S1-01  [零基础大学生想学 Python] 由真实 DeepSeek 处理（meta.adapter=deepseek）
+           ↳ adapter=deepseek model=deepseek-flash
+[PASS] S1-02  [零基础大学生想学 Python] 结构化输出（summary/recommendations 等字段齐备）
+           ↳ keys=interpreted_goal,constraints,recommendations,learning_path,estimated_cost,estimated_duration,general_advice,summary,uncertainties,rejected_resource_ids,parse_warnings,evidence,data_class_counts,grounding
+[PASS] S1-03  [零基础大学生想学 Python] 结构化意图解析命中 CourseMap 目标
+           ↳ goal=Python 入门 (1)
+[PASS] S1-04  [零基础大学生想学 Python] 目标解析与预期一致
+           ↳ got=Python 入门 expect=Python 入门
+[PASS] S1-05  [零基础大学生想学 Python] CourseMap 检索生效（有结构化推荐）
+           ↳ n=4
+[PASS] S1-06  [零基础大学生想学 Python] 无幻觉 resource_id（全部存在于 CourseMap）
+           ↳ checked=4
+[PASS] S1-07  [零基础大学生想学 Python] Fact Binding：fee/duration/rating/certificate 以 Repository 为准
+[PASS] S1-08  [零基础大学生想学 Python] Source Binding：每条推荐都绑定来源且与 Repository 一致
+           ↳ noSource=- mismatch=-
+[PASS] S1-09  [零基础大学生想学 Python] evidence 数组与推荐一一对应
+           ↳ evidence=4 recs=4
+[PASS] S1-10  [零基础大学生想学 Python] Learning Path 步骤来自 CourseMap Learning Graph（evidence-backed）
+           ↳ path=1 steps=5
+[PASS] S1-11  [零基础大学生想学 Python] Tool Calling 痕迹（检索候选 > 0 / rejected 列表存在）
+           ↳ rejected=[]
+[FAIL] S2-00  [预算100元 每周5小时 想学数据分析] POST /api/ai/advisor 返回 200
+           ↳ status=502 body={"success":false,"error":{"code":"INVALID_MODEL_OUTPUT","message":"AI 返回格式异常，请重试。"}}
+[PASS] S3-00  [会R 想入门单细胞分析] POST /api/ai/advisor 返回 200
+           ↳ status=200 body={"success":true,"data":{"interpreted_goal":{"goal_id":6,"name":"单细胞 RNA-seq 入门","data_class":"demo"},"constraints":{"goal":"单细胞 RNA-seq 入门","current_level":null
+[PASS] S3-01  [会R 想入门单细胞分析] 由真实 DeepSeek 处理（meta.adapter=deepseek）
+           ↳ adapter=deepseek model=deepseek-flash
+[PASS] S3-02  [会R 想入门单细胞分析] 结构化输出（summary/recommendations 等字段齐备）
+           ↳ keys=interpreted_goal,constraints,recommendations,learning_path,estimated_cost,estimated_duration,general_advice,summary,uncertainties,rejected_resource_ids,parse_warnings,evidence,data_class_counts,grounding
+[PASS] S3-03  [会R 想入门单细胞分析] 结构化意图解析命中 CourseMap 目标
+           ↳ goal=单细胞 RNA-seq 入门 (6)
+[PASS] S3-04  [会R 想入门单细胞分析] 目标解析与预期一致
+           ↳ got=单细胞 RNA-seq 入门 expect=单细胞 RNA-seq 入门
+[PASS] S3-05  [会R 想入门单细胞分析] CourseMap 检索生效（有结构化推荐）
+           ↳ n=2
+[PASS] S3-06  [会R 想入门单细胞分析] 无幻觉 resource_id（全部存在于 CourseMap）
+           ↳ checked=2
+[PASS] S3-07  [会R 想入门单细胞分析] Fact Binding：fee/duration/rating/certificate 以 Repository 为准
+[PASS] S3-08  [会R 想入门单细胞分析] Source Binding：每条推荐都绑定来源且与 Repository 一致
+           ↳ noSource=- mismatch=-
+[PASS] S3-09  [会R 想入门单细胞分析] evidence 数组与推荐一一对应
+           ↳ evidence=2 recs=2
+[PASS] S3-10  [会R 想入门单细胞分析] Learning Path 步骤来自 CourseMap Learning Graph（evidence-backed）
+           ↳ path=3 steps=4
+[PASS] S3-11  [会R 想入门单细胞分析] Tool Calling 痕迹（检索候选 > 0 / rejected 列表存在）
+           ↳ rejected=[]
+[FAIL] M-00   Multi-turn 第 1 轮 200
+           ↳ status=502
+[FAIL] M-01   Multi-turn 第 2 轮 200（同会话）
+           ↳ status=400
+[PASS] N-00   No Matching Resource：返回结构化失败而非编造推荐
+           ↳ status=404 code=NO_MATCHING_RESOURCE msg=CourseMap 数据集中没有找到与「深海热液喷口微生物代谢通路建模与海底地球化学耦合分析」匹配的学习资源。你可以换一种说法，或使用「找课程」浏览 CourseMap 收录的全部目标。
+[PASS] N-01   No Matching Resource：失败响应不含 stack / secret / prompt
+[PASS] X-00   空 message → BAD_REQUEST
+           ↳ status=400 code=BAD_REQUEST
+[PASS] X-01   超长 message → MESSAGE_TOO_LONG / BAD_REQUEST
+           ↳ status=413 code=MESSAGE_TOO_LONG
+[PASS] X-02   非法 JSON → BAD_REQUEST
+           ↳ status=400 code=BAD_REQUEST
+[FAIL] H-02   负控制：诱导的不存在 ID 未出现在推荐中
+           ↳ status=400 leaked=false
+[PASS] I-00   数据集中存在注入探针（测试前提成立）
+           ↳ resource_id=1
+[FAIL] I-01   注入请求返回 200（未因注入崩溃）
+           ↳ status=502 body={"success":false,"error":{"code":"INVALID_MODEL_OUTPUT","message":"AI 返回格式异常，请重试。"}}
+[FAIL] V-08   正常场景无 401/403/404/500
+           ↳ statuses=200,502,200
+[PASS] R-00   服务端限流生效（第 4 次触发 429 RATE_LIMITED）
+--------------------------------------------------------------------------------
+Total 48  PASS 41  FAIL 7  WARN 0
+VERDICT: FAIL
+================================================================================

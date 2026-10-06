@@ -1,0 +1,382 @@
+{
+  "kind": "coursemap-ai1-live-public-verification",
+  "startedAt": "2026-10-06T14:08:40.078Z",
+  "finishedAt": "2026-10-06T14:10:24.121Z",
+  "aiBackendBase": "https://coursemap-prototype.vercel.app",
+  "frontendBase": "https://gina0014.github.io/coursemap-prototype",
+  "frontendOrigin": "https://gina0014.github.io",
+  "mode": "all",
+  "repository": {
+    "available": true,
+    "resources": 88,
+    "goals": 15,
+    "paths": 7
+  },
+  "health": {
+    "success": true,
+    "data": {
+      "status": "ok",
+      "llm_configured": true,
+      "adapter": "deepseek",
+      "model": "deepseek-chat",
+      "thinking": "disabled",
+      "data_class_counts": {
+        "demo": 48,
+        "real": 40,
+        "total": 88
+      }
+    },
+    "meta": {
+      "service": "coursemap-ai",
+      "version": "v0.3-Data1",
+      "build": "9c5e37ddf0c2"
+    }
+  },
+  "summary": {
+    "total": 48,
+    "pass": 41,
+    "fail": 7,
+    "warn": 0,
+    "verdict": "FAIL"
+  },
+  "groundedResourceIds": [
+    "1",
+    "4",
+    "137",
+    "5",
+    "29",
+    "28"
+  ],
+  "results": [
+    {
+      "id": "V-00",
+      "description": "GET /api/ai/health 可达且 200（部署已生效）",
+      "status": "PASS",
+      "detail": "status=200"
+    },
+    {
+      "id": "V-01",
+      "description": "统一信封 success:true + data",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "V-02",
+      "description": "health status = ok（Repository 在服务端可用）",
+      "status": "PASS",
+      "detail": "status=ok"
+    },
+    {
+      "id": "V-03",
+      "description": "llm_configured = true（服务端读到 DEEPSEEK_API_KEY）",
+      "status": "PASS",
+      "detail": "llm_configured=true"
+    },
+    {
+      "id": "V-04",
+      "description": "adapter = deepseek（真实 LLM 适配器，不是 mock）",
+      "status": "PASS",
+      "detail": "adapter=deepseek"
+    },
+    {
+      "id": "V-04b",
+      "description": "部署指纹 = 本次提交（验证的是新代码而非旧部署）",
+      "status": "FAIL",
+      "detail": "build=(none) expect=9c5e37ddf0c2"
+    },
+    {
+      "id": "V-05",
+      "description": "CORS 允许公网前端 origin",
+      "status": "PASS",
+      "detail": "ACAO=https://gina0014.github.io"
+    },
+    {
+      "id": "V-05b",
+      "description": "health 响应无 secret 字段",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "V-06",
+      "description": "OPTIONS 预检 204 + Allow-Origin",
+      "status": "PASS",
+      "detail": "status=204 ACAO=https://gina0014.github.io"
+    },
+    {
+      "id": "V-07a",
+      "description": "未授权 origin 不返回 Allow-Origin",
+      "status": "PASS",
+      "detail": "ACAO=null"
+    },
+    {
+      "id": "V-07b",
+      "description": "未授权 origin 的 POST 被拒绝（403 ORIGIN_NOT_ALLOWED）",
+      "status": "PASS",
+      "detail": "status=403 body={\"success\":false,\"error\":{\"code\":\"ORIGIN_NOT_ALLOWED\",\"message\":\"Origin 不被允许。\"}}"
+    },
+    {
+      "id": "S1-00",
+      "description": "[零基础大学生想学 Python] POST /api/ai/advisor 返回 200",
+      "status": "PASS",
+      "detail": "status=200 body={\"success\":true,\"data\":{\"interpreted_goal\":{\"goal_id\":1,\"name\":\"Python 入门\",\"data_class\":\"demo\"},\"constraints\":{\"goal\":\"Python 入门\",\"current_level\":\"beginner\",\"kn"
+    },
+    {
+      "id": "S1-01",
+      "description": "[零基础大学生想学 Python] 由真实 DeepSeek 处理（meta.adapter=deepseek）",
+      "status": "PASS",
+      "detail": "adapter=deepseek model=deepseek-flash"
+    },
+    {
+      "id": "S1-02",
+      "description": "[零基础大学生想学 Python] 结构化输出（summary/recommendations 等字段齐备）",
+      "status": "PASS",
+      "detail": "keys=interpreted_goal,constraints,recommendations,learning_path,estimated_cost,estimated_duration,general_advice,summary,uncertainties,rejected_resource_ids,parse_warnings,evidence,data_class_counts,grounding"
+    },
+    {
+      "id": "S1-03",
+      "description": "[零基础大学生想学 Python] 结构化意图解析命中 CourseMap 目标",
+      "status": "PASS",
+      "detail": "goal=Python 入门 (1)"
+    },
+    {
+      "id": "S1-04",
+      "description": "[零基础大学生想学 Python] 目标解析与预期一致",
+      "status": "PASS",
+      "detail": "got=Python 入门 expect=Python 入门"
+    },
+    {
+      "id": "S1-05",
+      "description": "[零基础大学生想学 Python] CourseMap 检索生效（有结构化推荐）",
+      "status": "PASS",
+      "detail": "n=4"
+    },
+    {
+      "id": "S1-06",
+      "description": "[零基础大学生想学 Python] 无幻觉 resource_id（全部存在于 CourseMap）",
+      "status": "PASS",
+      "detail": "checked=4"
+    },
+    {
+      "id": "S1-07",
+      "description": "[零基础大学生想学 Python] Fact Binding：fee/duration/rating/certificate 以 Repository 为准",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S1-08",
+      "description": "[零基础大学生想学 Python] Source Binding：每条推荐都绑定来源且与 Repository 一致",
+      "status": "PASS",
+      "detail": "noSource=- mismatch=-"
+    },
+    {
+      "id": "S1-09",
+      "description": "[零基础大学生想学 Python] evidence 数组与推荐一一对应",
+      "status": "PASS",
+      "detail": "evidence=4 recs=4"
+    },
+    {
+      "id": "S1-10",
+      "description": "[零基础大学生想学 Python] Learning Path 步骤来自 CourseMap Learning Graph（evidence-backed）",
+      "status": "PASS",
+      "detail": "path=1 steps=5"
+    },
+    {
+      "id": "S1-11",
+      "description": "[零基础大学生想学 Python] Tool Calling 痕迹（检索候选 > 0 / rejected 列表存在）",
+      "status": "PASS",
+      "detail": "rejected=[]"
+    },
+    {
+      "id": "S2-00",
+      "description": "[预算100元 每周5小时 想学数据分析] POST /api/ai/advisor 返回 200",
+      "status": "FAIL",
+      "detail": "status=502 body={\"success\":false,\"error\":{\"code\":\"INVALID_MODEL_OUTPUT\",\"message\":\"AI 返回格式异常，请重试。\"}}"
+    },
+    {
+      "id": "S3-00",
+      "description": "[会R 想入门单细胞分析] POST /api/ai/advisor 返回 200",
+      "status": "PASS",
+      "detail": "status=200 body={\"success\":true,\"data\":{\"interpreted_goal\":{\"goal_id\":6,\"name\":\"单细胞 RNA-seq 入门\",\"data_class\":\"demo\"},\"constraints\":{\"goal\":\"单细胞 RNA-seq 入门\",\"current_level\":null"
+    },
+    {
+      "id": "S3-01",
+      "description": "[会R 想入门单细胞分析] 由真实 DeepSeek 处理（meta.adapter=deepseek）",
+      "status": "PASS",
+      "detail": "adapter=deepseek model=deepseek-flash"
+    },
+    {
+      "id": "S3-02",
+      "description": "[会R 想入门单细胞分析] 结构化输出（summary/recommendations 等字段齐备）",
+      "status": "PASS",
+      "detail": "keys=interpreted_goal,constraints,recommendations,learning_path,estimated_cost,estimated_duration,general_advice,summary,uncertainties,rejected_resource_ids,parse_warnings,evidence,data_class_counts,grounding"
+    },
+    {
+      "id": "S3-03",
+      "description": "[会R 想入门单细胞分析] 结构化意图解析命中 CourseMap 目标",
+      "status": "PASS",
+      "detail": "goal=单细胞 RNA-seq 入门 (6)"
+    },
+    {
+      "id": "S3-04",
+      "description": "[会R 想入门单细胞分析] 目标解析与预期一致",
+      "status": "PASS",
+      "detail": "got=单细胞 RNA-seq 入门 expect=单细胞 RNA-seq 入门"
+    },
+    {
+      "id": "S3-05",
+      "description": "[会R 想入门单细胞分析] CourseMap 检索生效（有结构化推荐）",
+      "status": "PASS",
+      "detail": "n=2"
+    },
+    {
+      "id": "S3-06",
+      "description": "[会R 想入门单细胞分析] 无幻觉 resource_id（全部存在于 CourseMap）",
+      "status": "PASS",
+      "detail": "checked=2"
+    },
+    {
+      "id": "S3-07",
+      "description": "[会R 想入门单细胞分析] Fact Binding：fee/duration/rating/certificate 以 Repository 为准",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "S3-08",
+      "description": "[会R 想入门单细胞分析] Source Binding：每条推荐都绑定来源且与 Repository 一致",
+      "status": "PASS",
+      "detail": "noSource=- mismatch=-"
+    },
+    {
+      "id": "S3-09",
+      "description": "[会R 想入门单细胞分析] evidence 数组与推荐一一对应",
+      "status": "PASS",
+      "detail": "evidence=2 recs=2"
+    },
+    {
+      "id": "S3-10",
+      "description": "[会R 想入门单细胞分析] Learning Path 步骤来自 CourseMap Learning Graph（evidence-backed）",
+      "status": "PASS",
+      "detail": "path=3 steps=4"
+    },
+    {
+      "id": "S3-11",
+      "description": "[会R 想入门单细胞分析] Tool Calling 痕迹（检索候选 > 0 / rejected 列表存在）",
+      "status": "PASS",
+      "detail": "rejected=[]"
+    },
+    {
+      "id": "M-00",
+      "description": "Multi-turn 第 1 轮 200",
+      "status": "FAIL",
+      "detail": "status=502"
+    },
+    {
+      "id": "M-01",
+      "description": "Multi-turn 第 2 轮 200（同会话）",
+      "status": "FAIL",
+      "detail": "status=400"
+    },
+    {
+      "id": "N-00",
+      "description": "No Matching Resource：返回结构化失败而非编造推荐",
+      "status": "PASS",
+      "detail": "status=404 code=NO_MATCHING_RESOURCE msg=CourseMap 数据集中没有找到与「深海热液喷口微生物代谢通路建模与海底地球化学耦合分析」匹配的学习资源。你可以换一种说法，或使用「找课程」浏览 CourseMap 收录的全部目标。"
+    },
+    {
+      "id": "N-01",
+      "description": "No Matching Resource：失败响应不含 stack / secret / prompt",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "X-00",
+      "description": "空 message → BAD_REQUEST",
+      "status": "PASS",
+      "detail": "status=400 code=BAD_REQUEST"
+    },
+    {
+      "id": "X-01",
+      "description": "超长 message → MESSAGE_TOO_LONG / BAD_REQUEST",
+      "status": "PASS",
+      "detail": "status=413 code=MESSAGE_TOO_LONG"
+    },
+    {
+      "id": "X-02",
+      "description": "非法 JSON → BAD_REQUEST",
+      "status": "PASS",
+      "detail": "status=400 code=BAD_REQUEST"
+    },
+    {
+      "id": "H-02",
+      "description": "负控制：诱导的不存在 ID 未出现在推荐中",
+      "status": "FAIL",
+      "detail": "status=400 leaked=false"
+    },
+    {
+      "id": "I-00",
+      "description": "数据集中存在注入探针（测试前提成立）",
+      "status": "PASS",
+      "detail": "resource_id=1"
+    },
+    {
+      "id": "I-01",
+      "description": "注入请求返回 200（未因注入崩溃）",
+      "status": "FAIL",
+      "detail": "status=502 body={\"success\":false,\"error\":{\"code\":\"INVALID_MODEL_OUTPUT\",\"message\":\"AI 返回格式异常，请重试。\"}}"
+    },
+    {
+      "id": "V-08",
+      "description": "正常场景无 401/403/404/500",
+      "status": "FAIL",
+      "detail": "statuses=200,502,200"
+    },
+    {
+      "id": "R-00",
+      "description": "服务端限流生效（第 4 次触发 429 RATE_LIMITED）",
+      "status": "PASS",
+      "detail": ""
+    }
+  ],
+  "scenarioDigests": {
+    "S1": {
+      "status": 200,
+      "adapter": "deepseek",
+      "model": "deepseek-flash",
+      "goal": {
+        "goal_id": 1,
+        "name": "Python 入门",
+        "data_class": "demo"
+      },
+      "recommendationIds": [
+        1,
+        4,
+        137,
+        5
+      ],
+      "estimated_cost": 199,
+      "estimated_duration": 90,
+      "summaryText": "针对「Python 入门」这一零基础目标，CourseMap 证据中最贴合的是中文、beginner、无先修要求的资源 1（Python 基础入门），其学习成果直接覆盖脚本编写与基础语法；资源 4 可作为思维打底补充，资源 5 适合偏好项目式与答疑节奏的学习者，资源 137 是数据可信度最高（real / editorial_verified）的英文开放教材但多个关键字段未核验。需特别说明：资源 1、4、5 属于 demo 演示数据且未核验，资源 137 的难度、时长、证书等字段 CourseMap 当前未核验。以上推荐仅基于 CourseMap 结构化证据，不构成任何结果保证。"
+    },
+    "S2": {
+      "status": 502,
+      "recommendationIds": []
+    },
+    "S3": {
+      "status": 200,
+      "adapter": "deepseek",
+      "model": "deepseek-flash",
+      "goal": {
+        "goal_id": 6,
+        "name": "单细胞 RNA-seq 入门",
+        "data_class": "demo"
+      },
+      "recommendationIds": [
+        29,
+        28
+      ],
+      "estimated_cost": 0,
+      "estimated_duration": 85,
+      "summaryText": "在 CourseMap 现有证据中，与「单细胞 RNA-seq 入门」直接匹配的只有两个资源：资源 29（单细胞 RNA-seq 数据分析入门）最贴题，是路径 path_id=3 的单细胞实战核心资源，但难度标记为 advanced、语言为英文、且要求「生物信息学基础」前置；资源 28（生物信息学基础）是路径中的前置基础环节，双语授课、有证书标记，可用来补齐资源 29 的前置技能。建议按路径顺序：先确认统计基础，再走资源 28 打生信基础，最后进入资源 29 做单细胞实战。需注意两者均为 demo 演示数据、未核验，且 license 字段未核验，无法判断许可与商用条件。"
+    }
+  }
+}
