@@ -48,6 +48,42 @@ function rowsOf(data, fallback = []) {
   return fallback;
 }
 
+/* ---------------------------------------------------------------------------
+   文本归一化（目标名匹配用）
+   全角 → 半角；compact 去掉一切分隔符；loose 保留词边界（用于 ASCII 词匹配）。
+   --------------------------------------------------------------------------- */
+function normalizeText(s) {
+  return String(s ?? '')
+    .replace(/[\uFF01-\uFF5E]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xFEE0))
+    .replace(/\u3000/g, ' ')
+    .toLowerCase();
+}
+function compactText(s) {
+  return normalizeText(s).replace(/[^\p{L}\p{N}]+/gu, '');
+}
+function looseText(s) {
+  return normalizeText(s).replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+}
+function bigrams(s) {
+  const out = [];
+  for (let i = 0; i < s.length - 1; i += 1) out.push(s.slice(i, i + 2));
+  return out;
+}
+/** Sørensen–Dice 字符二元组相似度。 */
+function diceCoefficient(a, b) {
+  const ba = bigrams(a);
+  const bb = bigrams(b);
+  if (!ba.length || !bb.length) return 0;
+  const pool = new Map();
+  for (const g of bb) pool.set(g, (pool.get(g) || 0) + 1);
+  let inter = 0;
+  for (const g of ba) {
+    const left = pool.get(g) || 0;
+    if (left > 0) { inter += 1; pool.set(g, left - 1); }
+  }
+  return (2 * inter) / (ba.length + bb.length);
+}
+
 export class JsonCourseMapRepository {
   constructor(dataDir = null) {
     const dir = dataDir || findDataDir();
@@ -105,16 +141,67 @@ export class JsonCourseMapRepository {
       .slice(0, limit);
   }
 
-  /** 按目标名模糊匹配（含别名）。 */
+  /** 按目标名模糊匹配（含别名）。
+   *
+   *  生产缺陷记录：旧实现只在「目标名/别名 **包含** 用户串」时命中，方向单一且
+   *  不容错。真实 LLM 会把目标改写为自然措辞（"Python 编程入门"、"Python数据分析"、
+   *  "单细胞分析"、"R语言入门"），全部 MISS → 三个用户场景都退化成
+   *  NO_MATCHING_RESOURCE。CourseMap 是目标的权威来源，但用户与模型可以用任意
+   *  措辞指代它，因此这里做三级匹配：
+   *    1) 归一化后完全相等
+   *    2) 归一化后双向包含（短边长度设下限，避免 "py"/"r" 这类别名过度命中）
+   *    3) 字符二元组 Dice 相似度（阈值 0.6）兜底
+   */
   findGoalByName(name) {
     if (!name) return null;
-    const t = String(name).toLowerCase().trim();
-    return this.goals.find((g) =>
-      String(g.name || '').toLowerCase() === t
-      || (g.aliases || []).some((a) => String(a).toLowerCase() === t))
-      || this.goals.find((g) => String(g.name || '').toLowerCase().includes(t)
-        || (g.aliases || []).some((a) => String(a).toLowerCase().includes(t)))
-      || null;
+    const q = compactText(name);
+    if (!q) return null;
+
+    const candidates = [];
+    for (const g of this.goals) {
+      const forms = [g.name, ...(g.aliases || [])];
+      for (const f of forms) {
+        const c = compactText(f);
+        if (c) candidates.push({ goal: g, form: f, compact: c, loose: looseText(f) });
+      }
+    }
+
+    // 1) 完全相等（归一化后）
+    const exact = candidates.filter((c) => c.compact === q);
+    if (exact.length) return exact.sort((a, b) => b.compact.length - a.compact.length)[0].goal;
+
+    // 2) 双向包含
+    const qLoose = looseText(name);
+    const hasCjk = (s) => (/\p{Script=Han}/u.test(s) ? 1 : 0);
+    const shorterOf = (c) => (c.compact.length <= q.length ? c.compact : q);
+    const contains = candidates.filter((c) => {
+      const shorter = shorterOf(c);
+      const longer = c.compact.length <= q.length ? q : c.compact;
+      if (!longer.includes(shorter)) return false;
+      if (/^[\x20-\x7e]+$/.test(shorter)) {
+        // 纯 ASCII 短串（如 "py"）必须作为独立词出现，且长度 >= 3
+        if (shorter.length < 3) return false;
+        const words = (c.compact.length <= q.length ? qLoose : c.loose).split(' ');
+        return words.includes(shorter);
+      }
+      return shorter.length >= 2;
+    });
+    if (contains.length) {
+      // 消歧：同一查询可能同时包含某目标的 CJK 别名与另一目标的通用语言别名
+      // （例如「数据分析（Python）」同时含 "数据分析" 与 "python"）。
+      // 中文术语在 CourseMap 中更具体，优先选它，避免被泛化语言词抢占目标。
+      return contains.sort((a, b) => (hasCjk(shorterOf(b)) - hasCjk(shorterOf(a)))
+        || (b.compact.length - a.compact.length))[0].goal;
+    }
+
+    // 3) Dice 相似度兜底
+    let best = null;
+    let bestScore = 0;
+    for (const c of candidates) {
+      const score = diceCoefficient(q, c.compact);
+      if (score > bestScore) { bestScore = score; best = c; }
+    }
+    return bestScore >= 0.6 ? best.goal : null;
   }
 
   filterByBudget(list, budget) {

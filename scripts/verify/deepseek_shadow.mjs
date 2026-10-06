@@ -47,6 +47,20 @@ const RESOURCES = rowsOf(load('resources')).filter((r) => r.status === 'publishe
 const GOALS = rowsOf(load('learning-goals'));
 const PATHS = rowsOf(load('learning-paths'));
 
+/* ---- 从 Stage A 提示词中还原「用户原话」----
+   真实模型读的是语义，注意力落在 User message 段；但本影子是正则匹配，若直接扫
+   整段提示词，就会命中提示词里的其他内容（最典型的是「CourseMap learning goals
+   (authoritative list)」目标清单——清单里一定包含「单细胞 RNA-seq 入门」，会
+   被 /单细胞/ 提前匹配，导致所有请求都被判定为该目标）。
+   因此影子必须先切出 User message 段，再据其推断——这才等价于「模型看用户说的话」。
+   （线上事故复盘：此缺陷曾让本地影子把三个场景全部解析成同一目标。） */
+function extractUserMessage(prompt) {
+  const s = String(prompt || '');
+  const marker = 'User message: ';
+  const i = s.lastIndexOf(marker);
+  return i >= 0 ? s.slice(i + marker.length).trim() : s.trim();
+}
+
 /* ---- 从用户消息推断目标（模拟模型意图抽取）---- */
 function inferGoal(text) {
   const t = String(text || '');
@@ -58,6 +72,17 @@ function inferGoal(text) {
   if (/python|编程入门|零基础/i.test(t)) return 'Python 入门';
   return 'Python 入门';
 }
+
+/* 真实模型不会逐字复用规范目标名，而是改写成自然措辞。
+   影子必须同样改写，否则「目标名匹配过于脆弱」这类生产缺陷在本地无法暴露
+   （线上事故：三个用户场景因措辞差异全部退化为 NO_MATCHING_RESOURCE）。 */
+const GOAL_PARAPHRASE = {
+  'Python 入门': 'Python 编程入门',
+  'Python 数据分析': 'Python数据分析',
+  '单细胞 RNA-seq 入门': '单细胞分析',
+  'R 语言入门': 'R语言入门',
+  '文献检索': '文献检索入门',
+};
 
 function inferBudget(text) {
   const t = String(text || '');
@@ -74,8 +99,9 @@ function inferHours(text) {
 
 /* ---- 响应构造 ---- */
 function intentJSON(text) {
+  const canonical = inferGoal(text);
   return {
-    goal: inferGoal(text),
+    goal: GOAL_PARAPHRASE[canonical] || canonical,
     current_level: /零基础|初学者/.test(text) ? 'beginner' : (/(会|懂)\s*(一点)?\s*R|有基础/.test(text) ? 'intermediate' : null),
     known_skills: /会\s*R|懂\s*R/.test(text) ? ['R'] : [],
     budget: inferBudget(text),
@@ -195,9 +221,10 @@ const server = createServer((req, res) => {
       return;
     }
 
-    // Stage A：意图抽取（此时的 user 消息就是原始用户消息）
-    LAST_USER_TEXT = userText;
-    wrap({ role: 'assistant', content: JSON.stringify(intentJSON(userText)) }, 'stop');
+    // Stage A：意图抽取（此时 user 消息是「模板 + 目标清单 + 用户原话」，需切出用户原话）
+    const rawUser = extractUserMessage(userText);
+    LAST_USER_TEXT = rawUser;
+    wrap({ role: 'assistant', content: JSON.stringify(intentJSON(rawUser)) }, 'stop');
   });
 });
 

@@ -164,6 +164,17 @@ check('V-02', 'health status = ok（Repository 在服务端可用）', h.status 
 check('V-03', 'llm_configured = true（服务端读到 DEEPSEEK_API_KEY）', h.llm_configured === true, `llm_configured=${h.llm_configured}`);
 check('V-04', 'adapter = deepseek（真实 LLM 适配器，不是 mock）', h.adapter === 'deepseek', `adapter=${h.adapter}`);
 
+/* V-04b 部署指纹：证明「验证的是本次提交的部署」，而非 Vercel 尚未更新的旧代码。
+   （没有这道闸门时，push 后立即验证可能命中旧部署，把修复误判为失败。）
+   仅在 CI 传入 COURSEMAP_EXPECT_BUILD 时校验；本地运行跳过（不打乱 PASS/WARN 统计）。 */
+{
+  const expectBuild = String(process.env.COURSEMAP_EXPECT_BUILD || '').trim().slice(0, 12);
+  if (expectBuild) {
+    check('V-04b', '部署指纹 = 本次提交（验证的是新代码而非旧部署）',
+      String(h.build || '').startsWith(expectBuild), `build=${h.build || '(none)'} expect=${expectBuild}`);
+  }
+}
+
 const acao = health ? health.headers.get('access-control-allow-origin') : null;
 check('V-05', 'CORS 允许公网前端 origin', acao === FRONTEND_ORIGIN, `ACAO=${acao}`);
 check('V-05b', 'health 响应无 secret 字段', health && !/deepseek_api_key|sk-[a-zA-Z0-9]{10,}|authorization/i.test(health.text));

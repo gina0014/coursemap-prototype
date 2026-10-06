@@ -51,6 +51,19 @@ export class AIOrchestrator {
     this.retriever = retriever;
     this.store = conversationStore;
     this.usageLog = usageLogger;
+    this._catalogue = null;
+  }
+
+  /** CourseMap 规范目标清单（惰性构建，供 Stage A 选择而非创造目标名）。 */
+  _goalCatalogue() {
+    if (!this._catalogue) {
+      this._catalogue = (this.repo.goals || []).map((g) => ({
+        goal_id: g.goal_id,
+        name: g.name,
+        aliases: (g.aliases || []).slice(0, 4),
+      }));
+    }
+    return this._catalogue;
   }
 
   /**
@@ -71,7 +84,8 @@ export class AIOrchestrator {
     const intentMessages = [
       { role: 'system', content: SYSTEM_PROMPT_V1 },
       { role: 'user', content: intentExtractionUserPrompt(message,
-        mergedContext && (mergedContext.goal || mergedContext.budget !== null) ? mergedContext : null) },
+        mergedContext && (mergedContext.goal || mergedContext.budget !== null) ? mergedContext : null,
+        this._goalCatalogue()) },
     ];
     const a = await this.adapter.chatJSON({ messages: intentMessages, temperature: 0.1 });
     const { intent: llmIntent, warnings: intentWarnings } = sanitizeIntent(a.content);
@@ -209,9 +223,15 @@ export class AIOrchestrator {
     // ---- 无匹配资源（诚实语义）----
     if (recommendations.length === 0 && !learningPath) {
       if (retrieval.total === 0) {
+        // 把「识别到的目标」回显出来：既方便用户改述，也让线上问题可诊断
+        // （生产缺陷记录：只回「没有匹配资源」时无法判断是目标识别错还是数据缺失）
+        const parsed = asStr(finalIntent.goal, 40);
         throw new ApiError(ERROR_CODES.NO_MATCHING_RESOURCE,
-          'CourseMap 数据集中没有找到与该目标匹配的学习资源。你可以尝试其他目标，或使用「找课程」浏览全部目标。', 404,
-          { rejectedIds: rejected });
+          (parsed
+            ? `CourseMap 数据集中没有找到与「${parsed}」匹配的学习资源。`
+            : 'CourseMap 数据集中没有找到与该目标匹配的学习资源。')
+          + '你可以换一种说法，或使用「找课程」浏览 CourseMap 收录的全部目标。', 404,
+          { rejectedIds: rejected, parsedGoal: parsed });
       }
       if (rejected.length > 0) {
         // 模型引用了不存在的资源且没有给出任何真实推荐 → 视为不可信输出

@@ -37,8 +37,20 @@ CourseMap structured data is the ONLY source of truth for:
 ## Output discipline
 When asked to output JSON, output ONLY valid JSON matching the requested schema. No markdown fences, no commentary.`;
 
-/** Stage A：意图解析 prompt（配合 response_format=json_object）。 */
-export function intentExtractionUserPrompt(message, priorContext = null) {
+/** Stage A：意图解析 prompt（配合 response_format=json_object）。
+ *  @param {string} message 用户原文
+ *  @param {object|null} [priorContext] 会话已确认的结构化约束
+ *  @param {Array<{goal_id:any,name:string,aliases?:string[]}>} [goalCatalogue]
+ *         CourseMap 收录的规范目标清单。
+ *         为什么必须传：CourseMap 是学习目标的权威来源。不枚举清单时，模型会把
+ *         目标改写成自然措辞（"Python 编程入门"、"单细胞分析"），服务端无法与
+ *         规范目标对齐，合法请求会退化成 NO_MATCHING_RESOURCE（生产缺陷记录）。
+ *         枚举后模型只需「选择」而不是「创造」目标名。
+ */
+export function intentExtractionUserPrompt(message, priorContext = null, goalCatalogue = null) {
+  const catalogue = Array.isArray(goalCatalogue) && goalCatalogue.length
+    ? goalCatalogue.map((g) => ({ id: g.goal_id, name: g.name, aliases: (g.aliases || []).slice(0, 4) }))
+    : null;
   return [
     'Extract a structured LearningDecisionRequest from the user message.',
     'Rules:',
@@ -51,7 +63,10 @@ export function intentExtractionUserPrompt(message, priorContext = null) {
     '- language: "zh" | "en" | "bilingual" | null (the language they want to learn IN).',
     '- certificate_requirement: boolean | null.',
     '- resource_type: "course" | "tutorial" | "book" | "open_course" | "learning_module" | null.',
-    '- goal: a short learning goal phrase in the user\'s language.',
+    catalogue
+      ? '- goal: the canonical CourseMap learning goal name, copied EXACTLY from the list below. Only if nothing in the list corresponds to the user intent, output a short goal phrase in the user\'s language instead (it will be treated as "no matching goal").'
+      : '- goal: a short learning goal phrase in the user\'s language.',
+    catalogue ? `CourseMap learning goals (authoritative list): ${JSON.stringify(catalogue)}` : '',
     priorContext ? `Prior conversation constraints (for reference, user message may override): ${JSON.stringify(priorContext)}` : '',
     'Output JSON schema:',
     '{"goal": string|null, "current_level": string|null, "known_skills": string[], "budget": number|null, "available_hours_per_week": number|null, "target_duration_weeks": number|null, "language": string|null, "preferred_learning_style": string|null, "certificate_requirement": boolean|null, "resource_type": string|null, "career_goal": string|null}',

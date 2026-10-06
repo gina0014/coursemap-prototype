@@ -14,6 +14,7 @@ import { AIOrchestrator } from '../../server/orchestrator/AIOrchestrator.mjs';
 import { JsonCourseMapRepository, getRepository } from '../../server/repo/CourseMapRepository.mjs';
 import { StructuredRetriever } from '../../server/retriever/StructuredRetriever.mjs';
 import { sanitizeIntent, sanitizeContext } from '../../server/orchestrator/intentSchema.mjs';
+import { intentExtractionUserPrompt } from '../../server/prompts/learning-advisor-v1.mjs';
 import { MockLLMAdapter } from '../../server/llm/MockLLMAdapter.mjs';
 import { DeepSeekAdapter } from '../../server/llm/DeepSeekAdapter.mjs';
 import { ToolExecutor } from '../../server/tools/toolExecutor.mjs';
@@ -110,6 +111,36 @@ check('A-05g', '预算仍是硬约束（越界不返回超预算资源）',
     const r = retriever.retrieve(sanitizeIntent({ goal: 'Python 数据分析', budget: 0 }).intent, 12);
     return r.candidates.every((x) => x.fee === 0 || x.fee === null);
   })());
+
+/* ---- A-05h 目标匹配鲁棒性（生产缺陷回归）----
+   线上实测：真实 DeepSeek 会把目标改写成自然措辞，而旧实现只在
+   「规范名/别名 包含 用户串」时命中（单向且不容错），导致
+   "我是零基础大学生，想学 Python。" / "预算100元，每周5小时，想学数据分析。" /
+   "我会R，想入门单细胞分析。" 三个用户场景全部退化为 NO_MATCHING_RESOURCE。 */
+const GOAL_PARAPHRASES = [
+  ['Python 编程入门', 'Python 入门'],
+  ['Python编程入门', 'Python 入门'],
+  ['Python 基础', 'Python 入门'],
+  ['Python数据分析', 'Python 数据分析'],
+  ['数据分析（Python）', 'Python 数据分析'],
+  ['单细胞分析', '单细胞 RNA-seq 入门'],
+  ['单细胞 RNA-seq 分析', '单细胞 RNA-seq 入门'],
+  ['单细胞分析入门', '单细胞 RNA-seq 入门'],
+  ['R语言入门', 'R 语言入门'],
+  ['文献检索入门', '文献检索'],
+];
+for (const [input, expect] of GOAL_PARAPHRASES) {
+  const g = repo.findGoalByName(input);
+  check(`A-05h:${input}`, `目标改写「${input}」→ ${expect}`, !!g && g.name === expect, `got=${g && g.name}`);
+}
+check('A-05i', '不存在的目标仍返回 null（不得乱匹配）',
+  repo.findGoalByName('深海热液喷口微生物代谢通路建模') === null
+  && repo.findGoalByName('量子引力与弦论导论') === null
+  && repo.findGoalByName('') === null && repo.findGoalByName(null) === null);
+/* Stage A prompt 必须枚举 CourseMap 规范目标（模型「选择」而非「创造」） */
+const stageAPrompt = intentExtractionUserPrompt('我想学 Python', null, [{ goal_id: 1, name: 'Python 入门', aliases: ['python'] }]);
+check('A-05j', 'Stage A prompt 枚举 CourseMap 目标清单',
+  stageAPrompt.includes('Python 入门') && /canonical CourseMap learning goal name/.test(stageAPrompt));
 
 /* ---- A-06 Tool 参数验证（untrusted）---- */
 const exec = new ToolExecutor(repo, retriever, 12);

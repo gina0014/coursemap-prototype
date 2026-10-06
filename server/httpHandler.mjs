@@ -44,6 +44,14 @@ function getOrchestrator() {
   return orchestrator;
 }
 
+/** 部署指纹（非敏感）：用于让生产验证确认「验的是本次提交的部署」。
+ *  Vercel Git 部署注入 VERCEL_GIT_COMMIT_SHA；CLI 部署注入 VERCEL_DEPLOYMENT_ID；
+ *  本地开发则为 'local'。绝不包含任何密钥。 */
+function buildFingerprint() {
+  const raw = process.env.VERCEL_GIT_COMMIT_SHA || process.env.VERCEL_DEPLOYMENT_ID || process.env.GITHUB_SHA || '';
+  return raw ? String(raw).slice(0, 12) : 'local';
+}
+
 function clientIpOf(req) {
   const fwd = req.headers && (req.headers['x-forwarded-for'] || req.headers['X-Forwarded-For']);
   if (typeof fwd === 'string' && fwd.length) return fwd.split(',')[0].trim();
@@ -101,7 +109,11 @@ export async function handleAIRequest(req, res) {
       send(res, 200, {
         success: true,
         data: { status: repoOk ? 'ok' : 'degraded', llm_configured: hasDeepSeekKey(), adapter: hasDeepSeekKey() ? 'deepseek' : 'mock' },
-        meta: { service: 'coursemap-ai', version: 'v0.2-AI-Beta' },
+        // build：部署指纹（非敏感）。生产验证必须先确认「验证的是本次提交的部署」，
+        // 否则可能在 Vercel 尚未完成 redeploy 时误验旧代码（会把修复误判为失败）。
+        // Vercel 会为每次部署注入 VERCEL_GIT_COMMIT_SHA（Git 部署）或
+        // VERCEL_DEPLOYMENT_ID（CLI 部署），本地开发则为 'local'。
+        meta: { service: 'coursemap-ai', version: 'v0.2-AI-Beta', build: buildFingerprint() },
       }, headers);
       return;
     }

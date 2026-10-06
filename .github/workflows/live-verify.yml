@@ -51,7 +51,10 @@ env:
   COURSEMAP_AI_BASE: https://coursemap-prototype.vercel.app
   COURSEMAP_FRONTEND_BASE: https://gina0014.github.io/coursemap-prototype
   COURSEMAP_EXPECT_BACKEND: https://coursemap-prototype.vercel.app
+  # 本次提交 SHA：用于确认「验证的是这次推送的部署」，而不是 Vercel 尚未更新的旧代码。
+  COURSEMAP_EXPECT_BUILD: ${{ github.sha }}
   VERIFY_WAIT_MS: '300000'
+  DEPLOY_WAIT_MS: '420000'
 
 jobs:
   public-e2e:
@@ -69,6 +72,9 @@ jobs:
         run: |
           which google-chrome || which google-chrome-stable || which chromium-browser
           google-chrome --version || true
+
+      - name: Deploy gate (wait for this commit to go live)
+        run: node scripts/verify/wait_for_deploy.mjs
 
       - name: Run public E2E
         env:
@@ -90,13 +96,19 @@ jobs:
     name: production backend verification (live DeepSeek)
     runs-on: ubuntu-latest
     timeout-minutes: 25
+    # 顺序依赖 public-e2e（两者的调用共享同一 IP 配额，必须串行），
+    # 但**不因 E2E 失败而跳过**：前端回归不应掩盖后端证据。
     needs: [public-e2e]
+    if: always()
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+
+      - name: Deploy gate (wait for this commit to go live)
+        run: node scripts/verify/wait_for_deploy.mjs
 
       - name: Run live backend verification
         run: node scripts/verify/live_public_verify.mjs

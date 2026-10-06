@@ -92,6 +92,28 @@ check('E-01', 'js/config.js 已指向生产后端（前端切换已部署）', c
   configText.includes(EXPECT_BACKEND) ? EXPECT_BACKEND : 'config.js 仍未指向生产后端');
 check('E-01b', 'config.js 中不含任何 secret', !/sk-[a-zA-Z0-9]{10,}|api[_-]?key\s*[:=]\s*['"][^'"]+['"]/i.test(configText));
 
+/* E-04 后端部署就绪：必须等到「本次提交对应的 Vercel 部署」生效，
+   否则会对着旧构建做断言（线上首次运行就是这样误判的） */
+{
+  const deadline = Date.now() + WAIT_MS;
+  let health = null;
+  for (;;) {
+    try {
+      const res = await fetch(`${EXPECT_BACKEND}/api/ai/health`, { cache: 'no-store' });
+      if (res.ok) { health = await res.json(); break; }
+    } catch { /* 部署未就绪或网络未通 */ }
+    const left = deadline - Date.now();
+    if (left <= 0) break;
+    console.log(`    · 等待生产后端部署就绪（/api/ai/health 尚不可用），${Math.ceil(left / 1000)}s 后重试`);
+    await sleep(Math.min(15_000, Math.max(3_000, left)));
+  }
+  check('E-04', '生产后端 /api/ai/health 已就绪（部署已生效）',
+    !!(health && health.success === true), JSON.stringify(health && health.data));
+  check('E-04b', '生产后端已读取到模型密钥（llm_configured=true）',
+    !!(health && health.data && health.data.llm_configured === true),
+    `llm_configured=${health && health.data && health.data.llm_configured}, adapter=${health && health.data && health.data.adapter}`);
+}
+
 /* 取一份 CourseMap 事实用于 DOM 层比对 */
 let resources = [];
 {
