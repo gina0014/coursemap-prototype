@@ -1,0 +1,84 @@
+{
+  "rules_version": "0.2",
+  "product": "CourseMap",
+  "supersedes": "validation-rules-v0.1.json",
+  "scope": "Data-1：真实开放教育资源（OER）接入后的数据治理规则。v0.1 全部规则继续生效，本版本新增 REAL/许可/来源一致性规则。",
+  "severity_levels": ["BLOCKER", "ERROR", "WARN"],
+  "data_files": [
+    "subjects.json",
+    "learning-goals.json",
+    "skills.json",
+    "providers.json",
+    "resources.json",
+    "learning-paths.json",
+    "learning-path-steps.json",
+    "reviews.json",
+    "fee-history.json",
+    "sources.json",
+    "resource-source.json"
+  ],
+  "concepts": {
+    "data_class": "records: demo = 编辑自建演示数据；real = 有官方来源核验的真实开放教育资源。taxonomy (subjects/goals/skills): 该节点为何而建立。",
+    "source_verified_fields": "resource-source 关系上声明的字段清单：这些字段的值由绑定的官方来源直接支持。",
+    "editorially_mapped_fields": "CourseMap 编辑所做的分类映射（subject/goal/skill/resource_type）。属于编辑判断，不属于来源事实。"
+  },
+  "rules": {
+    "BLOCKER": [
+      { "id": "VR-C01", "rule": "Learning_Resource 缺少 resource_id 或 ID 重复" },
+      { "id": "VR-C02", "rule": "Learning_Resource 引用了不存在的 provider_id / subject_id（无效关系）" },
+      { "id": "VR-C03", "rule": "Learning_Resource.learning_goal_ids 引用了不存在的 goal_id" },
+      { "id": "VR-C04", "rule": "published 资源缺少 title" },
+      { "id": "VR-C05", "rule": "published 的 real 资源没有关联任何 Source（真实数据无来源禁止发布）" },
+      { "id": "VR-C06", "rule": "Skill / Goal 前置关系成环" },
+      { "id": "VR-C07", "rule": "Learning_Path_Step 引用了不存在的 path_id / skill_id / goal_id / resource_id" },
+      { "id": "VR-C08", "rule": "Review 引用了不存在的 resource_id" },
+      { "id": "VR-C09", "rule": "Fee_History 引用了不存在的 resource_id / source_id" },
+      { "id": "VR-C10", "rule": "demo 记录的 url 指向真实第三方页面（演示来源不得伪造外链）" },
+
+      { "id": "VR-C11", "rule": "REAL 资源缺少官方 URL（没有 official_url 的真实资源不得发布）" },
+      { "id": "VR-C12", "rule": "许可状态不明确的来源被表示为开放许可（license/usage_permission 为 unknown，却声明 commercial_use=true 或 public_domain=true）" },
+      { "id": "VR-C13", "rule": "REAL 资源的 fee 为「猜的值」：fee 非 null，但没有任何绑定来源在 source_verified_fields 中声明 fee" },
+      { "id": "VR-C14", "rule": "REAL 资源的 certificate_available 为「猜的值」：非 null 但未被任何来源声明" },
+      { "id": "VR-C15", "rule": "REAL 资源的 rating / rating_count 为「猜的值」：非 null 但未被任何来源声明" },
+      { "id": "VR-C16", "rule": "REAL 资源的 duration_hours / weekly_workload_hours 为「猜的值」：非 null 但未被任何来源声明" }
+    ],
+    "ERROR": [
+      { "id": "VR-E01", "rule": "fee < 0" },
+      { "id": "VR-E02", "rule": "duration_hours <= 0 或 weekly_workload_hours <= 0" },
+      { "id": "VR-E03", "rule": "overall_rating / content_quality 等评分不在 [1,5] 区间" },
+      { "id": "VR-E04", "rule": "difficulty / resource_type / learning_mode / language 取值不在受控枚举内" },
+      { "id": "VR-E05", "rule": "learning path 的 step_order 在同一 path 内重复" },
+      { "id": "VR-E06", "rule": "resource.rating 与已发布评价聚合不一致（>0.01 偏差）" },
+      { "id": "VR-E07", "rule": "resource.rating_count 与已发布评价条数不一致" },
+      { "id": "VR-E08", "rule": "fee 为 null 但 currency 不为 null（未知费用不得带币种）" },
+      { "id": "VR-E09", "rule": "learning_goal_ids 为空数组的 published 资源（资源必须服务于至少一个学习目标）" },
+
+      { "id": "VR-E10", "rule": "REAL 资源缺少 observed_at（无法审计其元数据观测时间）" },
+      { "id": "VR-E11", "rule": "来源关系无效：resource.source_ids 与 resource-source 关系不一致，或引用了不存在的 source_id" },
+      { "id": "VR-E12", "rule": "REAL 资源绑定的 Source 缺少许可元数据（license / license_url / observed_at / verification_status 任一缺失）" },
+      { "id": "VR-E13", "rule": "REAL 资源缺少 verification_status（无法区分「已核验」与「未核验」）" }
+    ],
+    "WARN": [
+      { "id": "VR-W01", "rule": "费用观测超过 fee_recheck_days（内部复检触发器，不代表费用有效期）" },
+      { "id": "VR-W02", "rule": "评价样本量 < rating_min_sample（前端必须显示 Limited data）" },
+      { "id": "VR-W03", "rule": "published 资源缺少可选前置（prerequisite_skill_ids 为空）" },
+      { "id": "VR-W04", "rule": "资源缺少 duration_hours 或 weekly_workload_hours（影响学习计划估算）" },
+      { "id": "VR-W05", "rule": "certificate_available 为 null（影响决策比较）" },
+      { "id": "VR-W06", "rule": "REAL 资源缺少描述（METADATA+OFFICIAL LINK 阶段允许为空，前端必须显示「官方描述未核验」而不是留白）" }
+    ]
+  },
+  "thresholds": {
+    "rating_min_sample": 3,
+    "fee_recheck_days": 180
+  },
+  "visibility": {
+    "frontend_visible_status": "published",
+    "cascade": "Resource 依赖 Provider/Subject/Goal 全部 published 才可见；Review/Fee 依赖 Resource 可见"
+  },
+  "final_principle": [
+    "free access != open license",
+    "open license != public domain",
+    "real LLM != real data",
+    "LLM knowledge != CourseMap evidence"
+  ]
+}

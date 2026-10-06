@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
-"""CourseMap 数据校验器（v0.1）
+"""CourseMap 数据校验器（v0.2 · Data-1）
 
-实现 data/schema/validation-rules-v0.1.json 中定义的教育领域规则。
+实现 data/schema/validation-rules-v0.2.json：
+  - v0.1 全部规则（实体完整性、枚举、评分聚合、demo 外链）
+  - v0.2 新增「真实性」规则（VR-C11..C16 / VR-E10..E13）：
+      * REAL 资源必须有官方 URL、observed_at、verification_status
+      * REAL 资源绑定的 Source 必须有完整许可元数据
+      * **未知许可不得被表示为开放许可**
+      * fee / certificate / rating / duration 若没有被绑定来源声明为
+        source_verified_fields，即视为「猜的值」→ BLOCKER
 退出码：0 = BLOCKER=0 且 ERROR=0（WARN 不影响）；1 = 存在 BLOCKER/ERROR。
 
 用法：
@@ -175,6 +182,96 @@ def main():
                 and "example" not in url and "demo" not in url:
             add("BLOCKER", "VR-C10", f"demo resource {r.get('resource_id','?')} url 指向真实站点: {url}")
 
+    # ==========================================================================
+    # Data-1 真实性规则（Module H）—— demo / real 必须严格分离
+    # ==========================================================================
+    source_by_id = {s["source_id"]: s for s in sources}
+
+    # 每个资源被绑定来源「声明支持」的字段集合
+    verified_fields_by_res = {}
+    for rs in res_sources:
+        rid_ = rs.get("resource_id")
+        bag = verified_fields_by_res.setdefault(rid_, set())
+        for f in (rs.get("source_verified_fields") or []):
+            bag.add(f)
+
+    # 真实字段：官方来源没声明支持，就必须是 null
+    REAL_FACT_FIELDS = {
+        "fee": "VR-C13",
+        "certificate_available": "VR-C14",
+        "rating": "VR-C15",
+        "rating_count": "VR-C15",
+        "duration_hours": "VR-C16",
+        "weekly_workload_hours": "VR-C16",
+    }
+    UNKNOWN_LICENSE_TOKENS = {None, "", "unknown", "unclear", "unknown_license"}
+    OPEN_CLAIM_KEYS = ("commercial_use", "public_domain", "adaptation_allowed", "redistribution_allowed")
+
+    for r in resources:
+        if r.get("data_class") != "real":
+            continue
+        rid = r.get("resource_id", "?")
+
+        # ---- VR-C11 REAL 资源必须带官方 URL ----
+        url = r.get("url")
+        if not url or not str(url).startswith(real_domains):
+            add("BLOCKER", "VR-C11", f"real resource {rid} 缺少官方 URL（url={url!r}）")
+
+        # ---- VR-E10 REAL 资源必须有 observed_at ----
+        if not r.get("observed_at"):
+            add("ERROR", "VR-E10", f"real resource {rid} 缺少 observed_at")
+
+        # ---- VR-E13 REAL 资源必须有 verification_status ----
+        if not r.get("verification_status"):
+            add("ERROR", "VR-E13", f"real resource {rid} 缺少 verification_status")
+
+        # ---- VR-C05 已在上方覆盖：REAL 必须至少有一个 Source ----
+        bound_sources = [source_by_id.get(sid) for sid in (src_by_res.get(rid) or [])]
+
+        # ---- VR-E11 来源关系一致性 ----
+        declared = set(r.get("source_ids") or [])
+        related = set(src_by_res.get(rid) or [])
+        if declared != related:
+            add("ERROR", "VR-E11",
+                f"real resource {rid} 的 source_ids={sorted(declared)} 与 resource-source 关系 {sorted(related)} 不一致")
+        for sid in declared:
+            if sid not in source_by_id:
+                add("ERROR", "VR-E11", f"real resource {rid} 引用不存在的 source_id: {sid}")
+
+        # ---- VR-E12 绑定 Source 的许可元数据必须完整 ----
+        for src in bound_sources:
+            if src is None:
+                continue
+            missing = [k for k in ("license", "license_url", "observed_at", "verification_status")
+                       if not src.get(k)]
+            if missing:
+                add("ERROR", "VR-E12",
+                    f"real resource {rid} 的 source {src.get('source_id')} 缺少许可元数据: {missing}")
+
+        # ---- VR-C12 未知许可不得表示为开放许可 ----
+        for src in bound_sources:
+            if src is None:
+                continue
+            license_unknown = (src.get("license") in UNKNOWN_LICENSE_TOKENS) \
+                or (src.get("usage_permission") in UNKNOWN_LICENSE_TOKENS)
+            if not license_unknown:
+                continue
+            claims = [k for k in OPEN_CLAIM_KEYS if src.get(k) is True]
+            if claims:
+                add("BLOCKER", "VR-C12",
+                    f"real resource {rid} 的 source {src.get('source_id')} 许可状态未知，"
+                    f"却声明 {claims} —— 未知许可不得被当作开放许可")
+
+        # ---- VR-C13..C16 猜字段 ----
+        verified = verified_fields_by_res.get(rid, set())
+        for field, rule in REAL_FACT_FIELDS.items():
+            if r.get(field) is None:
+                continue
+            if field not in verified:
+                add("BLOCKER", rule,
+                    f"real resource {rid} 的 {field}={r.get(field)!r} 没有任何来源在 "
+                    f"source_verified_fields 中声明支持 —— 视为猜测值")
+
     # ---------- ERROR ----------
     published_by_res = {}
     for rv in reviews:
@@ -242,12 +339,23 @@ def main():
             add("WARN", "VR-W04", f"resource {rid} 缺少时长/周投入估算")
         if r.get("certificate_available") is None:
             add("WARN", "VR-W05", f"resource {rid} certificate_available=null")
+        if r.get("data_class") == "real" and not r.get("description"):
+            add("WARN", "VR-W06", f"real resource {rid} 缺少描述（前端必须显示「官方描述未核验」）")
 
     # ---------- 输出 ----------
     blockers = [i for i in issues if i[0] == "BLOCKER"]
     errors = [i for i in issues if i[0] == "ERROR"]
     warns = [i for i in issues if i[0] == "WARN"]
-    print(f"CourseMap data validation — BLOCKER: {len(blockers)}  ERROR: {len(errors)}  WARN: {len(warns)}")
+    n_demo = sum(1 for r in resources if r.get("data_class") == "demo")
+    n_real = sum(1 for r in resources if r.get("data_class") == "real")
+    n_src_real = sum(1 for s in sources if s.get("data_class") == "real")
+    n_real_no_src = sum(1 for r in resources
+                        if r.get("data_class") == "real" and not (src_by_res.get(r.get("resource_id")) or []))
+    print("CourseMap data validation (Data-1 · rules v0.2)")
+    print(f"  resources: {n_demo} demo + {n_real} real = {len(resources)}")
+    print(f"  sources:   {len(sources) - n_src_real} demo + {n_src_real} real = {len(sources)}")
+    print(f"  real resources without Source: {n_real_no_src}")
+    print(f"  BLOCKER: {len(blockers)}  ERROR: {len(errors)}  WARN: {len(warns)}")
     for sev in ("BLOCKER", "ERROR", "WARN"):
         for s, rid_, msg in issues:
             if s == sev:
