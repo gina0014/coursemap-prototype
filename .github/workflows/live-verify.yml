@@ -92,6 +92,20 @@ jobs:
       - name: Secret scan (no leaked credentials)
         run: node scripts/validate/secret_scan.mjs
 
+      # 模块 Y：14 条最终门禁逐条执行并落盘证据。
+      # 生产相关的 2 条（真实 DeepSeek 调用 / 公网 E2E）在此环境中为 BLOCKED，
+      # 由后续作业补齐；--allow-blocked 使离线作业在「无 FAIL」时通过。
+      - name: Final gates (Module Y)
+        run: node scripts/verify/data1_final_gates.mjs --allow-blocked
+
+      - name: Upload final gate evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data1-final-gates
+          path: docs/data-integration/evidence/data1_final_gates.*
+          if-no-files-found: warn
+
   public-e2e:
     name: public frontend E2E (real browser)
     runs-on: ubuntu-latest

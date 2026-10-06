@@ -1,0 +1,36 @@
+CourseMap Phase Data-1 + AI Production Activation — Final Gates (Module Y)
+generatedAt : 2026-10-06T12:15:59.842Z
+git HEAD    : aefca04300dd1a6cd1450bc47e07bd85432e3bbf (master)
+dataset     : 88 resources (48 demo + 40 real), 42 sources (2 demo + 40 real)
+sha256      : resources=a76c00ed5c9527fc88d5907173093a71dc914c9aef6e783a012b99175b756728 sources=f4ae1a106a93755553276ad2f39b8d742495d3b1d514db974db22b7b46e00e80 relations=8084615d8fc85424ca3d32d5ab4126de878b52c8166051be23b8e3cc79bd639e
+licenses    : CC BY-NC-SA 4.0 × 40
+
+id      status   name
+------------------------------------------------------------------------------
+Y-01    PASS     Real Resources > 0 — real=40 (threshold: >0)
+Y-02    PASS     All real resources have ≥1 Source — 40/40 bound; validator reports 0 unbound
+Y-03    PASS     License Audit (no misdeclared openness) — 40 real sources audited; licenses: CC BY-NC-SA 4.0×40
+Y-04    PASS     Data Validation BLOCKER = 0 — validate exit=0, BLOCKER=0
+Y-05    PASS     Data Validation ERROR = 0 — ERROR=0, WARN=149
+Y-06    BLOCKED  Real DeepSeek Call = PASS (production) — 未录制到真实调用证据（30_live_public_verification.json 不存在）；本机 probe=unreachable (AbortError)，后端可达性=false
+Y-07    PASS     CourseMap Retrieval = PASS — 6/6 assertions green; intent → retrieval → grounded candidates carrying source/license/official_url
+Y-08    PASS     Hallucinated Resource = 0 — 5/5 assertions green; non-existent course rejected; unknown goal → NO_MATCHING_RESOURCE
+Y-09    PASS     Fact Binding = PASS — 3/3 assertions green; model-invented duration_hours=42 discarded; fee/official_url equal Repository values
+Y-10    PASS     Unknown Field Test = PASS — 6/6 assertions green; duration_hours=null → unknown_fields + "CourseMap 当前未核验该字段" instruction
+Y-11    PASS     Source Binding = PASS — 5/5 assertions green; every recommendation binds resource_id → source_id → official_url; verified_recommendation honest
+Y-12    PASS     Secret Leak = 0 — secret scan clean (exit 0)
+Y-13    BLOCKED  Public E2E = PASS (production) — 仓库内最新的公网 E2E 证据是**历史失败**记录（2026-10-06T09:10:19.760Z：35 checks，10 FAIL）；该证据产出于本轮修复之前，不能用于本轮验收，需对本次推送的 commit 重跑
+Y-14    PASS     Regression = PASS — runtime 84/84 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 64/64; total PASS=246 FAIL=0
+------------------------------------------------------------------------------
+PASS=12  FAIL=0  BLOCKED=2  (assertions=246)
+
+COURSEMAP DATA-1 + AI ACTIVATION PARTIAL
+OFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE
+PENDING (需 GitHub Actions live-verify 在本次推送的 commit 上执行):
+  - REAL DEEPSEEK AI ADVISOR ACTIVE  → backend-verify / live_public_verify.mjs
+  - EVIDENCE-GROUNDED RECOMMENDATION READY (public path) → public-e2e / public_e2e.mjs
+
+CAVEATS
+  - 公网 E2E：仓库内最新证据为历史 FAIL（2026-10-06T09:10:19.760Z，10/35 失败），产出于本轮修复之前，不能作为本轮验收依据。
+  - 真实 DeepSeek 调用：从未录制到 CI 证据（30_live_public_verification.json 不存在）。
+  - 推送被本机环境影响阻断（git credential-helper 无法完成认证），因此上述两项生产门禁尚无法对本次提交执行。需要用户侧完成一次 push 以触发 live-verify。

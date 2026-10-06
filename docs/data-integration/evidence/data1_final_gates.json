@@ -1,0 +1,301 @@
+{
+  "phase": "CourseMap Phase Data-1 + AI Production Activation",
+  "module": "Y — Final Gates",
+  "generatedAt": "2026-10-06T12:15:59.842Z",
+  "verdict": "PARTIAL",
+  "banner": "COURSEMAP DATA-1 + AI ACTIVATION PARTIAL\nOFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE\nPENDING (需 GitHub Actions live-verify 在本次推送的 commit 上执行):\n  - REAL DEEPSEEK AI ADVISOR ACTIVE  → backend-verify / live_public_verify.mjs\n  - EVIDENCE-GROUNDED RECOMMENDATION READY (public path) → public-e2e / public_e2e.mjs",
+  "baselines": {
+    "git": {
+      "head": "aefca04300dd1a6cd1450bc47e07bd85432e3bbf",
+      "branch": "master"
+    },
+    "datasetFiles": {
+      "resources": {
+        "total": 88,
+        "demo": 48,
+        "real": 40,
+        "sha256": "a76c00ed5c9527fc88d5907173093a71dc914c9aef6e783a012b99175b756728"
+      },
+      "sources": {
+        "total": 42,
+        "demo": 2,
+        "real": 40,
+        "sha256": "f4ae1a106a93755553276ad2f39b8d742495d3b1d514db974db22b7b46e00e80"
+      },
+      "resource_source": {
+        "total": 88,
+        "sha256": "8084615d8fc85424ca3d32d5ab4126de878b52c8166051be23b8e3cc79bd639e"
+      }
+    }
+  },
+  "summary": {
+    "pass": 12,
+    "fail": 0,
+    "blocked": 2,
+    "assertionsTotal": 246
+  },
+  "caveats": [
+    "公网 E2E：仓库内最新证据为历史 FAIL（2026-10-06T09:10:19.760Z，10/35 失败），产出于本轮修复之前，不能作为本轮验收依据。",
+    "真实 DeepSeek 调用：从未录制到 CI 证据（30_live_public_verification.json 不存在）。",
+    "推送被本机环境影响阻断（git credential-helper 无法完成认证），因此上述两项生产门禁尚无法对本次提交执行。需要用户侧完成一次 push 以触发 live-verify。"
+  ],
+  "suiteOutcome": {
+    "runtime": {
+      "pass": 84,
+      "fail": 0,
+      "ok": true
+    },
+    "ai-unit": {
+      "pass": 78,
+      "fail": 0,
+      "ok": true
+    },
+    "ai-routing": {
+      "pass": 10,
+      "fail": 0,
+      "ok": true
+    },
+    "ai-integration": {
+      "pass": 10,
+      "fail": 0,
+      "ok": true
+    },
+    "data1": {
+      "pass": 64,
+      "fail": 0,
+      "ok": true
+    }
+  },
+  "licenseHistogram": {
+    "CC BY-NC-SA 4.0": 40
+  },
+  "gates": [
+    {
+      "id": "Y-01",
+      "name": "Real Resources > 0",
+      "status": "PASS",
+      "detail": "real=40 (threshold: >0)",
+      "evidence": {
+        "path": "data/resources.json",
+        "query": "data_class === 'real'",
+        "value": 40
+      }
+    },
+    {
+      "id": "Y-02",
+      "name": "All real resources have ≥1 Source",
+      "status": "PASS",
+      "detail": "40/40 bound; validator reports 0 unbound",
+      "offending": [],
+      "evidence": [
+        {
+          "source": "data/resource-source.json",
+          "value": 40
+        },
+        {
+          "source": "validate_data.py::real resources without Source",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": "Y-03",
+      "name": "License Audit (no misdeclared openness)",
+      "status": "PASS",
+      "detail": "40 real sources audited; licenses: CC BY-NC-SA 4.0×40",
+      "offending": [],
+      "histogram": {
+        "CC BY-NC-SA 4.0": 40
+      }
+    },
+    {
+      "id": "Y-04",
+      "name": "Data Validation BLOCKER = 0",
+      "status": "PASS",
+      "detail": "validate exit=0, BLOCKER=0",
+      "evidence": {
+        "source": "scripts/validate/validate_data.py",
+        "raw": "BLOCKER: 0  ERROR: 0  WARN: 149"
+      }
+    },
+    {
+      "id": "Y-05",
+      "name": "Data Validation ERROR = 0",
+      "status": "PASS",
+      "detail": "ERROR=0, WARN=149",
+      "evidence": {
+        "source": "scripts/validate/validate_data.py"
+      }
+    },
+    {
+      "id": "Y-06",
+      "name": "Real DeepSeek Call = PASS (production)",
+      "status": "BLOCKED",
+      "detail": "未录制到真实调用证据（30_live_public_verification.json 不存在）；本机 probe=unreachable (AbortError)，后端可达性=false",
+      "backend": "https://coursemap-prototype.vercel.app",
+      "reachableFromDevMachine": false,
+      "devMachineProbe": "unreachable (AbortError)",
+      "evidence": {
+        "exists": false
+      },
+      "owner": "github-actions:live-verify / backend-verify",
+      "requiredScript": "scripts/verify/live_public_verify.mjs",
+      "evidenceExpectedAt": "docs/ai-integration/evidence/30_live_public_verification.json"
+    },
+    {
+      "id": "Y-07",
+      "name": "CourseMap Retrieval = PASS",
+      "status": "PASS",
+      "detail": "6/6 assertions green; intent → retrieval → grounded candidates carrying source/license/official_url",
+      "assertions": [
+        "R-01",
+        "R-01b",
+        "R-01c",
+        "R-03",
+        "R-03g",
+        "R-03k"
+      ],
+      "missing": [],
+      "testFile": "tests/ai/data1.test.mjs"
+    },
+    {
+      "id": "Y-08",
+      "name": "Hallucinated Resource = 0",
+      "status": "PASS",
+      "detail": "5/5 assertions green; non-existent course rejected; unknown goal → NO_MATCHING_RESOURCE",
+      "assertions": [
+        "S-01",
+        "S-01b",
+        "S-01c",
+        "S-02",
+        "S-04"
+      ],
+      "missing": [],
+      "testFile": "tests/ai/data1.test.mjs"
+    },
+    {
+      "id": "Y-09",
+      "name": "Fact Binding = PASS",
+      "status": "PASS",
+      "detail": "3/3 assertions green; model-invented duration_hours=42 discarded; fee/official_url equal Repository values",
+      "assertions": [
+        "R-03e",
+        "R-03i",
+        "T-01"
+      ],
+      "missing": [],
+      "testFile": "tests/ai/data1.test.mjs"
+    },
+    {
+      "id": "Y-10",
+      "name": "Unknown Field Test = PASS",
+      "status": "PASS",
+      "detail": "6/6 assertions green; duration_hours=null → unknown_fields + \"CourseMap 当前未核验该字段\" instruction",
+      "assertions": [
+        "T-00",
+        "T-01b",
+        "T-02",
+        "T-03",
+        "T-04",
+        "T-05"
+      ],
+      "missing": [],
+      "testFile": "tests/ai/data1.test.mjs"
+    },
+    {
+      "id": "Y-11",
+      "name": "Source Binding = PASS",
+      "status": "PASS",
+      "detail": "5/5 assertions green; every recommendation binds resource_id → source_id → official_url; verified_recommendation honest",
+      "assertions": [
+        "R-03c",
+        "R-03d",
+        "R-03h",
+        "R-03l",
+        "U-04b"
+      ],
+      "missing": [],
+      "testFile": "tests/ai/data1.test.mjs"
+    },
+    {
+      "id": "Y-12",
+      "name": "Secret Leak = 0",
+      "status": "PASS",
+      "detail": "secret scan clean (exit 0)",
+      "evidence": {
+        "script": "scripts/validate/secret_scan.mjs",
+        "exit": 0
+      }
+    },
+    {
+      "id": "Y-13",
+      "name": "Public E2E = PASS (production)",
+      "status": "BLOCKED",
+      "detail": "仓库内最新的公网 E2E 证据是**历史失败**记录（2026-10-06T09:10:19.760Z：35 checks，10 FAIL）；该证据产出于本轮修复之前，不能用于本轮验收，需对本次推送的 commit 重跑",
+      "evidencePath": "docs/ai-integration/evidence/31_public_e2e.json",
+      "recordedEvidence": {
+        "exists": true,
+        "generatedAt": "2026-10-06T09:10:19.760Z",
+        "total": 35,
+        "fail": 10,
+        "verdict": "FAIL",
+        "failedIds": [
+          "S1-01",
+          "S1-04",
+          "S1-05",
+          "S2-01",
+          "S2-04",
+          "S2-05",
+          "S3-01",
+          "S3-04",
+          "S3-05",
+          "E-90"
+        ]
+      },
+      "owner": "github-actions:live-verify / public-e2e",
+      "scenarios": [
+        "我是零基础大学生，想学 Python",
+        "预算100元 每周5小时 想学数据分析",
+        "会R 想入门单细胞分析"
+      ]
+    },
+    {
+      "id": "Y-14",
+      "name": "Regression = PASS",
+      "status": "PASS",
+      "detail": "runtime 84/84 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 64/64; total PASS=246 FAIL=0",
+      "suiteOutcome": {
+        "runtime": {
+          "pass": 84,
+          "fail": 0,
+          "ok": true
+        },
+        "ai-unit": {
+          "pass": 78,
+          "fail": 0,
+          "ok": true
+        },
+        "ai-routing": {
+          "pass": 10,
+          "fail": 0,
+          "ok": true
+        },
+        "ai-integration": {
+          "pass": 10,
+          "fail": 0,
+          "ok": true
+        },
+        "data1": {
+          "pass": 64,
+          "fail": 0,
+          "ok": true
+        }
+      },
+      "evidence": [
+        "tests/runtime.test.mjs",
+        "tests/ai/*.test.mjs",
+        "docs/data-integration/evidence/data1_final_gates.json"
+      ]
+    }
+  ]
+}

@@ -15,7 +15,9 @@
     "validate": "python scripts/validate/validate_data.py",
     "smoke": "node scripts/regression/browser_smoke.mjs",
     "verify:live": "node scripts/verify/live_public_verify.mjs",
-    "verify:e2e": "node scripts/verify/public_e2e.mjs"
+    "verify:e2e": "node scripts/verify/public_e2e.mjs",
+    "verify:data1": "node scripts/verify/data1_final_gates.mjs",
+    "verify:data1:offline": "node scripts/verify/data1_final_gates.mjs --allow-blocked"
   },
   "license": "MIT"
 }
