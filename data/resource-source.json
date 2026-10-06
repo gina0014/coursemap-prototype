@@ -1334,5 +1334,480 @@
       "learning_mode"
     ],
     "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
+  },
+  {
+    "resource_source_id": 141,
+    "resource_id": 141,
+    "source_id": 141,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 142,
+    "resource_id": 142,
+    "source_id": 142,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 143,
+    "resource_id": 143,
+    "source_id": 143,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 144,
+    "resource_id": 144,
+    "source_id": 144,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 145,
+    "resource_id": 145,
+    "source_id": 145,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 146,
+    "resource_id": 146,
+    "source_id": 146,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 147,
+    "resource_id": 147,
+    "source_id": 147,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 148,
+    "resource_id": 148,
+    "source_id": 148,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 149,
+    "resource_id": 149,
+    "source_id": 149,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "prerequisite_skill_ids"
+    ],
+    "note": "元数据取自 CS50 官方课程页、/license/ 页与官方 FAQ；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 150,
+    "resource_id": 150,
+    "source_id": 150,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official",
+      "license"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。 许可字段无法由本页声明支持，故列入 editorially_mapped_fields 并记为 unknown。"
+  },
+  {
+    "resource_source_id": 151,
+    "resource_id": 151,
+    "source_id": 151,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。"
+  },
+  {
+    "resource_source_id": 152,
+    "resource_id": 152,
+    "source_id": 152,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。"
+  },
+  {
+    "resource_source_id": 153,
+    "resource_id": 153,
+    "source_id": 153,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。"
+  },
+  {
+    "resource_source_id": 154,
+    "resource_id": 154,
+    "source_id": 154,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。"
+  },
+  {
+    "resource_source_id": 155,
+    "resource_id": 155,
+    "source_id": 155,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "prerequisites_official"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "level_official"
+    ],
+    "note": "元数据取自 Google for Developers 官方机器学习课程/指南页；未保存任何课程正文、视频或图片。"
+  },
+  {
+    "resource_source_id": 156,
+    "resource_id": 156,
+    "source_id": 156,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 157,
+    "resource_id": 157,
+    "source_id": 157,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "level_official",
+      "language",
+      "learning_mode",
+      "fee",
+      "certificate_available"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type"
+    ],
+    "note": "元数据取自 MIT OCW 官方课程页与官方许可页；未保存任何课程正文、讲义或视频。"
+  },
+  {
+    "resource_source_id": 158,
+    "resource_id": 158,
+    "source_id": 158,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
+  },
+  {
+    "resource_source_id": 159,
+    "resource_id": 159,
+    "source_id": 159,
+    "field_scope": "provenance",
+    "data_class": "real",
+    "source_verified_fields": [
+      "title",
+      "provider",
+      "url",
+      "license",
+      "language",
+      "publish_date",
+      "authors",
+      "fee"
+    ],
+    "editorially_mapped_fields": [
+      "subject_id",
+      "learning_goal_ids",
+      "skill_ids",
+      "resource_type",
+      "learning_mode"
+    ],
+    "note": "元数据取自 OpenStax 官方书目页与章节署名块；未保存任何正文内容。"
   }
 ]

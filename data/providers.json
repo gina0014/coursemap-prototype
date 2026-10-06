@@ -98,5 +98,25 @@
     "official_url": "https://openstax.org/",
     "status": "published",
     "data_class": "real"
+  },
+  {
+    "provider_id": 103,
+    "name": "哈佛大学 CS50 公开课",
+    "name_en": "Harvard University (CS50 OpenCourseWare)",
+    "provider_type": "university_open",
+    "description": "哈佛大学 CS50 系列课程的官方公开站点。全部课程可免费在线自学；CS50 另发**免费** CS50 Certificate（非学分、非 Harvard 认证）。",
+    "official_url": "https://cs50.harvard.edu/",
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "provider_id": 104,
+    "name": "Google for Developers（机器学习课程）",
+    "name_en": "Google for Developers (Machine Learning Education)",
+    "provider_type": "company_open",
+    "description": "Google 官方开发者文档站的机器学习教学资源（速成课程、指南、术语库）。页面文字内容按 CC BY 4.0 发布（商标与第三方媒体除外）。",
+    "official_url": "https://developers.google.com/machine-learning",
+    "status": "published",
+    "data_class": "real"
   }
 ]

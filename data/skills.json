@@ -152,5 +152,40 @@
     "subject_id": 6,
     "prerequisite_skill_ids": [],
     "data_class": "real"
+  },
+  {
+    "skill_id": 22,
+    "name": "算法与数据结构",
+    "subject_id": 1,
+    "prerequisite_skill_ids": [
+      1
+    ],
+    "data_class": "real"
+  },
+  {
+    "skill_id": 23,
+    "name": "Web 开发基础",
+    "subject_id": 1,
+    "prerequisite_skill_ids": [
+      1,
+      5
+    ],
+    "data_class": "real"
+  },
+  {
+    "skill_id": 24,
+    "name": "计算思维与科学计算",
+    "subject_id": 1,
+    "prerequisite_skill_ids": [],
+    "data_class": "real"
+  },
+  {
+    "skill_id": 25,
+    "name": "数据分析方法",
+    "subject_id": 2,
+    "prerequisite_skill_ids": [
+      6
+    ],
+    "data_class": "real"
   }
 ]

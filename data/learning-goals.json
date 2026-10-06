@@ -311,5 +311,88 @@
     ],
     "status": "published",
     "data_class": "real"
+  },
+  {
+    "goal_id": 16,
+    "name": "算法与数据结构",
+    "subject_id": 1,
+    "description": "理解算法设计与复杂度分析，能用代码实现并评估常见算法与数据结构。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      22
+    ],
+    "prerequisite_goal_ids": [
+      1
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "算法",
+      "数据结构",
+      "algorithms",
+      "data structures"
+    ],
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "goal_id": 17,
+    "name": "Web 应用开发",
+    "subject_id": 1,
+    "description": "用 Python / JavaScript / SQL 构建并部署可交互的 Web 应用。",
+    "recommended_level": "intermediate",
+    "related_skill_ids": [
+      23
+    ],
+    "prerequisite_goal_ids": [
+      1
+    ],
+    "next_goal_ids": [],
+    "aliases": [
+      "Web 开发",
+      "web development",
+      "django",
+      "前端后端"
+    ],
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "goal_id": 18,
+    "name": "计算思维与科学计算",
+    "subject_id": 1,
+    "description": "用编程与数学建模处理真实问题：数据分析、数值方法与计算模型。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      24
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "计算思维",
+      "computational thinking",
+      "科学计算"
+    ],
+    "status": "published",
+    "data_class": "real"
+  },
+  {
+    "goal_id": 19,
+    "name": "数据分析与统计推断",
+    "subject_id": 2,
+    "description": "从数据出发做描述、推断与可视化：理解变异、抽样与统计推断，并把结论用在真实数据集上。",
+    "recommended_level": "beginner",
+    "related_skill_ids": [
+      25
+    ],
+    "prerequisite_goal_ids": [],
+    "next_goal_ids": [],
+    "aliases": [
+      "数据分析",
+      "data analysis",
+      "统计推断",
+      "statistical thinking"
+    ],
+    "status": "published",
+    "data_class": "real"
   }
 ]
