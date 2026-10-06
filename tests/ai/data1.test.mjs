@@ -295,10 +295,24 @@ check('U-04', '所有真实来源都带 license（无来源=不许发布）',
   realSources.every((s) => typeof s.license === 'string' && s.license.length > 0));
 check('U-04b', '所有真实来源都带官方链接',
   realSources.every((s) => /^https?:\/\//.test(s.official_url || s.url || '')));
-check('U-04c', '没有任何真实来源被误标为公有领域或允许商用',
-  realSources.every((s) => s.public_domain !== true && s.commercial_use !== true),
-  JSON.stringify(realSources.filter((s) => s.public_domain === true || s.commercial_use === true)
-    .map((s) => s.source_id)));
+/* U-04c 原断言是「没有任何真实来源被标为公有领域或允许商用」。
+   Real OER Expansion 接入 Google 后，该断言的前提不成立了：
+   **CC BY 4.0 本来就允许商用**，把它标成 commercial_use=false 才是错的。
+   因此拆成两条更精确的规则： */
+check('U-04c', '没有任何真实来源被误标为公有领域（40+ 条来源无一声称 PD）',
+  realSources.every((s) => s.public_domain !== true),
+  JSON.stringify(realSources.filter((s) => s.public_domain === true).map((s) => s.source_id)));
+/* 「允许商用」只允许出现在**非 NC** 许可上。
+   CC BY-NC-SA 却标 commercial_use=true → 误标；CC BY 4.0 标 true → 事实。 */
+check('U-04d', '「允许商用」只出现在非 NC 许可上（NC 许可不得被标为可商用）',
+  realSources.filter((s) => s.commercial_use === true)
+    .every((s) => !/NC|NonCommercial/i.test(s.license))
+  && realSources.every((s) => !(/NC|NonCommercial/i.test(s.license) && s.commercial_use === true)),
+  JSON.stringify(realSources.filter((s) => s.commercial_use === true).map((s) => `${s.source_id}:${s.license}`)));
+check('U-04e', '许可未知的来源必须记为 unknown，且不得声明任何开放语义',
+  realSources.filter((s) => s.license === 'unknown')
+    .every((s) => s.usage_permission === 'unknown' && s.public_domain !== true
+      && s.commercial_use !== true));
 
 /* U-05 licenseSummaryFor：许可事实由 Repository 提供，供 UI 与 AI 共同使用 */
 const lic = repo.licenseSummaryFor(realPy.resource_id);

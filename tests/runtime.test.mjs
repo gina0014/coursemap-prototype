@@ -367,10 +367,36 @@ check('T-21j', `real Source 必须显式记录 license 与 license_url（当前 
   realSources.length > 0 && realSources.every((s) => typeof s.license === 'string' && s.license.length > 0
     && typeof s.license_url === 'string' && s.license_url.startsWith('http')));
 
-check('T-21k', '许可布尔量必须是显式 true/false，不得用 null 表示「开放」',
-  realSources.every((s) => typeof s.commercial_use === 'boolean'
-    && typeof s.public_domain === 'boolean'
-    && typeof s.adaptation_allowed === 'boolean'));
+/* Real OER Expansion 修正：原断言要求「所有真实来源的许可布尔量必须是显式 true/false」。
+   接入 Google（CC BY 4.0）与一条「官方页面无许可声明」的来源后，该断言编码的是
+   「真实资源一定是 CC BY-NC-SA」这一过时前提。
+   正确规则分两档：
+     · 已声明许可（如 CC BY-NC-SA 4.0 / CC BY 4.0）→ 布尔量必须是显式 true/false；
+     · 许可状态未知（license === 'unknown'）→ 必须是 null，且**绝不允许**出现 true
+       （null = 不知道；true = 断言了来源没有声明的事）。 */
+check('T-21k', '许可布尔量：已知许可为显式 true/false；未知许可必须为 null 且不得为 true',
+  realSources.every((s) => {
+    const unknown = !s.license || s.license === 'unknown';
+    if (unknown) {
+      return s.commercial_use !== true && s.public_domain !== true && s.adaptation_allowed !== true;
+    }
+    return typeof s.commercial_use === 'boolean'
+      && typeof s.public_domain === 'boolean'
+      && typeof s.adaptation_allowed === 'boolean';
+  }));
+
+/* T-21k2：许可未知的来源必须把 usage_permission 也标为 unknown，不得留空或填开放值。
+   留空会让前端把「不知道」渲染成「没问题」。 */
+check('T-21k2', '许可未知的来源 usage_permission 必须为 unknown（不得留空/填开放值）',
+  realSources.filter((s) => s.license === 'unknown')
+    .every((s) => s.usage_permission === 'unknown'));
+
+/* T-21k3：数据集中必须至少存在一种「非 NC」的真实许可，且它确实带 commercial_use=true。
+   这是为了防止「所有真实资源都是同一个许可」的伪多样性与误配（CC BY 4.0 允许商用是事实）。 */
+check('T-21k3', '存在 CC BY 4.0 真实来源，且其 commercial_use 为 true（事实，不是误标）',
+  realSources.filter((s) => /^CC BY 4\.0$/i.test(s.license))
+    .every((s) => s.commercial_use === true)
+  && realSources.some((s) => /^CC BY 4\.0$/i.test(s.license)));
 
 check('T-21l', 'NonCommercial 许可不得被标记为可商用或公有领域',
   realSources.every((s) => !(/NC|NonCommercial/i.test(s.license)
