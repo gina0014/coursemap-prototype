@@ -76,8 +76,16 @@
 
 ## M15 Deployment / M16 Public E2E
 
-- **Result**: 前端 v0.2 公网已上线；后端停在授权边界（Key + 平台账号）；7 Case E2E PENDING。
+- **Result（初版）**: 前端 v0.2 公网已上线；后端停在授权边界（Key + 平台账号）；7 Case E2E PENDING。
 - **Git Commit**: ai-10（部署配置在 ai-01 已含）
+- **Issue**: 推送后公网仍服务 v0.1 —— Pages 默认 Jekyll 构建失败，部署未推进。
+- **Fix**: commit `f390fea` 在仓库根新增空 `.nojekyll`，关闭 Jekyll，原始静态树直出。
+- **Re-verify（公网）**: HEAD `f390fea`；`VERSION` → `CourseMap-v0.2-AI-Beta`；`js/ai-client.js`
+  （v0.1 不存在）返回 200；`.md` 原样返回（Jekyll 已禁用）。
+- **Public smoke**: `COURSEMAP_BASE=https://gina0014.github.io/coursemap-prototype` →
+  **16/16 PASS**，Console Errors 0 / Failed Requests 0 / Exceptions 0；17 张截图与本地逐像素一致。
+- **Evidence**: docs/ai-integration/evidence/20_public_deploy_verification.txt
+- **Result（终版）**: 前端公网部署 **VERIFIED**；后端 **NOT DEPLOYED**（按设计，等待 Key + 授权）。
 
 ---
 
@@ -92,4 +100,8 @@
 
 ## FINAL STATUS
 **COURSEMAP AI-1 ENGINEERING COMPLETE — WAITING FOR DEEPSEEK_API_KEY / DEPLOYMENT AUTHORIZATION**
+
+- 前端公网（CourseMap-v0.2-AI-Beta）：**VERIFIED**（VERSION 正确 + 公网 16/16 smoke + 0 控制台错误）。
+- 后端（Vercel Function）：**NOT DEPLOYED**，按设计停在人工密钥/授权边界。
+- 唯一人工操作：提供 `DEEPSEEK_API_KEY` 并在部署平台配置 Secret（见 15_Deployment.md）。
 

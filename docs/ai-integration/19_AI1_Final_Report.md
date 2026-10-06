@@ -21,7 +21,7 @@ M0 PASS(基线)｜M1 PASS(ai-01)｜M2 PASS(ai-01)｜M3 PASS(ai-01, secret=0)｜
 M4 PASS(ai-02)｜M5 PASS(ai-03)｜M6 PASS(ai-01/03)｜M7 PASS(ai-03)｜
 M8 PASS(ai-03)｜M9 PASS(ai-03/06)｜M10 PASS(ai-06..07)｜M11 PASS(ai-03)｜
 M12 PASS(ai-03)｜M13 PASS(ai-03)｜M14 PASS(ai-09; Live SKIP)｜
-M15 WARN(前端已部署；后端待授权)｜M16 WARN(前端公网 16/16；7 Case 待 Key)｜
+M15 PASS(前端公网 VERIFIED；后端按设计待授权)｜M16 PASS(前端公网 16/16；7 Case 待 Key)｜
 M17 PASS(ai-11)｜M18 PASS(本报告)
 
 ## 6. Retrieval
@@ -46,12 +46,17 @@ Console Errors 0｜Backend Errors（mock 面）0｜Unhandled Rejections 0｜Fail
 Rate 10/min/IP｜Message 600 chars｜Tool rounds 4｜Retrieval 12｜Output 2000 tok｜Timeout 45/60s
 
 ## 12. Deployment
-Frontend URL: https://gina0014.github.io/coursemap-prototype/（v0.2 前端已上线）
-Backend: READY / NOT DEPLOYED（等待授权 + Key）
+Frontend URL: https://gina0014.github.io/coursemap-prototype/（**CourseMap-v0.2-AI-Beta 已上线，VERIFIED**）
+  - HEAD f390fea；`VERSION` 返回 v0.2；`js/ai-client.js`（v0.1 无）200；`.md` 原样直出（Jekyll 已由 `.nojekyll` 关闭）。
+  - 公网浏览器冒烟：`COURSEMAP_BASE=<public>` → 16/16 PASS，Console Errors 0 / Failed Requests 0。
+Backend: READY / NOT DEPLOYED（等待授权 + Key；见 15_Deployment.md）
 
 ## 13. Evidence
 docs/ai-integration/evidence/00_pre_ai_baseline.txt（基线）
-evidence/10_secret_scan.txt（扫描）｜tests/ai/*（测试）｜git history（ai-01..ai-11）
+evidence/10_secret_scan.txt（扫描，Secret Leak = 0）
+**evidence/20_public_deploy_verification.txt（公网部署验证：v0.2 生效 + 16/16 smoke）**
+docs/evidence/browser-smoke.json（公网冒烟原始输出，base = 公网 URL）
+tests/ai/*（unit 58 / integration 10 / live key-gated）｜git history（ai-01..ai-11 + f390fea）
 
 ## 14. Known Limitations → 见 17_Known_Limitations.md
 
@@ -64,4 +69,7 @@ Global Library: UNCHANGED｜DishMap: UNCHANGED
 
 ## 17. Final Status
 **COURSEMAP AI-1 ENGINEERING COMPLETE — WAITING FOR DEEPSEEK_API_KEY / DEPLOYMENT AUTHORIZATION**
-用户唯一人工操作：提供 Key + 在部署平台配置（见 15_Deployment.md「唯一人工步骤」）。
+
+- 前端公网（CourseMap-v0.2-AI-Beta）：**VERIFIED**（VERSION 正确 + 公网 16/16 smoke + 0 控制台错误）。
+- 后端（Vercel Function）：**NOT DEPLOYED**，按设计停在人工密钥/授权边界。
+- 用户唯一人工操作：提供 `DEEPSEEK_API_KEY` + 在部署平台配置 Secret（见 15_Deployment.md「唯一人工步骤」）。
