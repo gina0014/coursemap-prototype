@@ -116,6 +116,12 @@ export async function handleAIRequest(req, res) {
           // 模型名与 base URL 不是敏感信息（密钥才是），公开它们是为了让
           // 「配置的模型 == 官方在售模型」这件事可被外部验证（Module I）。
           model: CONFIG.deepseek.model,
+          // configured_model：环境变量里**写的是什么**。生产缺陷记录（2026-10-06）：
+          // Vercel 遗留 DEEPSEEK_MODEL=deepseek-chat（已退役），仅凭 model 字段
+          // 无法区分「代码默认值」与「平台变量覆写」。两个都公布，才能定位到
+          // 「该改的是平台变量，不是代码」。model_deprecated=true 表示发生了映射。
+          configured_model: CONFIG.deepseek.configuredModel,
+          model_deprecated: CONFIG.deepseek.modelDeprecated === true,
           thinking: CONFIG.deepseek.thinking ? 'enabled' : 'disabled',
           // 数据集真实/演示构成（Module P）：让「REAL AI ≠ ALL DATA REAL」可被验证。
           data_class_counts: counts,
