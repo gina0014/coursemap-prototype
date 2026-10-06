@@ -315,6 +315,8 @@ const SUITES = [
   { id: 'ai-routing', file: 'tests/ai/routing.test.mjs' },
   { id: 'ai-integration', file: 'tests/ai/integration.test.mjs' },
   { id: 'data1', file: 'tests/ai/data1.test.mjs' },
+  /* 模型输出健壮性：INVALID_MODEL_OUTPUT 回归 + 退役模型名映射 */
+  { id: 'model-output', file: 'tests/ai/model-output.test.mjs' },
   /* Real OER Expansion：真实资源扩容后的验收与首页精选模块 */
   { id: 'oer-expansion', file: 'tests/ai/oer-expansion.test.mjs' },
   { id: 'featured-oer', file: 'tests/ui/featured-oer.test.mjs' },

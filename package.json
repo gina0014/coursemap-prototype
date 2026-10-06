@@ -5,10 +5,11 @@
   "description": "CourseMap（学途）— 学习目标驱动的课程与学习资源智能决策平台（教育领域原型，AI-Beta）",
   "type": "module",
   "scripts": {
-    "test": "node tests/runtime.test.mjs && node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs && node tests/ai/data1.test.mjs && node tests/ai/oer-expansion.test.mjs && node tests/ui/featured-oer.test.mjs",
+    "test": "node tests/runtime.test.mjs && node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs && node tests/ai/data1.test.mjs && node tests/ai/model-output.test.mjs && node tests/ai/oer-expansion.test.mjs && node tests/ui/featured-oer.test.mjs",
     "test:core": "node tests/runtime.test.mjs",
-    "test:ai": "node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs && node tests/ai/data1.test.mjs && node tests/ai/oer-expansion.test.mjs",
+    "test:ai": "node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs && node tests/ai/data1.test.mjs && node tests/ai/model-output.test.mjs && node tests/ai/oer-expansion.test.mjs",
     "test:data1": "node tests/ai/data1.test.mjs",
+    "test:model-output": "node tests/ai/model-output.test.mjs",
     "test:oer": "node tests/ai/oer-expansion.test.mjs",
     "test:ui": "node tests/ui/featured-oer.test.mjs",
     "test:routing": "node tests/ai/routing.test.mjs",

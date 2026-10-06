@@ -52,17 +52,22 @@ export class MockLLMAdapter extends LLMAdapter {
     return { content: this._final, usage: { prompt_tokens: 200, completion_tokens: 80, total_tokens: 280 } };
   }
 
-  async chatWithTools({ messages, handleToolCall }) {
+  async chatWithTools({ messages, handleToolCall, expectJson = false }) {
     this.#assertOk();
     // 依次发出脚本化工具调用
     for (const { name, args } of this._toolCalls) {
       // eslint-disable-next-line no-await-in-loop
       await handleToolCall(name, args);
     }
-    return {
+    const out = {
       content: JSON.stringify(this._final),
       usage: { prompt_tokens: 300, completion_tokens: 120, total_tokens: 420 },
       toolCallCount: this._toolCalls.length,
     };
+    // 与 DeepSeekAdapter 接口保持一致：expectJson 时同时给出已解析对象
+    if (expectJson) out.json = this._final;
+    // 可脚本化的「原始文本」：用于测试终局轮返回非 JSON 文本的场景
+    if (typeof this._rawFinalText === 'string') out.content = this._rawFinalText;
+    return out;
   }
 }
