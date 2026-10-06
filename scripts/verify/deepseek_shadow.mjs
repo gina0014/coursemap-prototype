@@ -194,7 +194,7 @@ const server = createServer((req, res) => {
 
     const usage = { prompt_tokens: 100, completion_tokens: 80, total_tokens: 180 };
     const wrap = (message, finishReason) => send(res, 200, {
-      id: 'shadow', object: 'chat.completion', model: body.model || 'deepseek-chat',
+      id: 'shadow', object: 'chat.completion', model: body.model || 'deepseek-v4-flash',
       choices: [{ index: 0, message, finish_reason: finishReason }], usage,
     });
 

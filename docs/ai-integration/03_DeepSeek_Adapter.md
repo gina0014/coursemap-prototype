@@ -6,7 +6,7 @@
 ## Design Decision
 - 使用 DeepSeek 官方 OpenAI 兼容 API：`POST {DEEPSEEK_BASE_URL}/chat/completions`。
   Base URL / Model / 超时全部走环境变量（`DEEPSEEK_BASE_URL`、`DEEPSEEK_MODEL`，
-  默认 `https://api.deepseek.com` / `deepseek-chat`），不在业务代码散落 hardcode。
+  默认 `https://api.deepseek.com` / `deepseek-v4-flash`），不在业务代码散落 hardcode。
 - JSON 输出：`response_format: { type: 'json_object' }`（官方 JSON Output 机制），
   prompt 内同时给出 schema；解析前剥离偶发 markdown fence。
 - Tool Calling：官方 `tools` + `tool_calls` 协议，轮数上限内循环，最后一轮强制收口。

@@ -33,7 +33,7 @@ DeepSeek API  ──►  Grounded AI Response（Fact Hydration 由 Repository �
 | Key | 说明 |
 | --- | --- |
 | `DEEPSEEK_API_KEY` | **Secret**，仅服务端；前端与 Git 仓库零密钥 |
-| `DEEPSEEK_MODEL` | 可选，默认 `deepseek-chat` |
+| `DEEPSEEK_MODEL` | 可选，默认 `deepseek-v4-flash`（官方当前模型表；`deepseek-chat` 已于 2026-07-24 15:59 UTC 停用） |
 | `ALLOWED_ORIGIN` | 前端 origin 白名单（禁 `*`） |
 
 ## 部署指纹（本轮新增）

@@ -106,14 +106,25 @@ export async function handleAIRequest(req, res) {
     if (route === '/api/ai/health' && req.method === 'GET') {
       // 健康检查：不暴露内部细节；llm_configured 只反映服务端是否有 key
       const repoOk = repository.isAvailable;
+      const counts = repository.dataClassCounts ? repository.dataClassCounts() : null;
       send(res, 200, {
         success: true,
-        data: { status: repoOk ? 'ok' : 'degraded', llm_configured: hasDeepSeekKey(), adapter: hasDeepSeekKey() ? 'deepseek' : 'mock' },
+        data: {
+          status: repoOk ? 'ok' : 'degraded',
+          llm_configured: hasDeepSeekKey(),
+          adapter: hasDeepSeekKey() ? 'deepseek' : 'mock',
+          // 模型名与 base URL 不是敏感信息（密钥才是），公开它们是为了让
+          // 「配置的模型 == 官方在售模型」这件事可被外部验证（Module I）。
+          model: CONFIG.deepseek.model,
+          thinking: CONFIG.deepseek.thinking ? 'enabled' : 'disabled',
+          // 数据集真实/演示构成（Module P）：让「REAL AI ≠ ALL DATA REAL」可被验证。
+          data_class_counts: counts,
+        },
         // build：部署指纹（非敏感）。生产验证必须先确认「验证的是本次提交的部署」，
         // 否则可能在 Vercel 尚未完成 redeploy 时误验旧代码（会把修复误判为失败）。
         // Vercel 会为每次部署注入 VERCEL_GIT_COMMIT_SHA（Git 部署）或
         // VERCEL_DEPLOYMENT_ID（CLI 部署），本地开发则为 'local'。
-        meta: { service: 'coursemap-ai', version: 'v0.2-AI-Beta', build: buildFingerprint() },
+        meta: { service: 'coursemap-ai', version: 'v0.3-Data1', build: buildFingerprint() },
       }, headers);
       return;
     }

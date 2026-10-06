@@ -29,12 +29,29 @@ export const CONFIG = {
   projectRoot: PROJECT_ROOT,
 
   // ---- DeepSeek（server-side only）----
+  // 模型名来源：DeepSeek 官方 API Docs · Models（2026-10-06 核验，
+  //   https://api-docs.deepseek.com/zh-cn → base_url 与 model 表）。
+  // 官方当前模型表：`deepseek-v4-flash`（DeepSeek-V4-Flash-0731）、
+  //   `deepseek-v4-pro`（DeepSeek-V4-Pro-0813）、`deepseek-v4-flash-vision-exp`（实验）。
+  // ⚠️ 旧名 `deepseek-chat` / `deepseek-reasoner` 已于 **2026-07-24 15:59 UTC 永久停用**，
+  //    调用返回 HTTP 错误（无宽限期、无软重定向）。它们曾分别指向
+  //    deepseek-v4-flash 的非思考模式与思考模式。
+  //    「思考 / 非思考」在 V4 上是**请求级参数**，不是两个模型 —— 因此正确迁移目标是
+  //    `deepseek-v4-flash`，而不是 `deepseek-v4-pro`（后者单价约为 Flash 的 3.1 倍）。
+  //    把退役名写成代码默认值会导致「配置看起来正常、实际打到已下线模型」。
+  // 详见 docs/data-integration/13_DeepSeek_Model_Audit.md。
   deepseek: {
     apiKey: envStr('DEEPSEEK_API_KEY'),
     baseUrl: envStr('DEEPSEEK_BASE_URL', 'https://api.deepseek.com'),
-    model: envStr('DEEPSEEK_MODEL', 'deepseek-chat'),
+    model: envStr('DEEPSEEK_MODEL', 'deepseek-v4-flash'),
     timeoutMs: envInt('DEEPSEEK_TIMEOUT_MS', 45000),
-    maxOutputTokens: envInt('DEEPSEEK_MAX_OUTPUT_TOKENS', 2000),
+    maxOutputTokens: envInt('DEEPSEEK_MAX_OUTPUT_TOKENS', 2400),
+    /* 思考模式（官方 V4 默认 **开启**，effort 支持 high/max）。CourseMap 的两段式管线是
+       「结构化抽取 + 工具调用」，需要低延迟与可复现；且官方规定思考模式下
+       temperature 被忽略、并强制回传 reasoning_content（否则 400）。
+       故默认显式**关闭**，并在请求体里写明，而不是依赖服务端默认值。 */
+    thinking: envStr('DEEPSEEK_THINKING', 'disabled') === 'enabled',
+    reasoningEffort: envStr('DEEPSEEK_REASONING_EFFORT', 'low'),
   },
 
   // ---- CORS / Origin ----
