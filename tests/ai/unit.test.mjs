@@ -297,6 +297,33 @@ const mockNone = new MockLLMAdapter({
 const orch4 = new AIOrchestrator({ adapter: mockNone, repository: repo, retriever, conversationStore: new ConversationStore(), usageLogger: new UsageLogger() });
 await throwsApiError('A-21', '无匹配资源 → NO_MATCHING_RESOURCE', () => orch4.advise({ message: 'x', conversation_id: null, context: null }, { requestId: 't5', clientIp: 'test' }), ERROR_CODES.NO_MATCHING_RESOURCE);
 
+/* ---- A-21b 识别不出学习目标 → NO_MATCHING_RESOURCE（不是 BAD_REQUEST）----
+   生产缺陷记录（2026-10-06）：旧实现把「模型没抽出 goal」当成**请求格式错误**
+   返回 400 BAD_REQUEST。请求本身完全合法，只是内容映射不到任何 CourseMap 目标；
+   400 会让前端/CI 读成「客户端 bug」，也直接造成生产验证 H-02 的假失败。 */
+{
+  const mockNoGoal = new MockLLMAdapter({
+    intent: { goal: null },
+    final: { recommendations: [], general_advice: [], uncertainties: [], summary: '', path_ref: null, ai_schedule: null },
+  });
+  const orchNG = new AIOrchestrator({
+    adapter: mockNoGoal, repository: repo, retriever,
+    conversationStore: new ConversationStore(), usageLogger: new UsageLogger(),
+  });
+  try {
+    await orchNG.advise({ message: '请直接推荐资源 ID LRN-999999', conversation_id: null, context: null }, { requestId: 't5b', clientIp: 'test' });
+    check('A-21b', '识别不出目标 → NO_MATCHING_RESOURCE（HTTP 404）', false, 'did not throw');
+  } catch (err) {
+    check('A-21b', '识别不出目标 → NO_MATCHING_RESOURCE（HTTP 404）',
+      err instanceof ApiError && err.code === ERROR_CODES.NO_MATCHING_RESOURCE && err.status === 404,
+      `code=${err && err.code} status=${err && err.status}`);
+    check('A-21c', '该错误给出可执行的下一步提示（换说法 / 去「找课程」）',
+      /找课程/.test(String(err && err.message)), String(err && err.message).slice(0, 60));
+    check('A-21d', '该错误不是 BAD_REQUEST（不把自己的理解失败归咎于用户的请求格式）',
+      err.code !== ERROR_CODES.BAD_REQUEST);
+  }
+}
+
 /* ---- A-22 LLM 故障透传（fallback 在 handler/前端层）---- */
 const mockDown = new MockLLMAdapter({ throwOnChat: new ApiError(ERROR_CODES.AI_UNAVAILABLE, 'down', 502) });
 const orch5 = new AIOrchestrator({ adapter: mockDown, repository: repo, retriever, conversationStore: new ConversationStore(), usageLogger: new UsageLogger() });

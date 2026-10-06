@@ -25,6 +25,7 @@
 import { ApiError, ERROR_CODES } from '../errors.mjs';
 import { CONFIG } from '../config.mjs';
 import { sanitizeIntent } from './intentSchema.mjs';
+import { extractJsonObject } from '../llm/jsonUtil.mjs';
 import { SYSTEM_PROMPT_V1, intentExtractionUserPrompt, recommendationUserPrompt } from '../prompts/learning-advisor-v1.mjs';
 import { ToolExecutor } from '../tools/toolExecutor.mjs';
 import { TOOL_SCHEMAS } from '../tools/toolSchemas.mjs';
@@ -125,8 +126,17 @@ export class AIOrchestrator {
     const finalIntent = this.store.applyContinuity(mergedContext, intent, llmIntent);
 
     if (!finalIntent.goal) {
-      throw new ApiError(ERROR_CODES.BAD_REQUEST,
-        '未能从你的描述中识别学习目标。请告诉我你想学什么，例如「想入门 Python 数据分析」。', 400,
+      // 语义修正（生产缺陷记录，2026-10-06）：
+      // 「没能识别出学习目标」不是**请求格式**问题 —— 请求本身完全合法，
+      // 只是内容无法映射到 CourseMap 的任何目标。旧实现返回 400 BAD_REQUEST，
+      // 与「无匹配资源（404 NO_MATCHING_RESOURCE）」语义冲突：
+      //   · 前端/CI 会把 400 读成「客户端 bug」，掩盖真实的「没听懂」；
+      //   · 生产验证 H-02（诱导不存在的 ID）因此被判 FAIL，掩盖了
+      //     「系统其实正确地拒绝了」这一事实。
+      // 统一为 404 NO_MATCHING_RESOURCE：与 N-00 同一条诚实语义。
+      throw new ApiError(ERROR_CODES.NO_MATCHING_RESOURCE,
+        '未能从你的描述中识别学习目标。请告诉我你想学什么，例如「想入门 Python 数据分析」；'
+        + '也可以直接使用「找课程」浏览 CourseMap 收录的全部目标。', 404,
         { intentWarnings });
     }
 
