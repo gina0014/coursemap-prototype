@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""CourseMap 数据校验器（v0.2 · Data-1）
+"""CourseMap 数据校验器（v0.2 · Data-1 · Real OER Expansion）
 
 实现 data/schema/validation-rules-v0.2.json：
   - v0.1 全部规则（实体完整性、枚举、评分聚合、demo 外链）
@@ -9,6 +9,9 @@
       * **未知许可不得被表示为开放许可**
       * fee / certificate / rating / duration 若没有被绑定来源声明为
         source_verified_fields，即视为「猜的值」→ BLOCKER
+  - v0.3 新增「来源治理」规则：
+      * VR-C18 REAL 来源的 official_url 必须落在官方域名白名单内
+        （把「不得使用聚合站/盗版站/未授权搬运站」变成机器可执行约束）
 退出码：0 = BLOCKER=0 且 ERROR=0（WARN 不影响）；1 = 存在 BLOCKER/ERROR。
 
 用法：
@@ -206,6 +209,39 @@ def main():
     }
     UNKNOWN_LICENSE_TOKENS = {None, "", "unknown", "unclear", "unknown_license"}
     OPEN_CLAIM_KEYS = ("commercial_use", "public_domain", "adaptation_allowed", "redistribution_allowed")
+
+    # ------------------------------------------------------------------
+    # VR-C18 REAL 来源必须落在「官方域名白名单」内（Real OER Expansion 新增）
+    # ------------------------------------------------------------------
+    # 目的：把「不得使用大众点评式聚合站 / 盗版课程站 / 未授权搬运站 /
+    #       第三方转载」从政策文字变成机器可执行的约束。
+    # 判定对象是 **Source.official_url** 的 host，而不是 Resource.url，
+    # 因为 Resource.url 已经由 VR-C11 + VR-E11 保证等于来源官方链接。
+    # 新增官方来源时必须显式在白名单里登记 —— 这一步是「来源治理」的一部分，
+    # 不允许通过正则「看起来像教育机构」来放行。
+    OFFICIAL_DOMAIN_ALLOWLIST = {
+        "ocw.mit.edu": "MIT OpenCourseWare",
+        "openstax.org": "OpenStax（莱斯大学）",
+        "cs50.harvard.edu": "Harvard CS50 OpenCourseWare",
+        "developers.google.com": "Google for Developers",
+        "developers.google.cn": "Google for Developers（官方中国域，用于核验）",
+    }
+
+    def host_of(u):
+        try:
+            from urllib.parse import urlparse
+            return (urlparse(str(u)).hostname or "").lower()
+        except Exception:
+            return ""
+
+    for src in sources:
+        if src.get("data_class") != "real":
+            continue
+        h = host_of(src.get("official_url") or src.get("url"))
+        if h not in OFFICIAL_DOMAIN_ALLOWLIST:
+            add("BLOCKER", "VR-C18",
+                f"real source {src.get('source_id')} 的 official_url 主机 "
+                f"{h!r} 不在官方域名白名单内 —— 真实来源必须指向已登记的官方站点")
 
     for r in resources:
         if r.get("data_class") != "real":

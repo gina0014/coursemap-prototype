@@ -2,7 +2,7 @@
   "rules_version": "0.2",
   "product": "CourseMap",
   "supersedes": "validation-rules-v0.1.json",
-  "scope": "Data-1：真实开放教育资源（OER）接入后的数据治理规则。v0.1 全部规则继续生效，本版本新增 REAL/许可/来源一致性规则。",
+  "scope": "Data-1 + Real OER Expansion：真实开放教育资源（OER）接入后的数据治理规则。v0.1 全部规则继续生效；v0.2 新增 REAL/许可/来源一致性规则；Real OER Expansion 追加 VR-C18（官方域名白名单）。",
   "severity_levels": ["BLOCKER", "ERROR", "WARN"],
   "data_files": [
     "subjects.json",
@@ -20,7 +20,9 @@
   "concepts": {
     "data_class": "records: demo = 编辑自建演示数据；real = 有官方来源核验的真实开放教育资源。taxonomy (subjects/goals/skills): 该节点为何而建立。",
     "source_verified_fields": "resource-source 关系上声明的字段清单：这些字段的值由绑定的官方来源直接支持。",
-    "editorially_mapped_fields": "CourseMap 编辑所做的分类映射（subject/goal/skill/resource_type）。属于编辑判断，不属于来源事实。"
+    "editorially_mapped_fields": "CourseMap 编辑所做的分类映射（subject/goal/skill/resource_type）。属于编辑判断，不属于来源事实。",
+    "official_domain_allowlist": "只允许下列官方源站作为 real 来源：ocw.mit.edu（MIT OpenCourseWare）、openstax.org（OpenStax）、cs50.harvard.edu（Harvard CS50）、developers.google.com / developers.google.cn（Google for Developers）。新增来源必须显式登记，禁止用『看起来像教育机构』的启发式放行。",
+    "license_semantics": "免费（fee=0）≠ 开放许可 ≠ 公有领域 ≠ 允许商用。CC BY-NC-SA 4.0 为禁止商用 + 相同方式共享；CC BY 4.0 允许商用、需署名、无 ShareAlike；官方未声明许可时记 unknown，不得推定。"
   },
   "rules": {
     "BLOCKER": [
@@ -40,7 +42,8 @@
       { "id": "VR-C13", "rule": "REAL 资源的 fee 为「猜的值」：fee 非 null，但没有任何绑定来源在 source_verified_fields 中声明 fee" },
       { "id": "VR-C14", "rule": "REAL 资源的 certificate_available 为「猜的值」：非 null 但未被任何来源声明" },
       { "id": "VR-C15", "rule": "REAL 资源的 rating / rating_count 为「猜的值」：非 null 但未被任何来源声明" },
-      { "id": "VR-C16", "rule": "REAL 资源的 duration_hours / weekly_workload_hours 为「猜的值」：非 null 但未被任何来源声明" }
+      { "id": "VR-C16", "rule": "REAL 资源的 duration_hours / weekly_workload_hours 为「猜的值」：非 null 但未被任何来源声明" },
+      { "id": "VR-C18", "rule": "REAL 来源的 official_url 主机不在官方域名白名单内（真实来源必须指向已登记的官方站点，禁止聚合站/盗版站/未授权搬运站）" }
     ],
     "ERROR": [
       { "id": "VR-E01", "rule": "fee < 0" },
