@@ -101,11 +101,12 @@ check('T-04', '每个已知费用都带 observedAt',
     return f === null || typeof f.observedAt === 'string';
   }));
 
-/* ---- T-05 数据规模符合产品要求（40–80 资源等） ---- */
-check('T-05', `资源规模在 40–80（当前 ${ctx.resources.length}）`,
-  ctx.resources.length >= 40 && ctx.resources.length <= 80);
-check('T-05b', `学科 5（当前 ${ctx.subjects.length}）`, ctx.subjects.length === 5);
-check('T-05c', `学习目标 10–15（当前 ${ctx.goals.length}）`, ctx.goals.length >= 10 && ctx.goals.length <= 15);
+/* ---- T-05 数据规模符合产品要求（Data-1 后：demo 48 + real 40 = 88） ---- */
+check('T-05', `资源规模在 40–120（当前 ${ctx.resources.length}）`,
+  ctx.resources.length >= 40 && ctx.resources.length <= 120);
+check('T-05b', `学科 5–8（当前 ${ctx.subjects.length}）`,
+  ctx.subjects.length >= 5 && ctx.subjects.length <= 8);
+check('T-05c', `学习目标 10–20（当前 ${ctx.goals.length}）`, ctx.goals.length >= 10 && ctx.goals.length <= 20);
 check('T-05d', `提供方 8–15（当前 ${ctx.providers.length}）`, ctx.providers.length >= 8 && ctx.providers.length <= 15);
 check('T-05e', `学习路径 6–10（当前 ${ctx.paths.length}）`, ctx.paths.length >= 6 && ctx.paths.length <= 10);
 
@@ -128,7 +129,14 @@ let registryMismatch = 0;
 for (const res of ctx.resources) {
   const rows = (ctx.indexes.reviewsByResource.get(res.resource_id) || []).filter((r) => r.status === 'published');
   if (rows.length === 0) {
-    if (res.rating !== null || res.rating_count !== 0) registryMismatch += 1;
+    if (res.rating !== null) registryMismatch += 1;
+    /* rating_count 的口径按 data_class 区分：
+       - demo 记录：登记值必须为 0（编辑演示数据自己声明的口径）
+       - real 记录：必须为 null。真实资源没有任何来源声明过评分，写 0 会被
+         scripts/validate/validate_data.py 的 VR-C15 判为「猜的值」（BLOCKER）。
+         这不是放松校验，而是把「未核验」与「零评价」严格区分开。 */
+    const expectedCount = res.data_class === 'real' ? null : 0;
+    if (res.rating_count !== expectedCount) registryMismatch += 1;
   } else if (Math.abs(res.rating - res.rating_count > 0 ? res.rating : 0) >= 0) {
     const mean = rows.reduce((s, r) => s + r.overall_rating, 0) / rows.length;
     if (Math.abs(res.rating - mean) > 0.011 || res.rating_count !== rows.length) registryMismatch += 1;
@@ -310,14 +318,63 @@ check('T-20b', 'resource-source 关系存在且字段域合法',
   sourceEntries.length > 0 && sourceEntries.every((e) =>
     ['general', 'fee', 'description', 'outcomes', 'schedule'].includes(e.field_scope)));
 
-/* ---- T-21 演示披露（Demo Disclosure） ---- */
-check('T-21', '数据集全部为 demo（real = 0）',
-  ctx.stats.totals.real === 0 && ctx.stats.totals.demo > 0,
-  `demo=${ctx.stats.totals.demo} real=${ctx.stats.totals.real}`);
+/* ---- T-21 演示披露（Demo Disclosure）· Data-1 后升级为「真实/演示严格分离」 ---- */
+check('T-21', 'demo 与 real 严格分离且两者都非空（REAL LLM ≠ ALL DATA REAL）',
+  ctx.stats.totals.resources.demo > 0 && ctx.stats.totals.resources.real > 0,
+  `resources demo=${ctx.stats.totals.resources.demo} real=${ctx.stats.totals.resources.real}`);
 check('T-21b', 'demo 记录的 url 全部为 null（不伪造真实外链）',
   ctx.resources.every((r) => r.data_class === 'demo' ? r.url === null : true));
 check('T-21c', 'demo 评价 review_origin 全部为 demo_dataset',
   ctx.reviews.every((r) => r.review_origin === 'demo_dataset'));
+
+/* ---- T-21d..T-21i 真实资源不变量（Module E/F/H）---- */
+const realResources = ctx.resources.filter((r) => r.data_class === 'real');
+
+check('T-21d', `data_class 取值仅限 demo / real（当前 ${[...new Set(ctx.resources.map((r) => r.data_class))].join(',')}）`,
+  ctx.resources.every((r) => r.data_class === 'demo' || r.data_class === 'real'));
+
+check('T-21e', '每个 real 资源都有 ≥1 个带官方 URL 的 Source',
+  realResources.length > 0 && realResources.every((r) => {
+    const rel = ctx.indexes.resourceSourcesByResource.get(r.resource_id) || [];
+    return rel.some((x) => {
+      const s = ctx.indexes.sourceById.get(x.source_id);
+      return s && typeof s.official_url === 'string' && s.official_url.startsWith('http');
+    });
+  }), `${realResources.length} real resources`);
+
+check('T-21f', '每个 real 资源都有 observed_at（元数据观测日可审计）',
+  realResources.every((r) => typeof r.observed_at === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(r.observed_at)));
+
+check('T-21g', '每个 real 资源都有 verification_status 且非 unverified',
+  realResources.every((r) => r.verification_status && r.verification_status !== 'unverified'));
+
+check('T-21h', 'real 资源未被来源声明的评分字段必须为 null（不得猜分数）',
+  realResources.every((r) => (r.rating === null || r.rating === undefined)
+    && (r.rating_count === null || r.rating_count === undefined)));
+
+check('T-21i', '每个 real 资源的 url 与其 Source.official_url 一致',
+  realResources.every((r) => {
+    const rel = ctx.indexes.resourceSourcesByResource.get(r.resource_id) || [];
+    return rel.some((x) => {
+      const s = ctx.indexes.sourceById.get(x.source_id);
+      return s && s.official_url === r.url;
+    });
+  }));
+
+/* ---- T-21j..T-21l 许可语义（Module G/U）---- */
+const realSources = ctx.sources.filter((s) => s.data_class === 'real');
+check('T-21j', `real Source 必须显式记录 license 与 license_url（当前 ${realSources.length} 条）`,
+  realSources.length > 0 && realSources.every((s) => typeof s.license === 'string' && s.license.length > 0
+    && typeof s.license_url === 'string' && s.license_url.startsWith('http')));
+
+check('T-21k', '许可布尔量必须是显式 true/false，不得用 null 表示「开放」',
+  realSources.every((s) => typeof s.commercial_use === 'boolean'
+    && typeof s.public_domain === 'boolean'
+    && typeof s.adaptation_allowed === 'boolean'));
+
+check('T-21l', 'NonCommercial 许可不得被标记为可商用或公有领域',
+  realSources.every((s) => !(/NC|NonCommercial/i.test(s.license)
+    && (s.commercial_use === true || s.public_domain === true))));
 
 /* ---- T-22 Provider ≠ Resource 质量 ---- */
 const anyProvider = providerView(ctx, ctx.providers[0].provider_id);
