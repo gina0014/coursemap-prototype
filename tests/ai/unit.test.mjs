@@ -83,6 +83,34 @@ check('A-05', '检索返回候选且含 goal', ret.goal && ret.candidates.length
 const compact = retriever.toCompactCandidates(ret.candidates);
 check('A-05b', '候选紧凑表示包含事实字段', compact.every((c) => 'fee' in c && 'data_class' in c && 'resource_id' in c));
 
+/* ---- A-05c 生产缺陷回归：难度/语言不得清空候选集 ----
+   实测缺陷：目标「单细胞 RNA-seq 入门」下 2 条资源均为 advanced + en/bilingual，
+   检索对 current_level 做**硬过滤**后候选为 0，导致合法请求返回
+   INVALID_MODEL_OUTPUT / NO_MATCHING_RESOURCE。修复：难度与语言改为软偏好排序。 */
+const scrna = retriever.retrieve(sanitizeIntent({ goal: '单细胞 RNA-seq 入门', current_level: 'intermediate' }).intent, 12);
+check('A-05c', '单细胞目标 + intermediate 仍返回候选（难度不硬过滤）',
+  scrna.goal && scrna.candidates.length > 0, `candidates=${scrna.candidates.length}`);
+const scrnaZh = retriever.retrieve(sanitizeIntent({ goal: '单细胞 RNA-seq 入门', language: 'zh' }).intent, 12);
+check('A-05d', '单细胞目标 + 中文偏好仍返回英文资源（语言不硬过滤）',
+  scrnaZh.candidates.length > 0, `candidates=${scrnaZh.candidates.length}`);
+check('A-05e', 'orderByDifficulty 永不减少元素数',
+  (() => {
+    const l = repo.getResourcesByGoal(1, 200);
+    return repo.orderByDifficulty(l, 'advanced').length === l.length
+      && repo.orderByLanguage(l, 'en').length === l.length;
+  })());
+check('A-05f', 'orderByDifficulty 把最接近的难度排在前面',
+  (() => {
+    const l = repo.getResourcesByGoal(2, 200);
+    const ordered = repo.orderByDifficulty(l, 'advanced');
+    return ordered[0].difficulty === 'advanced';
+  })());
+check('A-05g', '预算仍是硬约束（越界不返回超预算资源）',
+  (() => {
+    const r = retriever.retrieve(sanitizeIntent({ goal: 'Python 数据分析', budget: 0 }).intent, 12);
+    return r.candidates.every((x) => x.fee === 0 || x.fee === null);
+  })());
+
 /* ---- A-06 Tool 参数验证（untrusted）---- */
 const exec = new ToolExecutor(repo, retriever, 12);
 check('A-06', '未知工具被拒绝', exec.execute('run_shell', { cmd: 'rm -rf /' }).ok === false);
@@ -104,6 +132,18 @@ check('A-08', '路径含有序步骤', path && path.steps.length > 0 && path.ste
 check('A-08b', '路径步骤绑定核心资源', path.steps.some((s) => s.core_resources.length > 0));
 const prereq = repo.getPrerequisites(pyGoal?.goal_id);
 check('A-08c', 'prerequisites 返回 goal 结构', prereq && prereq.goal.goal_id === pyGoal.goal_id);
+/* 生产缺陷回归：path_id 在数据集中是数字；调用方（orchestrator/工具）常传字符串。
+   旧实现用严格 === 比较 → 步骤数恒为 0 → 学习路径静默渲染为空。 */
+check('A-08d', 'getLearningPath 传字符串 ID 时步骤仍完整（ID 规范化）',
+  (() => {
+    const numeric = repo.getLearningPath(somePath.path_id);
+    const stringy = repo.getLearningPath(String(somePath.path_id));
+    return !!numeric && !!stringy && numeric.steps.length > 0 && stringy.steps.length === numeric.steps.length;
+  })(),
+  (() => {
+    const s = repo.getLearningPath(String(somePath.path_id));
+    return `string id steps=${s ? s.steps.length : 'null'}`;
+  })());
 
 /* ---- A-09 Fact hydration：Repository > LLM ---- */
 const r0 = repo.resources[0];
@@ -188,6 +228,26 @@ const orch3 = new AIOrchestrator({ adapter: mockConflict, repository: repo, retr
 const resp3 = await orch3.advise({ message: 'x', conversation_id: null, context: null }, { requestId: 't3', clientIp: 'test' });
 const hydratedFee = resp3.recommendations[0].fee;
 check('A-19', 'fee 显示 Repository 值（不含 9999）', hydratedFee !== 9999 && hydratedFee === repo.getResourceById(resp3.recommendations[0].resource_id).fee);
+
+/* ---- A-19b path_ref 数字/字符串均可（生产缺陷回归）----
+   实测缺陷：模型把 path_ref 返回为数字时，旧实现用 asStr 只接受字符串
+   → 整段 learning_path 被静默丢弃。现统一为 ID 语义（asId）。 */
+const pRefTarget = repo.paths.find((p) => (p.goal_ids || []).includes(2));
+const mockPathNum = new MockLLMAdapter({
+  intent: sanitizeIntent({ goal: 'Python 数据分析' }).intent,
+  final: {
+    recommendations: [{ resource_id: ret.candidates[0].resource_id, reason: 'x' }],
+    general_advice: [], uncertainties: [], summary: '', path_ref: pRefTarget.path_id, ai_schedule: null, // 数字，非字符串
+  },
+});
+const orchPath = new AIOrchestrator({ adapter: mockPathNum, repository: repo, retriever, conversationStore: new ConversationStore(), usageLogger: new UsageLogger() });
+const respPath = await orchPath.advise({ message: 'x', conversation_id: null, context: null }, { requestId: 't-path', clientIp: 'test' });
+check('A-19b', 'path_ref 为数字时 learning_path 不被丢弃',
+  !!respPath.learning_path && respPath.learning_path.evidence_backed.path_id === pRefTarget.path_id,
+  `path_ref=${JSON.stringify(pRefTarget.path_id)} got=${respPath.learning_path && respPath.learning_path.evidence_backed.path_id}`);
+check('A-19c', 'learning_path 步骤来自 Learning Graph',
+  !!respPath.learning_path && respPath.learning_path.evidence_backed.steps.length
+    === repo.getLearningPath(pRefTarget.path_id).steps.length);
 
 /* ---- A-20 Prompt injection：检索描述中的指令被当作 DATA ---- */
 const inj = repo.resources.find((r) => String(r.description || '').includes('Ignore all previous instructions'));

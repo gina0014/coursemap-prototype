@@ -15,26 +15,39 @@ export class StructuredRetriever {
   /**
    * @param {LearningDecisionRequest} intent  已校验的意图
    * @param {number} limit 最大候选数
-   * @returns {{goal, candidates: object[], total: number}}
+   * @returns {{goal, candidates: object[], total: number, relaxations: string[]}}
    */
   retrieve(intent, limit = 12) {
     const goal = this.repo.findGoalByName(intent.goal);
-    if (!goal) return { goal: null, candidates: [], total: 0 };
+    if (!goal) return { goal: null, candidates: [], total: 0, relaxations: [] };
 
-    let list = this.repo.getResourcesByGoal(goal.goal_id, 200);
-    const totalBefore = list.length;
-    list = this.repo.filterByBudget(list, intent.budget);
-    list = this.repo.filterByDifficulty(list, intent.current_level === 'beginner'
-      ? 'beginner' : intent.current_level);
+    const base = this.repo.getResourcesByGoal(goal.goal_id, 200);
+    const totalBefore = base.length;
+    const relaxations = [];
+
+    /* ---- 硬约束：用户明确给出的边界，不得越界 ---- */
+    // 预算
+    let list = this.repo.filterByBudget(base, intent.budget);
+    if (list.length === 0 && base.length > 0 && intent.budget !== null && intent.budget !== undefined) {
+      relaxations.push(`预算 ¥${intent.budget} 内没有匹配资源`);
+    }
+    // 可承受总学时（目标周期 × 每周可投入）
     list = this.repo.filterByDuration(list, intent.target_duration_weeks, intent.available_hours_per_week);
-    list = this.repo.filterByLanguage(list, intent.language);
+
+    /* ---- 软偏好：难度 / 语言只排序、不排除 ----
+       理由见 CourseMapRepository.orderByDifficulty / orderByLanguage 的注释：
+       它们描述「学习者的适配度」而非「资源可用性」，硬过滤会把合法请求
+       变成假的「无匹配资源」（生产缺陷：目标「单细胞 RNA-seq 入门」）。 */
+    list = this.repo.orderByDifficulty(list, intent.current_level);
+    list = this.repo.orderByLanguage(list, intent.language);
+
     if (intent.certificate_requirement) {
       list = list.filter((r) => r.certificate_available === true).concat(
         list.filter((r) => r.certificate_available !== true),
       );
     }
 
-    return { goal, candidates: list.slice(0, limit), total: totalBefore };
+    return { goal, candidates: list.slice(0, limit), total: totalBefore, relaxations };
   }
 
   /** 候选集的紧凑表示（控制 prompt 尺寸）。 */

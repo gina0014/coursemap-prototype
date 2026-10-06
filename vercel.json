@@ -5,6 +5,11 @@
       "includeFiles": "data/**",
       "maxDuration": 60,
       "memory": 512
+    },
+    "api/ai/health.js": {
+      "includeFiles": "data/**",
+      "maxDuration": 10,
+      "memory": 512
     }
   },
   "headers": [

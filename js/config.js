@@ -15,8 +15,8 @@ export const APP = {
   nameZh: '学途',
   tagline: '学习目标驱动的课程与学习资源智能决策平台',
   thesis: '按学习目标找资源，而不是先找平台再翻课程。',
-  version: 'CourseMap-v0.1-Prototype',
-  stage: 'v0.1 Prototype — Educational Domain Prototype',
+  version: 'CourseMap-v0.2-AI-Beta',
+  stage: 'v0.2 AI-Beta — Real LLM (DeepSeek via server-side backend)',
   buildDate: '2026-10-06',
 };
 
@@ -77,8 +77,11 @@ export const AI = {
   label: 'AI 学习顾问 Beta',
   disclaimer: 'AI Learning Advisor Beta · Powered by DeepSeek (server-side)。AI 推荐以 CourseMap 结构化数据为证据层；具体课程价格、时长、证书等信息以 CourseMap 已核验数据及原始来源为准。',
   maxRecommendations: 6,
-  // 同源默认（本地 dev server / 同域 Serverless）。跨域部署时在此填后端 base URL。
-  aiBackendBase: '',
+  /* 生产后端（CourseMap AI Backend · Vercel Serverless）。
+     稳定域名，**不要**改成带随机 deployment hash 的临时 URL
+     （临时 URL 会随每次部署失效，导致前端静默降级）。
+     本地开发可用 env 覆盖：见 docs/ai-integration/15_Deployment.md。 */
+  aiBackendBase: 'https://coursemap-prototype.vercel.app',
   advisorEndpoint: '/api/ai/advisor',
   healthEndpoint: '/api/ai/health',
   requestTimeoutMs: 65_000,

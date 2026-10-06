@@ -97,9 +97,11 @@ export class ToolExecutor {
     }
     let list = this.repo.getResourcesByGoal(matched.goal_id, 200);
     list = this.repo.filterByBudget(list, budget);
-    if (level) list = this.repo.filterByDifficulty(list, level);
     list = this.repo.filterByDuration(list, null, hours);
-    list = this.repo.filterByLanguage(list, language);
+    // 难度 / 语言为软偏好（排序），不排除 —— 与 StructuredRetriever 保持一致。
+    // 硬过滤会把「目标下只有单一难度/语言资源」的情况错误地变成零结果。
+    list = this.repo.orderByDifficulty(list, level);
+    list = this.repo.orderByLanguage(list, language);
     if (args.certificate === true) list = list.filter((r) => r.certificate_available === true);
     if (typeof args.resource_type === 'string') list = list.filter((r) => r.resource_type === args.resource_type);
 

@@ -5,13 +5,16 @@
   "description": "CourseMap（学途）— 学习目标驱动的课程与学习资源智能决策平台（教育领域原型，AI-Beta）",
   "type": "module",
   "scripts": {
-    "test": "node tests/runtime.test.mjs && node tests/ai/unit.test.mjs && node tests/ai/integration.test.mjs",
+    "test": "node tests/runtime.test.mjs && node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs",
     "test:core": "node tests/runtime.test.mjs",
-    "test:ai": "node tests/ai/unit.test.mjs && node tests/ai/integration.test.mjs",
+    "test:ai": "node tests/ai/unit.test.mjs && node tests/ai/routing.test.mjs && node tests/ai/integration.test.mjs",
+    "test:routing": "node tests/ai/routing.test.mjs",
     "test:ai-live": "node tests/ai/live.deepseek.test.mjs",
     "dev:ai": "node server/dev-server.mjs",
     "validate": "python scripts/validate/validate_data.py",
-    "smoke": "node scripts/regression/browser_smoke.mjs"
+    "smoke": "node scripts/regression/browser_smoke.mjs",
+    "verify:live": "node scripts/verify/live_public_verify.mjs",
+    "verify:e2e": "node scripts/verify/public_e2e.mjs"
   },
   "license": "MIT"
 }

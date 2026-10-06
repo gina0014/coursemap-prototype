@@ -84,7 +84,10 @@ export class JsonCourseMapRepository {
 
   searchResources({ text = '', goalId = null, limit = 12 } = {}) {
     let out = this._publishedResources;
-    if (goalId) out = out.filter((r) => (r.learning_goal_ids || []).includes(goalId));
+    if (goalId) {
+      const key = String(goalId);
+      out = out.filter((r) => (r.learning_goal_ids || []).some((g) => String(g) === key));
+    }
     if (text) {
       const t = String(text).toLowerCase();
       out = out.filter((r) =>
@@ -96,8 +99,9 @@ export class JsonCourseMapRepository {
   getResourceById(id) { return this._resourceById.get(String(id)) || null; }
 
   getResourcesByGoal(goalId, limit = 50) {
+    const key = String(goalId);
     return this._publishedResources
-      .filter((r) => (r.learning_goal_ids || []).includes(goalId))
+      .filter((r) => (r.learning_goal_ids || []).some((g) => String(g) === key))
       .slice(0, limit);
   }
 
@@ -123,6 +127,29 @@ export class JsonCourseMapRepository {
     return list.filter((r) => r.difficulty === difficulty);
   }
 
+  /**
+   * 难度**偏好排序**（软约束，绝不排除）。
+   *
+   * 为什么不硬过滤（生产缺陷记录）：
+   *   current_level 描述的是「学习者的水平」，不是「资源必须达到的门槛」。
+   *   当某个目标下只有一种难度的资源时（实测：目标「单细胞 RNA-seq 入门」
+   *   的 2 条资源均为 advanced），硬过滤会把候选集清空，把一个正常请求
+   *   变成假的「没有匹配资源 / AI 输出不可信」。这和「入门」目标恰恰需要
+   *   那些材料相矛盾。
+   *   因此难度一律保留，只做「越接近越靠前」的排序，交给 LLM 在解释里取舍。
+   */
+  orderByDifficulty(list, difficulty) {
+    if (!difficulty) return list.slice();
+    const dist = { beginner: 0, intermediate: 1, advanced: 2 };
+    const target = dist[difficulty];
+    if (target === undefined) return list.slice();
+    return list.slice().sort((a, b) => {
+      const da = dist[a.difficulty] === undefined ? 9 : Math.abs(dist[a.difficulty] - target);
+      const db = dist[b.difficulty] === undefined ? 9 : Math.abs(dist[b.difficulty] - target);
+      return da - db;
+    });
+  }
+
   filterByDuration(list, weeks, hoursPerWeek) {
     // target_duration_weeks × available_hours_per_week = 可承受总学时
     if (!weeks) return list;
@@ -137,13 +164,34 @@ export class JsonCourseMapRepository {
       || (language === 'zh' && r.language === 'bilingual'));
   }
 
+  /**
+   * 语言**偏好排序**（软约束，绝不排除）。
+   *
+   * 理由同 orderByDifficulty：目标语言资源优先，但绝不因此丢弃唯一可用资源。
+   * 实测：目标「单细胞 RNA-seq 入门」唯一直接对应的课程为英文资源，
+   * 硬过滤会让中文用户看不到它 —— 应由 AI 在解释中提示语言门槛，而不是隐藏。
+   */
+  orderByLanguage(list, language) {
+    if (!language) return list.slice();
+    const rank = (r) => {
+      if (r.language === language) return 0;
+      if (language === 'zh' && r.language === 'bilingual') return 1;
+      if (r.language === 'bilingual') return 1;
+      return 2;
+    };
+    return list.slice().sort((a, b) => rank(a) - rank(b));
+  }
+
   getProvider(id) { return this._providerById.get(String(id)) || null; }
 
   getLearningPath(pathId) {
     const path = this._pathById.get(String(pathId));
     if (!path) return null;
+    /* 注意：必须按下标比较。ID 在数据集中是数字，而调用方（orchestrator 的
+       path_ref、工具的 args）常把它们规范化成字符串传入；此处若用严格 ===
+       会得到 0 个步骤 —— 学习路径会静默渲染为空（生产缺陷记录）。 */
     const steps = this.pathSteps
-      .filter((s) => s.path_id === pathId)
+      .filter((s) => String(s.path_id) === String(pathId))
       .sort((a, b) => a.step_order - b.step_order)
       .map((s) => ({
         ...s,
@@ -173,7 +221,7 @@ export class JsonCourseMapRepository {
   }
 
   getSourcesForResource(resourceId) {
-    const links = this.resourceSources.filter((rs) => rs.resource_id === resourceId);
+    const links = this.resourceSources.filter((rs) => String(rs.resource_id) === String(resourceId));
     return links.map((rs) => ({
       resource_source_id: rs.resource_source_id,
       field_scope: rs.field_scope,
@@ -184,7 +232,7 @@ export class JsonCourseMapRepository {
 
   /** 评分事实：由服务端代码聚合（不信任模型回传）。 */
   getRatingSummary(resourceId) {
-    const rs = this.reviews.filter((r) => r.resource_id === resourceId && r.status === 'published');
+    const rs = this.reviews.filter((r) => String(r.resource_id) === String(resourceId) && r.status === 'published');
     if (rs.length === 0) return { rating: null, rating_count: 0 };
     const rating = rs.reduce((s, r) => s + (r.overall_rating || 0), 0) / rs.length;
     return {

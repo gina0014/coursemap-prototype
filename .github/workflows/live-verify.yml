@@ -1,0 +1,145 @@
+# ============================================================================
+# CourseMap — .github/workflows/live-verify.yml
+# ----------------------------------------------------------------------------
+# AI-1 Production Activation 的**真实生产验证**流水线。
+#
+# 为什么必须放在 GitHub Actions 上跑：
+#   开发机的网络无法访问 *.vercel.app（DNS 污染 + TLS SNI 重置），
+#   因此生产后端的验证只能在能直连 Vercel 的网络里执行。GitHub 托管 runner
+#   具备该连通性，且验证结果由 runner 提交回仓库，形成可审计证据。
+#
+# 验证内容：
+#   1) public-e2e      ：真实 Chrome 访问 GitHub Pages，执行 3 个用户场景，
+#                        断言前端处于 REAL LLM 模式、推荐接地、DOM 事实绑定、
+#                        并且后端不可用时的 Graceful Fallback 仍然保留。
+#   2) backend-verify  ：直连 Vercel 后端，断言 Function 被调用 / 读到
+#                        DEEPSEEK_API_KEY / CORS 正确 / 无 401·403·404·500，
+#                        以及真实 DeepSeek 调用、Structured Intent、检索、
+#                        Tool Calling、Fact Hydration、Source Binding、
+#                        Learning Path、Multi-turn、No Matching、Invalid Input、
+#                        Hallucination、Fact Conflict、Prompt Injection、Rate Limit。
+#
+# 顺序：先 E2E，再 backend-verify（后者的限流测试会消耗配额，必须最后跑）。
+# 证据：docs/ai-integration/evidence/30_* 与 31_*，由 runner 提交回 master。
+# ============================================================================
+
+name: live-verify
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'api/**'
+      - 'server/**'
+      - 'js/**'
+      - 'data/**'
+      - 'scripts/verify/**'
+      - 'tests/**'
+      - 'vercel.json'
+      - 'package.json'
+      - '.github/workflows/live-verify.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: live-verify
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  COURSEMAP_AI_BASE: https://coursemap-prototype.vercel.app
+  COURSEMAP_FRONTEND_BASE: https://gina0014.github.io/coursemap-prototype
+  COURSEMAP_EXPECT_BACKEND: https://coursemap-prototype.vercel.app
+  VERIFY_WAIT_MS: '300000'
+
+jobs:
+  public-e2e:
+    name: public frontend E2E (real browser)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Chrome availability
+        run: |
+          which google-chrome || which google-chrome-stable || which chromium-browser
+          google-chrome --version || true
+
+      - name: Run public E2E
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: node scripts/verify/public_e2e.mjs
+
+      - name: Upload E2E evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-e2e-evidence
+          path: |
+            docs/ai-integration/evidence/31_public_e2e.json
+            docs/ai-integration/evidence/31_public_e2e.txt
+            docs/ai-integration/evidence/31_public_e2e_advisor.png
+          if-no-files-found: warn
+
+  backend-verify:
+    name: production backend verification (live DeepSeek)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    needs: [public-e2e]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Run live backend verification
+        run: node scripts/verify/live_public_verify.mjs
+
+      - name: Upload backend evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-verify-evidence
+          path: |
+            docs/ai-integration/evidence/30_live_public_verification.json
+            docs/ai-integration/evidence/30_live_public_verification.txt
+          if-no-files-found: warn
+
+  publish-evidence:
+    name: commit evidence back to master
+    runs-on: ubuntu-latest
+    needs: [public-e2e, backend-verify]
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+        continue-on-error: true
+
+      - name: Copy evidence into the repo
+        run: |
+          mkdir -p docs/ai-integration/evidence
+          for d in artifacts/public-e2e-evidence artifacts/backend-verify-evidence; do
+            if [ -d "$d" ]; then cp -f "$d"/* docs/ai-integration/evidence/ 2>/dev/null || true; fi
+          done
+          ls -la docs/ai-integration/evidence/
+
+      - name: Commit and push evidence
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ai-integration/evidence/ || true
+          if git diff --cached --quiet; then
+            echo "No evidence changes to commit."
+            exit 0
+          fi
+          git commit -m "ci(live-verify): refresh production verification evidence [skip ci]"
+          git push

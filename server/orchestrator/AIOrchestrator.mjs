@@ -175,8 +175,10 @@ export class AIOrchestrator {
     });
 
     // ---- Learning Path（evidence-backed 结构 + AI schedule 分层）----
+    // path_ref 用 asId：与 resource_id 一样，模型可能返回数字或字符串，
+    // 若只接受字符串会**静默丢失**整段学习路径（生产缺陷记录）。
     let learningPath = null;
-    const pathRef = asStr(finalJson.path_ref, 40);
+    const pathRef = asId(finalJson.path_ref, 40);
     if (pathRef) {
       const p = this.repo.getLearningPath(pathRef);
       if (p) {
@@ -228,6 +230,10 @@ export class AIOrchestrator {
     const uncertainties = Array.isArray(finalJson.uncertainties)
       ? finalJson.uncertainties.slice(0, 5).map((s) => asStr(s, 200)).filter(Boolean)
       : [];
+    // 硬约束未能命中时的显式说明（诚实语义：不静默吞掉放宽）
+    for (const note of retrieval.relaxations || []) {
+      uncertainties.push(`${note}；已按最接近的条件给出候选，请自行判断是否适用。`);
+    }
     if (retrieval.goal && retrieval.goal.data_class === 'demo') {
       uncertainties.push('当前目标及推荐资源基于 DEMO 数据集（data_class=demo），并非真实核验课程。');
     }
