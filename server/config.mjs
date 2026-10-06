@@ -25,6 +25,49 @@ function envInt(name, fallback) {
   return Number.isFinite(v) ? v : fallback;
 }
 
+/* ---------------------------------------------------------------------------
+   已退役模型名 → 当前受支持模型的映射（Deprecation Map）
+
+   为什么代码里必须「写死」这些退役名：不是为了用它们，而是为了**识别**它们。
+   生产缺陷记录（2026-10-06）：代码默认值已修正为 deepseek-v4-flash，但 Vercel
+   平台上仍留着 AI-1 阶段设置的 DEEPSEEK_MODEL=deepseek-chat。环境变量优先级
+   高于默认值 → 生产 health 对外公布 model=deepseek-chat（已退役名），
+   而「靠上游静默别名兜底」是不可依赖的隐式行为。
+
+   处理策略（显式、可观测、不静默）：
+     · 命中退役名 → 用映射后的当前模型发起调用（避免打到已下线模型）；
+     · 同时把「配置值 ≠ 生效值」暴露到 /api/health，让运维能看见并修正平台变量；
+     · 绝不静默改写成看似正常的配置 —— 那样只会把问题藏起来。
+
+   ⚠️ 这张表只做「识别 + 迁移映射」，任何代码路径都不得把退役名当默认值使用。
+   ------------------------------------------------------------------------- */
+export const RETIRED_DEEPSEEK_MODELS = Object.freeze({
+  // 2026-07-24 15:59 UTC 永久停用。原语义 = V4 的非思考模式。
+  'deepseek-chat': 'deepseek-v4-flash',
+  // 2026-07-24 15:59 UTC 永久停用。原语义 = V4 的思考模式。
+  // V4 里「思考 / 非思考」是**请求级参数**（thinking.type），不是两个模型，
+  // 因此统一迁移到 flash；是否开启思考由 DEEPSEEK_THINKING 决定。
+  'deepseek-reasoner': 'deepseek-v4-flash',
+});
+
+/** 默认（当前受支持）模型。官方模型表核验于 2026-10-06。 */
+export const DEFAULT_DEEPSEEK_MODEL = 'deepseek-v4-flash';
+
+/**
+ * 解析 DEEPSEEK_MODEL：区分「平台配置了什么」与「实际会调什么」。
+ * @returns {{configured:string, effective:string, deprecated:boolean, retiredName:string|null}}
+ */
+function resolveDeepseekModel() {
+  const configured = envStr('DEEPSEEK_MODEL', DEFAULT_DEEPSEEK_MODEL);
+  const mapped = RETIRED_DEEPSEEK_MODELS[String(configured).toLowerCase()];
+  if (mapped) {
+    return { configured, effective: mapped, deprecated: true, retiredName: configured };
+  }
+  return { configured, effective: configured, deprecated: false, retiredName: null };
+}
+
+const DEEPSEEK_MODEL_RESOLUTION = resolveDeepseekModel();
+
 export const CONFIG = {
   projectRoot: PROJECT_ROOT,
 
@@ -43,9 +86,18 @@ export const CONFIG = {
   deepseek: {
     apiKey: envStr('DEEPSEEK_API_KEY'),
     baseUrl: envStr('DEEPSEEK_BASE_URL', 'https://api.deepseek.com'),
-    model: envStr('DEEPSEEK_MODEL', 'deepseek-v4-flash'),
+    // effective：实际发往上游的模型名（已退役名会被映射到当前模型）
+    model: DEEPSEEK_MODEL_RESOLUTION.effective,
+    // configured：平台/环境变量里**写的是什么**（可能已退役，用于对外披露与告警）
+    configuredModel: DEEPSEEK_MODEL_RESOLUTION.configured,
+    modelDeprecated: DEEPSEEK_MODEL_RESOLUTION.deprecated,
+    retiredModelName: DEEPSEEK_MODEL_RESOLUTION.retiredName,
     timeoutMs: envInt('DEEPSEEK_TIMEOUT_MS', 45000),
     maxOutputTokens: envInt('DEEPSEEK_MAX_OUTPUT_TOKENS', 2400),
+    /* 第二次尝试（JSON 修复轮）使用的 token 预算。
+       生产缺陷：Stage B 的最终 JSON（多条推荐 + 建议 + 不确定项）在候选集较大时
+       会被 2400 截断 → finish_reason=length → 误报「格式异常」。 */
+    maxOutputTokensRetry: envInt('DEEPSEEK_MAX_OUTPUT_TOKENS_RETRY', 4000),
     /* 思考模式（官方 V4 默认 **开启**，effort 支持 high/max）。CourseMap 的两段式管线是
        「结构化抽取 + 工具调用」，需要低延迟与可复现；且官方规定思考模式下
        temperature 被忽略、并强制回传 reasoning_content（否则 400）。

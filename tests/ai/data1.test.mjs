@@ -354,19 +354,79 @@ check('I-04', '输出 token 上限已设置（成本约束）', Number(CONFIG.de
 check('I-05', '超时已设置（防止请求悬挂）', Number(CONFIG.deepseek.timeoutMs) > 0,
   `timeoutMs=${CONFIG.deepseek.timeoutMs}`);
 
-/* 代码库中不得残留已停用模型名字面量（注释与文档可以提，作为迁移说明） */
-const bannedInCode = [
+/* --------------------------------------------------------------------------
+   I-06 — 已退役模型名不得出现在「取值位置」
+
+   为什么不能像以前那样「全文件 grep 字面量」：
+     server/config.mjs 现在**必须**提到 deepseek-chat / deepseek-reasoner ——
+     但只有在 Deprecation Map 里作为**键**（用于识别并迁移平台遗留配置）。
+     一刀切 grep 会把「识别退役名的机制」和「使用退役名的缺陷」一起判红，
+     从而逼迫后来者删掉那张表 —— 那才是真正危险的（平台变量一旦遗留
+     退役名，就没有任何代码能发现它）。
+
+   精确契约：
+     · 禁止出现在**取值位置**：envStr 的 fallback 参数、model 赋值、
+       = 右侧、.env.example 的 KEY=VALUE。
+     · 允许且只允许出现在 config.mjs 的 Deprecation Map 中作**键**。
+   -------------------------------------------------------------------------- */
+const SCOPED_FILES = [
   'server/config.mjs', '.env.example', 'server/llm/DeepSeekAdapter.mjs',
-  'api/ai/health.js', 'api/ai/advisor.js',
+  'api/ai/health.js', 'api/ai/advisor.js', 'server/httpHandler.mjs',
 ];
-const residual = bannedInCode.filter((rel) => {
+const BANNED = 'deepseek-(chat|reasoner|flash)';
+/* 取值位置：函数 fallback 参数 / 对象属性 / 赋值右侧 / .env 的 KEY=VALUE */
+const VALUE_POSITION = [
+  new RegExp(`envStr\\(\\s*['"][A-Z_]+['"]\\s*,\\s*['"]${BANNED}['"]`, 'i'),
+  new RegExp(`\\bmodel\\s*:\\s*['"]${BANNED}['"]`, 'i'),
+  new RegExp(`=\\s*['"]${BANNED}['"]`, 'i'),
+  new RegExp(`^\\s*DEEPSEEK_MODEL\\s*=\\s*${BANNED}\\s*$`, 'im'),
+];
+const positional = SCOPED_FILES.filter((rel) => {
   const text = readFileSync(join(ROOT, rel), 'utf8');
-  // 允许出现在注释中（迁移说明），禁止出现在赋值/字符串默认值上
-  const lines = text.split('\n').filter((l) => !/^\s*(\/\/|\*|#)/.test(l));
-  return lines.some((l) => /['"]deepseek-(chat|reasoner|flash)['"]/.test(l));
+  return VALUE_POSITION.some((re) => re.test(text));
 });
-check('I-06', '代码默认值中无已停用/错误模型名字面量', residual.length === 0,
-  residual.join(', '));
+check('I-06', '已退役/拼错的模型名不出现在任何「取值位置」', positional.length === 0,
+  positional.join(', '));
+
+/* I-06b — 退役名只允许出现在 Deprecation Map 的键位置 */
+{
+  const cfg = readFileSync(join(ROOT, 'server/config.mjs'), 'utf8');
+  const hits = cfg.split('\n')
+    .map((l, i) => ({ l, n: i + 1 }))
+    .filter(({ l }) => new RegExp(`['"]${BANNED}['"]`, 'i').test(l))
+    .filter(({ l }) => !new RegExp(`^\\s*['"]${BANNED}['"]\\s*:`, 'i').test(l));
+  check('I-06b', '退役名在 config.mjs 中只作为 Deprecation Map 的键出现', hits.length === 0,
+    hits.map(({ n, l }) => `${n}: ${l.trim()}`).join(' | '));
+}
+
+/* I-06c — .env.example 的默认模型必须是当前受支持模型 */
+{
+  const env = readFileSync(join(ROOT, '.env.example'), 'utf8');
+  const m = env.match(/^\s*DEEPSEEK_MODEL\s*=\s*(\S+)\s*$/m);
+  check('I-06c', '.env.example 的 DEEPSEEK_MODEL 是当前受支持模型',
+    !!m && OFFICIAL_OK.test(m[1]), `DEEPSEEK_MODEL=${m ? m[1] : '(missing)'}`);
+}
+
+/* I-06d — 平台遗留退役名时，config 必须映射到当前模型而不是继续用退役名
+   （生产缺陷：Vercel 上遗留 DEEPSEEK_MODEL=deepseek-chat，health 曾对外
+     公布已退役模型名。修好的是「代码默认值」，但平台变量不在代码里。） */
+{
+  const { RETIRED_DEEPSEEK_MODELS, DEFAULT_DEEPSEEK_MODEL } = await import('../../server/config.mjs');
+  const names = Object.keys(RETIRED_DEEPSEEK_MODELS);
+  check('I-06d', 'Deprecation Map 覆盖 deepseek-chat / deepseek-reasoner',
+    names.includes('deepseek-chat') && names.includes('deepseek-reasoner'), names.join(','));
+  const badTargets = names.filter((k) => !OFFICIAL_OK.test(RETIRED_DEEPSEEK_MODELS[k]));
+  check('I-06e', '退役名的迁移目标全部是当前受支持模型', badTargets.length === 0,
+    badTargets.map((k) => `${k}→${RETIRED_DEEPSEEK_MODELS[k]}`).join(','));
+  check('I-06f', '默认模型常量本身不是退役名',
+    OFFICIAL_OK.test(DEFAULT_DEEPSEEK_MODEL) && !/^deepseek-(chat|reasoner)$/i.test(DEFAULT_DEEPSEEK_MODEL),
+    DEFAULT_DEEPSEEK_MODEL);
+  check('I-06g', 'CONFIG 同时暴露 configuredModel（平台写了什么）与 model（实际调什么）',
+    typeof CONFIG.deepseek.configuredModel === 'string'
+    && typeof CONFIG.deepseek.model === 'string'
+    && typeof CONFIG.deepseek.modelDeprecated === 'boolean',
+    `configured=${CONFIG.deepseek.configuredModel} effective=${CONFIG.deepseek.model} deprecated=${CONFIG.deepseek.modelDeprecated}`);
+}
 
 /* ---- 汇总 ---- */
 console.log('------------------------------------------------');
