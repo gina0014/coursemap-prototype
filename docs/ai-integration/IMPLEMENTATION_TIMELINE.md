@@ -15,4 +15,12 @@
 | 09 | M15 | 部署边界确认：前端已上线 v0.2；后端停在用户授权边界（Key + 平台账号） | WARN | ai-10 |
 | 10 | M17 | docs/ai-integration 全套（20 文档 + 8 ADR + 时间线 + Before/After + Master Log）+ README/VERSION/CHANGELOG | PASS | ai-11 |
 | 11 | M18 | Secret 扫描 / git 历史扫描 / 旧项目完整性 / push / 公网回归 | PASS | ai-11 |
-| 12 | M16 | Real DeepSeek 调用与公网 7 Case E2E | **PENDING（待 Key）** | — |
+| 12 | M19 | 后端人工部署授权完成（Vercel + Secret）→ 写生产验证脚本（后端 64 项 + 浏览器 E2E）+ GitHub Actions 流水线 + 本地 DeepSeek 影子替身 | PASS | 51d9537 ai-20 |
+| 13 | M19 | 首轮真实生产验证：定界「开发机无法访问 *.vercel.app」→ 改由 CI 执行；E2E 25/35 FAIL，暴露 4 处真实缺陷 | FAIL（如实记录） | 4281734（CI 证据） |
+| 14 | M19 | 修缺陷 1：补 `api/ai/health.js` 路由文件 + 路由一致性测试（含变异验证） | PASS | 51d9537 内 |
+| 15 | M19 | 修缺陷 2：难度/语言硬过滤 → 软偏好；修缺陷 3：Repository id 比较规范化（`path_id` 字符串导致 0 步） | PASS | 51d9537 内 |
+| 16 | M19 | 修缺陷 4（影响最大）：`findGoalByName` 3 级匹配 + Stage A 枚举规范目标清单 → 3 个用户场景全部命中 | PASS | ai-21（5dd6052） |
+| 17 | M19 | 修验证器缺陷：影子替身扫全段提示词会命中目标清单 → 改为先切出 `User message:` 段 | PASS | ai-21 |
+| 18 | M19 | 验证流水线加固：`meta.build` 部署指纹 + `wait_for_deploy.mjs` 部署闸门 + V-04b 断言；`backend-verify` 改 `if: always()` | PASS | ai-21 |
+| 19 | M19 | 本地全量复验：后端 64/64、E2E 37/37、unit 78 / routing 10 / integration 10 / core 75、Secret 0、数据 BLOCKER 0 | PASS | ai-21 |
+| 20 | M19 | 推送 → Vercel redeploy → CI 产出生产证据（`30_*` / `31_*`） | **PENDING（待推送）** | — |

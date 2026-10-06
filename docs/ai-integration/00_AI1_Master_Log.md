@@ -98,10 +98,63 @@
 
 ---
 
+## M19 Production Activation（真实生产验证 + 缺陷修复）
+
+- **Module**: M19
+- **Goal**: 后端人工部署授权完成后，做真实生产验证（Frontend → Vercel → DeepSeek 全链路），
+  并把验证本身沉淀为可复跑、可审计的流水线。
+- **Files Changed**:
+  - `api/ai/health.js`（新增路由文件）、`vercel.json`、`tests/ai/routing.test.mjs`（ai-20）
+  - `scripts/verify/live_public_verify.mjs`（64 项后端断言）、`scripts/verify/public_e2e.mjs`（37 项浏览器断言）、
+    `scripts/regression/cdp-client.mjs`、`scripts/verify/deepseek_shadow.mjs`（本地测试替身）、
+    `server/dev-server.mjs`、`package.json`（`verify:live` / `verify:e2e`）（ai-20）
+  - `.github/workflows/live-verify.yml`（GitHub Actions 生产验证流水线，证据回写 master）（ai-20）
+  - `scripts/verify/deepseek_shadow.mjs`、`scripts/verify/live_public_verify.mjs`、
+    `scripts/verify/public_e2e.mjs`、`scripts/verify/wait_for_deploy.mjs`（新增）、
+    `server/httpHandler.mjs`、`server/orchestrator/AIOrchestrator.mjs`、
+    `server/prompts/learning-advisor-v1.mjs`、`server/repo/CourseMapRepository.mjs`、
+    `tests/ai/unit.test.mjs`（ai-21 修复）
+- **Architecture Decision**:
+  - 生产验证必须在能直连 `*.vercel.app` 的网络执行 → 放 GitHub Actions，证据提交回仓库。
+  - 新增 `meta.build` 部署指纹 + 部署闸门：先确认「验的是本次提交的部署」再验证，
+    避免 Vercel 未完成 redeploy 时误验旧代码（首轮 CI 即如此误判）。
+  - Stage A 提示词枚举 CourseMap 规范目标清单：**模型「选择」目标名而非「创造」**。
+- **Tests**:
+  - 首轮真实生产 E2E（commit 51d9537）：**25 PASS / 10 FAIL**。
+  - 修复后本地等价验证：后端 64/64、浏览器 37/37；
+    unit 78 / routing 10 / integration 10 / core 75 全 PASS；
+    数据校验 BLOCKER 0 ERROR 0；Secret 扫描 0（150 文件）。
+- **Result**: 修复 **PASS**（本地）；生产再验证 **PENDING**（待推送 + Vercel redeploy + CI）。
+- **Known Issues**: 4 处真实缺陷已修（见下）；生产再验证证据尚未产出。
+- **Git Commit**: ai-20（`51d9537`）、ai-21 修复（`5dd6052`，**本地已提交，待推送**）
+
+### M19 修复的 4 处真实生产缺陷
+
+| # | 缺陷 | 现象 | 修复 |
+| --- | --- | --- | --- |
+| 1 | Serverless 文件系统路由缺文件 | 生产 `GET /api/ai/health` 404（本地 dev-server 正常）→ 前端探测恒失败 → 静默降级 | 新增 `api/ai/health.js`；新增 `tests/ai/routing.test.mjs` 断言「本地路由 == 生产路由」，并用变异测试验证该测试真会失败 |
+| 2 | 难度/语言为硬过滤 | 目标「单细胞 RNA-seq 入门」只有 advanced 资源 → 0 候选 → 合法请求返回 INVALID_MODEL_OUTPUT / NO_MATCHING_RESOURCE | 难度/语言改为**软偏好**排序（预算/时长仍硬约束）；检索返回 `relaxations` |
+| 3 | `getLearningPath` 用严格 `===` 比较 id | `path_id` 为字符串 → 0 步 → 学习路径静默为空 | 全 Repository 的 id 比较规范化为 `String(a) === String(b)`；`path_ref` 改用 `asId()` 保留数值 id |
+| 4 | **目标名匹配过于脆弱**（首轮 CI 暴露，影响最大） | 真实 DeepSeek 把目标改写成自然措辞（`Python 编程入门` / `Python数据分析` / `单细胞分析`）→ 3 个用户场景全部退化为 NO_MATCHING_RESOURCE | `findGoalByName` 改 3 级匹配（精确 → 双向包含（ASCII 词边界保护）→ Dice 0.6，含 CJK 一方优先）；Stage A 枚举规范目标清单 |
+
+### M19 附带修复的验证器缺陷（重要）
+
+- **测试替身「扫全段提示词」**：Stage A 提示词加入目标清单后，
+  `deepseek_shadow.mjs` 的正则扫整段提示词会命中清单里的
+  `单细胞 RNA-seq 入门`，导致本地把三个场景**全部**误判为该目标（假失败）。
+  已改为先从提示词切出 `User message:` 段再推断——**等价于「模型只看用户说的话」**。
+
+---
+
 ## FINAL STATUS
-**COURSEMAP AI-1 ENGINEERING COMPLETE — WAITING FOR DEEPSEEK_API_KEY / DEPLOYMENT AUTHORIZATION**
+**COURSEMAP AI-1 — DEPLOYED（前端 + 后端）· 4 处生产缺陷已修 · 生产再验证 PENDING**
 
 - 前端公网（CourseMap-v0.2-AI-Beta）：**VERIFIED**（VERSION 正确 + 公网 16/16 smoke + 0 控制台错误）。
-- 后端（Vercel Function）：**NOT DEPLOYED**，按设计停在人工密钥/授权边界。
-- 唯一人工操作：提供 `DEEPSEEK_API_KEY` 并在部署平台配置 Secret（见 15_Deployment.md）。
+- 后端（Vercel Function `https://coursemap-prototype.vercel.app`）：**DEPLOYED 且已读到密钥**
+  （`llm_configured=true`、`adapter=deepseek`）。
+- 首轮真实生产验证：**未通过**（25/35），暴露 4 处真实缺陷；修复已完成并本地全量验证通过。
+- **剩余一步**：把修复提交（`5dd6052`）推送至 master → Vercel 自动 redeploy →
+  CI `live-verify` 产出生产证据（`30_*` / `31_*`）后，方可判定 Production Activation COMPLETE。
+- 纪律：**绝不以「页面能打开」判定 AI 成功；绝不以规则降级冒充 DeepSeek**——
+  必须证明请求经过 Frontend → Vercel → DeepSeek。
 

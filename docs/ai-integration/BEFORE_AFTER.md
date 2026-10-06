@@ -10,6 +10,7 @@
 | Conversation | 无（单轮） | session 级结构化约束多轮（改预算不重述目标） |
 | Security | 前端无 secret（也未接 LLM） | Key 服务端 only、CORS allowlist、server 限流、注入探针、输出校验 |
 | Failure Handling | 不适用 | 全错误族映射 + 规则引擎优雅降级（核心功能零 AI 依赖） |
-| Deployment | GitHub Pages 单层 | GitHub Pages（已上线 v0.2）+ Backend（READY，待授权部署） |
-| Testing | 75 核心断言 + 16 冒烟 | + 58 AI 单元 + 10 HTTP 集成 + Live 门控套件 |
+| Deployment | GitHub Pages 单层 | GitHub Pages + 已部署的 AI Backend（Vercel Serverless，密钥服务端托管，`aiBackendBase` 指向稳定生产 URL） |
+| Testing | 75 核心断言 + 16 冒烟 | + 78 AI 单元 + 10 路由一致性 + 10 HTTP 集成 + **64 后端生产断言** + **37 真实浏览器 E2E** + Live 门控套件 |
+| Verification Ops | 手工、无证据链 | CI 流水线（GitHub Actions）+ 部署指纹闸门（确认验的是本次提交的部署）+ 证据回写仓库 |
 | Disclosure | Prototype · Not LLM-powered | REAL LLM（Beta）+ DEMO DATA 同时明示；降级时回退标注 |

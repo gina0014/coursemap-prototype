@@ -5,9 +5,10 @@
 > 按学习目标找资源，而不是先找平台再翻课程。
 > Find learning resources by goal, not by platform.
 
-**Educational domain prototype.** 本仓库当前版本为 `CourseMap-v0.1-Prototype`：
-纯前端、静态 JSON 数据驱动的动态应用，用于验证「Learning Goal → Learning Resource →
-Comparison → Learning Path → Decision」这条核心决策链路，不是产品最终形态。
+**Educational domain prototype.** 本仓库当前版本为 `CourseMap-v0.2-AI-Beta`：
+静态 JSON 数据驱动的动态前端 + 已部署的 AI 后端（Serverless Function），
+用于验证「Learning Goal → Learning Resource → Comparison → Learning Path → Decision」
+这条核心决策链路，不是产品最终形态。
 
 ## 它是什么 / 不是什么
 
@@ -29,7 +30,7 @@ CourseMap 不是：课程内容生产网站、普通课程目录、MOOC 导航�
 | 学习路径 | `pages/paths.html`、`pages/path.html?id=` | Goal → Skill → Resource 可视化 |
 | 收藏 | `pages/favorites.html` | Local Prototype（localStorage） |
 | 写学习评价 | `pages/review.html?resource_id=` | 结构化评价，Local Prototype |
-| AI 学习顾问 | `pages/advisor.html` | 规则原型（Not LLM-powered） |
+| AI 学习顾问 | `pages/advisor.html` | AI Beta · Real LLM（DeepSeek via server-side backend）｜后端不可用时优雅降级为规则引擎并明示 |
 | 数据方法论 | `pages/data-methodology.html` | 来源、核验与统计口径 |
 | 关于 | `pages/about.html` | 原型声明 |
 | 404 | `404.html` | 未找到 |
@@ -60,9 +61,13 @@ python -m http.server 8765
 # 数据校验（BLOCKER/ERROR 必须为 0）
 python scripts/validate/validate_data.py
 
-# Node 运行时测试（75 项核心断言）+ AI 测试（58 单元 + 10 HTTP 集成）
-npm test          # 等价于 runtime + AI unit + AI integration
+# Node 运行时测试（75 项核心断言）+ AI 测试（78 单元 + 10 路由 + 10 HTTP 集成）
+npm test              # = runtime + AI unit + routing + integration
 npm run test:ai-live  # Live DeepSeek 测试（仅当配置了 DEEPSEEK_API_KEY 才真实运行）
+
+# 生产验证（对已部署后端 / 公网前端；开发机无法直连 vercel 时请在 CI 跑）
+npm run verify:live   # 后端 64 项生产断言
+npm run verify:e2e    # 真实浏览器 E2E 37 项（需 Chrome）
 
 # 本地 AI 后端（无 Key 时 health 正常、advisor 诚实返回 NOT_CONFIGURED）
 npm run dev:ai
@@ -76,12 +81,19 @@ node scripts/regression/browser_smoke.mjs
 - **Powered by DeepSeek API（服务端代理）**：浏览器只与 CourseMap AI Backend 通信，
   DeepSeek API Key 仅存在于服务端环境变量 / 平台 Secret，前端与 Git 仓库零密钥。
   此为技术集成说明，不代表与 DeepSeek 官方有任何合作关系。
+- **已部署**：AI Backend 运行于 Vercel（`https://coursemap-prototype.vercel.app`），
+  前端 `js/config.js` 的 `AI.aiBackendBase` 指向该稳定地址。
+  架构：GitHub Pages 前端 → Vercel AI Backend → CourseMap 检索 → DeepSeek API → 接地回答。
 - **AI recommendations are grounded in CourseMap data where applicable**：
   推荐必须绑定真实存在的 resource_id（前后端双重代码级校验），
   费用/时长/评分/证书/来源等事实一律由 CourseMap 数据渲染，模型只负责理解与解释。
 - **优雅降级**：AI 后端不可用或未配置密钥时，前端自动切换为规则原型（Rule-based
   Prototype · Not LLM），课程搜索、对比、学习路径等核心功能完全不依赖 AI。
-- 架构与部署详见 `docs/ai-integration/`（Master Log + 20 篇模块文档 + 8 篇 ADR）。
+- 架构与部署详见 `docs/ai-integration/`（Master Log + 20 篇模块文档 + 8 篇 ADR）；
+  生产验证流水线见 `.github/workflows/live-verify.yml`。
+- **验证状态（如实）**：本地等价验证 后端 64/64、浏览器 37/37 全通过；
+  真实生产首轮验证暴露 4 处缺陷（已修），生产再验证待修复推送后由 CI 出证据
+  —— 详见 `docs/ai-integration/19_AI1_Final_Report.md`。
 
 ## 原型边界（务必阅读）
 

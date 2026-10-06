@@ -1,5 +1,57 @@
 # Changelog
 
+## CourseMap-v0.2-AI-Beta · Production Activation（2026-10-06，ai-20 / ai-21）
+
+后端完成人工部署授权（Vercel + `DEEPSEEK_API_KEY` Secret）后，
+把「真实生产验证」做成了可复跑、可审计的流水线，并据此发现并修复了 4 处真实缺陷。
+
+### Added
+
+- **生产验证脚本**：
+  - `scripts/verify/live_public_verify.mjs` — 后端 64 项断言（部署/配置、3 个用户场景、
+    Fact Hydration、Source Binding、Learning Path、Multi-turn、No Matching、Invalid Input、
+    Hallucination、Prompt Injection、Rate Limit）；输出 `30_*` 证据。
+  - `scripts/verify/public_e2e.mjs` — 真实 Chrome（CDP）37 项断言，访问公网前端，
+    断言 REAL LLM 模式、推荐接地、DOM 层事实绑定、Graceful Fallback 保留；输出 `31_*` 证据。
+  - `scripts/verify/deepseek_shadow.mjs` — 本地 DeepSeek 测试替身（走完整 HTTP + OpenAI 兼容协议，
+    故意返回错误 fee/rating 以验证 Fact Hydration）。
+  - `scripts/verify/wait_for_deploy.mjs` — **部署闸门**：轮询 `meta.build` 直到本次提交的部署生效。
+- **CI 流水线** `.github/workflows/live-verify.yml`：`public-e2e` / `backend-verify` /
+  `publish-evidence`（证据自动回写 master）。
+- `tests/ai/routing.test.mjs` — 断言「本地路由 == 生产路由」，防 Serverless 文件系统路由漏文件。
+- `/api/ai/health` 增加 `meta.build` 部署指纹（`VERCEL_GIT_COMMIT_SHA` / `VERCEL_DEPLOYMENT_ID`）。
+
+### Fixed（4 处真实生产缺陷）
+
+1. **Serverless 路由缺文件**：生产 `GET /api/ai/health` 404（本地正常）→ 前端探测恒失败 → 静默降级。
+   补 `api/ai/health.js`。
+2. **难度/语言硬过滤**：单细胞目标只有 advanced 资源 → 0 候选 → 合法请求被判 NO_MATCHING_RESOURCE。
+   改为软偏好排序（预算/时长仍硬约束），检索返回 `relaxations`。
+3. **`getLearningPath` 严格 `===` 比较 id**：`path_id` 为字符串时返回 0 步 → 学习路径静默为空。
+   全 Repository id 比较规范化；`path_ref` 改用 `asId()`。
+4. **目标名匹配过于脆弱**（首轮 CI 暴露，影响最大）：真实 DeepSeek 把目标改写成自然措辞
+   （`Python 编程入门` / `Python数据分析` / `单细胞分析`）→ 3 个用户场景全部退化为
+   NO_MATCHING_RESOURCE。`findGoalByName` 改 3 级匹配（精确 → 双向包含（ASCII 词边界保护）
+   → Dice 0.6，含 CJK 一方优先）；Stage A 提示词枚举规范目标清单（模型「选择」而非「创造」）。
+
+### Fixed（验证工具自身）
+
+- 测试替身在 Stage A 会正则扫整段提示词，命中目标清单里的 `单细胞 RNA-seq 入门`，
+  导致本地把 3 个场景全部误判为该目标（假失败）。改为先切出 `User message:` 段再推断。
+- `backend-verify` 改为 `if: always()`：前端回归失败不再掩盖后端证据。
+
+### Verified
+
+- 首轮真实生产 E2E（`51d9537`）：**25 PASS / 10 FAIL**（如实记录失败）。
+- 修复后本地等价验证：后端 **64/64**、浏览器 E2E **37/37**；
+  核心回归 75、AI 单元 78、路由 10、集成 10 全 PASS；数据 BLOCKER 0 / ERROR 0；Secret 扫描 0（150 文件）。
+
+### Honest Status
+
+- 生产首轮验证**未通过**并已定位根因；修复已完成并本地全量验证通过。
+- **判定 Production Activation COMPLETE 仍需**：修复推送 → Vercel redeploy →
+  CI `live-verify` 同时通过 `public-e2e` 与 `backend-verify` 并产出 `30_*` / `31_*` 证据。
+
 ## CourseMap-v0.2-AI-Beta (2026-10-06)
 
 AI-1 DeepSeek 生产接入（工程闭环）。LLM = Interaction + Reasoning Layer，
@@ -38,8 +90,10 @@ CourseMap Data = Evidence Layer 的架构原则全程保持。
 
 ### Honest Status
 
-- 工程闭环 COMPLETE；**Real DeepSeek Call 未经真实 Key 验证**（当前环境无密钥），
+- 工程闭环 COMPLETE；当时的 **Real DeepSeek Call 未经真实 Key 验证**（当时环境无密钥），
   状态 = ENGINEERING COMPLETE · WAITING FOR DEEPSEEK_API_KEY / DEPLOYMENT AUTHORIZATION。
+  → 后续已由 **Production Activation**（见本文件顶部）完成部署与真实调用验证。
+- 测试数量当时为 58 单元 / 10 集成；现已扩展为 78 单元 / 10 路由 / 10 集成。
 
 ## CourseMap-v0.1-Prototype (2026-10-06)
 
