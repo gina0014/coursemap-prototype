@@ -1,7 +1,7 @@
 # ============================================================================
 # CourseMap — .github/workflows/live-verify.yml
 # ----------------------------------------------------------------------------
-# AI-1 Production Activation 的**真实生产验证**流水线。
+# Data-1 + AI Production Activation 的**真实生产验证**流水线。
 #
 # 为什么必须放在 GitHub Actions 上跑：
 #   开发机的网络无法访问 *.vercel.app（DNS 污染 + TLS SNI 重置），
@@ -9,8 +9,13 @@
 #   具备该连通性，且验证结果由 runner 提交回仓库，形成可审计证据。
 #
 # 验证内容：
+#   0) offline-gates   ：不依赖网络的硬门禁，任何推送必须先过。
+#                        数据校验（v0.2 规则，BLOCKER/ERROR 必须为 0）、
+#                        runtime + AI + Data-1 验收测试（mock-only）、
+#                        secret 扫描（Leaked secrets = 0）。
 #   1) public-e2e      ：真实 Chrome 访问 GitHub Pages，执行 3 个用户场景，
 #                        断言前端处于 REAL LLM 模式、推荐接地、DOM 事实绑定、
+#                        真实资源被检索到并带许可/官方链接、
 #                        并且后端不可用时的 Graceful Fallback 仍然保留。
 #   2) backend-verify  ：直连 Vercel 后端，断言 Function 被调用 / 读到
 #                        DEEPSEEK_API_KEY / CORS 正确 / 无 401·403·404·500，
@@ -19,7 +24,8 @@
 #                        Learning Path、Multi-turn、No Matching、Invalid Input、
 #                        Hallucination、Fact Conflict、Prompt Injection、Rate Limit。
 #
-# 顺序：先 E2E，再 backend-verify（后者的限流测试会消耗配额，必须最后跑）。
+# 顺序：offline-gates → public-e2e → backend-verify
+#       （后者的限流测试会消耗配额，必须最后跑）。
 # 证据：docs/ai-integration/evidence/30_* 与 31_*，由 runner 提交回 master。
 # ============================================================================
 
@@ -57,9 +63,39 @@ env:
   DEPLOY_WAIT_MS: '420000'
 
 jobs:
+  # ---------------------------------------------------------------------------
+  # Data-1 离线门禁：不依赖网络，任何推送都必须先过这一关。
+  # 覆盖：数据校验（v0.2 规则，BLOCKER/ERROR 必须为 0）、运行时/单元/路由/
+  #       集成/Data-1 验收测试、secret 扫描（Leaked secrets = 0）。
+  # ---------------------------------------------------------------------------
+  offline-gates:
+    name: offline gates (data validation + tests + secret scan)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Data validation (rules v0.2 — BLOCKER/ERROR must be 0)
+        run: python scripts/validate/validate_data.py
+
+      - name: Runtime + AI + Data-1 tests (mock-only, no live API)
+        run: npm test
+
+      - name: Secret scan (no leaked credentials)
+        run: node scripts/validate/secret_scan.mjs
+
   public-e2e:
     name: public frontend E2E (real browser)
     runs-on: ubuntu-latest
+    needs: [offline-gates]
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
