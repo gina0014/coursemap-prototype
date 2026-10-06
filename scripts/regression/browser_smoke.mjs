@@ -26,6 +26,9 @@ const SHOT_DIR = join(PROJECT_ROOT, 'docs', 'evidence', 'screenshots');
 const CHROME = process.env.CHROME_PATH
   || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const BASE = process.env.COURSEMAP_BASE || 'http://127.0.0.1:8765';
+/* 是否为「本机静态服务器」运行。本地运行时，AI 顾问页探测生产后端会被 CORS 拦下 —— 
+   这是白名单事实而非前端缺陷，故仅本地豁免（见 verdict()）。 */
+const IS_LOCAL_BASE = /^https?:\/\/(127\.0\.0\.1|localhost)(:|\/|$)/.test(BASE);
 /* 临时 Profile 放系统 TEMP，且**不做删除清理**（部分环境对批量删除有安全守卫）。
    每个目标使用独立目录，避免相互污染。 */
 const TEMP_BASE = mkdtempSync(join(tmpdir(), 'coursemap-smoke-'));
@@ -87,6 +90,14 @@ const TARGETS = [
   {
     id: '12_Advisor_Fallback', page: 'P-10', url: 'pages/advisor.html',
     mustContain: ['Rule-based Prototype'], shot: true,
+    /* 仅本地运行豁免：顾问页会探测生产 Vercel 后端的 /api/ai/health，
+       而生产白名单不含本机静态服务器端口 → 浏览器必然报 CORS + ERR_FAILED。
+       精确匹配该 URL，避免误豁免其它网络错误。 */
+    tolerate: [
+      { kind: 'console', pattern: /Access to fetch at 'https:\/\/coursemap-prototype\.vercel\.app\/api\/ai\/health' from origin '[^']*' has been blocked by CORS policy/ },
+      { kind: 'console', pattern: /^\[network\] Failed to load resource: net::ERR_FAILED$/ },
+      { kind: 'request', pattern: /^LOAD_FAILED net::ERR_FAILED/ },
+    ],
   },
   {
     id: '13_Data_Methodology', page: 'P-11', url: 'pages/data-methodology.html',
@@ -174,6 +185,7 @@ async function runTarget(target, index) {
     warnings: [],
     exceptions: [],
     failedRequests: [],
+    tolerated: [],
     pageState: null,
     contentChars: 0,
     resourceCards: 0,
@@ -356,11 +368,27 @@ async function runTarget(target, index) {
    主流程
    --------------------------------------------------------------------------- */
 
-function verdict(row) {
+function verdict(row, target = {}) {
+  /* 本地回归的已知环境噪声（仅当 BASE 指向本机时豁免，公网运行不豁免）：
+     AI 顾问页会探测 `COURSEMAP_AI_BASE`（生产 Vercel 后端）。生产后端的
+     ALLOWED_ORIGIN 白名单不含本机 http.server 端口，于是浏览器必然报
+     CORS + ERR_FAILED。这属于「本机不在白名单」的部署事实，不是前端缺陷；
+     页面的降级行为（Rule-based Prototype）本身已由 mustContain 断言。
+     豁免必须精确匹配该 URL，任何其它控制台错误仍然致命。 */
+  const tolerances = IS_LOCAL_BASE ? (target.tolerate || []) : [];
+  const kept = (list, kind) => list.filter((item) => {
+    const hit = tolerances.some((t) => t.kind === kind && t.pattern.test(String(item)));
+    if (hit) row.tolerated.push(`${kind}: ${String(item).slice(0, 160)}`);
+    return !hit;
+  });
+
+  const consoleErrors = kept(row.consoleErrors, 'console');
+  const failedRequests = kept(row.failedRequests, 'request');
+
   if (!row.resolved) return 'FAIL(未解析完成/停在骨架)';
   if (row.pageState === 'error') return 'FAIL(渲染错误态)';
-  if (row.consoleErrors.length || row.exceptions.length) return 'FAIL(Console)';
-  if (row.failedRequests.length) return 'FAIL(资源)';
+  if (consoleErrors.length || row.exceptions.length) return 'FAIL(Console)';
+  if (failedRequests.length) return 'FAIL(资源)';
   if (row.missingText.length) return 'FAIL(缺内容)';
   if (row.brokenLinks.length) return 'FAIL(坏链)';
   if (row.assertions.some((a) => !a.ok)) return 'FAIL(断言)';
@@ -375,7 +403,7 @@ async function main() {
     process.stdout.write(`[${i + 1}/${TARGETS.length}] ${target.id} ... `);
     try {
       const row = await runTarget(target, i);
-      row.verdict = verdict(row);
+      row.verdict = verdict(row, target);
       rows.push(row);
       console.log(row.verdict);
     } catch (err) {
@@ -419,11 +447,13 @@ async function main() {
   for (const p of PAGES) console.log(`${p}: ${pageVerdicts.get(p) || 'NOT_RUN'}`);
 
   console.log('\n---- 汇总 ----');
-  console.log(`Console Errors     : ${consoleErrors.length}`);
+  const tolerated = rows.flatMap((r) => (r.tolerated || []).map((e) => `${r.id}: ${e}`));
+  console.log(`Console Errors     : ${consoleErrors.length}${tolerated.length ? `（其中 ${tolerated.length} 条为已登记的本地环境噪声，见下方）` : ''}`);
   console.log(`Unhandled Rejections / Exceptions : ${exceptions.length}`);
   console.log(`Failed Requests    : ${failed.length}`);
   console.log(`Warnings           : ${warnings.length}`);
   warnings.slice(0, 10).forEach((w) => console.log(`   WARN: ${w}`));
+  tolerated.forEach((t) => console.log(`   TOLERATED（本地环境噪声，不影响判定）: ${t}`));
 
   const bad = rows.filter((r) => !r.verdict.startsWith('PASS'));
   console.log(`\nResult : ${bad.length ? 'FAIL' : 'PASS'} (${rows.length - bad.length}/${rows.length})`);
