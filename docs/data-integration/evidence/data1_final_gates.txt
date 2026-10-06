@@ -1,6 +1,6 @@
 CourseMap Phase Data-1 + AI Production Activation — Final Gates (Module Y)
-generatedAt : 2026-10-06T15:19:39.221Z
-git HEAD    : ed8b06e23bcb1147c21d52f26bdc011720e9404c (master)
+generatedAt : 2026-10-06T15:31:46.023Z
+git HEAD    : 926e47919cbd409e83c74a2c4d24a6c620f4179e (master)
 dataset     : 107 resources (48 demo + 59 real), 61 sources (2 demo + 59 real)
 sha256      : resources=103541123ceeb5ded9acece49cb0f2c5663b903e05efe13eb64f311be04bce87 sources=f0d371fd872c4e13312117a8edc5ea84ba350d5608720163299c638e164fc1dc relations=f074d0ca25ab38c96c5de1952a6016815a6d872d03d021700024b53434e7b3bd
 licenses    : CC BY-NC-SA 4.0 × 53, unknown × 1, CC BY 4.0 × 5
@@ -20,9 +20,9 @@ Y-10    PASS     Unknown Field Test = PASS — 6/6 assertions green; duration_ho
 Y-11    PASS     Source Binding = PASS — 5/5 assertions green; every recommendation binds resource_id → source_id → official_url; verified_recommendation honest
 Y-12    PASS     Secret Leak = 0 — secret scan clean (exit 0)
 Y-13    BLOCKED  Public E2E = PASS (production) — 仓库内最新的公网 E2E 证据是**历史失败**记录（2026-10-06T09:10:19.760Z：35 checks，10 FAIL）；该证据产出于本轮修复之前，不能用于本轮验收，需对本次推送的 commit 重跑
-Y-14    PASS     Regression = PASS — runtime 86/86 · ai-unit 78/78 · ai-routing 10/10 · ai-integration 10/10 · data1 66/66 · oer-expansion 88/88 · featured-oer 15/15; total PASS=353 FAIL=0
+Y-14    PASS     Regression = PASS — runtime 86/86 · ai-unit 81/81 · ai-routing 10/10 · ai-integration 10/10 · data1 72/72 · model-output 33/33 · oer-expansion 88/88 · featured-oer 15/15; total PASS=395 FAIL=0
 ------------------------------------------------------------------------------
-PASS=12  FAIL=0  BLOCKED=2  (assertions=353)
+PASS=12  FAIL=0  BLOCKED=2  (assertions=395)
 
 COURSEMAP DATA-1 + AI ACTIVATION PARTIAL
 OFFLINE GATES: PASS (12 gates) — VERIFIED OPEN EDUCATIONAL RESOURCES ACTIVE
