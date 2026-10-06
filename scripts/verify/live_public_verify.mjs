@@ -166,13 +166,34 @@ check('V-04', 'adapter = deepseek（真实 LLM 适配器，不是 mock）', h.ad
 
 /* V-04b 部署指纹：证明「验证的是本次提交的部署」，而非 Vercel 尚未更新的旧代码。
    （没有这道闸门时，push 后立即验证可能命中旧部署，把修复误判为失败。）
-   仅在 CI 传入 COURSEMAP_EXPECT_BUILD 时校验；本地运行跳过（不打乱 PASS/WARN 统计）。 */
+   仅在 CI 传入 COURSEMAP_EXPECT_BUILD 时校验；本地运行跳过（不打乱 PASS/WARN 统计）。
+
+   ⚠️ 修复记录（2026-10-06）：`build` 位于响应的 **meta**，不在 data。
+   旧实现读 `h.build`（h = data）→ 恒为 (none) → 每一次生产验证都假失败。
+   这类「闸门自身写错，于是永远 FAIL」和「永远 PASS」一样危险：会训练人忽略它。 */
 {
   const expectBuild = String(process.env.COURSEMAP_EXPECT_BUILD || '').trim().slice(0, 12);
   if (expectBuild) {
+    const meta = health && health.json && health.json.meta ? health.json.meta : {};
+    const got = String(meta.build || '');
     check('V-04b', '部署指纹 = 本次提交（验证的是新代码而非旧部署）',
-      String(h.build || '').startsWith(expectBuild), `build=${h.build || '(none)'} expect=${expectBuild}`);
+      got.startsWith(expectBuild), `build=${got || '(none)'} expect=${expectBuild}`);
   }
+}
+
+/* V-04c 模型名审计：生产公布/使用的模型必须是当前受支持模型。
+   生产缺陷记录（2026-10-06）：Vercel 遗留 DEEPSEEK_MODEL=deepseek-chat（2026-07-24
+   已退役），health 曾对外公布 model=deepseek-chat。仅校验 model 字段不够 ——
+   必须同时看 configured_model（平台写了什么）与 model_deprecated（是否发生映射），
+   否则「靠上游静默别名兜底」会被当成正常。 */
+{
+  const RETIRED = /^deepseek-(chat|reasoner|flash)$/i;
+  const OFFICIAL_OK = /^deepseek-v4-(flash|pro|flash-vision-exp)$/;
+  check('V-04c', 'health 的 model 是官方当前受支持模型（非已退役名）',
+    OFFICIAL_OK.test(String(h.model || '')), `model=${h.model}`);
+  check('V-04d', '没有发生「退役模型名映射」（平台变量 DEEPSEEK_MODEL 未遗留退役名）',
+    h.model_deprecated === false,
+    `configured_model=${h.configured_model} deprecated=${h.model_deprecated}`);
 }
 
 const acao = health ? health.headers.get('access-control-allow-origin') : null;
@@ -384,8 +405,15 @@ for (const sc of SCENARIOS) {
     const ids = (res.json.data.recommendations || []).map((r) => String(r.resource_id));
     leaked = ids.some((id) => /LRN-999999|FAKE-0001/i.test(id)) || ids.some((id) => !repo.getResourceById(id));
   }
-  check('H-02', '负控制：诱导的不存在 ID 未出现在推荐中',
-    res.status === 200 ? !leaked : (res.status === 404 || res.status === 502), `status=${res.status} leaked=${leaked}`);
+  /* 断言的是**泄漏**，不是某个特定状态码。
+     修复记录（2026-10-06）：旧断言写成 `200 ? !leaked : (404 || 502)`，
+     于是「服务端正确地拒绝了这个没有学习目标的请求」被记成 FAIL ——
+     一个假失败，掩盖了系统其实做对了。此外服务端已把
+     「识别不出学习目标」从 400 BAD_REQUEST 改成语义正确的 404 NO_MATCHING_RESOURCE
+     （请求格式没问题，只是映射不到任何目标）。
+     现在只保留真正的负向契约：不泄漏编造 ID，且不得 500。 */
+  check('H-02', '负控制：诱导的不存在 ID 未出现在推荐中（且未崩溃）',
+    !leaked && res.status !== 500, `status=${res.status} leaked=${leaked} code=${res.json && res.json.error && res.json.error.code}`);
 }
 
 /* ---------------------------------------------------------------------------
