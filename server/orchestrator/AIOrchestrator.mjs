@@ -44,6 +44,29 @@ function asId(v, maxLen = 40) {
   return null;
 }
 
+/* Module O —— CourseMap 未核验的字段。
+   规则：Repository 里为 null 的事实字段，AI 必须明说「CourseMap 当前未核验该字段」，
+   不得自行补充。这里在服务端**用代码列出**这些字段，而不是指望模型自觉：
+   模型即使编数字，前端也只看这份清单。 */
+const TRACKED_FACT_FIELDS = [
+  'difficulty', 'duration_hours', 'weekly_workload_hours',
+  'certificate_available', 'rating',
+];
+
+function unknownFieldsOf(resource, ratingSummary) {
+  const out = [];
+  for (const field of TRACKED_FACT_FIELDS) {
+    if (field === 'rating') {
+      if (ratingSummary.rating === null || ratingSummary.rating === undefined) out.push('rating');
+      continue;
+    }
+    if (resource[field] === null || resource[field] === undefined) out.push(field);
+  }
+  if (!resource.description) out.push('description');
+  if (!resource.observed_at) out.push('observed_at');
+  return out;
+}
+
 export class AIOrchestrator {
   constructor({ adapter, repository, retriever, conversationStore, usageLogger }) {
     this.adapter = adapter;
@@ -156,6 +179,10 @@ export class AIOrchestrator {
       const r = this.repo.getResourceById(asId(rec.resource_id, 40));
       const rating = this.repo.getRatingSummary(r.resource_id);
       const sources = this.repo.getSourcesForResource(r.resource_id);
+      const licenses = this.repo.licenseSummaryFor
+        ? this.repo.licenseSummaryFor(r.resource_id)
+        : [];
+      const primary = licenses[0] || null;
       return {
         resource_id: r.resource_id,
         // ---- 以下字段全部 hydrated（Repository > LLM）----
@@ -163,11 +190,15 @@ export class AIOrchestrator {
         provider: this.repo.getProvider(r.provider_id)?.name || null,
         provider_id: r.provider_id,
         subject_id: r.subject_id,
+        learning_goal_names: (r.learning_goal_ids || [])
+          .map((gid) => this.repo.goalById ? this.repo.goalById(gid)?.name : null)
+          .filter(Boolean),
         fee: r.fee,
         currency: r.currency,
         duration_hours: r.duration_hours,
         weekly_workload_hours: r.weekly_workload_hours,
         difficulty: r.difficulty,
+        level_official: r.level_official ?? null,
         language: r.language,
         learning_mode: r.learning_mode,
         certificate_available: r.certificate_available,
@@ -176,6 +207,16 @@ export class AIOrchestrator {
         verification_status: r.verification_status,
         data_class: r.data_class,
         url: r.url,
+        // ---- Module F/N：来源与官方链接（水合自 Source，不由模型生成）----
+        official_url: primary ? primary.official_url : (r.url || null),
+        source: primary,
+        license: primary ? primary.license : null,
+        observed_at: r.observed_at || null,
+        // ---- Module O：CourseMap 尚未核验的字段必须显式暴露，交由前端/模型明说 ----
+        unknown_fields: unknownFieldsOf(r, rating),
+        /* Module N：没有 Source 的推荐不得被当作「已核验推荐」。
+           真实资源由 VR-C05 在数据层强制绑定来源；此处再做一次运行期断言。 */
+        verified_recommendation: Boolean(primary && primary.official_url),
         // ---- 模型提供的解释（reasoning，允许保留但截断）----
         reason: asStr(rec.reason, 400),
         fit_factors: Array.isArray(rec.fit_factors) ? rec.fit_factors.slice(0, 5).map((s) => asStr(s, 80)).filter(Boolean) : [],
@@ -184,6 +225,11 @@ export class AIOrchestrator {
         sources: sources.map((s) => ({
           source_id: s.source.source_id, title: s.source.title,
           source_type: s.source.source_type, verification_status: s.source.verification_status,
+          provider: s.source.provider || null,
+          official_url: s.source.official_url || s.source.url || null,
+          license: s.source.license || null,
+          license_url: s.source.license_url || null,
+          observed_at: s.source.observed_at || s.source.retrieved_at || null,
         })),
       };
     });
@@ -254,8 +300,21 @@ export class AIOrchestrator {
     for (const note of retrieval.relaxations || []) {
       uncertainties.push(`${note}；已按最接近的条件给出候选，请自行判断是否适用。`);
     }
-    if (retrieval.goal && retrieval.goal.data_class === 'demo') {
-      uncertainties.push('当前目标及推荐资源基于 DEMO 数据集（data_class=demo），并非真实核验课程。');
+    /* Module P：真实 / DEMO 必须同时说清楚。
+       注意不能再用「目标 data_class」做判断 —— 目标属于分类节点，
+       与具体资源是否为真实核验资源无关，混用会给出错误的披露。 */
+    const demoCount = recommendations.filter((r) => r.data_class === 'demo').length;
+    const realCount = recommendations.length - demoCount;
+    if (demoCount > 0 && realCount > 0) {
+      uncertainties.push(`本次推荐混合了 ${realCount} 条已核验真实资源与 ${demoCount} 条 DEMO 演示资源：标有「查看官方资源」的为可溯源的真实资源，DEMO 条目仅用于演示，不代表真实存在的课程。`);
+    } else if (demoCount > 0) {
+      uncertainties.push('本次推荐全部基于 DEMO 演示数据集（data_class=demo），并非真实核验课程；请勿据此判断真实课程是否存在。');
+    } else if (realCount > 0) {
+      uncertainties.push('本次推荐全部为带官方来源与许可记录的真实资源（data_class=real）；CourseMap 只保存元数据与官方链接，不复制课程正文。');
+    }
+    const unverifiedFieldNames = [...new Set(recommendations.flatMap((r) => r.unknown_fields))];
+    if (unverifiedFieldNames.length) {
+      uncertainties.push(`以下字段 CourseMap 当前未核验，AI 不会给出数值：${unverifiedFieldNames.join('、')}。`);
     }
 
     const latencyMs = Date.now() - startedAt;
@@ -290,6 +349,15 @@ export class AIOrchestrator {
       rejected_resource_ids: rejected,
       parse_warnings: intentWarnings,
       evidence,
+      // ---- Module P：数据集真实/演示构成（前端披露用）----
+      data_class_counts: this.repo.dataClassCounts ? this.repo.dataClassCounts() : null,
+      // ---- Grounding 元信息：让「证据约束」可被前端与测试断言 ----
+      grounding: {
+        verified_recommendations: recommendations.filter((r) => r.verified_recommendation).length,
+        total_recommendations: recommendations.length,
+        unknown_fields: unverifiedFieldNames,
+        policy: 'LLM 只解释证据；资源身份/费用/时长/难度/证书/评分/来源全部由 CourseMap Repository 水合。',
+      },
     };
   }
 }

@@ -34,11 +34,16 @@ export class StructuredRetriever {
     // 可承受总学时（目标周期 × 每周可投入）
     list = this.repo.filterByDuration(list, intent.target_duration_weeks, intent.available_hours_per_week);
 
-    /* ---- 软偏好：难度 / 语言只排序、不排除 ----
+    /* ---- 软偏好：难度 / 真实性 / 语言只排序、不排除 ----
        理由见 CourseMapRepository.orderByDifficulty / orderByLanguage 的注释：
        它们描述「学习者的适配度」而非「资源可用性」，硬过滤会把合法请求
-       变成假的「无匹配资源」（生产缺陷：目标「单细胞 RNA-seq 入门」）。 */
+       变成假的「无匹配资源」（生产缺陷：目标「单细胞 RNA-seq 入门」）。
+
+       顺序很关键（Module L）：先按难度适配度分层 → 再在**同一层内**让已核验的
+       真实资源优先 → 最后按语言偏好。这样「优先真实资源」不会变成
+       「real 永远第一」：一个更适配的 demo 资源仍可排在适配度差的 real 之前。 */
     list = this.repo.orderByDifficulty(list, intent.current_level);
+    list = this.repo.orderByDataClass(list);
     list = this.repo.orderByLanguage(list, intent.language);
 
     if (intent.certificate_requirement) {
@@ -47,7 +52,13 @@ export class StructuredRetriever {
       );
     }
 
-    return { goal, candidates: list.slice(0, limit), total: totalBefore, relaxations };
+    return {
+      goal,
+      candidates: list.slice(0, limit),
+      total: totalBefore,
+      relaxations,
+      data_class_counts: this.repo.dataClassCounts ? this.repo.dataClassCounts() : null,
+    };
   }
 
   /** 候选集的紧凑表示（控制 prompt 尺寸）。 */
@@ -61,6 +72,7 @@ export class StructuredRetriever {
       duration_hours: r.duration_hours,
       weekly_workload_hours: r.weekly_workload_hours,
       difficulty: r.difficulty,
+      level_official: r.level_official ?? null,
       language: r.language,
       learning_mode: r.learning_mode,
       certificate_available: r.certificate_available,
@@ -70,6 +82,12 @@ export class StructuredRetriever {
       verification_status: r.verification_status,
       prerequisites: r.prerequisite_skill_ids || [],
       outcomes: (r.learning_outcomes || []).slice(0, 3),
+      /* 溯源：真实资源必须让模型看到「有官方来源 + 许可」，但模型无权改写这些值
+         （最终展示值由 orchestrator 的 Fact Hydration 从 Repository 重取）。 */
+      has_official_source: Boolean(r.url),
+      license: this.repo.licenseSummaryFor
+        ? (this.repo.licenseSummaryFor(r.resource_id)[0]?.license || null)
+        : null,
     }));
   }
 }

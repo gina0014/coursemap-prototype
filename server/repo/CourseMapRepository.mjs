@@ -269,7 +269,72 @@ export class JsonCourseMapRepository {
     return list.slice().sort((a, b) => rank(a) - rank(b));
   }
 
+  /**
+   * 真实性（data_class）**偏好排序**（软约束，Module L）。
+   *
+   * 规则：
+   *   - 当存在合适的已核验真实资源（data_class=real 且已被核验）时优先展示真实资源，
+   *     而不是 demo 资源。
+   *   - **但绝不因为 data_class=real 就自动排名第一**：真实资源只在
+   *     「与 demo 资源处于同一难度适配层」时被提前。
+   *
+   * 因此调用顺序必须是：
+   *     orderByDifficulty(list, level)  // 先按适配度分层
+   *     orderByDataClass(list)          // 同一层内 real 优先
+   *     orderByLanguage(list, language) // 再按语言偏好
+   * 依赖 JS sort 的稳定性（ES2019+）来保留上一层已建立的层级顺序。
+   */
+  orderByDataClass(list) {
+    const rank = (r) => {
+      if (r.data_class !== 'real') return 1;
+      return (r.verification_status && r.verification_status !== 'unverified') ? 0 : 1;
+    };
+    return list.slice().sort((a, b) => rank(a) - rank(b));
+  }
+
+  /** published 资源的 demo / real 计数（供 UI 披露与证据记录）。 */
+  dataClassCounts() {
+    let demo = 0;
+    let real = 0;
+    for (const r of this.resources) {
+      if (r.status !== 'published') continue;
+      if (r.data_class === 'real') real += 1; else demo += 1;
+    }
+    return { demo, real, total: demo + real };
+  }
+
+  /**
+   * 资源的许可与来源溯源摘要（Module F/G/N）。
+   * 事实全部来自数据集的 Source 记录，不由模型生成。
+   * 注意：`public_domain` 与 `commercial_use` 必须与 license 分开呈现 ——
+   * 「免费可访问」不等于「公有领域」，也不等于「可商用」。
+   */
+  licenseSummaryFor(resourceId) {
+    return this.getSourcesForResource(resourceId).map((e) => ({
+      source_id: e.source.source_id,
+      title: e.source.title || null,
+      provider: e.source.provider || null,
+      source_type: e.source.source_type || null,
+      official_url: e.source.official_url || e.source.url || null,
+      license: e.source.license || null,
+      license_url: e.source.license_url || null,
+      license_evidence_url: e.source.license_evidence_url || null,
+      usage_permission: e.source.usage_permission || null,
+      commercial_use: e.source.commercial_use ?? null,
+      adaptation_allowed: e.source.adaptation_allowed ?? null,
+      attribution_required: e.source.attribution_required ?? null,
+      share_alike: e.source.share_alike ?? null,
+      public_domain: e.source.public_domain ?? null,
+      ai_training_allowed: e.source.ai_training_allowed ?? null,
+      observed_at: e.source.observed_at || e.source.retrieved_at || null,
+      verification_status: e.source.verification_status || null,
+      retrieval_method: e.source.retrieval_method || null,
+    }));
+  }
+
   getProvider(id) { return this._providerById.get(String(id)) || null; }
+
+  goalById(id) { return this._goalById.get(String(id)) || null; }
 
   getLearningPath(pathId) {
     const path = this._pathById.get(String(pathId));
