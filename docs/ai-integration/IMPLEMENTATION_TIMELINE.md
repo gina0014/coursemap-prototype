@@ -24,3 +24,15 @@
 | 18 | M19 | 验证流水线加固：`meta.build` 部署指纹 + `wait_for_deploy.mjs` 部署闸门 + V-04b 断言；`backend-verify` 改 `if: always()` | PASS | ai-21 |
 | 19 | M19 | 本地全量复验：后端 64/64、E2E 37/37、unit 78 / routing 10 / integration 10 / core 75、Secret 0、数据 BLOCKER 0 | PASS | ai-21 |
 | 20 | M19 | 推送 → Vercel redeploy → CI 产出生产证据（`30_*` / `31_*`） | **PENDING（待推送）** | — |
+
+---
+
+## 版本口径与发布状态（2026-10-07 追加，非 AI-1 步骤）
+
+- **Product 版本**：`CourseMap-v0.2-AI-Beta`（AI-1 接入后未变）
+- **UI Release**：`UI V0.2 · Visual Upgrade`（commit `95513e6`，仅 UI / UX / 视觉 / 交互）
+- 该 UI 轮次**未触碰** `api/`、`server/`、`data/`；AI API contract 与核心 data schema 均未改变
+  （`git diff 85e9129..95513e6 -- data api server` 为空）。
+- 发布状态：**LOCAL UI UPGRADE COMPLETE · REMOTE DEPLOYMENT PENDING**
+  —— 本地领先 `origin/master` 32 个 commit，公网仍为升级前版本；
+  与上表 Step 20 同因（本机出网代理不为 `git-receive-pack` 建隧道）。

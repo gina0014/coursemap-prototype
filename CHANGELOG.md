@@ -1,5 +1,77 @@
 # Changelog
 
+## UI V0.2 · Visual Upgrade（2026-10-07）
+
+> **Product 版本 `CourseMap-v0.2-AI-Beta`（不变）· UI Release `UI V0.2 · Visual Upgrade`**
+> 本轮只做 UI / UX / 视觉 / 交互打磨，交付物是设计系统与页面表现层。
+> 产品版本号不因 UI 轮次而变动，两套版本号**平行表达、互不覆盖**（见 README「版本口径」）。
+> 基线 `85e9129` → UI commit `95513e6`。
+
+### Added
+
+- **Design System upgrade**：`css/variables.css` 令牌重调（Slate 底 + Trust Blue `#2563EB` +
+  AI Violet `#7C3AED`），令牌**名称不变**、语义色（DEMO / REAL / 核验 / 许可）取值不变；
+  新增视觉层 `css/upgrade.css`（最后加载、只覆盖视觉，不改任何 `data-*` 契约），13 个页面接入。
+  建立 **DATA ≠ AI REASONING** 的视觉区分规则：AI 视觉语言（紫 sparkle / `badge--ai` /
+  极淡渐变）只用于 Advisor、AI 建议、AI 路径；普通课程数据一律中性色。
+- **Homepage redesign**：Hero 围绕「你想学什么」重建 —— AI badge + 双语 headline +
+  中央 AI Goal Input（"What do you want to learn?"）+ Popular goals chips +
+  Trusted sources 行（只列数据集中已核验的真实提供方）+ 原四条件检索降级为次级区块。
+- **Discover UI redesign**：sticky 筛选栏（8 组条件）、Sort by 条、结果头部 `aria-live` region、
+  等高卡片网格、移动端筛选抽屉（backdrop + Esc / 点击关闭）。
+- **Resource Card redesign**：Provider / 资源名 / 两行描述 / tags / metadata 层级化，
+  底部 `View course →` + `Add to compare`；卡片高度趋于一致。
+- **Course Detail redesign**：由介绍页改为「学习决策页」—— 右侧 sticky 决策面板
+  （Provider / Level / Duration / Language / Cost / Certificate / Last verified）+
+  Why CourseMap recommends + Suitable for + Source & Verification 核验卡。
+- **Compare redesign**：顶部统计卡行 + 可横向滚动的对比表（best 值高亮）+
+  底部「起点建议」AI 面板，与数据表**视觉强分离**。
+- **AI Advisor redesign**：结构化输入（Goal / Current level / Time / Target duration /
+  Budget / Language）+ 自然语言补充；AI thinking 状态；输出分段
+  （约束解析 / 推荐资源 / 学习序列 / 建议 / 不确定性 / 证据）。
+- **Learning Path redesign（重构幅度最大）**：垂直 roadmap 时间线 —— 阶段序号圆点 +
+  标题 + 技能/目标 tag + 时长 + 阶段目标 + 核心资源卡 + 可选资源 disclosure +
+  **Not started / In progress / Completed** 状态控件（本机 localStorage 持久化，可一键清除）。
+  新增 `STORAGE_KEYS.pathProgress`（UI 层专用：不进数据集、不上传服务器、不建立用户画像）。
+  诚实性约束：阶段周数仅在资源**同时标注时长与每周投入**时按 `时长 ÷ 每周投入` 估算并显式
+  标注「估算」，未标注字段不计入、**不按 0 处理**；阶段目标直接引用数据 `step.description`
+  （数据无 milestone 字段，不虚构）。
+- **Responsive improvements**：1440 / 1024 / 768 / 390 四档；Discover 侧栏 → 抽屉、
+  Compare 表横向滚动（`min-width:720px`）、Learning Path 移动端单列时间线、
+  ≤430 按钮/输入/chip 命中区 44px；冒烟在 390×844 视口断言无横向溢出。
+- **Accessibility improvements**：全局 `:focus-visible` 2px 高对比焦点环；
+  主按钮/控件/导航链接命中区 ≥44px；修复 `status-pill` 对比度
+  （muted on surface-3 ≈4.3:1 → text-soft）；搜索结果头部新增 `aria-live="polite"`；
+  阶段状态控件 `role="group"` + `aria-pressed`；`prefers-reduced-motion` 下动效归零。
+- **Micro-interactions**：卡片/按钮 hover、筛选过渡、loading skeleton、AI thinking 状态、
+  路径生成动效；统一 150–250ms 三档 token，无复杂动画。
+- 顺手修复两处存量缺陷：资源卡提供方链接被整体 `esc()` 转义成可见 HTML；
+  `.badge--primary` 被引用但从未定义样式。
+
+### Unchanged（本轮明确未改变）
+
+- **AI API contract 未改变**：`POST /api/ai/advisor` 与 `GET /api/ai/health` 的请求/响应结构原样；
+  顾问页结构化输入在提交时仍只产出**一个 `text` 参数**（前端拼装，契约不变）。
+- **核心 data schema 未改变**：`data/`（11 张实体表 + `data/schema/`）一行未动，
+  `git diff 85e9129..95513e6 -- data api server` 为空。
+- 未删除真实课程数据、未修改 course ID、未把真实 AI 改成 mock、未删除 fallback mode；
+  Compare / Learning Path / 搜索 / DeepSeek integration 全部保持可用。
+
+### Verified
+
+- 8 个测试套件 **395 PASS / 0 FAIL**（runtime 86 / ai-unit 81 / data1 72 / oer 88 /
+  model-output 33 / featured-oer 15 / routing 10 / integration 10）。
+- CDP 浏览器冒烟 **18/18 PASS**（13 页面 18 目标；0 未处理异常、0 失败请求；
+  仅 Advisor 探测生产后端的白名单 CORS 噪声）。
+- `docs/evidence/screenshots/01–18` 与 `docs/evidence/browser-smoke.json` 全部重新生成。
+
+### Status
+
+- **LOCAL UI UPGRADE COMPLETE**
+- **REMOTE DEPLOYMENT PENDING** —— 本地领先 `origin/master` 32 个 commit；本机 push 不可用
+  （出网代理不为 `git-receive-pack` 建隧道），**公网目前仍是升级前版本**。
+  需在有正常出网的环境执行 `git -c http.sslBackend=openssl push origin master`。
+
 ## CourseMap-v0.2-AI-Beta · Production Activation（2026-10-06，ai-20 / ai-21）
 
 后端完成人工部署授权（Vercel + `DEEPSEEK_API_KEY` Secret）后，

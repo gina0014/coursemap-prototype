@@ -2,6 +2,12 @@
 
 日期：2026-10-07 · 基线：commit `85e9129` · 范围：仅 UI / UX / 视觉 / 交互打磨
 
+**版本标记**：Product `CourseMap-v0.2-AI-Beta`（未变）· UI Release `UI V0.2 · Visual Upgrade`
+（UI commit `95513e6`；版本口径见 README「版本口径」）
+
+**发布状态**：`LOCAL UI UPGRADE COMPLETE · REMOTE DEPLOYMENT PENDING`
+（领先 `origin/master` 32 个 commit，公网仍为升级前版本）
+
 **结论先行：13 个实施步骤全部完成。8 个测试套件 395/395 PASS、浏览器冒烟 18/18 PASS（0 真实 console error、0 异常、0 失败请求）、核心业务逻辑零改动。**
 
 ---

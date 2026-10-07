@@ -15,6 +15,11 @@ export const APP = {
   nameZh: '学途',
   tagline: '学习目标驱动的课程与学习资源智能决策平台',
   thesis: '按学习目标找资源，而不是先找平台再翻课程。',
+  /* 版本口径（两套，平行表达、互不覆盖；只在本文件定义，Footer / 关于页 / 文档一律引用此处）：
+       - version   = Product 版本（AI 接入 / 数据 / 业务能力）。AI-1 轮次定义，UI 升级不改变它。
+       - uiVersion = UI Release（仅视觉 / 交互层）。UI 轮次递增，不替代 Product 版本。
+     buildDate 记录的是 Product / 数据集构建日（非 UI 发布日）；UI 发布日见 CHANGELOG。
+     后端 AI 服务另有独立运行时标记（/api/ai/health 的 meta.version），与前端版本无关。 */
   version: 'CourseMap-v0.2-AI-Beta',
   stage: 'v0.2 AI-Beta — Real LLM (DeepSeek via server-side backend)',
   buildDate: '2026-10-06',

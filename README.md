@@ -5,10 +5,27 @@
 > 按学习目标找资源，而不是先找平台再翻课程。
 > Find learning resources by goal, not by platform.
 
-**Educational domain prototype.** 本仓库当前版本为 `CourseMap-v0.2-AI-Beta`：
+**Educational domain prototype.** 本仓库当前 Product 版本为 `CourseMap-v0.2-AI-Beta`，
+UI 发布版本为 `UI V0.2 · Visual Upgrade`：
 静态 JSON 数据驱动的动态前端 + 已部署的 AI 后端（Serverless Function），
 用于验证「Learning Goal → Learning Resource → Comparison → Learning Path → Decision」
 这条核心决策链路，不是产品最终形态。
+
+## 版本口径
+
+两套版本号**平行表达、互不覆盖**，唯一真源为 `js/config.js` 的 `APP`
+（Footer 与「关于」页均引用该处，不得另行硬编码；`VERSION` 文件同步记录两行）：
+
+| 口径 | 取值 | 含义 |
+| --- | --- | --- |
+| Product 版本 | `CourseMap-v0.2-AI-Beta` | AI 接入 / 数据 / 业务能力版本（AI-1 轮次定义，UI 升级不改变它） |
+| UI Release | `UI V0.2 · Visual Upgrade` | 仅视觉 / 交互层的发布版本（commit `95513e6`，2026-10-07） |
+
+后端 AI 服务另有一枚**独立**的运行时标记 `v0.3-Data1`（`/api/ai/health` 的 `meta.version`），
+用于生产部署核验，与前端 Product / UI 版本无关。
+
+**发布状态（2026-10-07，如实）**：`LOCAL UI UPGRADE COMPLETE · REMOTE DEPLOYMENT PENDING`
+—— UI V0.2 已在本地提交（领先 `origin/master` 32 个 commit），**公网尚未更新**。
 
 ## 它是什么 / 不是什么
 
