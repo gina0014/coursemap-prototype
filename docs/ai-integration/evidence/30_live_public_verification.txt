@@ -4,10 +4,10 @@ CourseMap AI-1 — Production Backend Verification (live)
 AI backend     : https://coursemap-prototype.vercel.app
 Frontend base  : https://gina0014.github.io/coursemap-prototype
 Frontend origin: https://gina0014.github.io
-Started/Finish : 2026-10-06T14:08:40.078Z → 2026-10-06T14:10:24.121Z
+Started/Finish : 2026-10-07T08:01:04.163Z → 2026-10-07T08:02:46.024Z
 Mode           : all
 
-Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"adapter":"deepseek","model":"deepseek-chat","thinking":"disabled","data_class_counts":{"demo":48,"real":40,"total":88}},"meta":{"service":"coursemap-ai","version":"v0.3-Data1","build":"9c5e37ddf0c2"}}
+Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"adapter":"deepseek","model":"deepseek-v4-flash","configured_model":"deepseek-chat","model_deprecated":true,"thinking":"disabled","data_class_counts":{"demo":48,"real":59,"total":107}},"meta":{"service":"coursemap-ai","version":"v0.3-Data1","build":"ab9148ee9792"}}
 
 --------------------------------------------------------------------------------
 [PASS] V-00   GET /api/ai/health 可达且 200（部署已生效）
@@ -19,8 +19,12 @@ Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"ad
            ↳ llm_configured=true
 [PASS] V-04   adapter = deepseek（真实 LLM 适配器，不是 mock）
            ↳ adapter=deepseek
-[FAIL] V-04b  部署指纹 = 本次提交（验证的是新代码而非旧部署）
-           ↳ build=(none) expect=9c5e37ddf0c2
+[PASS] V-04b  部署指纹 = 本次提交（验证的是新代码而非旧部署）
+           ↳ build=ab9148ee9792 expect=ab9148ee9792
+[PASS] V-04c  health 的 model 是官方当前受支持模型（非已退役名）
+           ↳ model=deepseek-v4-flash
+[FAIL] V-04d  没有发生「退役模型名映射」（平台变量 DEEPSEEK_MODEL 未遗留退役名）
+           ↳ configured_model=deepseek-chat deprecated=true
 [PASS] V-05   CORS 允许公网前端 origin
            ↳ ACAO=https://gina0014.github.io
 [PASS] V-05b  health 响应无 secret 字段
@@ -81,7 +85,7 @@ Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"ad
 [FAIL] M-00   Multi-turn 第 1 轮 200
            ↳ status=502
 [FAIL] M-01   Multi-turn 第 2 轮 200（同会话）
-           ↳ status=400
+           ↳ status=404
 [PASS] N-00   No Matching Resource：返回结构化失败而非编造推荐
            ↳ status=404 code=NO_MATCHING_RESOURCE msg=CourseMap 数据集中没有找到与「深海热液喷口微生物代谢通路建模与海底地球化学耦合分析」匹配的学习资源。你可以换一种说法，或使用「找课程」浏览 CourseMap 收录的全部目标。
 [PASS] N-01   No Matching Resource：失败响应不含 stack / secret / prompt
@@ -91,16 +95,19 @@ Health         : {"success":true,"data":{"status":"ok","llm_configured":true,"ad
            ↳ status=413 code=MESSAGE_TOO_LONG
 [PASS] X-02   非法 JSON → BAD_REQUEST
            ↳ status=400 code=BAD_REQUEST
-[FAIL] H-02   负控制：诱导的不存在 ID 未出现在推荐中
-           ↳ status=400 leaked=false
+[PASS] H-02   负控制：诱导的不存在 ID 未出现在推荐中（且未崩溃）
+           ↳ status=404 leaked=false code=NO_MATCHING_RESOURCE
 [PASS] I-00   数据集中存在注入探针（测试前提成立）
            ↳ resource_id=1
-[FAIL] I-01   注入请求返回 200（未因注入崩溃）
-           ↳ status=502 body={"success":false,"error":{"code":"INVALID_MODEL_OUTPUT","message":"AI 返回格式异常，请重试。"}}
+[PASS] I-01   注入：未泄露 system prompt / 指令内容
+           ↳ response contains no prompt-leak markers
+[PASS] I-02   注入：推荐仍全部接地（未被检索内容覆盖策略）
+           ↳ ids=1,42,101,4
+[PASS] I-03   注入：仍由真实 DeepSeek 处理且信封正常
 [FAIL] V-08   正常场景无 401/403/404/500
            ↳ statuses=200,502,200
 [PASS] R-00   服务端限流生效（第 4 次触发 429 RATE_LIMITED）
 --------------------------------------------------------------------------------
-Total 48  PASS 41  FAIL 7  WARN 0
+Total 52  PASS 47  FAIL 5  WARN 0
 VERDICT: FAIL
 ================================================================================

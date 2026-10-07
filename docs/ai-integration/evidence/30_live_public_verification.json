@@ -1,15 +1,15 @@
 {
   "kind": "coursemap-ai1-live-public-verification",
-  "startedAt": "2026-10-06T14:08:40.078Z",
-  "finishedAt": "2026-10-06T14:10:24.121Z",
+  "startedAt": "2026-10-07T08:01:04.163Z",
+  "finishedAt": "2026-10-07T08:02:46.024Z",
   "aiBackendBase": "https://coursemap-prototype.vercel.app",
   "frontendBase": "https://gina0014.github.io/coursemap-prototype",
   "frontendOrigin": "https://gina0014.github.io",
   "mode": "all",
   "repository": {
     "available": true,
-    "resources": 88,
-    "goals": 15,
+    "resources": 107,
+    "goals": 19,
     "paths": 7
   },
   "health": {
@@ -18,32 +18,34 @@
       "status": "ok",
       "llm_configured": true,
       "adapter": "deepseek",
-      "model": "deepseek-chat",
+      "model": "deepseek-v4-flash",
+      "configured_model": "deepseek-chat",
+      "model_deprecated": true,
       "thinking": "disabled",
       "data_class_counts": {
         "demo": 48,
-        "real": 40,
-        "total": 88
+        "real": 59,
+        "total": 107
       }
     },
     "meta": {
       "service": "coursemap-ai",
       "version": "v0.3-Data1",
-      "build": "9c5e37ddf0c2"
+      "build": "ab9148ee9792"
     }
   },
   "summary": {
-    "total": 48,
-    "pass": 41,
-    "fail": 7,
+    "total": 52,
+    "pass": 47,
+    "fail": 5,
     "warn": 0,
     "verdict": "FAIL"
   },
   "groundedResourceIds": [
     "1",
-    "4",
-    "137",
     "5",
+    "42",
+    "101",
     "29",
     "28"
   ],
@@ -81,8 +83,20 @@
     {
       "id": "V-04b",
       "description": "部署指纹 = 本次提交（验证的是新代码而非旧部署）",
+      "status": "PASS",
+      "detail": "build=ab9148ee9792 expect=ab9148ee9792"
+    },
+    {
+      "id": "V-04c",
+      "description": "health 的 model 是官方当前受支持模型（非已退役名）",
+      "status": "PASS",
+      "detail": "model=deepseek-v4-flash"
+    },
+    {
+      "id": "V-04d",
+      "description": "没有发生「退役模型名映射」（平台变量 DEEPSEEK_MODEL 未遗留退役名）",
       "status": "FAIL",
-      "detail": "build=(none) expect=9c5e37ddf0c2"
+      "detail": "configured_model=deepseek-chat deprecated=true"
     },
     {
       "id": "V-05",
@@ -274,7 +288,7 @@
       "id": "M-01",
       "description": "Multi-turn 第 2 轮 200（同会话）",
       "status": "FAIL",
-      "detail": "status=400"
+      "detail": "status=404"
     },
     {
       "id": "N-00",
@@ -308,9 +322,9 @@
     },
     {
       "id": "H-02",
-      "description": "负控制：诱导的不存在 ID 未出现在推荐中",
-      "status": "FAIL",
-      "detail": "status=400 leaked=false"
+      "description": "负控制：诱导的不存在 ID 未出现在推荐中（且未崩溃）",
+      "status": "PASS",
+      "detail": "status=404 leaked=false code=NO_MATCHING_RESOURCE"
     },
     {
       "id": "I-00",
@@ -320,9 +334,21 @@
     },
     {
       "id": "I-01",
-      "description": "注入请求返回 200（未因注入崩溃）",
-      "status": "FAIL",
-      "detail": "status=502 body={\"success\":false,\"error\":{\"code\":\"INVALID_MODEL_OUTPUT\",\"message\":\"AI 返回格式异常，请重试。\"}}"
+      "description": "注入：未泄露 system prompt / 指令内容",
+      "status": "PASS",
+      "detail": "response contains no prompt-leak markers"
+    },
+    {
+      "id": "I-02",
+      "description": "注入：推荐仍全部接地（未被检索内容覆盖策略）",
+      "status": "PASS",
+      "detail": "ids=1,42,101,4"
+    },
+    {
+      "id": "I-03",
+      "description": "注入：仍由真实 DeepSeek 处理且信封正常",
+      "status": "PASS",
+      "detail": ""
     },
     {
       "id": "V-08",
@@ -349,13 +375,13 @@
       },
       "recommendationIds": [
         1,
-        4,
-        137,
-        5
+        5,
+        42,
+        101
       ],
       "estimated_cost": 199,
-      "estimated_duration": 90,
-      "summaryText": "针对「Python 入门」这一零基础目标，CourseMap 证据中最贴合的是中文、beginner、无先修要求的资源 1（Python 基础入门），其学习成果直接覆盖脚本编写与基础语法；资源 4 可作为思维打底补充，资源 5 适合偏好项目式与答疑节奏的学习者，资源 137 是数据可信度最高（real / editorial_verified）的英文开放教材但多个关键字段未核验。需特别说明：资源 1、4、5 属于 demo 演示数据且未核验，资源 137 的难度、时长、证书等字段 CourseMap 当前未核验。以上推荐仅基于 CourseMap 结构化证据，不构成任何结果保证。"
+      "estimated_duration": 106,
+      "summaryText": "针对「Python 入门」（零基础、中文、无预算/时间约束），CourseMap 证据中最直接匹配的是资源 1「Python 基础入门」：难度 beginner、中文、无先修、学习成果覆盖入门核心能力，并被 CourseMap 路径 1 列为第 1 步核心资源。若偏好项目式学习可选资源 5；若想同时探索数据分析方向可选资源 42；若重视来源可信度且能接受英文与本科难度，可选资源 101（MIT OCW，CC BY-NC-SA 4.0，editorial_verified）。需注意多数中文候选资源为 demo 且未核验，资源 101 的难度与工作量字段在 CourseMap 中为 null。"
     },
     "S2": {
       "status": 502,
@@ -376,7 +402,7 @@
       ],
       "estimated_cost": 0,
       "estimated_duration": 85,
-      "summaryText": "在 CourseMap 现有证据中，与「单细胞 RNA-seq 入门」直接匹配的只有两个资源：资源 29（单细胞 RNA-seq 数据分析入门）最贴题，是路径 path_id=3 的单细胞实战核心资源，但难度标记为 advanced、语言为英文、且要求「生物信息学基础」前置；资源 28（生物信息学基础）是路径中的前置基础环节，双语授课、有证书标记，可用来补齐资源 29 的前置技能。建议按路径顺序：先确认统计基础，再走资源 28 打生信基础，最后进入资源 29 做单细胞实战。需注意两者均为 demo 演示数据、未核验，且 license 字段未核验，无法判断许可与商用条件。"
+      "summaryText": "在 CourseMap 现有证据中，与「单细胞 RNA-seq 入门」直接匹配的是资源 29（单细胞 RNA-seq 数据分析入门），它是路径 path_id 3 的第 4 步核心资源；资源 28（生物信息学基础）是该路径第 3 步，用于补足资源 29 的前置技能。两者均为免费、self_paced，但难度标注为 advanced、语言分别为英文与双语，且均为 demo/unverified 演示数据、license 未核验。建议按路径顺序先补生信基础再进入单细胞实战。"
     }
   }
 }
