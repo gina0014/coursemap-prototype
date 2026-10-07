@@ -78,8 +78,10 @@ python -m http.server 8765
 # 数据校验（BLOCKER/ERROR 必须为 0）
 python scripts/validate/validate_data.py
 
-# Node 运行时测试（75 项核心断言）+ AI 测试（78 单元 + 10 路由 + 10 HTTP 集成）
-npm test              # = runtime + AI unit + routing + integration
+# Node 运行时测试 86 项核心断言 + AI 测试（unit 81 / routing 10 / integration 10 /
+#   data1 72 / model-output 33 / oer-expansion 88）+ UI 15 项；合计 8 套件 395 项全 PASS
+npm test              # = runtime + ai/unit + ai/routing + ai/integration + ai/data1
+                      #   + ai/model-output + ai/oer-expansion + ui/featured-oer
 npm run test:ai-live  # Live DeepSeek 测试（仅当配置了 DEEPSEEK_API_KEY 才真实运行）
 
 # 生产验证（对已部署后端 / 公网前端；开发机无法直连 vercel 时请在 CI 跑）
