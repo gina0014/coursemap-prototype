@@ -119,6 +119,18 @@ initPage({
         </div>
       </div>
 
+        <div class="detail-actions">
+          ${resource.url
+    ? `<a class="btn btn--primary" data-coursemap-official-link href="${esc(resource.url)}" rel="noopener noreferrer nofollow" target="_blank">${isRealVerified ? 'Start course ↗' : '前往资源页面 ↗'}</a>`
+    : '<span class="notice notice--demo" style="display:inline-block;">演示数据不提供真实外链（不得伪造指向真实课程的 URL）。</span>'}
+          ${uniquePaths.length ? `<a class="btn btn--ghost" href="${esc(L.path(uniquePaths[0].path_id))}">Add to learning path →</a>` : ''}
+          ${summary.goals.length ? `<a class="btn btn--ghost" href="${esc(L.compare(summary.goals[0].goal_id))}">Compare →</a>` : ''}
+          <button type="button" class="btn btn--ghost" data-favorite-toggle="${resource.resource_id}">收藏这个资源</button>
+        </div>
+
+      <div class="detail-layout">
+      <div class="detail-main">
+
       <p class="detail-lead">${resource.description
     ? esc(resource.description)
     : (isRealVerified
@@ -204,13 +216,55 @@ initPage({
     .sort((a, b) => (a.observed_at < b.observed_at ? 1 : -1)))}` : ''}
       </section>
 
-      <div class="detail-actions">
-        ${resource.url
-    ? `<a class="btn btn--primary" data-coursemap-official-link href="${esc(resource.url)}" rel="noopener noreferrer nofollow" target="_blank">${isRealVerified ? '查看官方资源' : '前往资源页面'} ↗</a>`
-    : '<span class="notice notice--demo" style="display:inline-block;">演示数据不提供真实外链（不得伪造指向真实课程的 URL）。</span>'}
-        <button type="button" class="btn btn--ghost" data-favorite-toggle="${resource.resource_id}">收藏这个资源</button>
-        ${summary.goals.length ? `<a class="btn btn--ghost" href="${esc(L.compare(summary.goals[0].goal_id))}">比较同类资源 →</a>` : ''}
-      </div>
+      </div><!-- /detail-main -->
+
+      <aside class="detail-side" aria-label="学习决策面板">
+        <div class="decision-panel" data-coursemap-section="decision-panel">
+          <div class="decision-panel__title">Decision panel</div>
+          <div class="decision-row"><span class="decision-row__label">Provider</span><span class="decision-row__value">${summary.provider
+    ? `<a href="${esc(L.provider(summary.provider.provider_id))}">${esc(summary.provider.name)}</a>`
+    : '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Level</span><span class="decision-row__value">${esc(labelOf({ beginner: '入门', intermediate: '有基础', advanced: '进阶' }, resource.difficulty) || '—')}${resource.level_official ? ` · ${esc(resource.level_official)}` : ''}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Duration</span><span class="decision-row__value">${typeof resource.duration_hours === 'number' ? `${resource.duration_hours} 小时` : '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Language</span><span class="decision-row__value">${esc(labelOf(LANGUAGE, resource.language))}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Cost</span><span class="decision-row__value">${fee ? (fee.fee === 0 ? '免费' : (typeof fee.fee === 'number' ? `¥${fee.fee}` : '—')) : '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Certificate</span><span class="decision-row__value">${resource.certificate_available === true ? '提供' : (resource.certificate_available === false ? '不提供' : '—')}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Last verified</span><span class="decision-row__value">${esc(dateOnly(fee ? fee.observedAt : resource.observed_at)) || '—'}</span></div>
+        </div>
+
+        <div class="decision-panel" data-coursemap-section="fit">
+          <div class="decision-panel__title">为什么值得考虑</div>
+          <ul class="outcome-list">
+            ${[
+    isRealVerified ? `<strong>已核验开放教育资源</strong>：带官方来源与许可记录，可回到官方页面核对。` : '',
+    fee && fee.fee === 0 ? '当前观测费用为<strong>免费</strong>。' : '',
+    resource.certificate_available === true ? '官方页面标注<strong>提供证书</strong>。' : '',
+    uniquePaths.length ? `被 <strong>${uniquePaths.length}</strong> 条学习路径覆盖。` : '',
+    summary.goals.length ? `对应 <strong>${summary.goals.length}</strong> 个学习目标。` : '',
+  ].filter(Boolean).map((r) => `<li>${r}</li>`).join('') || '<li class="cmp-dim">当前数据不足以给出推荐理由。</li>'}
+          </ul>
+          <div class="fit-list">
+            ${[
+    resource.difficulty ? `<span class="tag">${esc(labelOf({ beginner: '入门', intermediate: '有基础', advanced: '进阶' }, resource.difficulty))}</span>` : '',
+    ...summary.goals.slice(0, 2).map((g) => `<span class="tag">${esc(g.name)}</span>`),
+    ...summary.skills.slice(0, 2).map((s) => `<span class="tag">${esc(s.name)}</span>`),
+  ].filter(Boolean).join('')}
+          </div>
+          <p class="cmp-dim" style="font-size:var(--cm-fs-xs);margin-top:10px;">以上理由由 CourseMap 结构化数据推导，不是 LLM 生成的推荐语；不构成学习效果保证。</p>
+        </div>
+
+        <div class="provenance-card" data-coursemap-section="source-verification">
+          <div class="decision-panel__title">Source &amp; Verification</div>
+          <div class="decision-row"><span class="decision-row__label">Official source</span><span class="decision-row__value">${officialSource ? esc(officialSource.source.provider) : '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">License</span><span class="decision-row__value">${officialSource ? licenseBadge(officialSource.source) : '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Last verified</span><span class="decision-row__value">${esc(dateOnly(resource.updated_at || resource.observed_at)) || '—'}</span></div>
+          <div class="decision-row"><span class="decision-row__label">Verification</span><span class="decision-row__value">${esc(labelOf({ unverified: '未核验', editorial_verified: '编辑核验', provider_confirmed: '提供方确认', source_verified: '来源已核验' }, resource.verification_status))}</span></div>
+          <div style="margin-top:12px;">
+            ${officialSource ? officialResourceLink(officialSource.source, { label: 'Open official page' }) : '<span class="cmp-dim">无官方链接</span>'}
+          </div>
+        </div>
+      </aside>
+      </div><!-- /detail-layout -->
     `;
 
     bindFavoriteState();

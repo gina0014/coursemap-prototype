@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/pages.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/upgrade.css">
 </head>
 <body>
 
@@ -26,57 +27,90 @@
 <main class="app-main" id="main">
   <div class="container">
 
-    <!-- Hero 与主输入区：静态可用（渐进增强），不依赖数据即可理解产品主张 -->
-    <div class="hero">
+    <!-- Hero：目标入口 + AI 目标输入（渐进增强，静态可读） -->
+    <section class="hero" data-coursemap-section="hero">
+      <span class="hero__badge"><span class="ai-sparkle" aria-hidden="true">✦</span> AI-powered learning navigator</span>
       <h1 class="hero__title">今天<em>想学什么</em>？</h1>
-      <p class="hero__sub">按学习目标找资源，而不是先找平台再翻课程。</p>
-      <p class="hero__note">告诉 CourseMap 你想学什么、你的基础、预算和时间，它帮你比较适合的学习资源。</p>
-    </div>
+      <p class="hero__en">Learn anything. Build the right path.</p>
+      <p class="hero__sub">描述你的学习目标，CourseMap 会找到可信的学习资源、把它们放在一起比较，并帮你排出可执行的学习路径。</p>
+      <p class="hero__note">按学习目标找资源，而不是先找平台再翻课程。</p>
 
-    <form class="search-form" data-home-search>
-      <div class="search-form__row">
-        <div class="field">
-          <label class="field__label" for="home-goal">🎯 学习目标</label>
-          <select class="control" id="home-goal" data-field="goal">
-            <option value="all">全部目标</option>
-          </select>
+      <form class="goal-entry" data-home-goal-entry>
+        <label class="goal-entry__label" for="home-goal-input"><span class="ai-sparkle" aria-hidden="true">✦</span> What do you want to learn?</label>
+        <div class="goal-entry__row">
+          <input class="goal-entry__input" id="home-goal-input" type="text" data-field="q"
+                 placeholder="例如：我想在 8 周内用 Python 学数据分析" autocomplete="off">
+          <button class="goal-entry__submit" type="submit">Build my learning path <span aria-hidden="true">→</span></button>
         </div>
-        <div class="field">
-          <label class="field__label" for="home-level">📊 当前基础</label>
-          <select class="control" id="home-level" data-field="difficulty">
-            <option value="all">不限</option>
-            <option value="beginner">零基础 / 入门</option>
-            <option value="intermediate">有一些基础</option>
-            <option value="advanced">进阶</option>
-          </select>
+        <div class="goal-entry__hint">
+          交给 AI 学习顾问生成学习策略（DeepSeek 服务端代理）；若 AI 后端不可用，会自动降级为规则引擎并在页面上明确标注。
         </div>
-        <div class="field">
-          <label class="field__label" for="home-budget">💰 预算</label>
-          <select class="control" id="home-budget" data-field="budget">
-            <option value="all">不限</option>
-          </select>
-        </div>
-        <div class="field">
-          <label class="field__label" for="home-time">⏱ 每周可投入</label>
-          <select class="control" id="home-time" data-field="wl">
-            <option value="all">不限</option>
-            <option value="2">≤ 2 小时/周</option>
-            <option value="4">≤ 4 小时/周</option>
-            <option value="6">≤ 6 小时/周</option>
-            <option value="8">≤ 8 小时/周</option>
-          </select>
+      </form>
+
+      <div class="popular-goals">
+        <span class="popular-goals__label">Popular goals</span>
+        <div class="chip-row" data-quick-goals>
+          <span class="cmp-dim">正在读取目标…</span>
         </div>
       </div>
-      <div class="search-form__actions">
-        <button type="submit" class="btn btn--primary btn--block search-form__submit">找学习资源</button>
-        <div class="search-form__quick">
-          <span class="search-form__quick-label">Quick Goals（点击即搜索）</span>
-          <div class="chip-row" data-quick-goals>
-            <span class="cmp-dim">正在读取目标…</span>
+
+      <div class="trusted-row">
+        <div class="trusted-row__label">Trusted learning resources from</div>
+        <div class="trusted-row__list" data-trusted-sources>
+          <span class="trusted-row__item">MIT OpenCourseWare</span>
+          <span class="trusted-row__item">Harvard CS50</span>
+          <span class="trusted-row__item">Google for Developers</span>
+          <span class="trusted-row__item">OpenStax</span>
+        </div>
+        <p class="cmp-dim" style="font-size:var(--cm-fs-xs);margin-top:10px;">
+          仅列出当前数据集中已核验的真实开放教育资源提供方；演示数据（DEMO）不计入。
+        </p>
+      </div>
+    </section>
+
+    <!-- 按条件浏览：保留原有「目标 + 基础 + 预算 + 每周时间」检索入口 -->
+    <div class="hero-secondary">
+      <div class="hero-secondary__title"><span aria-hidden="true">◎</span> 按条件浏览：目标 + 基础 + 预算 + 每周时间</div>
+      <form class="search-form" data-home-search>
+        <div class="search-form__row">
+          <div class="field">
+            <label class="field__label" for="home-goal">🎯 学习目标</label>
+            <select class="control" id="home-goal" data-field="goal">
+              <option value="all">全部目标</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="home-level">📊 当前基础</label>
+            <select class="control" id="home-level" data-field="difficulty">
+              <option value="all">不限</option>
+              <option value="beginner">零基础 / 入门</option>
+              <option value="intermediate">有一些基础</option>
+              <option value="advanced">进阶</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="home-budget">💰 预算</label>
+            <select class="control" id="home-budget" data-field="budget">
+              <option value="all">不限</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="home-time">⏱ 每周可投入</label>
+            <select class="control" id="home-time" data-field="wl">
+              <option value="all">不限</option>
+              <option value="2">≤ 2 小时/周</option>
+              <option value="4">≤ 4 小时/周</option>
+              <option value="6">≤ 6 小时/周</option>
+              <option value="8">≤ 8 小时/周</option>
+            </select>
           </div>
         </div>
-      </div>
-    </form>
+        <div class="search-form__actions">
+          <button type="submit" class="btn btn--primary search-form__submit">找学习资源</button>
+          <span class="cmp-dim" style="font-size:var(--cm-fs-sm);">也可以直接浏览全部资源并按 12 个维度筛选。</span>
+        </div>
+      </form>
+    </div>
 
     <div data-home-stats></div>
 

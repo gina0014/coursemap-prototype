@@ -45,6 +45,14 @@ initPage({
         .map((k) => optionHtml(k, labelOf(SORT_LABELS, k), query.sort === k)).join('');
 
       filterPanel.innerHTML = `
+        <div class="filter-bar">
+        <div class="results-head" style="margin-bottom:8px;">
+          <div>
+            <div class="results-head__summary" style="font-size:var(--cm-fs-md);">Filters</div>
+            <div class="results-head__meta">筛选条件会写入 URL，可直接分享</div>
+          </div>
+          <button type="button" class="btn btn--ghost btn--sm" data-filter-drawer-close hidden>收起</button>
+        </div>
         <details class="filter-group" open>
           <summary>学习目标</summary>
           <select class="control" data-filter="goal">
@@ -120,7 +128,30 @@ initPage({
         </details>
         <div class="cluster" style="margin-top:12px;">
           <button type="button" class="btn btn--ghost btn--sm" data-filter-reset>重置筛选</button>
+        </div>
         </div>`;
+
+      /* 移动端筛选抽屉（≤768px 时 .search-side 变为抽屉） */
+      const drawerToggle = document.querySelector('[data-filter-drawer-toggle]');
+      const backdrop = document.querySelector('[data-filter-drawer-backdrop]');
+      const closeBtn = filterPanel.querySelector('[data-filter-drawer-close]');
+      const setDrawer = (open) => {
+        filterPanel.classList.toggle('is-open', open);
+        if (backdrop) {
+          backdrop.hidden = !open;
+          backdrop.classList.toggle('is-open', open);
+        }
+        drawerToggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (closeBtn) closeBtn.hidden = !open;
+      };
+      drawerToggle?.addEventListener('click', () => setDrawer(!filterPanel.classList.contains('is-open')));
+      backdrop?.addEventListener('click', () => setDrawer(false));
+      closeBtn?.addEventListener('click', () => setDrawer(false));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setDrawer(false);
+      });
+      /* 应用筛选后（页面跳转前）先收起抽屉，避免移动端遮住结果 */
+      filterPanel.addEventListener('change', () => setDrawer(false));
 
       const applyFilters = () => {
         const next = { q: params.q || '' };
@@ -187,8 +218,15 @@ initPage({
       : (result.mode === 'goal' ? '学习目标筛选' : '浏览全部');
     const header = document.querySelector('[data-result-header]');
     if (header) {
-      header.innerHTML = `<h2 class="section-title">${esc(modeLabel)}：<span class="num">${result.total}</span> 个学习资源</h2>
-        <p class="cmp-dim">搜索单位是学习资源（不是平台）。费用、评分缺失的资源以 — 呈现，不会伪装成 0。</p>`;
+      const realCount = result.rows.filter((s) => !s.isDemo).length;
+      const demoCount = result.rows.length - realCount;
+      header.innerHTML = `<div class="results-head">
+          <div>
+            <div class="results-head__summary">${esc(modeLabel)}：<span class="num">${result.total}</span> 个学习资源</div>
+            <div class="results-head__meta">本页 ${result.rows.length} 条 · 已核验真实 ${realCount} 条 · 演示 ${demoCount} 条 · 搜索单位是学习资源（不是平台）</div>
+          </div>
+          <div class="results-head__meta">费用、评分缺失的资源以 — 呈现，不会伪装成 0。</div>
+        </div>`;
     }
 
     renderInto(resultsNode, resourceCardGrid(result.rows, { showGoalLinks: true }));

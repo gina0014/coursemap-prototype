@@ -9,10 +9,38 @@ import { initPage } from './base.js';
 import { renderInto, L, badgeDemo, badgeDataClass } from '../components.js';
 import { renderFeaturedOer } from '../featured-oer.js';
 import { asset } from '../config.js';
+import { esc } from '../utils.js';
 
 initPage({
   active: '',
   async onReady(ctx, helpers) {
+    /* UI V0.2：Hero 的 AI 目标输入 —— 一句话目标交给 AI 学习顾问（携带 q 参数预填）。 */
+    const goalEntry = document.querySelector('[data-home-goal-entry]');
+    if (goalEntry) {
+      goalEntry.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const value = (goalEntry.querySelector('[data-field="q"]')?.value || '').trim();
+        const base = L.advisor();
+        location.href = value ? `${base}?q=${encodeURIComponent(value)}` : base;
+      });
+    }
+
+    /* UI V0.2：受信来源行 —— 只列出数据集中真实（REAL）资源的提供方，演示提供方不计入。 */
+    const trusted = document.querySelector('[data-trusted-sources]');
+    if (trusted) {
+      const realProviderIds = new Set(
+        ctx.resources.filter((r) => r.data_class === 'real').map((r) => r.provider_id),
+      );
+      const names = ctx.providers
+        .filter((p) => realProviderIds.has(p.provider_id))
+        .map((p) => p.name);
+      if (names.length) {
+        trusted.innerHTML = names
+          .map((name) => `<span class="trusted-row__item">${esc(name)}</span>`)
+          .join('');
+      }
+    }
+
     /* 表单：学习目标 / 当前基础 / 预算 / 每周时间 → search 页 */
     const form = document.querySelector('[data-home-search]');
     if (form) {

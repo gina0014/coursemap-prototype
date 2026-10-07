@@ -190,3 +190,45 @@ export function savePrefs(patch) {
   const current = loadPrefs();
   return write(STORAGE_KEYS.prefs, { ...current, ...patch });
 }
+
+/* ----------------------------------------------------------------------------
+   学习路径阶段进度（Local Prototype）
+   ----------------------------------------------------------------------------
+   与「本地学习评价」同一诚实性口径：进度**只**保存在浏览器中，
+   不进入数据集、不影响其它用户看到的任何内容、没有账号云同步。
+   值域固定为 not_started / in_progress / completed。
+   -------------------------------------------------------------------------- */
+
+export const PATH_STAGE_STATUSES = ['not_started', 'in_progress', 'completed'];
+
+function normalizeStatus(value) {
+  return PATH_STAGE_STATUSES.includes(value) ? value : 'not_started';
+}
+
+export function loadPathProgress(pathId = null) {
+  const data = read(STORAGE_KEYS.pathProgress, { paths: {} });
+  const paths = data.paths && typeof data.paths === 'object' ? data.paths : {};
+  if (pathId === null) return paths;
+  const entry = paths[String(Number(pathId))];
+  const stages = entry && typeof entry === 'object' ? entry : {};
+  const out = {};
+  Object.keys(stages).forEach((k) => { out[k] = normalizeStatus(stages[k]); });
+  return out;
+}
+
+export function setPathStageStatus(pathId, stepOrder, status) {
+  const paths = loadPathProgress();
+  const key = String(Number(pathId));
+  const current = paths[key] && typeof paths[key] === 'object' ? paths[key] : {};
+  const next = { ...current, [String(Number(stepOrder))]: normalizeStatus(status) };
+  paths[key] = next;
+  write(STORAGE_KEYS.pathProgress, { paths });
+  return next;
+}
+
+export function clearPathProgress(pathId) {
+  const paths = loadPathProgress();
+  delete paths[String(Number(pathId))];
+  write(STORAGE_KEYS.pathProgress, { paths });
+  return {};
+}

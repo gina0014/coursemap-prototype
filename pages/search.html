@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="../css/components.css">
 <link rel="stylesheet" href="../css/pages.css">
 <link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/upgrade.css">
 </head>
 <body>
 
@@ -34,17 +35,22 @@
           <input class="control" type="search" id="search-q" data-field="q" placeholder="例如：Python 入门、数据分析、机器学习" autocomplete="off">
         </div>
         <div class="field">
-          <label class="field__label" for="search-sort">排序</label>
+          <label class="field__label" for="search-sort">Sort by</label>
           <select class="control" id="search-sort" data-sort></select>
         </div>
+        <button type="button" class="filter-drawer-toggle" data-filter-drawer-toggle aria-expanded="false" aria-controls="search-filters">
+          <span aria-hidden="true">☰</span> 筛选
+        </button>
       </div>
     </form>
 
+    <div class="filter-drawer-backdrop" data-filter-drawer-backdrop hidden></div>
+
     <div class="search-layout">
-      <aside class="search-side" aria-label="筛选条件" data-filters></aside>
+      <aside class="search-side" id="search-filters" aria-label="筛选条件" data-filters></aside>
       <div class="search-main">
         <div data-goal-bar></div>
-        <div data-result-header></div>
+        <div data-result-header aria-live="polite"></div>
         <div data-results>
           <div class="state" data-coursemap-state="loading">
             <div class="state__title">正在读取数据…</div>

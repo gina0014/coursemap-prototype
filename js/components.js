@@ -212,7 +212,7 @@ export function resourceCard(summary, { showGoalLinks = true, favorite = false, 
       </div>
     </div>
 
-    <p class="resource-card__where">${esc(meta)}</p>
+    <p class="resource-card__where">${meta}</p>
 
     <div class="resource-card__metrics">
       ${metricBlock('学习者评分', rating.overall === null ? NOT_VERIFIED : `★ ${rating1(rating.overall)}`, { tone: rating.overall === null ? 'unknown' : '' })}
@@ -527,23 +527,37 @@ export function compareCards(rows) {
    全站骨架（Header / Footer / Demo 提示条）
    -------------------------------------------------------------------------- */
 
+/* UI V0.2：主纳（英文标签，与产品气质一致）+ 右侧工具区。
+   键值保持稳定（'search'|'paths'|'advisor'|'about'…），页面控制器无需改动。 */
 const NAV = [
-  { key: 'search', label: '找课程', href: () => L.search({}) },
-  { key: 'paths', label: '学习路径', href: () => L.paths() },
-  { key: 'favorites', label: '收藏', href: () => L.favorites() },
-  { key: 'advisor', label: 'AI 学习顾问', href: () => L.advisor(), beta: true },
-  { key: 'methodology', label: '数据方法论', href: () => L.methodology() },
-  { key: 'about', label: '关于', href: () => L.about() },
+  { key: 'search', label: 'Discover', zh: '发现资源', href: () => L.search({}) },
+  { key: 'paths', label: 'Learning Paths', zh: '学习路径', href: () => L.paths() },
+  { key: 'advisor', label: 'AI Advisor', zh: 'AI 学习顾问', href: () => L.advisor(), ai: true },
+  { key: 'about', label: 'About', zh: '关于', href: () => L.about() },
 ];
+
+/** AI 徽标：仅允许出现在 AI 相关内容上（AI Advisor / AI Recommendation / AI 路径）。 */
+export function aiBadge(label = 'AI', extraAttrs = '') {
+  return `<span class="badge badge--ai" ${extraAttrs}><span class="ai-sparkle" aria-hidden="true">✦</span>${esc(label)}</span>`;
+}
 
 export function headerHtml({ active = '', favoriteCount = 0 } = {}) {
   const links = NAV.map((item) => {
-    const badge = item.key === 'favorites' && favoriteCount > 0
-      ? `<span class="nav__count">${favoriteCount}</span>`
-      : '';
-    const beta = item.beta ? '<span class="badge badge--experimental" style="margin-left:4px;">Beta</span>' : '';
-    return `<a class="nav__link" href="${esc(item.href())}"${active === item.key ? ' aria-current="page"' : ''}>${esc(item.label)}${badge}${beta}</a>`;
+    const aiSpark = item.ai ? ' <span class="ai-sparkle" aria-hidden="true">✦</span>' : '';
+    return `<a class="nav__link" href="${esc(item.href())}" title="${esc(item.zh)}"${active === item.key ? ' aria-current="page"' : ''}>${esc(item.label)}${aiSpark}</a>`;
   }).join('');
+
+  const favLink = `<a class="nav__link nav__link--tool" href="${esc(L.favorites())}" title="我的收藏（Local Prototype）"${active === 'favorites' ? ' aria-current="page"' : ''}>
+      <span aria-hidden="true">☆</span>收藏${favoriteCount > 0 ? `<span class="nav__count">${favoriteCount}</span>` : ''}
+    </a>`;
+
+  const searchLink = `<a class="nav__link nav__link--tool" href="${esc(L.search({}))}" title="搜索学习资源"><span aria-hidden="true">⌕</span>Search</a>`;
+
+  const githubLink = APP.repo
+    ? `<a class="nav__link nav__link--tool" href="${esc(APP.repo)}" rel="noopener noreferrer" target="_blank" title="源代码仓库（GitHub）"><span aria-hidden="true">◐</span>GitHub</a>`
+    : '';
+
+  const cta = `<a class="nav__cta" href="${esc(L.advisor())}">Get started <span aria-hidden="true">→</span></a>`;
 
   return `<div class="container app-header__inner">
       <a class="brand" href="${esc(L.home())}">
@@ -554,7 +568,10 @@ export function headerHtml({ active = '', favoriteCount = 0 } = {}) {
         </span>
       </a>
       <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">菜单</button>
-      <nav class="nav" id="primary-nav" aria-label="主导航">${links}</nav>
+      <nav class="nav" id="primary-nav" aria-label="主导航">
+        ${links}
+        <span class="nav-tools">${searchLink}${favLink}${githubLink}${cta}</span>
+      </nav>
     </div>`;
 }
 
@@ -617,7 +634,7 @@ export function footerHtml(ctx) {
           <div class="footer__list">
             <a href="${esc(L.about())}">CourseMap 是什么</a>
             <a href="${esc(L.about())}#validation">我们验证什么</a>
-            <a href="${esc(L.about())}#prototype">原型声明</a>
+            <a href="${esc(L.about())}#prototype">原型声明</a>${APP.repo ? `\n            <a href="${esc(APP.repo)}" rel="noopener noreferrer" target="_blank">源代码仓库（GitHub）</a>` : ''}
           </div>
         </div>
         <div>
@@ -625,6 +642,7 @@ export function footerHtml(ctx) {
           <div class="footer__list">
             <span class="footer__version">${esc(APP.version)}</span>
             <span>${esc(APP.stage)}</span>
+            <span class="footer__version">${esc(APP.uiVersion || '')}</span>
             <span>构建：${esc(APP.buildDate)}</span>
           </div>
         </div>

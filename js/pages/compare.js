@@ -103,6 +103,8 @@ initPage({
     : (view === 'cards' ? compareCards(rows) : compareTable(rows, { feeStats, durationStats, ratingStats }))}
       </div>
 
+      ${startPointHtml(rows, goal)}
+
       <div class="notice" style="margin-top:20px;">
         <div class="notice__title">对比口径</div>
         费用取最新观测；费用/时长未知的资源以 — 呈现，<strong>不参与</strong>最大最小值计算，也不会被当成 0。
@@ -121,3 +123,78 @@ initPage({
     });
   },
 });
+
+/* ----------------------------------------------------------------------------
+   UI V0.2：起点建议（Start point）
+   ----------------------------------------------------------------------------
+   纪律：这是**由 CourseMap 数据推导**的建议（fee / duration / difficulty /
+   data_class / 官方来源），不是 LLM 生成的推荐语。任何数值都必须在表格里
+   能找到对应单元格，缺失值一律不参与。
+   -------------------------------------------------------------------------- */
+function startPointHtml(rows, goal) {
+  if (!rows || rows.length < 2) return '';
+
+  const feeOf = (s) => (s.fee && typeof s.fee.fee === 'number' ? s.fee.fee : null);
+  const durOf = (s) => (typeof s.resource.duration_hours === 'number' ? s.resource.duration_hours : null);
+  const rated = (s) => (typeof s.rating.overall === 'number' ? s.rating.overall : null);
+
+  /* 排序键（全部为"已有事实"，缺失值排在最后，绝不用 0 冒充）：
+     1) 已核验真实资源优先  2) 费用低者优先  3) 时长短者优先  4) 评分高者优先 */
+  const score = (s) => [
+    s.isDemo ? 1 : 0,
+    feeOf(s) === null ? Number.POSITIVE_INFINITY : feeOf(s),
+    durOf(s) === null ? Number.POSITIVE_INFINITY : durOf(s),
+    rated(s) === null ? -1 : -rated(s),
+  ];
+
+  const sorted = rows.slice().sort((a, b) => {
+    const ka = score(a);
+    const kb = score(b);
+    for (let i = 0; i < ka.length; i += 1) {
+      if (ka[i] !== kb[i]) return ka[i] - kb[i];
+    }
+    return String(a.resource.resource_id).localeCompare(String(b.resource.resource_id));
+  });
+
+  const pick = sorted[0];
+  const others = rows.filter((s) => s.resource.resource_id !== pick.resource.resource_id);
+
+  const reasons = [];
+  if (!pick.isDemo) reasons.push('在本次对比中它是<b>已核验真实资源</b>（带官方来源与许可记录，可回到官方页面核对）。');
+  if (typeof pick.resource.difficulty === 'string') {
+    reasons.push(`难度标注为 <b>${pick.resource.difficulty === 'beginner' ? '入门' : (pick.resource.difficulty === 'intermediate' ? '有基础' : '进阶')}</b>，与"先入门再进阶"的默认顺序一致。`);
+  }
+  if (feeOf(pick) !== null) {
+    reasons.push(feeOf(pick) === 0 ? '当前观测费用为 <b>免费</b>。' : `当前观测费用 <b>¥${money(feeOf(pick))}</b>${others.some((s) => feeOf(s) !== null && feeOf(s) > feeOf(pick)) ? '，低于本次对比中的其他已知费用。' : '。'}`);
+  } else {
+    reasons.push('费用在 CourseMap 中<b>尚未核验</b>，选择前请先到官方页面确认。');
+  }
+  if (durOf(pick) !== null) reasons.push(`总时长 <b>${durOf(pick)} 小时</b>，适合先跑完一遍再决定是否深入。`);
+  if (rated(pick) !== null) reasons.push(`学习者评分 <b>★ ${rating1(rated(pick))}</b>（${pick.rating.count} 条评价${pick.rating.sampleState === 'sufficient' ? '' : '，样本不足'}）。`);
+
+  const altLinks = others.length
+    ? `<div class="cluster" style="margin-top:10px;">${others.map((s) => `<a class="tag tag--link" href="${esc(L.resource(s.resource.resource_id))}">备选：${esc(s.resource.title)}</a>`).join('')}</div>`
+    : '';
+
+  return `
+      <section class="start-point" data-compare-start-point>
+        <div class="start-point__head">
+          <span class="start-point__title">起点建议</span>
+          <span class="badge badge--ghost">由 CourseMap 数据推导 · 非 LLM 生成</span>
+        </div>
+        <div class="start-point__body">
+          <p>如果目标是「<strong>${esc(goal.name)}</strong>」，建议的起点是
+            <a href="${esc(L.resource(pick.resource.resource_id))}"><strong>${esc(pick.resource.title)}</strong></a>${pick.provider ? `（${esc(pick.provider.name)}）` : ''}。</p>
+          <ul class="start-point__why">${reasons.map((r) => `<li>${r}</li>`).join('')}</ul>
+          ${altLinks}
+          <p class="cmp-dim" style="margin-top:12px;font-size:var(--cm-fs-xs);">
+            推导规则：已核验真实资源优先 → 已知费用低者优先 → 已知时长短者优先 → 已知评分高者优先；缺失值不参与排序，也不会被当作 0。
+          </p>
+          <div class="cluster" style="margin-top:12px;">
+            <a class="btn btn--ghost btn--sm" href="${esc(L.advisor())}?q=${encodeURIComponent(`我想学「${goal.name}」，请帮我判断从哪个资源开始最合适`)}">
+              <span class="ai-sparkle" aria-hidden="true">✦</span> 让 AI 顾问解释为什么 →
+            </a>
+          </div>
+        </div>
+      </section>`;
+}

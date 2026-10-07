@@ -18,6 +18,10 @@ export const APP = {
   version: 'CourseMap-v0.2-AI-Beta',
   stage: 'v0.2 AI-Beta — Real LLM (DeepSeek via server-side backend)',
   buildDate: '2026-10-06',
+  /* 公开源代码仓库（GitHub Pages 部署来源）。UI 顶部导航的 GitHub 入口使用。
+     注意：这里只放公开仓库地址，不得放任何凭据。 */
+  repo: 'https://github.com/gina0014/coursemap-prototype',
+  uiVersion: 'UI V0.2 · Visual Upgrade',
 };
 
 /* ----------------------------------------------------------------------------
@@ -95,6 +99,8 @@ export const STORAGE_KEYS = {
   savedGoals: 'coursemap.savedGoals.v1',
   localReviews: 'coursemap.localReviews.v1',
   prefs: 'coursemap.prefs.v1',
+  /* 学习路径阶段进度（UI 层新增，仅存浏览器；不进入数据集、不上传服务器） */
+  pathProgress: 'coursemap.pathProgress.v1',
 };
 
 export const STORAGE_SCHEMA_VERSION = 1;

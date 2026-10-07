@@ -1,49 +1,61 @@
 /* ============================================================================
    CourseMap（学途） — Design Tokens (單一真源)
    ----------------------------------------------------------------------------
-   CourseMap Design Baseline V0.1 · Prototype
+   CourseMap Design Baseline V0.2 · UI/UX Visual Upgrade
 
-   视觉身份方向（docs/product/04_Information_Architecture.md）：
-     learning · knowledge · clarity · trust · academic / technology
+   V0.2 变更：色阶整体转向「现代 AI-native 教育产品」气质
+     · 主色 #2563EB（Trust Blue）· AI 强调 #7C3AED（Violet）
+     · 中性色 Slate 系（#F8FAFC / #FFFFFF / #E2E8F0 / #0F172A / #64748B）
+     · 语义色（费用 / 核验 / Demo / 实验性 / 受限）保持 V0.1 取值不变：
+       它们是**数据治理语义**，不是装饰色，不得为了美观改动。
+     · 令牌**名称**保持稳定（全站 CSS/JS 依赖），仅调整取值并新增令牌。
 
-   与原图书馆项目的关系：**借鉴令牌结构，取值全新**。
-   教育视觉语言：靛蓝（信任 / 学术）+ 青玉（成长 / 清晰）；
-   CourseMap 为靛蓝 + 青玉（知识 / 信任 / 教育科技），三者不得混淆。
-
-   硬规则：
+   硬规则（不变）：
    - 本文件是颜色、间距、圆角、字号的唯一定义处，其它 CSS 不得硬编码色值。
-   - 语义色（费用 / 核验 / Demo / 实验性）必须在全站保持一致。
+   - 语义色必须在全站保持一致。
    - 颜色**不得**是唯一的信息载体：所有状态徽标都必须同时有文字。
+   - AI 视觉语言（紫 sparkle / AI badge / 极淡渐变）只允许用于 AI 相关内容，
+     普通课程数据不得使用 AI 图标与紫色（DATA 与 AI REASONING 必须可区分）。
    ========================================================================== */
 
 :root {
-  /* ---------- 色板：冷中性纸感底 ---------------- */
-  --cm-bg:            #F8FAFD;
-  --cm-bg-soft:       #EEF3F9;
+  /* ---------- 色板：中性 Slate 底 ---------------- */
+  --cm-bg:            #F8FAFC;
+  --cm-bg-soft:       #F1F5F9;
   --cm-surface:       #FFFFFF;
-  --cm-surface-2:     #F1F6FC;
-  --cm-surface-3:     #E7EFF8;
-  --cm-border:        #D8E2EE;
-  --cm-border-strong: #B9C9DD;
+  --cm-surface-2:     #F8FAFC;
+  --cm-surface-3:     #F1F5F9;
+  --cm-border:        #E2E8F0;
+  --cm-border-strong: #CBD5E1;
 
   /* ---------- 文字 ---------------- */
-  --cm-text:          #1B2A3D;
-  --cm-text-soft:     #3C516B;
-  --cm-text-muted:    #66798F;
+  --cm-text:          #0F172A;
+  --cm-text-soft:     #334155;
+  --cm-text-muted:    #64748B;
   --cm-text-invert:   #FFFFFF;
 
-  /* ---------- 品牌主色（靛蓝 / 知识蓝） ---------------- */
-  --cm-primary:        #2F5FD0;
-  --cm-primary-strong: #23479C;
-  --cm-primary-hover:  #2A56BD;
-  --cm-primary-soft:   #E4ECFB;
-  --cm-primary-border: #A9C1F0;
+  /* ---------- 品牌主色（Trust Blue） ---------------- */
+  --cm-primary:        #2563EB;
+  --cm-primary-strong: #1D4ED8;
+  --cm-primary-hover:  #1D4ED8;
+  --cm-primary-soft:   #EFF6FF;
+  --cm-primary-border: #BFDBFE;
 
-  /* ---------- 辅助色（青玉 / 学习进度） ---------------- */
+  /* ---------- 辅助色（青玉 / 学习进度，V0.1 保留） ---------------- */
   --cm-accent:        #0E8A80;
   --cm-accent-soft:   #DCF3F0;
 
-  /* ---------- 语义色 ---------------- */
+  /* ---------- AI 视觉语言（V0.2 新增） ----------------
+     仅用于：AI Advisor / AI Recommendation / AI-generated Learning Path / AI 解释。
+     极淡渐变仅允许出现在 AI 卡片与首页 hero accent。 */
+  --cm-ai:            #7C3AED;
+  --cm-ai-strong:     #6D28D9;
+  --cm-ai-soft:       #F5F3FF;
+  --cm-ai-border:     #DDD6FE;
+  --cm-ai-gradient:   linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(37, 99, 235, 0.06));
+  --cm-hero-gradient: linear-gradient(180deg, rgba(37, 99, 235, 0.06) 0%, rgba(248, 250, 252, 0) 68%);
+
+  /* ---------- 语义色（V0.1 取值保持不变） ---------------- */
   --cm-fee:          #8A5A00;  /* 费用：稳定的琥珀 */
   --cm-fee-bg:       #FDF2D0;
   --cm-rating:       #B7791F;  /* 评分：星标琥珀 */
@@ -51,34 +63,39 @@
   --cm-verified-bg:  #DCFCE7;
   --cm-unverified:   #92610E;  /* 未核验 */
   --cm-unverified-bg:#FDF2D0;
-  --cm-demo:         #6D28D9;  /* Demo：紫色，与所有语义色区分 */
+  --cm-demo:         #6D28D9;  /* Demo：紫色（与 AI 紫同族但仅用于 DEMO 徽标） */
   --cm-demo-bg:      #EDE9FE;
   --cm-demo-border:  #C4B5FD;
-  --cm-experimental: #0E7490;  /* 实验性指标：青，提示「非验证结论」 */
+  --cm-experimental: #0E7490;  /* 实验性指标：青 */
   --cm-experimental-bg: #CFFAFE;
   --cm-limited:      #92610E;  /* 样本不足 */
   --cm-limited-bg:   #FDF2D0;
+  --cm-success:      #16A34A;  /* 成功 / 完成（V0.2 新增） */
+  --cm-warning:      #F59E0B;  /* 警示（V0.2 新增） */
   --cm-danger:       #B91C1C;
   --cm-danger-bg:    #FEE2E2;
   --cm-focus:        #1D4ED8;  /* 焦点环：高对比蓝 */
 
   /* ---------- 排版 ---------------- */
-  --cm-font: "Inter", "Segoe UI", "PingFang SC", "Hiragino Sans GB",
-             "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans SC",
-             "Noto Sans CJK SC", system-ui, -apple-system, sans-serif;
+  --cm-font: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont,
+             "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI",
+             "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
   --cm-font-mono: "SFMono-Regular", "Cascadia Mono", "Consolas",
                   "Liberation Mono", ui-monospace, monospace;
 
   --cm-fs-xs:   0.75rem;   /* 12 */
   --cm-fs-sm:   0.8125rem; /* 13 */
+  --cm-fs-meta: 0.875rem;  /* 14 · metadata */
   --cm-fs-base: 0.9375rem; /* 15 */
   --cm-fs-md:   1rem;      /* 16 */
   --cm-fs-lg:   1.125rem;  /* 18 */
   --cm-fs-xl:   1.375rem;  /* 22 */
   --cm-fs-2xl:  1.75rem;   /* 28 */
   --cm-fs-3xl:  2.25rem;   /* 36 */
+  --cm-fs-4xl:  2.5rem;    /* 40 */
+  --cm-fs-hero: 3.25rem;   /* 52 · Hero */
 
-  --cm-lh-tight: 1.25;
+  --cm-lh-tight: 1.22;
   --cm-lh-base:  1.6;
 
   --cm-fw-normal: 400;
@@ -95,36 +112,40 @@
   --cm-sp-6:  2rem;     /* 32 */
   --cm-sp-7:  3rem;     /* 48 */
   --cm-sp-8:  4rem;     /* 64 */
+  --cm-sp-9:  5rem;     /* 80 */
 
-  /* ---------- 圆角 / 阴影 ---------------- */
+  /* ---------- 圆角 / 阴影（V0.2 更收敛） ---------------- */
   --cm-r-sm: 6px;
   --cm-r-md: 10px;
   --cm-r-lg: 14px;
   --cm-r-xl: 20px;
   --cm-r-pill: 999px;
 
-  --cm-shadow-sm: 0 1px 2px rgba(27, 42, 61, 0.06);
-  --cm-shadow-md: 0 2px 8px rgba(27, 42, 61, 0.08);
-  --cm-shadow-lg: 0 8px 24px rgba(27, 42, 61, 0.12);
+  --cm-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --cm-shadow-md: 0 1px 3px rgba(15, 23, 42, 0.06), 0 6px 16px rgba(15, 23, 42, 0.06);
+  --cm-shadow-lg: 0 2px 6px rgba(15, 23, 42, 0.06), 0 16px 32px rgba(15, 23, 42, 0.08);
 
   /* ---------- 尺寸 ---------------- */
   --cm-container: 1200px;
   --cm-container-narrow: 860px;
-  --cm-header-h: 60px;
+  --cm-header-h: 64px;
   --cm-control-h: 44px;
 
   /* ---------- 层级 ---------------- */
   --cm-z-sticky: 50;
   --cm-z-header: 90;
+  --cm-z-drawer: 120;
 
-  /* ---------- 动效 ---------------- */
-  --cm-t-fast: 120ms ease;
-  --cm-t-base: 200ms ease;
+  /* ---------- 动效（150–250ms） ---------------- */
+  --cm-t-fast: 150ms cubic-bezier(0.2, 0, 0.2, 1);
+  --cm-t-base: 200ms cubic-bezier(0.2, 0, 0.2, 1);
+  --cm-t-slow: 250ms cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --cm-t-fast: 0ms;
     --cm-t-base: 0ms;
+    --cm-t-slow: 0ms;
   }
 }
